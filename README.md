@@ -56,9 +56,9 @@ through `useProgress()`, so no page/component code should need to change.
 Tokens live in `app/globals.css` (`--color-*`, the type scale, `--radius-card`)
 and are wired into Tailwind via `@theme`. This is a deliberately different,
 quieter direction from the standard AirOps product brand kit — see the
-project brief for the full rationale. Serrif VF (display, `app/fonts/SerrifVF.ttf`)
-is AirOps' real licensed display face. Inter (body) is still a placeholder —
-swap for Saans in `app/layout.tsx` if that gets confirmed too.
+project brief for the full rationale. Serrif VF (display) and Saans (body) —
+both under `app/fonts/` — are AirOps' real licensed typefaces, loaded via
+`next/font/local` in `app/layout.tsx`.
 
 ## Deploy
 

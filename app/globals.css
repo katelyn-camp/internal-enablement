@@ -26,10 +26,9 @@
   --color-signal: var(--color-signal);
   --color-white: var(--color-white);
 
-  /* Serrif VF is AirOps' real licensed display face. Inter is still a
-     placeholder for the body face — swap for Saans if that gets confirmed. */
+  /* Serrif VF (display) and Saans (body) are AirOps' real licensed typefaces. */
   --font-display: var(--font-serrif);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-saans);
 
   /* Explicit type scale — do not rely on Tailwind defaults. */
   --text-display: 3.5rem;

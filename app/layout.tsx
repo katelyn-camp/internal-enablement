@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { NavShell } from "./components/nav/NavShell";
 
-// Serrif VF is AirOps' actual licensed display face (same file used across
-// the other AirOps internal tools). Inter remains a placeholder for the
-// body face — swap for Saans once that's confirmed too.
+// Serrif VF (display) and Saans (body) are AirOps' actual licensed
+// typefaces — the same font files used across the other AirOps internal
+// tools, loaded locally rather than from Google Fonts.
 const serrif = localFont({
   src: "./fonts/SerrifVF.ttf",
   variable: "--font-serrif",
@@ -14,9 +13,14 @@ const serrif = localFont({
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const saans = localFont({
+  src: [
+    { path: "./fonts/Saans-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/Saans-Medium.ttf", weight: "500", style: "normal" },
+    { path: "./fonts/Saans-Bold.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-saans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -34,7 +38,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${serrif.variable} ${inter.variable} h-full antialiased`}
+      className={`${serrif.variable} ${saans.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper text-ink">
         <NavShell>
