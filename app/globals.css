@@ -26,9 +26,9 @@
   --color-signal: var(--color-signal);
   --color-white: var(--color-white);
 
-  /* NOTE: Fraunces + Inter are buildable placeholders for AirOps' actual
-     licensed display/body faces — swap once confirmed with design. */
-  --font-display: var(--font-fraunces);
+  /* Serrif VF is AirOps' real licensed display face. Inter is still a
+     placeholder for the body face — swap for Saans if that gets confirmed. */
+  --font-display: var(--font-serrif);
   --font-sans: var(--font-inter);
 
   /* Explicit type scale — do not rely on Tailwind defaults. */

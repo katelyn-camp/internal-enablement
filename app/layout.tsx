@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
-// Fraunces (display) + Inter (body) are buildable placeholders for
-// AirOps' actual licensed display/body faces — swap once design confirms.
-import { Fraunces, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { NavShell } from "./components/nav/NavShell";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
+// Serrif VF is AirOps' actual licensed display face (same file used across
+// the other AirOps internal tools). Inter remains a placeholder for the
+// body face — swap for Saans once that's confirmed too.
+const serrif = localFont({
+  src: "./fonts/SerrifVF.ttf",
+  variable: "--font-serrif",
+  weight: "100 900",
+  display: "swap",
 });
 
 const inter = Inter({
@@ -31,7 +34,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      className={`${serrif.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper text-ink">
         <NavShell>
