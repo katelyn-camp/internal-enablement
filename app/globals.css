@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens for the SAM/SA SEO+AEO enablement reference site.
+ * This is intentionally NOT the standard AirOps product brand kit —
+ * a quieter, warmer, more editorial system. See project brief.
+ */
+:root {
+  --color-ink: #1d1b19;
+  --color-paper: #fbfaf9;
+  --color-paper-2: #f7f6f3;
+  --color-paper-3: #f2f0ed;
+  --color-line: #e7e4e0;
+  --color-forest: #002912;
+  --color-signal: #00ff72;
+  --color-white: #ffffff;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-paper: var(--color-paper);
+  --color-paper-2: var(--color-paper-2);
+  --color-paper-3: var(--color-paper-3);
+  --color-line: var(--color-line);
+  --color-forest: var(--color-forest);
+  --color-signal: var(--color-signal);
+  --color-white: var(--color-white);
+
+  /* NOTE: Fraunces + Inter are buildable placeholders for AirOps' actual
+     licensed display/body faces — swap once confirmed with design. */
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+
+  /* Explicit type scale — do not rely on Tailwind defaults. */
+  --text-display: 3.5rem;
+  --text-display--line-height: 1.05;
+  --text-h1: 2.5rem;
+  --text-h1--line-height: 1.1;
+  --text-h2: 1.75rem;
+  --text-h2--line-height: 1.2;
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.35;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.4;
+
+  --radius-card: 14px;
+}
+
+/* Only the mobile header is sticky now (the sidebar isn't) — desktop deep links don't need the offset. */
+* {
+  scroll-margin-top: 5rem;
+}
+
+@media (min-width: 1024px) {
+  * {
+    scroll-margin-top: 1.5rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-signal);
+  color: var(--color-ink);
+}
+
+@keyframes pulse-marker {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 114, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(0, 255, 114, 0);
+  }
+}
+
+.hotspot-pulse {
+  animation: pulse-marker 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotspot-pulse {
+    animation: none;
+  }
+}
