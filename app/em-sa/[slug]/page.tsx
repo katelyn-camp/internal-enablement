@@ -15,13 +15,13 @@ export default async function EmSaModulePage({ params }: { params: Promise<{ slu
   if (!curriculumModule || (curriculumModule.audience !== "shared" && curriculumModule.audience !== "em-sa")) notFound();
 
   return (
-    <div className="mx-auto max-w-3xl px-5 py-10 lg:px-8 lg:py-14">
+    <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8 lg:py-14 xl:pr-[17rem]">
       <PageVisitTracker id={`em-sa:${curriculumModule.slug}`} />
       <Breadcrumbs trail={[{ label: "Managed Services Team Curriculum", href: "/em-sa" }, { label: curriculumModule.title }]} />
       <div className="mb-3">
         <ModuleEyebrow code={curriculumModule.code} />
       </div>
-      <h1 className="font-display text-h1 mb-3 text-ink">{curriculumModule.title}</h1>
+      <h1 className="font-display text-h1 mb-8 text-ink">{curriculumModule.title}</h1>
       <ModuleDetailView module={curriculumModule} audience="em-sa" />
     </div>
   );

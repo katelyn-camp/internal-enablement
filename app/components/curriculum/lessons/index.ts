@@ -1,5 +1,6 @@
 import { ComponentType } from "react";
 import { M0Orientation } from "./M0Orientation";
+import { M1AISearchLandscape } from "./M1AISearchLandscape";
 
 /**
  * Real, written lesson bodies, keyed by "audience:slug", looked up from
@@ -10,4 +11,6 @@ import { M0Orientation } from "./M0Orientation";
  */
 export const lessonComponents: Record<string, ComponentType> = {
   "em-sa:m0": M0Orientation,
+  "em-sa:m1": M1AISearchLandscape,
+  "sales:m1": M1AISearchLandscape,
 };

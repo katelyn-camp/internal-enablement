@@ -14,6 +14,15 @@ function depthCopy(module: ModuleEntry, audience: Audience): { label: string; te
   return null;
 }
 
+/** Splits a semicolon-delimited capability sentence into standalone bullet items. */
+function splitIntoObjectives(text: string): string[] {
+  return text
+    .split(";")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => s.charAt(0).toUpperCase() + s.slice(1));
+}
+
 function DeliveryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1 border-t border-line py-3 first:border-t-0 sm:flex-row sm:items-baseline sm:gap-4">
@@ -25,8 +34,12 @@ function DeliveryRow({ label, value }: { label: string; value: string }) {
 
 export function ModuleDetailView({ module, audience }: { module: ModuleEntry; audience: Audience }) {
   const audienceContent = audience === "em-sa" ? module.emSaContent : module.salesContent;
-  const depth = audienceContent?.learningObjectives
-    ? { label: "Learning Objectives", text: audienceContent.learningObjectives }
+  const hasCustomObjectives = !!audienceContent?.learningObjectives;
+  // Orientation gets its own hand-written objectives paragraph (both audiences); every
+  // other module's objective/depth copy is auto-split into a bulleted "Learning Objectives" list.
+  const skipObjectivesTransform = module.slug === "m0" || hasCustomObjectives;
+  const depth = hasCustomObjectives
+    ? { label: "Learning Objectives", text: audienceContent!.learningObjectives! }
     : depthCopy(module, audience);
   const showDeliveryModel = !audienceContent?.hideDeliveryModel;
   const projectOptions =
@@ -35,12 +48,22 @@ export function ModuleDetailView({ module, audience }: { module: ModuleEntry; au
 
   return (
     <div className="space-y-10">
-      {depth && (
-        <section>
-          <h2 className="mb-2 font-display text-h2 text-ink">{depth.label}</h2>
-          <p className="max-w-2xl text-sm leading-relaxed text-ink/80">{depth.text}</p>
-        </section>
-      )}
+      {depth &&
+        (skipObjectivesTransform ? (
+          <section>
+            <h2 className="mb-2 font-display text-h2 text-ink">{depth.label}</h2>
+            <p className="max-w-2xl text-sm leading-relaxed text-ink/80">{depth.text}</p>
+          </section>
+        ) : (
+          <section>
+            <h2 className="mb-2 font-display text-h2 text-ink">Learning Objectives</h2>
+            <ul className="max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
+              {splitIntoObjectives(depth.text).map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        ))}
 
       {module.source && <p className="text-caption font-medium tracking-wide text-ink/40 uppercase">Source: {module.source}</p>}
 

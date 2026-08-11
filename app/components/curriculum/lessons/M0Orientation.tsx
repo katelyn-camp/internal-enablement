@@ -1,3 +1,12 @@
+import { SectionHeading } from "./shared";
+import { PageOutline } from "@/app/components/nav/PageOutline";
+
+const OUTLINE = [
+  { id: "why-now", label: "Why Now" },
+  { id: "today-vs-headed", label: "Today vs. Headed" },
+  { id: "role-by-role", label: "Role by Role" },
+];
+
 interface CompareRow {
   dimension: string;
   today: string;
@@ -120,10 +129,6 @@ const AEO_STRATEGIST_ROWS: RoleRow[] = [
   },
 ];
 
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <h2 className="mb-3 font-display text-h2 text-ink">{children}</h2>;
-}
-
 function TodayHeadedTable() {
   return (
     <div className="overflow-x-auto rounded-card border border-line">
@@ -222,7 +227,9 @@ export function M0Orientation() {
         <p className="text-sm text-ink/50 italic">Everything below is a compare/contrast on that one shift.</p>
       </section>
 
-      <section>
+      <PageOutline sections={OUTLINE} />
+
+      <section id="why-now">
         <SectionHeading>Why now</SectionHeading>
         <ul className="space-y-2">
           {WHY_NOW.map((item) => (
@@ -233,12 +240,12 @@ export function M0Orientation() {
         </ul>
       </section>
 
-      <section>
+      <section id="today-vs-headed">
         <SectionHeading>What We Are Today → Where We&rsquo;re Headed</SectionHeading>
         <TodayHeadedTable />
       </section>
 
-      <section>
+      <section id="role-by-role">
         <SectionHeading>Side-by-Side, Role by Role</SectionHeading>
 
         <div className="space-y-8">
