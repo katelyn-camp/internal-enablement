@@ -1,18 +1,20 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { Audience } from "@/lib/curriculum";
 import { Sidebar } from "./Sidebar";
+import { AudienceSwitcher } from "./AudienceSwitcher";
 
 export function NavShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const audience: Audience = pathname.startsWith("/sales") ? "sales" : "em-sa";
 
   return (
     <>
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-line bg-paper/95 px-5 py-3 backdrop-blur lg:hidden">
-        <Link href="/" className="font-display text-lg font-medium text-ink">
-          SAM/SA Enablement
-        </Link>
+        <AudienceSwitcher audience={audience} />
         <button
           type="button"
           onClick={() => setMobileOpen(true)}

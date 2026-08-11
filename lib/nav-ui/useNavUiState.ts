@@ -2,20 +2,29 @@
 
 import { useCallback, useSyncExternalStore } from "react";
 
-const STORAGE_KEY = "enablement-nav-ui:v1";
+const STORAGE_KEY = "enablement-nav-ui:v2";
 const CHANGE_EVENT = "enablement-nav-ui-change";
 
 interface NavUiState {
   expandedIds: string[];
 }
 
-// Both groups, and both expandable parents (Workflows, Anatomy of Pages), open by default.
+// Only Phase 0 starts open, for both audiences; Phase 1 and Phase 2 stay
+// collapsed until someone clicks into them. Once a group is toggled, the
+// persisted state (below) takes over. The "Existing Reference Library"
+// group (and its own expandable parents, Workflows / Anatomy of Pages) is
+// deliberately left out here too, so it starts collapsed; see lib/nav-tree.ts.
 const DEFAULT_STATE: NavUiState = {
-  expandedIds: ["foundations", "applied", "workflows", "anatomy-of-pages"],
+  expandedIds: [
+    "em-sa-phase0",
+    "sales-phase0",
+    "workflows",
+    "anatomy-of-pages",
+  ],
 };
 
 /**
- * Sidebar expand/collapse state — separate from progress tracking on
+ * Sidebar expand/collapse state, separate from progress tracking on
  * purpose. This is a UI preference (what's open), not a record of
  * what content has been covered, so it gets its own localStorage key
  * even though the storage pattern mirrors lib/progress/storage.ts.

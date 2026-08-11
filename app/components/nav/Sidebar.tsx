@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
-import { navGroups, NavItemConfig } from "@/lib/nav-tree";
+import { getNavGroups, NavItemConfig } from "@/lib/nav-tree";
+import { Audience } from "@/lib/curriculum";
 import { workflows } from "@/lib/workflows";
 import { pageTypes } from "@/lib/page-anatomy";
 import { useNavUiState } from "@/lib/nav-ui/useNavUiState";
 import { useProgress } from "@/lib/progress/useProgress";
 import { ProgressPill } from "./ProgressPill";
+import { AudienceSwitcher } from "./AudienceSwitcher";
 
 interface ResolvedChild {
   id: string;
@@ -40,17 +42,18 @@ interface FlatEntry {
 
 export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose: () => void }) {
   const pathname = usePathname();
+  const audience: Audience = pathname.startsWith("/sales") ? "sales" : "em-sa";
   const { isExpanded, toggle } = useNavUiState();
   const { state: progress, hydrated } = useProgress();
   const [filter, setFilter] = useState("");
 
   const resolvedGroups = useMemo(
     () =>
-      navGroups.map((group) => ({
+      getNavGroups(audience).map((group) => ({
         ...group,
         items: group.items.map((item) => ({ ...item, children: resolveChildren(item) })),
       })),
-    [],
+    [audience],
   );
 
   const flatEntries = useMemo(() => {
@@ -88,9 +91,13 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
         }`}
       >
         <div className="flex items-center justify-between gap-2 border-b border-line px-5 py-4">
-          <Link href="/" onClick={onClose} className="font-display text-lg font-medium text-ink">
-            SAM/SA Enablement
-          </Link>
+          {/*
+            Pre-auth stand-in for the future admin-only audience toggle:
+            once Google sign-in routes each person straight to their own
+            side, this switcher should be hidden from everyone except
+            admins previewing both curricula.
+          */}
+          <AudienceSwitcher audience={audience} onNavigate={onClose} />
           <button type="button" onClick={onClose} className="rounded-full border border-line px-2.5 py-1 text-caption lg:hidden">
             Close
           </button>
@@ -148,11 +155,21 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
                   <button
                     type="button"
                     onClick={() => toggle(group.id)}
-                    className="flex w-full items-center justify-between px-3 py-1.5 text-caption font-semibold uppercase tracking-wide text-ink/45"
+                    className="flex w-full items-center justify-between gap-2 px-3 py-1.5 text-left"
                   >
-                    {group.label}
-                    <span className={`transition-transform ${isExpanded(group.id) ? "rotate-180" : ""}`} aria-hidden>
-                      ⌄
+                    <span className="text-left">
+                      <span className="block text-caption font-semibold tracking-wide text-ink/45 uppercase">{group.label}</span>
+                      {group.subtitle && (
+                        <span className="mt-0.5 block text-[11px] leading-snug font-normal normal-case tracking-normal text-ink/40">
+                          {group.subtitle}
+                        </span>
+                      )}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-line text-xs font-semibold text-ink/50"
+                    >
+                      {isExpanded(group.id) ? "−" : "+"}
                     </span>
                   </button>
 
