@@ -87,8 +87,9 @@ export const modules: ModuleEntry[] = [
     phase: "phase0",
     audience: "shared",
     objective:
-      "State precisely what mention rate, citation rate, and share of voice each measure and why they differ; benchmark against competitors; explain how different AI platforms measure these numbers; and articulate why each metric matters and how it differs from a traditional search metric, enough to never misstate a number live, with no dashboard in front of you.",
-    knowledgeCheck: "Quiz + short free-response (\"why does mention rate swing week over week?\")",
+      "State precisely what mention rate, citation rate, and share of voice each measure and why they differ; explain how different AI visibility platforms measure these numbers; and articulate why each metric matters and how it differs from a traditional search metric, enough to never misstate a number live, with no dashboard in front of you.",
+    knowledgeCheck:
+      "Quiz (2 multiple choice, 1 true/false) + 2 short free-response: metric definitions, reading them together, and the traditional-search bridge",
     groupSession: "GS1",
     appliedProject: "N/A",
     status: "content-pending",

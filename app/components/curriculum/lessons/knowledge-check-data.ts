@@ -72,13 +72,57 @@ export const M1_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
 ];
 
 /**
- * Placeholder only, proving the Knowledge Check button/modal wiring works for Module 2
- * before real content exists. Replace with real questions once the M2 lesson is written.
+ * Scoped to what's actually on the M2 page: the metric comparison table, the "read these
+ * three together" composite framing, the prompt-tracking prerequisite, and the
+ * traditional-search bridge. Deliberately skips the per-provider calculation details in the
+ * comparison table itself, that's reference material to look up, not something to memorize.
  */
 export const M2_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   {
     kind: "free-response",
-    prompt: "Placeholder question. Replace once Module 2 content is written.",
-    modelAnswer: "Placeholder model answer.",
+    prompt: 'A rep says: "Our Mention Rate this month was 40%." What critical piece of context is missing before that number means anything?',
+    modelAnswer:
+      "Whether the prompt set being tracked actually reflects the real questions buyers ask. A high or low Mention Rate is meaningless if you're tracking the wrong prompts, you're just measuring performance against a made-up version of the market.",
+  },
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A brand has a healthy Mention Rate and Citation Rate, but a low Share of Voice. What does this most likely indicate?",
+    options: [
+      { label: "A visibility problem, the brand isn't in the conversation", correct: false },
+      { label: "A credibility problem, the brand is named but not trusted enough to cite", correct: false },
+      { label: "A competitive problem, competitors are being named even more often in the same conversations", correct: true },
+      { label: "A content problem, the brand has nothing worth citing", correct: false },
+    ],
+    explanation:
+      "Share of Voice is the competitive check. Being present and credible doesn't mean you're winning, competitors can simply be named more often in the same conversations.",
+  },
+  {
+    kind: "true-false",
+    prompt: "If you only track Citation Rate, you'll still catch a competitive problem where rivals are being named more often than you.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "Citation Rate alone doesn't show the competitive picture, that's what Share of Voice is for. Great, frequently-cited content doesn't save you if competitors are simply named more.",
+  },
+  {
+    kind: "multiple-choice",
+    prompt: "Which traditional search metric carries over to AI Search almost cleanly, just in a different container?",
+    options: [
+      { label: "Clicks", correct: false },
+      { label: "Backlinks", correct: false },
+      { label: "Average Position", correct: true },
+      { label: "Domain Authority", correct: false },
+    ],
+    explanation:
+      "Position on a page becomes position within an answer, same underlying idea (are you first or buried), different container.",
+  },
+  {
+    kind: "free-response",
+    prompt: 'A colleague says: "Citation Rate is basically just Backlinks for AI search, same thing." What\'s wrong with that comparison?',
+    modelAnswer:
+      "Backlinks and Domain Authority are inputs that accumulate over time and feed a ranking algorithm from the outside, a standing asset. Citation Rate is an outcome decided fresh every time a prompt runs, not something that compounds the way link equity does. Both are third-party validation in spirit, but they're not the same mechanism.",
   },
 ];
