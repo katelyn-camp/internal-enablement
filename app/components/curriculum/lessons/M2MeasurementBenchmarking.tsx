@@ -3,6 +3,8 @@ import { PageOutline } from "@/app/components/nav/PageOutline";
 import { KnowledgeCheckButton } from "@/app/components/curriculum/KnowledgeCheck";
 import { M2_KNOWLEDGE_CHECK } from "./knowledge-check-data";
 import { MetricComparisonExplorer } from "./MetricComparisonExplorer";
+import { MetricsCompositeRead } from "./MetricsCompositeRead";
+import { TraditionalSearchBridge } from "./TraditionalSearchBridge";
 
 /**
  * Scaffold only: sections mirror the module's objective in lib/curriculum.ts (mention
@@ -11,13 +13,8 @@ import { MetricComparisonExplorer } from "./MetricComparisonExplorer";
  */
 const OUTLINE = [
   { id: "the-metrics", label: "The Metrics" },
-  { id: "benchmarking", label: "Benchmarking Against Competitors" },
-  { id: "platform-measurement", label: "How Platforms Measure This" },
+  { id: "traditional-search-bridge", label: "From Traditional Search to AI Search" },
 ];
-
-function ContentPending() {
-  return <p className="text-sm text-ink/45 italic">Content pending.</p>;
-}
 
 export function M2MeasurementBenchmarking() {
   return (
@@ -43,16 +40,15 @@ export function M2MeasurementBenchmarking() {
           to confirm you&rsquo;re comparing the same concept before explaining a mismatch to a customer.
         </p>
         <MetricComparisonExplorer />
+
+        <div className="mt-10">
+          <MetricsCompositeRead />
+        </div>
       </section>
 
-      <section id="benchmarking">
-        <SectionHeading>Benchmarking Against Competitors</SectionHeading>
-        <ContentPending />
-      </section>
-
-      <section id="platform-measurement">
-        <SectionHeading>How Platforms Measure This</SectionHeading>
-        <ContentPending />
+      <section id="traditional-search-bridge">
+        <SectionHeading>From Traditional Search to AI Search</SectionHeading>
+        <TraditionalSearchBridge />
       </section>
     </div>
   );
