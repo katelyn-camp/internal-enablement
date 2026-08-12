@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { getModuleBySlug, getModulesForAudience } from "@/lib/curriculum";
 import { ModuleDetailView } from "@/app/components/curriculum/ModuleDetailView";
 import { ModuleStickyTitle } from "@/app/components/curriculum/ModuleStickyTitle";
@@ -10,6 +11,13 @@ import { Breadcrumbs } from "@/app/components/nav/Breadcrumbs";
 
 export function generateStaticParams() {
   return getModulesForAudience("em-sa").map((m) => ({ slug: m.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const curriculumModule = getModuleBySlug(slug);
+  if (!curriculumModule) return {};
+  return { title: `Category Enablement: ${curriculumModule.title}` };
 }
 
 export default async function EmSaModulePage({ params }: { params: Promise<{ slug: string }> }) {
