@@ -310,10 +310,6 @@ export function M1AISearchLandscape() {
 
       <section id="ecosystem">
         <SectionHeading>The Ecosystem</SectionHeading>
-        <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Here&rsquo;s that same Category → Surface → Channel → Tactic backbone, mapped in full to how AirOps&rsquo;
-          offering actually works.
-        </p>
 
         <div className="mx-auto max-w-xl rounded-card border border-line bg-white p-6 text-center">
           <div className="font-display text-h3 font-bold tracking-wide text-ink">AI Search</div>
