@@ -5,16 +5,14 @@ import { EcosystemHeader } from "./EcosystemHeader";
 import { UsageOpportunity } from "./UsageOpportunity";
 import { ChannelMix } from "./ChannelMix";
 import { DeliveryLoop } from "./DeliveryLoop";
-import { MarketOpportunity } from "./MarketOpportunity";
-import { CompetitiveLandscape } from "./CompetitiveLandscape";
+import { KnowledgeCheckButton } from "@/app/components/curriculum/KnowledgeCheck";
+import { M1_KNOWLEDGE_CHECK } from "./knowledge-check-data";
 
 const OUTLINE = [
-  { id: "market-opportunity", label: "The Market Opportunity" },
   { id: "vocabulary", label: "Getting the Vocabulary Right" },
   { id: "ecosystem", label: "The Ecosystem" },
   { id: "channel-mix", label: "Bespoke Channel Mix" },
   { id: "opportunity", label: "The Surface Opportunity" },
-  { id: "competitive-landscape", label: "Changing Competitive Landscape" },
 ];
 
 function Chip({ children }: { children: React.ReactNode }) {
@@ -175,12 +173,17 @@ const VOCABULARY_TABLE: VocabularyRow[] = [
 export function M1AISearchLandscape() {
   return (
     <div className="space-y-12">
-      <PageOutline sections={OUTLINE} />
-
-      <section id="market-opportunity">
-        <SectionHeading>The Market Opportunity</SectionHeading>
-        <MarketOpportunity />
-      </section>
+      <PageOutline
+        sections={OUTLINE}
+        footer={
+          <KnowledgeCheckButton
+            id="m1"
+            title="The AI Search Landscape"
+            questions={M1_KNOWLEDGE_CHECK}
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+          />
+        }
+      />
 
       <section id="vocabulary">
         <SectionHeading>Getting the Vocabulary Right</SectionHeading>
@@ -305,11 +308,6 @@ export function M1AISearchLandscape() {
           <div className="mt-1 font-display text-h3 font-bold text-ink">Company-Reported Scale, By Surface</div>
         </div>
         <UsageOpportunity />
-      </section>
-
-      <section id="competitive-landscape">
-        <SectionHeading>Changing Competitive Landscape</SectionHeading>
-        <CompetitiveLandscape />
       </section>
     </div>
   );

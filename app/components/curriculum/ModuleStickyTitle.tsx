@@ -13,7 +13,18 @@ const THRESHOLD_PX = 110;
  * section (identified by `untilAnchorId`) reaches the top of the viewport.
  * Modules without that anchor just stay visible the whole page through.
  */
-export function ModuleStickyTitle({ code, title, untilAnchorId }: { code: string; title: string; untilAnchorId?: string }) {
+export function ModuleStickyTitle({
+  code,
+  title,
+  untilAnchorId,
+  action,
+}: {
+  code: string;
+  title: string;
+  untilAnchorId?: string;
+  /** Optional control rendered in the top-right corner of the title bar, e.g. a Knowledge Check button. */
+  action?: React.ReactNode;
+}) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -40,10 +51,15 @@ export function ModuleStickyTitle({ code, title, untilAnchorId }: { code: string
         visible ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
     >
-      <div className="mb-3">
-        <ModuleEyebrow code={code} />
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div className="mb-3">
+            <ModuleEyebrow code={code} />
+          </div>
+          <h1 className="font-display text-h1 text-ink">{title}</h1>
+        </div>
+        {action && <div className="shrink-0 pt-1">{action}</div>}
       </div>
-      <h1 className="font-display text-h1 text-ink">{title}</h1>
     </div>
   );
 }

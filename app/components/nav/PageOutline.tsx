@@ -9,10 +9,10 @@ export interface OutlineSection {
 
 /**
  * "On this page" study aid for pages with 3+ distinct sections.
- * Quieter than the main sidebar — a sticky list in the right margin
+ * Quieter than the main sidebar: a sticky list in the right margin
  * on desktop, collapsed into a "Jump to" disclosure on narrow screens.
  */
-export function PageOutline({ sections }: { sections: OutlineSection[] }) {
+export function PageOutline({ sections, footer }: { sections: OutlineSection[]; footer?: React.ReactNode }) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -48,6 +48,7 @@ export function PageOutline({ sections }: { sections: OutlineSection[] }) {
             </li>
           ))}
         </ul>
+        {footer && <div className="mt-4">{footer}</div>}
       </nav>
 
       <details className="mb-8 rounded-card border border-line bg-paper-2 p-3 xl:hidden">

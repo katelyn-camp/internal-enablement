@@ -2,7 +2,7 @@
 
 import { useCallback, useSyncExternalStore } from "react";
 import { progressStore } from "./storage";
-import { ProgressState } from "./types";
+import { KnowledgeCheckAnswer, ProgressState } from "./types";
 
 function toggleInArray(arr: string[], id: string): string[] {
   return arr.includes(id) ? arr : [...arr, id];
@@ -69,6 +69,18 @@ export function useProgress() {
     [update],
   );
 
+  const submitKnowledgeCheck = useCallback(
+    (id: string, answers: KnowledgeCheckAnswer[]) =>
+      update((prev) => ({
+        ...prev,
+        knowledgeCheckSubmissions: {
+          ...prev.knowledgeCheckSubmissions,
+          [id]: { submittedAt: new Date().toISOString(), answers },
+        },
+      })),
+    [update],
+  );
+
   const resetProgress = useCallback(() => update(() => ({ ...progressStore.getServerSnapshot() })), [update]);
 
   return {
@@ -80,6 +92,7 @@ export function useProgress() {
     markCheckYourselfCompleted,
     markWorkflowVisited,
     markPageVisited,
+    submitKnowledgeCheck,
     resetProgress,
   };
 }

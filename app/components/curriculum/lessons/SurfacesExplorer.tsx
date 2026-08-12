@@ -129,7 +129,7 @@ function SurfacePanel({ activeKey, onClose }: { activeKey: string | null; onClos
         role="dialog"
         aria-modal="true"
         aria-label={profile ? `${profile.name} sourcing details` : "Surface sourcing details"}
-        className={`fixed inset-y-0 right-0 z-50 flex w-full max-w-lg transform flex-col border-l border-line bg-white shadow-2xl transition-transform duration-300 ease-out ${
+        className={`fixed inset-y-0 right-0 z-50 flex w-full max-w-lg transform flex-col border-l border-line bg-white text-left shadow-2xl transition-transform duration-300 ease-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >

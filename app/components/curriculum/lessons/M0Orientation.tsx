@@ -1,9 +1,13 @@
 import { SectionHeading } from "./shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
+import { MarketOpportunity } from "./MarketOpportunity";
+import { CompetitiveLandscape } from "./CompetitiveLandscape";
 
 const OUTLINE = [
+  { id: "market-opportunity", label: "The Market Opportunity" },
   { id: "why-now", label: "Why Now" },
   { id: "today-vs-headed", label: "Today vs. Headed" },
+  { id: "competitive-landscape", label: "Changing Competitive Landscape" },
   { id: "role-by-role", label: "Role by Role" },
 ];
 
@@ -229,6 +233,11 @@ export function M0Orientation() {
 
       <PageOutline sections={OUTLINE} />
 
+      <section id="market-opportunity">
+        <SectionHeading>The Market Opportunity</SectionHeading>
+        <MarketOpportunity />
+      </section>
+
       <section id="why-now">
         <SectionHeading>Why now</SectionHeading>
         <ul className="space-y-2">
@@ -243,6 +252,11 @@ export function M0Orientation() {
       <section id="today-vs-headed">
         <SectionHeading>What We Are Today → Where We&rsquo;re Headed</SectionHeading>
         <TodayHeadedTable />
+      </section>
+
+      <section id="competitive-landscape">
+        <SectionHeading>Changing Competitive Landscape</SectionHeading>
+        <CompetitiveLandscape />
       </section>
 
       <section id="role-by-role">
