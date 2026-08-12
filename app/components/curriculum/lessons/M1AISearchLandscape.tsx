@@ -1,10 +1,20 @@
-import { SectionHeading, FlowArrow, FlowDivider } from "./shared";
+import { SectionHeading, FlowArrow } from "./shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
+import { SurfacesExplorer } from "./SurfacesExplorer";
+import { EcosystemHeader } from "./EcosystemHeader";
+import { UsageOpportunity } from "./UsageOpportunity";
+import { ChannelMix } from "./ChannelMix";
+import { DeliveryLoop } from "./DeliveryLoop";
+import { MarketOpportunity } from "./MarketOpportunity";
+import { CompetitiveLandscape } from "./CompetitiveLandscape";
 
 const OUTLINE = [
+  { id: "market-opportunity", label: "The Market Opportunity" },
   { id: "vocabulary", label: "Getting the Vocabulary Right" },
   { id: "ecosystem", label: "The Ecosystem" },
-  { id: "enablement-map", label: "The Enablement Map" },
+  { id: "channel-mix", label: "Bespoke Channel Mix" },
+  { id: "opportunity", label: "The Surface Opportunity" },
+  { id: "competitive-landscape", label: "Changing Competitive Landscape" },
 ];
 
 function Chip({ children }: { children: React.ReactNode }) {
@@ -38,19 +48,19 @@ interface ChannelEntry {
 
 const CHANNELS: ChannelEntry[] = [
   {
-    name: "Owned",
+    name: "Owned Content",
     status: "live",
     description:
-      "Formerly “Onsite AEO + SEO Content.” Builds the authoritative owned foundation AI systems can retrieve and cite.",
+      "The pages and content your brand owns and publishes directly, the primary material AI systems can crawl and cite firsthand. Formerly known as “Onsite.”",
     tactics: ["Refresh existing content", "Create net-new content", "Optimize content for AI retrieval / citation", "Ongoing publishing"],
     examples: "e.g. product/category pages, editorial, comparison pages, FAQs",
     delivery: "AirOps delivers end-to-end",
   },
   {
-    name: "Earned",
+    name: "External Content",
     status: "live",
     description:
-      "Formerly “Offsite / Third-Party Placements.” Builds authority and visibility on sources AI systems already trust and cite.",
+      "Content and mentions that live on third-party sites AI systems already trust and cite, rather than on your own domain. Formerly known as “Offsite.”",
     tactics: ["Identify priority third-party sources", "Secure brand mentions and placements", "Coordinate with PR / affiliate efforts"],
     examples: "e.g. publishers, editorial sites, industry sources, affiliate sites",
     delivery: "AirOps delivers end-to-end",
@@ -58,7 +68,8 @@ const CHANNELS: ChannelEntry[] = [
   {
     name: "Paid",
     status: "soon",
-    description: "Formerly “Generative Ads Management.” Captures high-intent demand directly inside AI discovery experiences.",
+    description:
+      "Paid placements and generative ad inventory purchased directly inside AI discovery experiences themselves. Formerly “Generative Ads Management.”",
     tactics: ["Launch and manage generative ad campaigns", "Optimize spend / creative", "Connect paid performance to organic AI visibility"],
     examples: "e.g. ChatGPT ads, Google AI Mode ads, future generative ad inventory · scope still firming up, waitlist only",
     delivery: "AirOps delivers end-to-end (once live)",
@@ -66,7 +77,8 @@ const CHANNELS: ChannelEntry[] = [
   {
     name: "Social & Influencer",
     status: "soon",
-    description: "Increases the creator / social signals that influence AI discovery and recommendation.",
+    description:
+      "The creator and social-platform presence (YouTube, TikTok, Instagram, LinkedIn) that shapes what AI systems surface and recommend.",
     tactics: ["Identify creators / channels", "Recommend investment allocation", "Develop content briefs", "Coordinate execution"],
     examples: "e.g. YouTube, TikTok, Instagram, LinkedIn, creator content",
     delivery: "AirOps owns analytics + strategy · partner network delivers",
@@ -74,7 +86,7 @@ const CHANNELS: ChannelEntry[] = [
   {
     name: "Community",
     status: "soon",
-    description: "Shapes presence on highly cited sources of authentic user experience.",
+    description: "Participation and seeding on highly-cited, authentic user-experience sources like Reddit, forums, and review sites.",
     tactics: ["Map influential conversations", "Identify opportunities", "Recommend seeding / participation", "Brief execution"],
     examples: "e.g. Reddit, forums, review sites, niche communities",
     delivery: "AirOps owns analytics + strategy · partner network delivers",
@@ -89,7 +101,7 @@ function ChannelCard({ channel }: { channel: ChannelEntry }) {
         <StatusPill status={channel.status} />
       </div>
       <p className="text-xs leading-relaxed text-ink/70">{channel.description}</p>
-      <details className="text-xs">
+      <details className="text-xs" open={channel.status === "live"}>
         <summary className="cursor-pointer font-semibold text-forest select-none">Tactics</summary>
         <ul className="mt-2 list-outside list-disc space-y-1 pl-4 leading-relaxed text-ink/70">
           {channel.tactics.map((t) => (
@@ -99,98 +111,6 @@ function ChannelCard({ channel }: { channel: ChannelEntry }) {
       </details>
       <p className="text-xs text-ink/45 italic">{channel.examples}</p>
       <p className="border-t border-line pt-2 text-xs text-ink/45">{channel.delivery}</p>
-    </div>
-  );
-}
-
-interface OrchestrationEntry {
-  name: string;
-  description: string;
-}
-
-const ORCHESTRATION: OrchestrationEntry[] = [
-  {
-    name: "Strategy & Intelligence",
-    description:
-      "Define the prompt universe, establish the measurement framework, audit current performance, analyze competitors & source influence, recommend the channel mix.",
-  },
-  {
-    name: "Activate",
-    description: "Execute across Owned, Earned & Paid directly. Orchestrate Social/Influencer & Community through AirOps strategy, analytics & partners.",
-  },
-  {
-    name: "Measure & Optimize",
-    description:
-      "Track AI share of voice, citations, brand mentions, placements & campaign performance through to conversion. Continuously reallocate investment.",
-  },
-];
-
-interface TrackEntry {
-  badge: string;
-  title: string;
-  barLabel: string;
-  barPercent?: number;
-  body: string | string[];
-  artifact: string;
-}
-
-const TRACKS: TrackEntry[] = [
-  {
-    badge: "Adjacent, separately owned",
-    title: "Sales Enablement",
-    barLabel: "Pitch mechanics, not category depth",
-    body: "The discovery-call flow, the deck, the demo. Owned by product marketing / Nick's team, sequenced right alongside category enablement, not part of it.",
-    artifact: "Rolls out the same week as Category 101, so reps get language and process together.",
-  },
-  {
-    badge: "Know enough to ask",
-    title: "Strategic Account Managers / Sales",
-    barLabel: "Depth: hold a credible first call",
-    barPercent: 40,
-    body: [
-      "Pressure-test Strategy 360 output: sanity-check, don't blind-trust it",
-      "Match a customer's stated pain to the right channel + proof point",
-      "Know the third rails: never promise a #1 ranking; speak in comparable outcomes",
-      "Hand off credibly: “great question, let's bring in our AEO strategist”",
-    ],
-    artifact: "Success bar: ask the next right question, not run the account.",
-  },
-  {
-    badge: "200-level fluency",
-    title: "Solution Architects / AEO Delivery",
-    barLabel: "Depth: build, diagnose, and know what “wrong” looks like",
-    barPercent: 75,
-    body: [
-      "The 10 SEO/AEO fundamentals: on-page, technical, off-page, prompt/keyword gap, content strategy, AI/search intent, reporting tools, platform literacy, business-context research",
-      "3-week ramp: Week 1 vocabulary & fluency → Week 2 manual at-risk-client audit, by hand, no AI tooling → Week 3 inference, client pitch & 90-day roadmap",
-    ],
-    artifact: "“Earn the right to automate”: understand it manually before trusting the AI-generated version.",
-  },
-];
-
-function TrackCard({ track }: { track: TrackEntry }) {
-  return (
-    <div className="flex flex-col gap-3 rounded-card border border-line bg-white p-5">
-      <span className="text-caption font-semibold tracking-wide text-ink/45 uppercase">{track.badge}</span>
-      <h3 className="font-display text-h3 text-ink">{track.title}</h3>
-      <div>
-        <p className="mb-1.5 text-caption text-ink/45">{track.barLabel}</p>
-        {track.barPercent !== undefined && (
-          <div className="h-1.5 w-full overflow-hidden rounded-full bg-paper-3">
-            <div className="h-full rounded-full bg-forest" style={{ width: `${track.barPercent}%` }} />
-          </div>
-        )}
-      </div>
-      {Array.isArray(track.body) ? (
-        <ul className="list-outside list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-ink/75">
-          {track.body.map((line, i) => (
-            <li key={i}>{line}</li>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-sm leading-relaxed text-ink/75">{track.body}</p>
-      )}
-      <p className="mt-auto border-t border-line pt-3 text-xs text-ink/45">{track.artifact}</p>
     </div>
   );
 }
@@ -234,11 +154,15 @@ const VOCABULARY_TABLE: VocabularyRow[] = [
     search: "Google, Bing, Yahoo",
     aiSearch: "ChatGPT, Gemini, Perplexity, Claude, Google AI Mode / Overviews",
   },
-  { level: "Channel", search: "Organic, Paid", aiSearch: "Owned, Earned, Paid, Social & Influencer, Community" },
+  {
+    level: "Channel",
+    search: "Organic, Paid",
+    aiSearch: "Owned Content, External Content, Paid, Social & Influencer, Community",
+  },
   {
     level: "Tactic",
     search: "Fix title tags, publish content, build backlinks (Organic) · bid management, ad copy (Paid)",
-    aiSearch: "Refresh content, optimize for retrieval (Owned) · secure placements (Earned) · generative ad campaigns (Paid)",
+    aiSearch: "Refresh content, optimize for retrieval (Owned Content) · secure placements (External Content) · generative ad campaigns (Paid)",
   },
   {
     level: "Goal",
@@ -252,6 +176,11 @@ export function M1AISearchLandscape() {
   return (
     <div className="space-y-12">
       <PageOutline sections={OUTLINE} />
+
+      <section id="market-opportunity">
+        <SectionHeading>The Market Opportunity</SectionHeading>
+        <MarketOpportunity />
+      </section>
 
       <section id="vocabulary">
         <SectionHeading>Getting the Vocabulary Right</SectionHeading>
@@ -309,35 +238,31 @@ export function M1AISearchLandscape() {
       </section>
 
       <section id="ecosystem">
-        <SectionHeading>The Ecosystem</SectionHeading>
+        <EcosystemHeader />
 
-        <div className="mx-auto max-w-xl rounded-card border border-line bg-white p-6 text-center">
-          <div className="font-display text-h3 font-bold tracking-wide text-ink">AI Search</div>
-          <p className="mt-2 text-sm leading-relaxed text-ink/60">
-            The discovery environment: how brands win visibility, consideration, and conversion as discovery shifts
-            to AI.
+        <div id="ai-search-anchor" className="w-full rounded-card border border-line bg-white p-6 text-center">
+          <div className="font-display text-h2 font-bold tracking-wide text-ink">AI Search</div>
+          <div className="mt-3 flex justify-center">
+            <Chip>The Discovery Environment</Chip>
+          </div>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink/60">
+            How Brands Win Visibility, Consideration, and Conversion as Discovery Shifts to AI
           </p>
         </div>
         <FlowArrow />
 
-        <div className="mx-auto max-w-2xl rounded-card border border-dashed border-line p-5 text-center">
-          <div className="mb-3 text-caption font-semibold tracking-wide text-ink/45 uppercase">
-            Surfaces: where discovery happens
-          </div>
-          <div className="flex flex-wrap justify-center gap-2">
-            <Chip>ChatGPT</Chip>
-            <Chip>Google AI Mode / Overviews</Chip>
-            <Chip>Gemini</Chip>
-            <Chip>Perplexity</Chip>
-            <Chip>Claude</Chip>
-            <Chip>+ emerging embedded AI experiences</Chip>
-          </div>
+        <div id="surfaces-anchor" className="mx-auto max-w-2xl rounded-card border border-dashed border-line p-5 text-center">
+          <div className="text-caption font-semibold tracking-wide text-ink/45 uppercase">Surfaces</div>
+          <div className="mt-1 font-display text-h3 font-bold text-ink">Where Discovery Happens</div>
+          <p className="mt-2 mb-4 text-xs text-ink/45">Click a surface to learn more</p>
+          <SurfacesExplorer />
         </div>
         <FlowArrow />
 
-        <div className="mb-4 flex flex-wrap items-center justify-center gap-3 text-caption font-semibold tracking-wide text-ink/45 uppercase">
-          <span>Channels: how AirOps influences the surfaces</span>
-          <span className="flex items-center gap-3 text-ink/40 normal-case">
+        <div id="channels-anchor" className="mb-4 text-center">
+          <div className="text-caption font-semibold tracking-wide text-ink/45 uppercase">Channels</div>
+          <div className="mt-1 font-display text-h3 font-bold text-ink">How AirOps Influences the Surfaces</div>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-caption font-semibold tracking-wide text-ink/40 uppercase">
             <span className="inline-flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-signal" aria-hidden />
               Live
@@ -346,101 +271,45 @@ export function M1AISearchLandscape() {
               <span className="h-1.5 w-1.5 rounded-full bg-ink/25" aria-hidden />
               Coming soon / waitlist
             </span>
-          </span>
+          </div>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {CHANNELS.map((channel) => (
+        <div className="grid gap-3 sm:grid-cols-2">
+          {CHANNELS.filter((channel) => channel.status === "live").map((channel) => (
+            <ChannelCard key={channel.name} channel={channel} />
+          ))}
+        </div>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {CHANNELS.filter((channel) => channel.status === "soon").map((channel) => (
             <ChannelCard key={channel.name} channel={channel} />
           ))}
         </div>
         <FlowArrow />
 
-        <p className="mb-4 text-center text-caption font-semibold tracking-wide text-ink/45 uppercase">
-          AirOps orchestration layer
+        <div className="mb-2 text-center font-display text-h3 font-bold text-ink">How AirOps Delivers Value</div>
+        <p className="mx-auto mb-6 max-w-2xl text-center text-sm leading-relaxed text-ink/70">
+          A continuous loop from agent insight to measurable performance, delivered through the combined strength of
+          AirOps experts, the AirOps platform, and the Media Supply Chain.
         </p>
-        <div className="mb-6 grid gap-3 sm:grid-cols-3">
-          {ORCHESTRATION.map((item) => (
-            <div key={item.name} className="rounded-card border border-line bg-paper-2 p-4 text-center">
-              <div className="mb-1.5 text-sm font-semibold text-ink">{item.name}</div>
-              <p className="text-xs leading-relaxed text-ink/65">{item.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mb-4 grid gap-3 sm:grid-cols-2">
-          <div className="rounded-card border border-line bg-white p-4">
-            <div className="mb-2 text-caption font-semibold tracking-wide text-ink/45 uppercase">AirOps owns</div>
-            <ul className="list-outside list-disc space-y-1 pl-4 text-sm text-ink/75">
-              <li>Strategy</li>
-              <li>Content / production &amp; QA</li>
-              <li>AI-search optimization</li>
-              <li>Measurement</li>
-            </ul>
-          </div>
-          <div className="rounded-card border border-line bg-white p-4">
-            <div className="mb-2 text-caption font-semibold tracking-wide text-ink/45 uppercase">Client owns</div>
-            <ul className="list-outside list-disc space-y-1 pl-4 text-sm text-ink/75">
-              <li>Subject-matter / product truth</li>
-              <li>Compliance &amp; brand approval</li>
-              <li>Final publishing decisions</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="rounded-full border border-line bg-paper-2 px-5 py-3 text-center text-sm text-ink/70">
-          Delivery pod: <span className="font-semibold text-ink">Engagement Manager</span> ·{" "}
-          <span className="font-semibold text-ink">AEO Expert</span> ·{" "}
-          <span className="font-semibold text-ink">Solutions Architect</span> ·{" "}
-          <span className="font-semibold text-ink">Integrations Engineer</span>
-        </div>
+        <DeliveryLoop />
       </section>
 
-      <FlowDivider>Same backbone, mapped to enablement</FlowDivider>
+      <section id="channel-mix">
+        <SectionHeading>Bespoke Channel Mix</SectionHeading>
+        <ChannelMix />
+      </section>
 
-      <section id="enablement-map">
-        <SectionHeading>The Enablement Map</SectionHeading>
-        <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Category enablement isn&rsquo;t a training deck bolted on top; it&rsquo;s the same category/surfaces/channels
-          backbone, taught at a different depth to each customer-facing audience.
-        </p>
-
-        <div className="mx-auto mb-6 max-w-xl rounded-card border border-line bg-paper-2 p-5 text-center">
-          <div className="mb-2 text-sm font-semibold text-ink">Category 101: baseline for every customer-facing person</div>
-          <div className="mb-3 flex flex-wrap justify-center gap-2">
-            <Chip>AI Search</Chip>
-            <Chip>Surfaces</Chip>
-            <Chip>Channels</Chip>
-            <Chip>Media mix</Chip>
-          </div>
-          <p className="text-xs leading-relaxed text-ink/60">
-            Shared vocabulary before anyone&rsquo;s first customer call: the landscape, why now, and how AirOps is
-            positioned inside it.
-          </p>
+      <section id="opportunity">
+        <SectionHeading>The Surface Opportunity</SectionHeading>
+        <div className="mb-6 text-center">
+          <div className="text-caption font-semibold tracking-wide text-ink/45 uppercase">Usage volume</div>
+          <div className="mt-1 font-display text-h3 font-bold text-ink">Company-Reported Scale, By Surface</div>
         </div>
-        <FlowArrow />
+        <UsageOpportunity />
+      </section>
 
-        <div className="grid gap-4 lg:grid-cols-3">
-          {TRACKS.map((track) => (
-            <TrackCard key={track.title} track={track} />
-          ))}
-        </div>
-
-        <div className="mt-6 rounded-card border border-line bg-paper-2 p-5 text-sm leading-relaxed text-ink/70">
-          <p>
-            <span className="font-semibold text-ink">Category enablement ≠ sales enablement.</span> Category
-            enablement is the language and mental model above; it applies to everyone customer-facing (EM, AEO
-            Expert, SA, sales), and Katelyn owns it. Sales enablement is the pitch, the call flow, the deck; Nick&rsquo;s
-            team owns it. They&rsquo;re sequenced together in the same rollout window, but accountable to different
-            owners.
-          </p>
-          <hr className="my-3 border-line" />
-          <p>
-            <span className="font-semibold text-ink">Depth follows launch status, for now.</span> Owned and Earned
-            are live; invest the deepest enablement there first. Paid, Social &amp; Influencer, and Community are
-            waitlisted; teach the &ldquo;what it is and why it matters&rdquo; layer now, and go deeper as each channel
-            actually ships.
-          </p>
-        </div>
+      <section id="competitive-landscape">
+        <SectionHeading>Changing Competitive Landscape</SectionHeading>
+        <CompetitiveLandscape />
       </section>
     </div>
   );

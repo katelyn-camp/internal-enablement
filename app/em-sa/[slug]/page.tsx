@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getModuleBySlug, getModulesForAudience } from "@/lib/curriculum";
 import { ModuleDetailView } from "@/app/components/curriculum/ModuleDetailView";
-import { ModuleEyebrow } from "@/app/components/curriculum/ModuleEyebrow";
+import { ModuleStickyTitle } from "@/app/components/curriculum/ModuleStickyTitle";
 import { PageVisitTracker } from "@/app/components/shared/PageVisitTracker";
 import { Breadcrumbs } from "@/app/components/nav/Breadcrumbs";
 
@@ -18,10 +18,7 @@ export default async function EmSaModulePage({ params }: { params: Promise<{ slu
     <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8 lg:py-14 xl:pr-[17rem]">
       <PageVisitTracker id={`em-sa:${curriculumModule.slug}`} />
       <Breadcrumbs trail={[{ label: "Managed Services Team Curriculum", href: "/em-sa" }, { label: curriculumModule.title }]} />
-      <div className="mb-3">
-        <ModuleEyebrow code={curriculumModule.code} />
-      </div>
-      <h1 className="font-display text-h1 mb-8 text-ink">{curriculumModule.title}</h1>
+      <ModuleStickyTitle code={curriculumModule.code} title={curriculumModule.title} untilAnchorId="market-opportunity" />
       <ModuleDetailView module={curriculumModule} audience="em-sa" />
     </div>
   );
