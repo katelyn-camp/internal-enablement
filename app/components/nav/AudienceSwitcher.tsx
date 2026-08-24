@@ -2,12 +2,12 @@ import Link from "next/link";
 import { Audience } from "@/lib/curriculum";
 
 const OPTIONS: { audience: Audience; label: string; href: string }[] = [
-  { audience: "em-sa", label: "Managed Services", href: "/em-sa" },
+  { audience: "em-sa", label: "Delivery Team", href: "/em-sa" },
   { audience: "sales", label: "Sales", href: "/sales" },
 ];
 
 /**
- * Lets anyone jump between the Managed Services and Sales curricula.
+ * Lets anyone jump between the Delivery Team and Sales curricula.
  * Pre-auth this is open to everyone; once Google sign-in routes each
  * person straight to their own side, this becomes the admin-only preview
  * control.

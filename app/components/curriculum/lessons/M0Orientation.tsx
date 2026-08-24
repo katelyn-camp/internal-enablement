@@ -2,6 +2,7 @@ import { SectionHeading } from "./shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
 import { MarketOpportunity } from "./MarketOpportunity";
 import { CompetitiveLandscape } from "./CompetitiveLandscape";
+import { CategoryEnablementSlideDeck } from "./CategoryEnablementSlideDeck";
 
 const OUTLINE = [
   { id: "market-opportunity", label: "The Market Opportunity" },
@@ -201,6 +202,8 @@ const WHY_NOW = [
 export function M0Orientation() {
   return (
     <div className="space-y-12">
+      <CategoryEnablementSlideDeck />
+
       <header>
         <h2 className="mb-2 font-display text-h2 text-ink">AirOps Today vs. Where We&rsquo;re Headed</h2>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/60 italic">
