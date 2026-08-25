@@ -42,6 +42,7 @@ const EXISTING_LIBRARY_GROUP: NavGroupConfig = {
   label: "Existing Reference Library",
   collapsedByDefault: true,
   items: [
+    { id: "category-enablement-slides", label: "AI Search Category Enablement (slides)", href: "/slides/category-enablement" },
     { id: "serp-anatomy", label: "SERP Anatomy", href: "/" },
     { id: "glossary", label: "Glossary", href: "/glossary" },
     { id: "llms-retrieval", label: "LLMs & Retrieval", href: "/llms-retrieval" },
