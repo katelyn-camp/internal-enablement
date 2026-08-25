@@ -20,7 +20,7 @@ const DECK_HEIGHT = 720;
  * script (slide state, keyboard nav, step reveals) that would collide with
  * page-level JS/CSS if inlined, so isolation keeps 100% of its behavior intact.
  */
-export function CategoryEnablementSlideDeck() {
+export function CategoryEnablementSlideDeck({ variant = "embedded" }: { variant?: "embedded" | "standalone" }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [scale, setScale] = useState(1);
@@ -58,14 +58,14 @@ export function CategoryEnablementSlideDeck() {
     <div
       ref={containerRef}
       className={
-        isFullscreen
+        isFullscreen || variant === "standalone"
           ? "fixed inset-0 z-50 h-screen w-screen overflow-hidden bg-ink"
           : "relative aspect-video w-full overflow-hidden rounded-card border border-line bg-ink"
       }
     >
       <div
         style={
-          isFullscreen
+          isFullscreen || variant === "standalone"
             ? { position: "absolute", inset: 0 }
             : {
                 position: "absolute",
@@ -80,7 +80,11 @@ export function CategoryEnablementSlideDeck() {
         <iframe
           src="/slides/category-enablement-orientation.html"
           title="AI Search Category Enablement slide deck"
-          style={isFullscreen ? { width: "100%", height: "100%", border: 0 } : { width: DECK_WIDTH, height: DECK_HEIGHT, border: 0 }}
+          style={
+            isFullscreen || variant === "standalone"
+              ? { width: "100%", height: "100%", border: 0 }
+              : { width: DECK_WIDTH, height: DECK_HEIGHT, border: 0 }
+          }
         />
       </div>
       <button

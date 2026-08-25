@@ -41,12 +41,7 @@ export default function RootLayout({
       className={`${serrif.variable} ${saans.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper text-ink">
-        <NavShell>
-          <main className="flex-1">{children}</main>
-          <footer className="border-t border-line px-5 py-6 text-caption text-ink/45 lg:px-8">
-            Internal reference for AirOps SAMs &amp; SAs, not a customer-facing asset.
-          </footer>
-        </NavShell>
+        <NavShell>{children}</NavShell>
       </body>
     </html>
   );
