@@ -5,6 +5,9 @@ import { M2MeasurementBenchmarking } from "./M2MeasurementBenchmarking";
 import { M3SeoFundamentalsSales } from "./M3SeoFundamentalsSales";
 import { M3SeoFundamentalsManagedServices } from "./M3SeoFundamentalsManagedServices";
 import { M4AeoFundamentalsManagedServices } from "./M4AeoFundamentalsManagedServices";
+import { M5ReadingTheNumbers } from "./M5ReadingTheNumbers";
+import { M6ContentStrategyLifecycle } from "./M6ContentStrategyLifecycle";
+import { M7AttributionRoi } from "./M7AttributionRoi";
 import { M8ManualAuditMethodology } from "./M8ManualAuditMethodology";
 
 /**
@@ -23,5 +26,8 @@ export const lessonComponents: Record<string, ComponentType> = {
   "em-sa:m3": M3SeoFundamentalsManagedServices,
   "sales:m3": M3SeoFundamentalsSales,
   "em-sa:m4": M4AeoFundamentalsManagedServices,
+  "em-sa:m5": M5ReadingTheNumbers,
+  "em-sa:m6": M6ContentStrategyLifecycle,
+  "em-sa:m7": M7AttributionRoi,
   "em-sa:m8": M8ManualAuditMethodology,
 };

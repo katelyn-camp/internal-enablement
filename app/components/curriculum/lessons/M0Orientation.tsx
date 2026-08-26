@@ -3,6 +3,7 @@ import { PageOutline } from "@/app/components/nav/PageOutline";
 import { MarketOpportunity } from "./MarketOpportunity";
 import { CompetitiveLandscape } from "./CompetitiveLandscape";
 import { CategoryEnablementSlideDeck } from "./CategoryEnablementSlideDeck";
+import { ServiceEngagementPod } from "./ServiceEngagementPod";
 
 const OUTLINE = [
   { id: "market-opportunity", label: "The Market Opportunity" },
@@ -10,6 +11,7 @@ const OUTLINE = [
   { id: "today-vs-headed", label: "Today vs. Headed" },
   { id: "competitive-landscape", label: "Changing Competitive Landscape" },
   { id: "role-by-role", label: "Role by Role" },
+  { id: "service-engagement-pod", label: "Service Engagement Pod" },
 ];
 
 interface CompareRow {
@@ -283,6 +285,11 @@ export function M0Orientation() {
             <RoleTable rows={AEO_STRATEGIST_ROWS} />
           </div>
         </div>
+      </section>
+
+      <section id="service-engagement-pod">
+        <SectionHeading>Service Engagement Pod</SectionHeading>
+        <ServiceEngagementPod />
       </section>
 
       <p className="border-l-2 border-line pl-4 text-sm text-ink/50 italic">
