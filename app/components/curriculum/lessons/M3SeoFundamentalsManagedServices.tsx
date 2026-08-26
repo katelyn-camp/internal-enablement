@@ -651,7 +651,9 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[1100px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-[10%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Intent</th>
+                <th className="sticky left-0 z-20 w-[10%] border-r border-line bg-paper-2 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                  Intent
+                </th>
                 <th className="w-[20%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Definition</th>
                 <th className="w-[12%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Example</th>
                 <th className="w-[13%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Funnel stage</th>
@@ -662,7 +664,9 @@ export function M3SeoFundamentalsManagedServices() {
             <tbody className="divide-y divide-line">
               {INTENT_TABLE.map((row) => (
                 <tr key={row.intent}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.intent}</td>
+                  <td className="sticky left-0 z-10 border-r border-line bg-paper px-3 py-3 align-top font-semibold text-ink">
+                    {row.intent}
+                  </td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.definition}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.example}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.funnelStage}</td>
