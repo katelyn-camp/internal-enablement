@@ -5,6 +5,7 @@ import { M2MeasurementBenchmarking } from "./M2MeasurementBenchmarking";
 import { M3SeoFundamentalsSales } from "./M3SeoFundamentalsSales";
 import { M3SeoFundamentalsManagedServices } from "./M3SeoFundamentalsManagedServices";
 import { M4AeoFundamentalsManagedServices } from "./M4AeoFundamentalsManagedServices";
+import { M8ManualAuditMethodology } from "./M8ManualAuditMethodology";
 
 /**
  * Real, written lesson bodies, keyed by "audience:slug", looked up from
@@ -22,4 +23,5 @@ export const lessonComponents: Record<string, ComponentType> = {
   "em-sa:m3": M3SeoFundamentalsManagedServices,
   "sales:m3": M3SeoFundamentalsSales,
   "em-sa:m4": M4AeoFundamentalsManagedServices,
+  "em-sa:m8": M8ManualAuditMethodology,
 };

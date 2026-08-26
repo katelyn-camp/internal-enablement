@@ -13,4 +13,5 @@ export const moduleStickyAnchors: Record<string, string> = {
   "em-sa:m3": "seo-basics",
   "sales:m3": "seo-fundamentals",
   "em-sa:m4": "what-aeo-is",
+  "em-sa:m8": "step-1",
 };
