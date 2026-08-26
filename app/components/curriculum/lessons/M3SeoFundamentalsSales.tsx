@@ -171,7 +171,7 @@ export function M3SeoFundamentalsSales() {
             patterns are visible in minutes and reliably point at deeper technical debt: messy or inconsistent
             navigation, broken links, no real content hub or blog, a slow and bloated homepage, or a site that
             clearly hasn&rsquo;t been technically maintained in years. Flagging these is pattern recognition, spotting
-            the smoke. Diagnosing the actual fire is what Managed Services does next.
+            the smoke. Diagnosing the actual fire is what Services does next.
           </p>
         </div>
 

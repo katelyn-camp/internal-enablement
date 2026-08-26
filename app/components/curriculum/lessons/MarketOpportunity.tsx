@@ -2,12 +2,12 @@
 
 const CORE_OPPORTUNITY = [
   "The old framing (an AI search/AEO tool) caps us at roughly **$400M ARR** across the whole category.",
-  "Managed services moves us into **marketing program spend**, a far bigger budget pool than software. In consumer financial services alone: **$110B in annual spend**, with an estimated **$20–21B** we could influence.",
+  "Services moves us into **marketing program spend**, a far bigger budget pool than software. In consumer financial services alone: **$110B in annual spend**, with an estimated **$20–21B** we could influence.",
 ];
 
 const WHY_MANAGED_SERVICES_MATTERS = [
   "Customers want a partner that can **own outcomes through platform, people, and data**, not just hand over a tool.",
-  "This **fully managed services strategy for AI search** is the right direction, and the board agrees.",
+  "This **full-service strategy for AI search** is the right direction, and the board agrees.",
   "Marketers now need help serving **both the human buyer and the AI agent**. We want to be that partner.",
 ];
 
@@ -100,7 +100,7 @@ function OpportunityCircles() {
           style={{ left: toPct(ADDRESSABLE_CIRCLE.cx, width), top: toPct(ADDRESSABLE_CIRCLE.cy, height) }}
         >
           <div className="font-display text-h3 text-signal">$20–21B</div>
-          <div className="mt-0.5 text-[0.65rem] leading-snug text-paper/85">Market Opportunity for Managed Services</div>
+          <div className="mt-0.5 text-[0.65rem] leading-snug text-paper/85">Market Opportunity for Services</div>
         </div>
 
         <div
@@ -142,7 +142,7 @@ export function MarketOpportunity() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <OpportunitySection title="Core Opportunity" bullets={CORE_OPPORTUNITY} />
-        <OpportunitySection title="Why Managed Services Matters" bullets={WHY_MANAGED_SERVICES_MATTERS} />
+        <OpportunitySection title="Why Services Matters" bullets={WHY_MANAGED_SERVICES_MATTERS} />
         <OpportunitySection title="What Changes Commercially" bullets={WHAT_CHANGES_COMMERCIALLY} />
         <OpportunitySection title="What Changes in the Offering" bullets={WHAT_CHANGES_IN_THE_OFFERING} />
       </div>

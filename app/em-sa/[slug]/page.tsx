@@ -30,7 +30,7 @@ export default async function EmSaModulePage({ params }: { params: Promise<{ slu
   return (
     <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8 lg:py-14 xl:pr-[17rem]">
       <PageVisitTracker id={`em-sa:${curriculumModule.slug}`} />
-      <Breadcrumbs trail={[{ label: "Managed Services Team Curriculum", href: "/em-sa" }, { label: curriculumModule.title }]} />
+      <Breadcrumbs trail={[{ label: "Services Team Curriculum", href: "/em-sa" }, { label: curriculumModule.title }]} />
       <ModuleStickyTitle
         code={curriculumModule.code}
         title={curriculumModule.title}

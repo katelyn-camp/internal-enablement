@@ -5,7 +5,7 @@ import { lessonComponents } from "./lessons";
 function depthCopy(module: ModuleEntry, audience: Audience): { label: string; text: string } | null {
   if (module.emSaDepth || module.salesDepth) {
     return audience === "em-sa"
-      ? { label: "Managed Services can (comprehensive)", text: module.emSaDepth ?? "" }
+      ? { label: "Services can (comprehensive)", text: module.emSaDepth ?? "" }
       : { label: "Sales can speak to (diagnostic/lighter)", text: module.salesDepth ?? "" };
   }
   if (module.objective) {

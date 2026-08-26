@@ -209,7 +209,7 @@ export function M0Orientation() {
       <header>
         <h2 className="mb-2 font-display text-h2 text-ink">AirOps Today vs. Where We&rsquo;re Headed</h2>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/60 italic">
-          A framework for understanding the managed services shift, and what it means for your role.
+          A framework for understanding the services shift, and what it means for your role.
         </p>
       </header>
 

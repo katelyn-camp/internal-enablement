@@ -73,7 +73,7 @@ export function ChannelMix() {
   return (
     <div>
       <div className="mx-auto mb-6 max-w-2xl rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-        <span className="font-semibold text-ink">Bespoke channel mix:</span> Managed Services provides a bespoke
+        <span className="font-semibold text-ink">Bespoke channel mix:</span> Services provides a bespoke
         channel mix, the specific investment split across Owned Content, External Content, Paid, Social &amp;
         Influencer, and Community that AirOps recommends for a given client, built from what the Strategy 360
         diagnostic and pre-sales audit reveal about that client&rsquo;s current AI-search footprint, not a fixed set

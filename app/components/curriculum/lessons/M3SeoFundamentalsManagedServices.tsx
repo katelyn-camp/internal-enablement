@@ -509,7 +509,7 @@ export function M3SeoFundamentalsManagedServices() {
           Clearing that bar only makes a page eligible. Actually winning the position takes more:
         </p>
         <ul className="mb-6 max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
-          <li>Findable.</li>
+          <li>Internally linked and surfaced prominently in the site&rsquo;s structure, not just technically crawlable.</li>
           <li>Understandable to both crawlers and readers.</li>
           <li>Better matched to the query than whatever is currently outranking it.</li>
         </ul>
@@ -527,7 +527,7 @@ export function M3SeoFundamentalsManagedServices() {
           <li>A consistent publishing cadence.</li>
         </ul>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Managed Services needs all of that, but has to be able to reason about why each piece is true well enough to
+          Services needs all of that, but has to be able to reason about why each piece is true well enough to
           diagnose problems and coordinate with an SEO team, not just recognize the pattern on sight.
         </p>
 

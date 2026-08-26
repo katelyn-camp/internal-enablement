@@ -128,7 +128,7 @@ export const M2_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
 ];
 
 /**
- * Scoped to the Managed Services side of M3: the ranking factor hierarchy, search intent
+ * Scoped to the Services side of M3: the ranking factor hierarchy, search intent
  * types, off-page fundamentals / E-E-A-T, diagnosing an unfamiliar site, and the SEO team
  * handoff model. Weighted toward free-response/scenario diagnosis over multiple-choice
  * recall, per the module's application-first knowledge-check design.
@@ -206,7 +206,7 @@ export const M3_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
 ];
 
 /**
- * Scoped to the Managed Services side of M4: the mention & citation factor hierarchy,
+ * Scoped to the Services side of M4: the mention & citation factor hierarchy,
  * the crawler-differences table (JS-render blindness), query fan-out, structural
  * citability, and the JS-rendering verification workflow. Weighted toward
  * free-response/scenario diagnosis, same design as M3's knowledge check.
@@ -276,7 +276,7 @@ export const M4_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
 ];
 
 /**
- * Scoped to the Managed Services side of M5: the tool-to-source map (GSC, Semrush/Ahrefs,
+ * Scoped to the Services side of M5: the tool-to-source map (GSC, Semrush/Ahrefs,
  * GA4, AirOps Insights), mechanism-level construction of the AI-search metrics (traffic
  * weighting, per-model-averaged citation share, raw-count inflation), the number-to-outcome
  * chain (Page 360), and the suspicious-number validation workflow. Every scenario here is a
