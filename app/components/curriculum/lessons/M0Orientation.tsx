@@ -291,11 +291,6 @@ export function M0Orientation() {
         <SectionHeading>Service Engagement Pod</SectionHeading>
         <ServiceEngagementPod />
       </section>
-
-      <p className="border-l-2 border-line pl-4 text-sm text-ink/50 italic">
-        Use this doc as the spine; the role-by-role table above is the piece most people will actually read closely,
-        so it&rsquo;s worth the most polish when this goes into slides.
-      </p>
     </div>
   );
 }
