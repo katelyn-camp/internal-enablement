@@ -265,6 +265,7 @@ interface IntentRow {
   definition: string;
   example: string;
   funnelStage: string;
+  contentTypes: string;
   outcome: string;
 }
 
@@ -274,6 +275,7 @@ const INTENT_TABLE: IntentRow[] = [
     definition: "The searcher wants to learn something or get a question answered, with no immediate intent to buy.",
     example: "“what is technical SEO”",
     funnelStage: "Top of funnel, awareness",
+    contentTypes: "Blog posts, how-to guides, glossaries/definitions, explainers, FAQ pages.",
     outcome: "Builds trust and top-of-funnel traffic. Rarely converts directly.",
   },
   {
@@ -281,6 +283,7 @@ const INTENT_TABLE: IntentRow[] = [
     definition: "The searcher already knows the destination and is using search as a shortcut to get there.",
     example: "“AirOps login”",
     funnelStage: "Any stage, brand-specific",
+    contentTypes: "Homepage, login/product pages, branded landing pages.",
     outcome: "Protects and serves existing brand demand.",
   },
   {
@@ -288,6 +291,7 @@ const INTENT_TABLE: IntentRow[] = [
     definition: "The searcher is comparing options before deciding, weighing alternatives against each other.",
     example: "“best AEO platform 2026”",
     funnelStage: "Middle of funnel, consideration",
+    contentTypes: "Comparison pages, “best of”/alternatives roundups, case studies, reviews.",
     outcome: "Where comparison and evaluation content wins or loses a deal.",
   },
   {
@@ -295,6 +299,7 @@ const INTENT_TABLE: IntentRow[] = [
     definition: "The searcher is ready to act now: buy, sign up, or contact sales.",
     example: "“AirOps pricing”",
     funnelStage: "Bottom of funnel, decision",
+    contentTypes: "Pricing pages, product/service pages, demo or signup pages.",
     outcome: "Directly tied to conversion and revenue.",
   },
 ];
@@ -637,14 +642,20 @@ export function M3SeoFundamentalsManagedServices() {
         </p>
 
         <h3 className="mb-2 font-display text-h3 text-ink">The Four Intent Types</h3>
+        <div className="mb-2 flex justify-end">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-2 px-3 py-1 text-caption font-semibold tracking-wide text-ink/45 uppercase">
+            <span aria-hidden>⇄</span> Scroll for more
+          </span>
+        </div>
         <div className="mb-4 overflow-x-auto rounded-card border border-line">
-          <table className="w-full min-w-[900px] border-collapse text-sm">
+          <table className="w-full min-w-[1100px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-[12%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Intent</th>
-                <th className="w-[28%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Definition</th>
-                <th className="w-[15%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Example</th>
-                <th className="w-[18%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Funnel stage</th>
+                <th className="w-[10%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Intent</th>
+                <th className="w-[20%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Definition</th>
+                <th className="w-[12%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Example</th>
+                <th className="w-[13%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Funnel stage</th>
+                <th className="w-[25%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Content types</th>
                 <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Business outcome</th>
               </tr>
             </thead>
@@ -655,6 +666,7 @@ export function M3SeoFundamentalsManagedServices() {
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.definition}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.example}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.funnelStage}</td>
+                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.contentTypes}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.outcome}</td>
                 </tr>
               ))}
