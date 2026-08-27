@@ -2,6 +2,8 @@ import { SectionHeading } from "./shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
 import { KnowledgeCheckButton } from "@/app/components/curriculum/KnowledgeCheck";
 import { M3_MANAGED_SERVICES_KNOWLEDGE_CHECK } from "./knowledge-check-data";
+import { CrawlDiscoveryFlow } from "./CrawlDiscoveryFlow";
+import { PageDiscoveryTiers } from "./PageDiscoveryTiers";
 
 const OUTLINE = [
   { id: "seo-basics", label: "What SEO Is" },
@@ -202,31 +204,31 @@ const SERP_SURFACES: SerpSurfaceRow[] = [
 
 interface RoleEntry {
   role: string;
-  owns: string;
+  owns: string[];
   handoff: string;
 }
 
 const SEO_ROLES: RoleEntry[] = [
   {
     role: "Technical SEO",
-    owns: "Crawlability, indexation, site health, page speed, and structured data.",
+    owns: ["Crawlability", "Indexation", "Site health", "Page speed", "Structured data"],
     handoff: "Hands page-level fixes to whoever owns the CMS or dev backlog.",
   },
   {
     role: "Content / on-page",
-    owns: "Keyword research, content briefs, on-page optimization, and the publishing calendar.",
+    owns: ["Keyword research", "Content briefs", "On-page optimization", "The publishing calendar"],
     handoff: "Hands finished pages to technical SEO to confirm they're indexable, and to off-page for promotion.",
   },
   {
     role: "Off-page / link building",
-    owns: "Outreach, backlink acquisition, and digital PR.",
+    owns: ["Outreach", "Backlink acquisition", "Digital PR"],
     handoff: "Feeds authority signals back that make the content team's pages easier to rank and the technical foundation's trust signals stronger.",
   },
 ];
 
 interface GapAnalysisType {
   name: string;
-  workflow: string[];
+  goal: string;
   tools: string;
   outcome: string;
 }
@@ -234,29 +236,40 @@ interface GapAnalysisType {
 const GAP_ANALYSIS_TYPES: GapAnalysisType[] = [
   {
     name: "Keyword Gap Analysis",
-    workflow: [
-      "Build the competitive set: pick 3–5 real or aspirational competitors to benchmark against.",
-      "Pull each competitor's ranking keywords, plus the client's own, from a competitor-research tool, since Search Console only shows the client's own data.",
-      "Diff the two lists to isolate terms competitors rank for that the client doesn't rank for at all, or ranks weakly for.",
-      "Filter and prioritize by relevance to intent and ranking difficulty, not raw search volume alone.",
-      "Package the result as a prioritized keyword list and hand it to whoever owns content briefs.",
-    ],
+    goal: "Find keyword opportunities competitors are already winning that the client isn't targeting at all, or only weakly.",
     tools: "Ahrefs, Semrush, or Moz for competitor keyword data; Google Search Console for the client's own current rankings; a shared spreadsheet for the diff and prioritization pass.",
     outcome:
       "A prioritized list of concrete keyword opportunities, ready to route straight into content briefs instead of starting from a blank page.",
   },
   {
     name: "Content Gap Analysis",
-    workflow: [
-      "Start from the same competitive set used for the keyword gap analysis.",
-      "Inventory each competitor's site: crawl or manually map the topics, subtopics, and content types they cover (comparison pages, use-case pages, FAQ coverage, and so on).",
-      "Inventory the client's own site the same way.",
-      "Diff the two inventories at the topic and content-type level, not the keyword level: what does a competitor cover that doesn't exist anywhere on the client's site.",
-      "Prioritize by funnel stage and business relevance, then hand off as a list of pages or content types that need to be built.",
-    ],
+    goal: "Find entire topics or content types competitors cover that don't exist anywhere on the client's site.",
     tools: "Screaming Frog or a similar crawler for the site inventory; Ahrefs/Semrush content-gap tooling as a shortcut, though it still needs a manual sanity check; a shared spreadsheet for the diff and prioritization pass.",
     outcome:
       "A map of entire missing topics or content types, not just missing keywords: what pages need to exist, not only what an existing page should target.",
+  },
+];
+
+interface OffPageConcept {
+  title: string;
+  description: string;
+}
+
+const OFFPAGE_FUNDAMENTALS: OffPageConcept[] = [
+  {
+    title: "Backlinks",
+    description:
+      "Links from other sites pointing back to the client's are read by search engines as a vote of confidence. Quality and relevance of the linking domain matter far more than raw count: one link from a trusted, topically relevant site outweighs dozens from low-quality or unrelated ones.",
+  },
+  {
+    title: "Domain Authority",
+    description:
+      "A third-party score that approximates a site's accumulated trust. It isn't a metric any search engine or AI system actually consumes, just a useful human-facing stand-in for how credible a site looks.",
+  },
+  {
+    title: "Backlinks and AI Citations",
+    description:
+      "Backlinks are a long-established classical SEO ranking input. Whether AI systems weigh them the same way when deciding what to cite is a reasonable hypothesis, not a confirmed mechanism, so treat that connection as directional rather than settled.",
   },
 ];
 
@@ -693,7 +706,11 @@ export function M3SeoFundamentalsManagedServices() {
           {SEO_ROLES.map((role) => (
             <li key={role.role} className="flex flex-col rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
               <p className="mb-2 font-semibold text-ink">{role.role}</p>
-              <p className="mb-2 text-ink/75">{role.owns}</p>
+              <ul className="mb-2 list-outside list-disc space-y-1 pl-4 text-ink/75">
+                {role.owns.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
               <p className="mt-auto border-t border-line pt-2 text-xs text-ink/50">{role.handoff}</p>
             </li>
           ))}
@@ -717,12 +734,10 @@ export function M3SeoFundamentalsManagedServices() {
           {GAP_ANALYSIS_TYPES.map((item) => (
             <li key={item.name} className="flex flex-col rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
               <p className="mb-2 font-semibold text-ink">{item.name}</p>
-              <p className="mb-1 text-caption font-semibold tracking-wide text-ink/50 uppercase">Workflow</p>
-              <ol className="mb-3 list-outside list-decimal space-y-1 pl-4 text-ink/75">
-                {item.workflow.map((step, i) => (
-                  <li key={i}>{step}</li>
-                ))}
-              </ol>
+              <div className="mb-3 rounded-card border border-line bg-paper p-3">
+                <p className="mb-1 text-caption font-semibold tracking-wide text-ink/50 uppercase">Goal</p>
+                <p className="text-ink/75">{item.goal}</p>
+              </div>
               <p className="mb-1 text-caption font-semibold tracking-wide text-ink/50 uppercase">Typical tools</p>
               <p className="mb-3 text-ink/75">{item.tools}</p>
               <div className="mt-auto border-t border-line pt-3">
@@ -741,16 +756,17 @@ export function M3SeoFundamentalsManagedServices() {
 
       <section id="off-page-fundamentals">
         <SectionHeading>Off-Page Fundamentals</SectionHeading>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          Off-page SEO is mostly about backlinks, links from other sites pointing back to the client&rsquo;s. Search engines
-          read a backlink as a vote of confidence, but the quality and relevance of the linking domain matter far more
-          than raw count: one link from a trusted, topically relevant site outweighs dozens from low-quality or
-          unrelated ones. Domain authority is a third-party score that approximates that accumulated trust; it
-          isn&rsquo;t a metric any search engine or AI system actually consumes, just a useful human-facing stand-in for how
-          credible a site looks. Backlinks themselves are a long-established classical SEO ranking input. Whether AI
-          systems weigh them the same way when deciding what to cite is a reasonable hypothesis, not a confirmed
-          mechanism, so treat that connection as directional rather than settled.
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Off-page SEO is mostly about backlinks: links from other sites pointing back to the client&rsquo;s.
         </p>
+        <ul className="grid gap-4 sm:grid-cols-3">
+          {OFFPAGE_FUNDAMENTALS.map((item) => (
+            <li key={item.title} className="flex flex-col rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
+              <p className="mb-2 font-semibold text-ink">{item.title}</p>
+              <p className="text-ink/75">{item.description}</p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section id="eeat">
@@ -782,9 +798,7 @@ export function M3SeoFundamentalsManagedServices() {
         </div>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
           It matters most on topics where bad information carries real consequences, health, finance, and safety
-          content, sometimes called YMYL (Your Money or Your Life). Whether AI citation systems weigh the same
-          signals the same way is still an open question, not a confirmed mechanism, but it&rsquo;s a reasonable
-          framework to bring into AEO work until better data says otherwise.
+          content, sometimes called YMYL (Your Money or Your Life).
         </p>
       </section>
 
@@ -792,6 +806,36 @@ export function M3SeoFundamentalsManagedServices() {
         <SectionHeading>Technical Mechanisms</SectionHeading>
 
         <h3 className="mb-2 font-display text-h3 text-ink">On-Page Technical Mechanisms</h3>
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Before the mechanism-by-mechanism breakdown, it helps to have a mental model of how a crawler actually
+          finds a page. Googlebot doesn&rsquo;t visit the instant something&rsquo;s published: it works through a
+          queue, discovering new URLs by following links off pages it already knows, and revisiting known URLs at a
+          frequency roughly proportional to how important or how often they change.
+        </p>
+        <div className="mb-6 rounded-card border border-line bg-white p-5">
+          <CrawlDiscoveryFlow />
+        </div>
+
+        <h4 className="mb-2 font-display text-base text-ink">Concept: Link Equity</h4>
+        <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Internal links do two jobs at once. They&rsquo;re the path a crawler follows from page to page, and they
+          pass a portion of a page&rsquo;s authority to whatever it links to. That&rsquo;s the same &ldquo;vote of
+          confidence&rdquo; logic covered in Off-Page Fundamentals, just happening between pages on the same site
+          instead of between different sites. A page that gets internal links, especially from other important
+          pages, gets crawled more and ranks with more authority behind it. A page that gets none gets neither.
+        </p>
+
+        <h4 className="mb-2 font-display text-base text-ink">Applying It: Where Does a Specific Page Land?</h4>
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Given that mechanism and that concept, an individual page ends up in one of three tiers, from strongest
+          signal to weakest. A sitemap alone can get a page discovered, but internal links are what signal it&rsquo;s
+          actually important, and that&rsquo;s what a crawler leans on to decide how often to come back and how much
+          weight to give it.
+        </p>
+        <div className="mb-6 rounded-card border border-line bg-white p-5">
+          <PageDiscoveryTiers />
+        </div>
+
         <div className="mb-6 overflow-x-auto rounded-card border border-line">
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
@@ -935,18 +979,6 @@ export function M3SeoFundamentalsManagedServices() {
               ))}
             </tbody>
           </table>
-        </div>
-
-        <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
-            Where this goes next
-          </span>
-          <p className="text-sm leading-relaxed text-ink/80">
-            This page gives you the mechanisms and the reasoning framework, not the full manual audit methodology,
-            and not the keyword-to-prompt-gap-analysis transfer logic that connects this to AEO work. Both are
-            covered step by step in a later module. Treat this as the conceptual foundation you bring into that
-            module, not a substitute for it.
-          </p>
         </div>
       </section>
     </div>
