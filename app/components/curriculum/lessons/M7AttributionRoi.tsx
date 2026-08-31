@@ -4,37 +4,133 @@ import { KnowledgeCheckButton } from "@/app/components/curriculum/KnowledgeCheck
 import { M7_MANAGED_SERVICES_KNOWLEDGE_CHECK } from "./knowledge-check-data";
 
 const OUTLINE = [
-  { id: "why-its-hard", label: "Why Attribution Is Hard Here" },
-  { id: "the-valuation-ladder", label: "The Valuation Ladder" },
-  { id: "building-the-estimate", label: "Building the Dollar-Value Estimate" },
-  { id: "defending-the-number", label: "Defending the Number" },
-  { id: "designing-a-holdout", label: "Designing a Holdout" },
-  { id: "making-the-call", label: "The Bar for This Module" },
+  { id: "why-it-matters", label: "Why Model Literacy Matters" },
+  { id: "common-models", label: "Common Attribution Models" },
+  { id: "worked-example", label: "Worked Example: One $500 Purchase" },
+  { id: "ga-defaults", label: "What Google Analytics Defaults To" },
+  { id: "airops-ga-pullthrough", label: "How AirOps Pulls In GA Conversions" },
 ];
 
-interface LadderRung {
-  method: string;
-  question: string;
-  formula: string;
+interface AttributionModel {
+  id: string;
+  name: string;
+  definition: string;
+  weights: number[];
+  note: string;
 }
 
-const LADDER: LadderRung[] = [
+const MODELS: AttributionModel[] = [
   {
-    method: "1. Observed attribution (the floor)",
-    question: "What pipeline or revenue can we directly trace to AI-originated visits or explicit AI research?",
-    formula: "Deduplicated opportunity value with qualifying AI UTM/referrer evidence or explicit “how did you hear about us” evidence.",
+    id: "first-touch",
+    name: "First-touch",
+    definition: "100% of the credit goes to the very first touchpoint in the journey, no matter how many touches came after it.",
+    weights: [1, 0, 0, 0, 0],
+    note: "Answers “what got this buyer's attention in the first place.” Blind to everything that nurtured them afterward.",
   },
   {
-    method: "2. Paid-comp replacement cost",
-    question: "What would it cost to buy this same visibility footprint through paid ads instead?",
-    formula: "Σ (prompt-volume estimate × mention rate × comparable paid CPM ÷ 1,000), summed per prompt cluster.",
+    id: "last-touch",
+    name: "Last-touch",
+    definition: "100% of the credit goes to the final touchpoint immediately before conversion.",
+    weights: [0, 0, 0, 0, 1],
+    note: "Answers “what closed the deal.” Blind to everything that built the interest in the first place, including an AI-search answer read weeks earlier.",
   },
   {
-    method: "3. Gross-up multiplier",
-    question: "How much additional AI-influenced value likely sits above what's directly observed?",
-    formula: "Observed attribution × a named, bounded, vertical-specific multiplier, never a universal one.",
+    id: "linear",
+    name: "Linear",
+    definition: "Credit is split evenly across every touchpoint in the journey, the same amount no matter its position.",
+    weights: [0.2, 0.2, 0.2, 0.2, 0.2],
+    note: "Simple and fair-looking, but treats a passing ad impression the same as the touch that actually moved the buyer.",
+  },
+  {
+    id: "time-decay",
+    name: "Time-decay",
+    definition: "Credit grows the closer a touchpoint sits to the conversion, using a decay curve. A common simplified version doubles the weight of each touch as it gets nearer to the close.",
+    weights: [1 / 31, 2 / 31, 4 / 31, 8 / 31, 16 / 31],
+    note: "Favors touches near the close. A reasonable default when the sales cycle is short and recency plausibly matters most.",
+  },
+  {
+    id: "u-shaped",
+    name: "U-shaped (position-based)",
+    definition: "40% of the credit goes to the first touch, 40% to the last touch, and the remaining 20% is split evenly across everything in between.",
+    weights: [0.4, 0.0667, 0.0666, 0.0667, 0.4],
+    note: "Rewards the touch that created the opportunity and the one that closed it, while still leaving something for the middle of the journey.",
+  },
+  {
+    id: "data-driven",
+    name: "Data-driven",
+    definition: "An algorithmic model, not a fixed rule. Machine learning looks at an account's own conversion and non-conversion paths and estimates how much each touchpoint actually increased the probability of converting, then splits credit accordingly.",
+    weights: [0.1, 0.15, 0.1, 0.25, 0.4],
+    note: "The weighting is unique to each account and even to each conversion path. The split shown here is just one illustrative example, a different account's data would produce a different split for this same five-touch journey. This is GA4's actual default, more on that next.",
   },
 ];
+
+function ModelDiagram({ weights }: { weights: number[] }) {
+  const positions = [60, 180, 300, 420, 540];
+  const radius = (w: number) => 4 + w * 30;
+  return (
+    <svg viewBox="0 0 640 100" className="h-auto w-full max-w-md">
+      <line x1={40} y1={45} x2={615} y2={45} className="stroke-line" strokeWidth={2} />
+      {positions.map((x, i) => (
+        <g key={i}>
+          <circle cx={x} cy={45} r={radius(weights[i])} className="fill-forest" />
+          <text x={x} y={80} textAnchor="middle" className="fill-ink/55 text-[11px] font-medium">
+            {Math.round(weights[i] * 100)}%
+          </text>
+        </g>
+      ))}
+      <g>
+        <rect x={590} y={25} width={38} height={38} rx={8} className="fill-signal" />
+        <text x={609} y={50} textAnchor="middle" className="fill-forest text-[15px] font-bold">
+          $
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+const JOURNEY_TOUCHES = [
+  ["Organic Search", "(blog post)"],
+  ["Paid Social", "(retargeting ad)"],
+  ["Email", "(nurture)"],
+  ["AI Search", "(clicked a ChatGPT citation)"],
+  ["Branded Search", "(converting click)"],
+];
+
+function JourneyDiagram() {
+  const positions = [60, 180, 300, 420, 540];
+  return (
+    <svg viewBox="0 0 640 110" className="h-auto w-full">
+      <line x1={40} y1={35} x2={615} y2={35} className="stroke-line" strokeWidth={2} />
+      {positions.map((x, i) => (
+        <g key={i}>
+          <circle cx={x} cy={35} r={13} className="fill-forest" />
+          <text x={x} y={40} textAnchor="middle" className="fill-signal text-[11px] font-semibold">
+            {i + 1}
+          </text>
+          {JOURNEY_TOUCHES[i].map((line, li) => (
+            <text key={li} x={x} y={68 + li * 14} textAnchor="middle" className="fill-ink/60 text-[10px]">
+              {line}
+            </text>
+          ))}
+        </g>
+      ))}
+      <g>
+        <rect x={591} y={16} width={38} height={38} rx={8} className="fill-signal" />
+        <text x={610} y={41} textAnchor="middle" className="fill-forest text-[15px] font-bold">
+          $
+        </text>
+        <text x={610} y={68} textAnchor="middle" className="fill-ink/60 text-[10px]">
+          $500
+        </text>
+        <text x={610} y={82} textAnchor="middle" className="fill-ink/60 text-[10px]">
+          purchase
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+const TOUCH_COLUMN_LABELS = ["Organic", "Paid Social", "Email", "AI Search", "Branded Search"];
 
 export function M7AttributionRoi() {
   return (
@@ -51,188 +147,150 @@ export function M7AttributionRoi() {
         }
       />
 
-      <section id="why-its-hard">
-        <SectionHeading>Why Attribution Is Hard Here</SectionHeading>
+      <section id="why-it-matters">
+        <SectionHeading>Why Model Literacy Matters</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          A marketer can defend an AdWords line item to their own CFO because the chain is short: spend, click,
-          landing page, tracked conversion. AI search rarely offers that chain. A buyer can be influenced by an
-          answer they read in ChatGPT, form an opinion, and later arrive at the site through a branded search or a
-          direct visit with no trackable link back to the AI answer at all. That's not a measurement bug to fix,
-          it's the actual shape of how people research through AI systems.
+          Every conversion number a client shows you, whether it's in Google Analytics, a board deck, or a number
+          AirOps surfaces, is the output of an{" "}
+          <span className="font-semibold text-ink">attribution model</span>, a rule for splitting credit for a
+          conversion across the touchpoints that led to it. The same buyer journey can look completely different
+          depending on which rule is applied: a channel that closed the deal can look either decisive or invisible
+          purely because of how credit got sliced, not because of anything that actually changed about its
+          performance.
+        </p>
+        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
+          This matters directly for AI search work. A buyer influenced by an AI-search answer almost never converts
+          on that exact touch, they research, then come back later through a branded search or a direct visit. The
+          model a client's analytics setup uses determines whether that earlier AI-search touch gets any credit at
+          all. Before this module goes further, you need to know these models yourself.
+        </p>
+      </section>
+
+      <section id="common-models">
+        <SectionHeading>Common Attribution Models</SectionHeading>
+        <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Each diagram below shows the same five-touch journey. Circle size is the share of credit that touch
+          receives; the badge at the end is the conversion. The first five are fixed rules you can compute by hand;
+          the last, data-driven, is the algorithmic model most real GA4 accounts actually run on.
+        </p>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {MODELS.map((model) => (
+            <div key={model.id} className="rounded-card border border-line bg-white p-5">
+              <h3 className="mb-1.5 text-base font-semibold text-ink">{model.name}</h3>
+              <p className="mb-3 text-sm leading-relaxed text-ink/70">{model.definition}</p>
+              <ModelDiagram weights={model.weights} />
+              <p className="mt-3 text-xs leading-relaxed text-ink/50 italic">{model.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="worked-example">
+        <SectionHeading>Worked Example: One $500 Purchase, Five Ways</SectionHeading>
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Same buyer, same five touches, same $500 purchase. Only the attribution model changes, watch what happens
+          to the AI-search touch (touch 4) across the row.
         </p>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          The consequence: a brand can be spending real budget on AI-search visibility and have no equivalent of a
-          cost-per-click number to point to when the spend gets questioned. Without a defensible dollar story,
-          that line item reads as discretionary, exactly the kind of spend that gets cut first when budgets
-          tighten, regardless of whether it's actually working.
+          Touch 4 only exists in GA at all because the buyer clicked a citation link inside the ChatGPT answer,
+          landing on the site through a referred session GA could log. Being mentioned or cited with no click leaves
+          no session, no referrer, nothing for any GA-based attribution model, including data-driven, to work with.
+        </p>
+        <div className="mb-6 rounded-card border border-line bg-white p-5">
+          <JourneyDiagram />
+        </div>
+        <div className="mb-3 overflow-x-auto rounded-card border border-line">
+          <table className="w-full min-w-[760px] border-collapse text-sm">
+            <thead>
+              <tr className="bg-paper-2">
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                  Model
+                </th>
+                {TOUCH_COLUMN_LABELS.map((label) => (
+                  <th key={label} className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                    {label}
+                  </th>
+                ))}
+                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Total</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-line">
+              {MODELS.map((model) => {
+                const dollars = model.weights.map((w) => w * 500);
+                const total = dollars.reduce((sum, d) => sum + d, 0);
+                return (
+                  <tr key={model.id}>
+                    <td className="px-3 py-3 align-top font-semibold text-ink">{model.name}</td>
+                    {dollars.map((d, i) => (
+                      <td
+                        key={i}
+                        className={`px-3 py-3 align-top text-ink/75 ${i === 3 ? "font-semibold text-ink" : ""}`}
+                      >
+                        ${d.toFixed(2)}
+                      </td>
+                    ))}
+                    <td className="px-3 py-3 align-top text-ink/75">${total.toFixed(2)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="ga-defaults">
+        <SectionHeading>What Google Analytics Defaults To</SectionHeading>
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Of the six models above, <span className="font-semibold text-ink">data-driven</span> is the one GA4
+          actually runs by default. It replaced last-click as the platform-wide default a few years ago. Last-click
+          and the other four named models are still available, but a property has to be manually switched to one of
+          them under Attribution Settings.
+        </p>
+        <div className="rounded-card border border-line bg-white p-5">
+          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+            The practical takeaway
+          </span>
+          <p className="text-sm leading-relaxed text-ink/80">
+            A GA4 "conversions" number is only meaningful once you know which model produced it. Data-driven
+            attribution can quietly give real credit to an upper-funnel AI-search touch that last-click would have
+            zeroed out entirely, or it can give that same touch almost nothing, depending on what the account's own
+            data shows. There's no way to know which without checking the property's Attribution Settings.
+          </p>
+        </div>
+      </section>
+
+      <section id="airops-ga-pullthrough">
+        <SectionHeading>How AirOps Pulls In GA Conversions</SectionHeading>
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          AirOps does not calculate its own attribution model. It pulls in whatever a client's Google Analytics
+          instance already counts as a conversion, and that count is downstream of whichever attribution model the
+          client has chosen for their own property. AirOps surfaces this at the page level, conversions by page, not
+          by channel, so there is no "branded search" or "AI search" label in the view itself. The attribution model
+          still decides which session gets the credit, it just shows up as credit on a page instead of a named
+          channel.
+        </p>
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          If a client is on GA4's data-driven default, the conversions AirOps surfaces already reflect that
+          account-specific credit split spread across whichever pages those sessions touched. If a client has
+          switched their property to last-click, the same $500 purchase from the worked example above would show up
+          in AirOps entirely on whatever page hosted that final branded-search session, e.g. the product page the
+          buyer landed on, and $0 on the blog post, the retargeting landing page, the email's linked page, or the
+          page the AI-search citation sent the buyer to, even though nothing in the AirOps view names last-click as
+          the reason.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
             The reframe this module teaches
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
-            Because clean last-click attribution doesn't exist here, the ROI story has to be{" "}
-            <span className="font-semibold text-ink">causal and estimated, not deterministic</span>. That's not a
-            weaker story than AdWords' story, it's a different kind of story, one built from named assumptions,
-            visible methodology, and a stated range instead of false precision. The goal isn't to manufacture a
-            clean number, it's to make a defensible one.
+            The same buyer journey can make an AI-search investment look decisive or invisible in a client's own
+            AirOps numbers, purely because of which attribution model their GA property happens to be set to, not
+            because anything about the work changed. Before interpreting or presenting a client's GA-based
+            conversion numbers, find out which attribution model their property is running.
           </p>
         </div>
       </section>
 
-      <section id="the-valuation-ladder">
-        <SectionHeading>The Valuation Ladder</SectionHeading>
-        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          A dollar-value estimate is built from three methods, and the most common mistake is treating them as
-          three competing guesses to average together. They aren't peers, they're a ladder: each one answers a
-          different question, and only the first is built entirely from real evidence.
-        </p>
-        <div className="mb-4 overflow-x-auto rounded-card border border-line">
-          <table className="w-full min-w-[760px] border-collapse text-sm">
-            <thead>
-              <tr className="bg-paper-2">
-                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Method</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Question it answers</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">How it's built</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-line">
-              {LADDER.map((row) => (
-                <tr key={row.method}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.method}</td>
-                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.question}</td>
-                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.formula}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/50 italic">
-          Never add these three together into one blended total, and never average them. Present each with its own
-          label so it's clear which part of the number is measured evidence, which is a market-price proxy, and
-          which is a named, bounded assumption about what the floor misses.
-        </p>
-      </section>
-
-      <section id="building-the-estimate">
-        <SectionHeading>Building the Dollar-Value Estimate</SectionHeading>
-        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          The paid-comp method (rung 2 on the ladder) is the one you'll build by hand most often, it's the
-          AdWords-equivalent estimate: what would this visibility cost to buy as ads instead of earn. Here's the
-          full worked chain for a single prompt cluster.
-        </p>
-        <ol className="mb-6 max-w-2xl list-outside list-decimal space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
-          <li>
-            <span className="font-semibold text-ink">Start with relevant prompt volume.</span> How often the
-            underlying questions get asked in AI search, e.g. 500 relevant prompts/month for a cluster.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Convert to answer events.</span> Multiply by days in the month
-            and by however many AI platforms/engines are being tracked, e.g. 500 × 30 × ~8 engines ≈ 120,000 answer
-            events/month.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Apply the mention-rate lift.</span> The measured percentage-point
-            increase in mention rate attributable to the work done, e.g. a +2 point lift.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Calculate incremental branded impressions.</span> Answer events ×
-            mention-rate lift, e.g. 120,000 × 2% = 2,400 incremental branded impressions/month.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Convert to equivalent media value.</span> Incremental impressions
-            ÷ 1,000 × comparable Google Ads CPM for the category, e.g. (2,400 / 1,000) × $60 ≈ $144/month for that
-            one cluster.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Scale across every relevant cluster.</span> One cluster in
-            isolation looks small. Summed across an account's full relevant prompt set, this is what turns into a
-            mid-five to low-six-figure monthly figure worth presenting.
-          </li>
-        </ol>
-        <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
-            What this number actually is
-          </span>
-          <p className="text-sm leading-relaxed text-ink/80">
-            A market-price proxy for the footprint, not proof of causation. A mention-rate lift changes this
-            number mechanically, but on its own it doesn't prove the lift caused any business outcome. That claim
-            requires the observed-attribution floor and, eventually, a holdout, not this calculation alone.
-          </p>
-        </div>
-      </section>
-
-      <section id="defending-the-number">
-        <SectionHeading>Defending the Number</SectionHeading>
-        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Every version of this estimate draws the same objection, in some form: <span className="italic">"this feels made up."</span> The
-          instinct to defend the size of the number is the wrong response. The actual mitigation is structural.
-        </p>
-        <ul className="mb-6 max-w-2xl list-outside list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
-          <li>
-            <span className="font-semibold text-ink">Lead with methodology, not magnitude.</span> Show the formula
-            and the inputs before the headline number. A stakeholder who can see prompt volume, mention rate, and
-            CPM laid out separately can trace and defend the math to their own finance team; a single bolded
-            dollar figure with no visible inputs cannot be defended by anyone.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Source every input.</span> Mention rate comes from the platform.
-            CPM comes from Google Ads. Say so explicitly, and be equally explicit about which inputs are measured
-            versus modeled.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Present a range, never one precise number.</span> A low/base/high
-            estimate signals honest uncertainty; a single decimal-precise figure signals false confidence and
-            invites exactly the scrutiny it can't survive.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Don't add overlapping estimates together.</span> Different
-            valuation methods, or different funnel-stage estimates, can genuinely overlap (the same buyer using AI
-            at multiple stages of their decision). Stacking them into one bigger total double-counts the same
-            value and is the fastest way to lose credibility once a sharp stakeholder notices.
-          </li>
-        </ul>
-      </section>
-
-      <section id="designing-a-holdout">
-        <SectionHeading>Designing a Holdout</SectionHeading>
-        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          A holdout is the only way to move from "here's a plausible dollar estimate" to "this specific
-          intervention caused this specific outcome." It works by comparing a treatment group against a
-          comparable, untouched control: optimized vs. non-optimized prompts, pages, topics, customer segments, or
-          geographies, then reading whether the treatment group moved differently than the control.
-        </p>
-        <div className="mb-4 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
-            Prerequisites before running one
-          </span>
-          <ul className="list-outside list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-ink/80">
-            <li>A stable, established baseline, weeks of consistent measurement, not a freshly-onboarded account.</li>
-            <li>Known coverage gaps in what's being measured, so a result isn't misread against a blind spot.</li>
-            <li>Genuine confidence that the planned intervention can move the number at all, established through prior research, not hope.</li>
-            <li>Treatment and control groups defined in advance, on a basis that's actually comparable (similar topic, similar segment, similar starting position).</li>
-          </ul>
-        </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          Launching before these hold isn't a harmless early attempt, it's actively worse than not testing at all.
-          A holdout run against an unstable baseline can attribute ordinary measurement noise to the treatment,
-          producing a confident-looking result that gets treated as proof when it isn't one. Wait for the
-          prerequisites, or say plainly that the account isn't ready for a holdout yet.
-        </p>
-      </section>
-
-      <section id="making-the-call">
-        <SectionHeading>The Bar for This Module</SectionHeading>
-        <div className="rounded-card border border-line bg-white p-5">
-          <p className="text-sm leading-relaxed text-ink/80">
-            Given an account's mention-rate lift and a comparable CPM, build the paid-comp dollar estimate by hand.
-            Explain which rung of the valuation ladder any given number came from, and why it can't be added to the
-            others. Field a "this feels made up" objection by pointing at methodology and a stated range, not by
-            defending the size of the figure. And recognize when an account isn't ready for a holdout, rather than
-            running one just because leadership wants a causal claim this quarter.
-          </p>
-        </div>
-      </section>
     </div>
   );
 }

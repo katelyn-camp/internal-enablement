@@ -277,38 +277,17 @@ export const M4_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
 
 /**
  * Scoped to the Services side of M5: the tool-to-source map (GSC, Semrush/Ahrefs,
- * GA4, AirOps Insights), mechanism-level construction of the AI-search metrics (traffic
- * weighting, per-model-averaged citation share, raw-count inflation), the number-to-outcome
- * chain (Page 360), and the suspicious-number validation workflow. Every scenario here is a
+ * GA4, AirOps Insights), raw-count inflation, the number-to-outcome chain (Page 360),
+ * and the suspicious-number validation workflow. Every scenario here is a
  * planted-bad-data gut-check, matching the module's knowledge-check design.
  */
 export const M5_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   {
     kind: "free-response",
     prompt:
-      "A client's monthly AI-visibility \"headline\" score is 42%, but when you average the daily numbers plotted underneath it, you get 37%. The client's contact says the dashboard is broken. What do you tell them?",
-    modelAnswer:
-      "It's not broken, the two numbers are computed differently on purpose. The headline is traffic-weighted across the days in the window, so a day with far more prompts run moves it more than a light day; the daily series is unweighted, one rate per day. Averaging the daily dots yourself will not reproduce the headline, and shouldn't be expected to.",
-  },
-  {
-    kind: "free-response",
-    prompt:
       "An account has a high mention rate but a low citation rate. A different account has the opposite: high citation rate, low mention rate. What does each pattern actually indicate, and does the same fix work for both?",
     modelAnswer:
-      "High mention/low citation means third-party content, reviews, forums, comparison sites, is carrying the brand's visibility; AI models talk about the brand but aren't linking to anything it owns, so the fix is structural citability of owned content. High citation/low mention means owned content is authoritative but narrow, winning a few specific prompts while being invisible on the broader landscape, so the fix is prompt/topic coverage breadth instead. Same two metrics, opposite pattern, opposite fix, treating both as \"a visibility problem\" and prescribing the same fix would be wrong for at least one of them.",
-  },
-  {
-    kind: "multiple-choice",
-    prompt:
-      "Two domains are cited about your client's category. Domain A has more total citations, spread across several high-volume AI platforms. Domain B has fewer total citations, but nearly all of them are concentrated on one lower-volume platform. Which is more likely to show the higher citation share?",
-    options: [
-      { label: "Domain A, always, since it has more raw citations", correct: false },
-      { label: "Domain B, potentially, if citation share is calculated per platform and then averaged", correct: true },
-      { label: "They'll always be identical", correct: false },
-      { label: "Citation share and citation count always sort in the same order", correct: false },
-    ],
-    explanation:
-      "Citation share is typically calculated per AI model/platform and then averaged across platforms, not as one global count divided by one global total. A domain concentrated on a lower-volume platform can post a higher share there than a domain with more raw citations diluted across several high-volume platforms. Count and share are built differently and won't always sort together.",
+      "Not mirror images, and citation isn't strictly conditional on mention, a citation can attach without the brand ever being named. High mention/low citation: the model names the brand from general knowledge but rarely retrieves and links a page, could be a content gap or just a navigational/definitional intent where citation was never likely. High citation/low mention: check whether those citations actually name the brand. Mostly yes, weak brand recognition. Mostly no, citation without attribution, a branding gap. Both need follow-up (prompt coverage, intent, tracked-set size) before prescribing a fix; the fixes aren't interchangeable.",
   },
   {
     kind: "free-response",
@@ -412,54 +391,47 @@ export const M6_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
  */
 export const M7_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   {
-    kind: "free-response",
-    prompt:
-      "A client's relevant prompts get asked about 800 times a month across tracked AI platforms. AirOps' work lifted their mention rate by 3 percentage points. The comparable Google Ads CPM for this category is $50. Walk through the paid-comp math to estimate the monthly equivalent media value of that lift.",
-    modelAnswer:
-      "Incremental branded impressions = 800 × 3% = 24 per month (scale this up by however many engines/answer instances are being counted per prompt in the real model, the mechanics are the same). Equivalent media value = incremental impressions ÷ 1,000 × CPM = (24 / 1,000) × $50 ≈ $1.20/month for this single prompt cluster. The real number comes from running this per relevant prompt cluster and summing, one cluster in isolation looks tiny, the account-level total is what gets presented.",
-  },
-  {
     kind: "multiple-choice",
     prompt:
-      "A dollar-value estimate has three components: observed attribution (from UTM/CRM evidence), paid-comp replacement cost (CPM proxy), and a gross-up multiplier for AI influence the observed system misses. How should these three be combined into one number?",
+      "A buyer's journey has five touches before a $500 purchase: (1) an organic blog post, (2) a paid social retargeting ad, (3) an email nurture, (4) a click on a ChatGPT citation link, (5) a branded search click that converts. Under a pure last-touch model, how much credit does the AI-search touch (touch 4) receive?",
     options: [
-      { label: "Average the three estimates for a balanced number", correct: false },
-      { label: "Present the highest of the three as the headline", correct: false },
-      { label: "They aren't peer estimates to average, observed attribution is the floor, and the other two are separate, clearly-labeled methods, not one blended total", correct: true },
-      { label: "Only ever report the paid-comp number since it's the easiest to explain", correct: false },
+      { label: "$500, it clearly influenced the final decision", correct: false },
+      { label: "$100, an even one-fifth split", correct: false },
+      { label: "$0, last-touch gives 100% of the credit to the final touchpoint before conversion, touch 5", correct: true },
+      { label: "$200, treated as a middle touch under U-shaped rules", correct: false },
     ],
     explanation:
-      "The three methods form a ladder, not three votes on the same number. Observed attribution is the decision-grade floor built from real evidence. Paid-comp is a market-price proxy for the footprint. Gross-up is an explicit, bounded assumption about what the floor misses. Averaging or blending them into one figure hides which claim is actually evidence-backed.",
+      "Last-touch assigns all credit to whichever touch happened immediately before conversion, here, the branded search click. Every earlier touch, including the ChatGPT citation click, gets $0 under this model regardless of how much it actually shaped the buyer's decision.",
   },
   {
     kind: "free-response",
     prompt:
-      "A client's CFO pushes back: \"This dollar number feels made up.\" What's the wrong way to respond, and what's the actual mitigation?",
+      "Using that same five-touch, $500 journey, compute the dollar credit each touch receives under a time-decay model where each touch's weight roughly doubles as it gets closer to the conversion (a 1-2-4-8-16 ratio across the five touches). Show the math.",
     modelAnswer:
-      "The wrong response is defending the size of the number or adding more decimal precision to make it look rigorous. The actual mitigation is leading with methodology, not magnitude: show exactly which inputs are real measured data (mention rate from the platform, CPM from Google Ads), which are modeled assumptions, and present a low/base/high range rather than one precise figure. A CFO can defend fuzzy math internally if the math is transparent; they can't defend a number that looks precise but can't be traced back to its inputs.",
+      "The ratio 1:2:4:8:16 sums to 31 parts. Each part is worth $500 / 31 ≈ $16.13. Touch 1 (organic) = 1 part ≈ $16.13. Touch 2 (paid social) = 2 parts ≈ $32.26. Touch 3 (email) = 4 parts ≈ $64.52. Touch 4 (AI search) = 8 parts ≈ $129.03. Touch 5 (branded search) = 16 parts ≈ $258.06. Unlike last-touch or first-touch, the AI-search touch picks up a meaningful, if partial, share of the credit here because it sits close to, but not at, the conversion.",
   },
   {
     kind: "true-false",
-    prompt: "True or false: because AI search rarely has clean last-click attribution, the ROI story should avoid dollar figures entirely and stick to visibility metrics.",
+    prompt: "True or false: Google Analytics 4's account-wide default attribution model today is last-click.",
     options: [
       { label: "True", correct: false },
       { label: "False", correct: true },
     ],
     explanation:
-      "The absence of clean last-click attribution means the story has to be causal and estimated rather than deterministic, not that it should avoid dollars altogether. Reporting an \"estimated incremental impact\" with a stated range and named assumptions is the correct response, not silence on ROI.",
+      "GA4 used to default new properties to last-click, but the platform-wide default is now data-driven attribution, an algorithmic model that estimates each touchpoint's actual contribution from the account's own conversion paths rather than applying one fixed rule. Last-click and the other named models can still be selected manually under Attribution Settings.",
   },
   {
     kind: "free-response",
     prompt:
-      "A teammate wants to launch a holdout test to prove AirOps' work is causing a client's mention-rate gains, this week, on an account that only started tracking prompts a month ago. What's missing before this holdout is ready to run, and what could go wrong if it launches anyway?",
+      "A client asks why the conversions AirOps shows for their AI-search work look much smaller than what their SEO team is reporting for the same account. What's the first thing to check, and why?",
     modelAnswer:
-      "A holdout needs a stable baseline first, without weeks of consistent measurement, there's no reliable \"before\" to compare the treatment group against, and the account's coverage gaps aren't understood yet either. Launching prematurely risks attributing normal measurement noise or a still-settling baseline to the treatment, producing a confident-looking result that isn't actually valid, which is worse than not running the test at all since it gets treated as proof.",
+      "Check which attribution model the client's own GA4 property is set to under Attribution Settings. AirOps doesn't calculate its own model, it pulls in whatever GA4 already counts as a conversion for that property. If the property is on last-click, any touch upstream of the final one, including an AI-search-driven touch, gets zero credit no matter how much it actually influenced the buyer, while another team's report could be reading from a different model or lookback window and show a bigger number for the exact same underlying journey. The gap is very likely a model or settings mismatch, not a performance problem.",
   },
   {
     kind: "free-response",
     prompt:
-      "Explain, in your own words, why a brand being unable to defend a $50k/month AI-search spend \"the way they defend AdWords\" is the actual business problem this module solves, not just a nice-to-have metric.",
+      "Explain, in your own words, why last-touch attribution is the model most likely to make AI-search influence invisible in a client's reporting, using the five-touch, $500 example.",
     modelAnswer:
-      "AdWords and LinkedIn spend get renewed because a marketer can point to a click-through, cost-per-click, and a pipeline number that traces back cleanly. Without an equivalent dollar story, AI-search spend looks discretionary; the first budget cut in a tightening cycle. A defensible, if imperfect, dollar-value estimate is what lets a buyer internally justify the line item to their own finance team, converting the spend from \"an experiment we're trying\" into \"a channel we're allocating budget across,\" which is the difference between a renewal and a churn risk.",
+      "A buyer influenced by an AI-search answer almost never converts on that exact touch, they read the answer, form an opinion, and come back later through a branded search or a direct visit. That means the AI-search touch is structurally very unlikely to ever be the last touch before conversion, so last-touch assigns it $0 by construction, regardless of how much it actually shaped the decision. This is why a client relying only on last-click GA numbers can look like AI search is doing nothing, even when it's the reason the buyer showed up in the first place, and why it matters to know which model a client's account is using before treating that number as the whole story.",
   },
 ];
