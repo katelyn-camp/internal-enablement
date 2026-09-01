@@ -5,7 +5,6 @@ import { M5_MANAGED_SERVICES_KNOWLEDGE_CHECK } from "./knowledge-check-data";
 
 const OUTLINE = [
   { id: "the-tool-map", label: "The Tool Map" },
-  { id: "how-numbers-are-built", label: "How the Headline Number Is Actually Built" },
   { id: "reading-patterns", label: "Reading the Pattern, Not Just the Number" },
   { id: "number-to-outcome", label: "From Number to Outcome" },
   { id: "validating-a-number", label: "Validating a Suspicious Number" },
@@ -14,6 +13,7 @@ const OUTLINE = [
 interface MetricPattern {
   pattern: string;
   meansThat: string;
+  hypotheses: string[];
   lookAt: string;
 }
 
@@ -21,45 +21,111 @@ const METRIC_PATTERNS: MetricPattern[] = [
   {
     pattern: "High mention rate, low citation rate",
     meansThat:
-      "Third-party content, reviews, forums, comparison sites, is carrying the brand's visibility. The brand gets talked about, but AI models aren't linking to anything it owns.",
-    lookAt: "Structural citability of owned content, not more brand awareness. Awareness is already there.",
+      "The model names the brand from its own general knowledge often, but rarely also retrieves and links a specific page when it does. Whether that's actually a problem depends on the intent behind those mentions.",
+    hypotheses: [
+      "No content exists yet for the specific fanned-out sub-queries driving those mentions, a coverage gap, not a structure gap",
+      "Content exists but isn't structured for extraction (self-contained chunks, direct-answer framing)",
+      "The driving prompts are navigational or definitional intent, where being named is the win and a citation was never likely",
+    ],
+    lookAt: "Whether owned content exists at all for the specific sub-queries behind those mentions before assuming it's a structure problem, and what intent those prompts actually are.",
   },
   {
     pattern: "High citation rate, low mention rate",
     meansThat:
-      "Owned content is authoritative but narrow, winning a handful of specific prompts and invisible across the broader landscape of questions buyers actually ask.",
-    lookAt: "Prompt and topic coverage breadth, not content quality. The content that exists is already working.",
+      "Two different causes produce this. If the cited answers mostly do name the brand, the model only says the name when a live retrieval forces it to, weak brand recognition. If many citations carry no named mention, that's citation without attribution, a branding gap, not a recognition gap. Check which is actually happening before assuming either.",
+    hypotheses: [
+      "The tracked prompt set is small or narrow, so \"rare mention\" may be a sampling artifact, not a real footprint",
+      "Weak general brand recognition, the model doesn't reliably know the brand exists outside of a live retrieval",
+      "Citation without attribution: the model sources claims to the brand's page but never names the brand, a framing/branding gap rather than a recognition gap",
+      "Content genuinely is narrow: winning a handful of specific prompts, invisible elsewhere",
+    ],
+    lookAt: "The size and breadth of the tracked prompt set first, then whether the cited answers actually name the brand or just link it, before calling this a brand-recognition gap or a content-breadth gap.",
   },
   {
     pattern: "Share of voice rising, average position drifting worse",
     meansThat:
-      "The brand is showing up more often but landing further down in the answer when it does, present but less prominent.",
-    lookAt: "Direct-answer framing and structural citability, not volume. Being named more doesn't fix being buried.",
+      "The brand is appearing more often but ranking lower within the answer when it does.",
+    hypotheses: [
+      "The tracked prompt set grew to include prompts where the brand is a weaker fit, pulling position down with no content change at all",
+      "A competitor got more aggressive on the same prompts and displaced the brand, independent of anything the brand did",
+      "Direct-answer framing or structural citability genuinely weakened",
+    ],
+    lookAt: "Whether the prompt set changed or a competitor moved before assuming the brand's own content got worse.",
   },
   {
     pattern: "Citation count rising, citation rate and share flat",
     meansThat:
       "The tracked prompt set almost certainly grew. More tracked questions mechanically produces more raw citations without any change in the account's real footprint.",
+    hypotheses: [
+      "New prompts were added to the tracked set (by far the most common driver)",
+      "A tracked AI platform started answering more often or more verbosely for the same prompts, a platform-side change, not an account-side one",
+    ],
     lookAt: "Whether prompts were added recently. Re-read the trend on rate or share only, the count isn't telling you anything on its own.",
   },
   {
     pattern: "GSC ranking improving, GA4 organic traffic flat or falling",
     meansThat:
-      "A SERP feature (an AI Overview, a featured snippet) or a title/CTR problem is intercepting the click before it reaches the site, not a ranking failure.",
-    lookAt: "Click-through rate and what's occupying the SERP above the listing, not the ranking position itself.",
+      "A SERP feature intercepting the click before it reaches the site is the classic read, but it isn't the only one.",
+    hypotheses: [
+      "An AI Overview, featured snippet, or other SERP feature is intercepting the click above the listing",
+      "Underlying search demand for the query dropped, fewer searches happening at all, independent of rank",
+      "A GA4 tracking or consent-mode change is undercounting real traffic, a measurement break, not a real SERP effect",
+    ],
+    lookAt: "Click-through rate and what's occupying the SERP above the listing, but also query-level search volume and whether GA4's tracking setup changed.",
   },
   {
     pattern: "GA4 traffic rising, conversion rate flat or falling",
     meansThat:
-      "More visitors are arriving, but they're either lower-intent or hitting a page whose calls to action don't match what they came for. Traffic alone isn't a strategy win.",
-    lookAt: "Traffic-source intent match and the page's calls to action, not the traffic number by itself.",
+      "More visitors are arriving, but that doesn't automatically mean something is broken. Whether it's a problem depends on what that traffic was supposed to do.",
+    hypotheses: [
+      "Traffic-source intent doesn't match the page's calls to action",
+      "The new traffic is deliberately top-of-funnel or awareness content, a lower conversion rate here is expected, not a problem",
+      "The conversion event itself is broken or misconfigured, check this before crediting or blaming the traffic",
+    ],
+    lookAt: "Traffic-source intent match and the page's calls to action, and whether the conversion event is actually configured and firing.",
+  },
+  {
+    pattern: "GA4 traffic and GSC ranking healthy, but mention rate and citation rate near zero",
+    meansThat:
+      "Classic search and AI search are being read as if they're the same channel. Winning one doesn't automatically transfer to the other.",
+    hypotheses: [
+      "Content is JS-render-blind to AI crawlers even though Googlebot renders it fine, a tier-1 crawlability gap, not a demand gap",
+      "robots.txt or a CDN rule blocks GPTBot, ClaudeBot, or PerplexityBot specifically while still allowing Googlebot",
+      "The tracked AI-visibility prompt set doesn't actually map to the queries driving that GA4/GSC traffic, an apples-to-oranges comparison",
+      "The topic space just doesn't trigger AI-search retrieval much yet, an early-stage category for AI answers specifically",
+    ],
+    lookAt: "Whether AI crawlers can actually reach and read the page before anything else, then whether the tracked prompt set overlaps with the queries actually driving the traffic.",
+  },
+  {
+    pattern: "Strong classic ranking and backlink profile, but a competitor gets cited in the AI answer instead",
+    meansThat:
+      "Classic-SEO authority signals don't transfer directly to AI citation. A page can out-rank a competitor on Google while still losing the citation to that same competitor inside an AI answer.",
+    hypotheses: [
+      "The page answers the literal query well but not the broader fanned-out cluster of sub-queries the AI system decomposes it into",
+      "The page ranks on backlinks and domain authority but isn't structured for extraction, losing the \"easier to lift\" contest to a cleaner competitor page",
+      "The competitor's off-site presence (reviews, forums, trade press) is stronger even with a weaker on-site profile, since corroboration is judged independently of on-site ranking signals",
+    ],
+    lookAt: "The competitor's actual cited passage, the brand's own structural citability and prompt-cluster coverage, and the competitor's off-site footprint, not the backlink profile.",
+  },
+  {
+    pattern: "Good rankings and healthy traffic, but sentiment is negative when the brand is mentioned",
+    meansThat:
+      "A dimension classic SEO tools can't see at all. Ranking and traffic measure whether the brand shows up, not how it's described when it does.",
+    hypotheses: [
+      "Genuinely negative context, a real product or service issue being reflected back, not a measurement error",
+      "Off-site content (a bad review thread, an outdated comparison, a recurring complaint) is shaping how the model frames the brand",
+      "A single loud, negative source is being over-weighted because there's little else to counterbalance it",
+    ],
+    lookAt: "The specific answers driving the negative sentiment, not just the score, and whether it traces to something real and fixable or to one skewed source.",
   },
 ];
 
 interface ToolRow {
   tool: string;
   measures: string;
+  measuresLead?: string;
   cantTellYou: string;
+  cantTellYouLead?: string;
 }
 
 const TOOL_MAP: ToolRow[] = [
@@ -67,31 +133,48 @@ const TOOL_MAP: ToolRow[] = [
     tool: "Google Search Console (GSC)",
     measures:
       "First-party ground truth for classic organic search: which queries actually trigger your pages, clicks, impressions, CTR, and average position, straight from Google, not modeled.",
+    measuresLead: "First-party ground truth for classic organic search",
     cantTellYou:
-      "Nothing about any AI surface. It's also scoped to your own site, there's no native competitor view, so it can't tell you who's beating you or why.",
+      "Scoped only to the domain connected to this property, and can't tell an impression from being cited in an AI Overview apart from an impression from a normal listing, both count the same.",
   },
   {
     tool: "Semrush / Ahrefs",
     measures:
       "Third-party competitive intelligence: what keywords competitors rank for, estimated search volume, keyword difficulty, backlink profiles, market-opportunity sizing.",
+    measuresLead: "Third-party competitive intelligence",
     cantTellYou:
       "What actually happened on any real site. Volume and difficulty are modeled estimates from a crawled panel, not measured traffic, and neither tool sees AI-answer visibility at all.",
+    cantTellYouLead: "What actually happened on any real site",
   },
   {
     tool: "GA4",
     measures:
       "What actually happened on the site: sessions, users, engagement time and rate, conversions, revenue, segmentable by source/medium, including AI referral sources like ChatGPT and Perplexity.",
+    measuresLead: "What actually happened on the site",
     cantTellYou:
       "Why you rank or get cited. GA4 measures downstream outcome only, and every number it reports is only as trustworthy as the event and conversion configuration behind it.",
+    cantTellYouLead: "Why you rank or get cited",
   },
   {
     tool: "AirOps Insights (Visibility + Citations)",
     measures:
       "The AI-search layer: mention rate, share of voice, average position, citation rate, citation share, and influence score, all built from prompts run against tracked AI models.",
+    measuresLead: "The AI-search layer",
     cantTellYou:
       "Anything outside your tracked prompt set. It's a probabilistic sample of AI answers to the questions you chose to track, not a census of everything AI models say about the brand.",
+    cantTellYouLead: "Anything outside your tracked prompt set",
   },
 ];
+
+function withBoldLead({ text, lead }: { text: string; lead?: string }) {
+  if (!lead || !text.startsWith(lead)) return text;
+  return (
+    <>
+      <span className="font-semibold text-ink">{lead}</span>
+      {text.slice(lead.length)}
+    </>
+  );
+}
 
 export function M5ReadingTheNumbers() {
   return (
@@ -114,8 +197,7 @@ export function M5ReadingTheNumbers() {
           A single account review can pull numbers from four different sources, and each one measures a different
           layer of reality: what Google itself says is happening, what a third-party tool estimates about the
           competitive landscape, what actually happened on the site, and what AI models say about the brand when
-          asked. Confusing one for another is the single most common way a real number gets presented as the wrong
-          claim.
+          asked.
         </p>
         <div className="mb-4 overflow-x-auto rounded-card border border-line">
           <table className="w-full min-w-[760px] border-collapse text-sm">
@@ -130,56 +212,41 @@ export function M5ReadingTheNumbers() {
               {TOOL_MAP.map((row) => (
                 <tr key={row.tool}>
                   <td className="px-3 py-3 align-top font-semibold text-ink">{row.tool}</td>
-                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.measures}</td>
-                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.cantTellYou}</td>
+                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">
+                    {withBoldLead({ text: row.measures, lead: row.measuresLead })}
+                  </td>
+                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">
+                    {withBoldLead({ text: row.cantTellYou, lead: row.cantTellYouLead })}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/50 italic">
-          None of these four replace each other, and none of them is "the real number" while the others are noise.
-          A defensible read of an account almost always means checking more than one of these before presenting
-          anything as a conclusion.
-        </p>
-      </section>
-
-      <section id="how-numbers-are-built">
-        <SectionHeading>How the Headline Number Is Actually Built</SectionHeading>
-        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Two of the AI-search metrics above are built in ways that aren't obvious from the dashboard tile alone.
-          Both are worth knowing cold, because both are common sources of "the numbers don't match" confusion that
-          isn't actually a bug.
-        </p>
         <div className="mb-4 rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
-            Headline vs. daily average
+            Reading all four together
           </span>
-          <p className="text-sm leading-relaxed text-ink/80">
-            A monthly visibility or mention-rate headline is typically <span className="font-semibold text-ink">traffic-weighted</span> across
-            the days in that window: a day with far more prompts run moves the headline more than a light day.
-            The daily dots plotted underneath it are usually <span className="font-semibold text-ink">unweighted</span>, one rate per day,
-            with no such adjustment. Averaging those daily dots yourself will not reproduce the headline number, and
-            isn't supposed to. Both are real, they're just answering slightly different questions.
+          <p className="mb-3 text-sm leading-relaxed text-ink/80">
+            Each of the four contributes something the others don&rsquo;t:
           </p>
+          <ul className="mb-3 list-outside list-disc space-y-2 pl-5 text-sm leading-relaxed text-ink/80">
+            <li>
+              <span className="font-semibold text-ink">GSC + GA4:</span> pre-click versus post-click, what Google
+              shows against what actually happens once someone lands.
+            </li>
+            <li>
+              <span className="font-semibold text-ink">Semrush / Ahrefs:</span> the competitive frame neither GSC
+              nor GA4 has on its own, whether an opportunity is even sized right, or a competitor is already
+              winning it.
+            </li>
+            <li>
+              <span className="font-semibold text-ink">AirOps Insights:</span> the layer none of the other three
+              fully reach, what AI models say about the brand in generated answers, including mentions that never
+              produce a GSC impression or a GA4 session at all.
+            </li>
+          </ul>
         </div>
-        <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
-            Citation share is per-platform, then averaged
-          </span>
-          <p className="text-sm leading-relaxed text-ink/80">
-            Citation share is commonly calculated per AI model or platform first, then averaged across platforms,
-            not as one global citation count divided by one global total. That means a domain cited heavily but
-            narrowly on a single lower-volume platform can post a higher citation share than a domain with more
-            total citations spread thinly across several high-volume platforms. Citation count and citation share
-            won't always sort in the same order, and that's expected, not an error to chase down.
-          </p>
-        </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          Neither of these needs to be derived from scratch on a call. What matters is recognizing the pattern
-          immediately when a client (or a teammate) reads a mismatch as a broken dashboard, and being able to say
-          plainly why two correctly-calculated numbers don't have to agree.
-        </p>
       </section>
 
       <section id="reading-patterns">
@@ -189,20 +256,49 @@ export function M5ReadingTheNumbers() {
           and recognizing which of a small set of recurring patterns you're looking at, then knowing which one
           points at a real lever and which one is an artifact of how the measurement works.
         </p>
+        <div className="mb-4 rounded-card border border-line bg-white p-5">
+          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+            &ldquo;High&rdquo; and &ldquo;low&rdquo; are relative, not benchmarked
+          </span>
+          <p className="text-sm leading-relaxed text-ink/80">
+            The patterns below compare two of an account&rsquo;s own numbers against each other, they&rsquo;re not
+            measured against some universal &ldquo;good&rdquo; threshold. There&rsquo;s no industry-standard
+            citation rate that counts as healthy, and a mention rate of 10% isn&rsquo;t inherently strong or weak
+            on its own. A number that looks low can just as easily mean a narrow tracked prompt set, a short
+            tracking window, or an early-stage category with little AI-answer volume yet, not a real performance
+            problem. Sanity-check the prompt set and tracking history before reading either side of a pattern as a
+            real signal.
+          </p>
+        </div>
+        <div className="mb-2 flex justify-end">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-2 px-3 py-1 text-caption font-semibold tracking-wide text-ink/45 uppercase">
+            <span aria-hidden>⇄</span> Scroll for more
+          </span>
+        </div>
         <div className="mb-6 overflow-x-auto rounded-card border border-line">
-          <table className="w-full min-w-[760px] border-collapse text-sm">
+          <table className="w-full min-w-[1040px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Pattern in the numbers</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What's actually happening</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Where to look next</th>
+                <th className="sticky left-0 z-20 w-1/6 border-r border-line bg-paper-2 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Pattern in the numbers</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What&rsquo;s actually happening</th>
+                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Potential hypotheses to check</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Where to look next</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {METRIC_PATTERNS.map((row) => (
                 <tr key={row.pattern}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.pattern}</td>
+                  <td className="sticky left-0 z-10 border-r border-line bg-paper px-3 py-3 align-top font-semibold text-ink">
+                    {row.pattern}
+                  </td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.meansThat}</td>
+                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">
+                    <ul className="list-outside list-disc space-y-1 pl-4">
+                      {row.hypotheses.map((hypothesis) => (
+                        <li key={hypothesis}>{hypothesis}</li>
+                      ))}
+                    </ul>
+                  </td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.lookAt}</td>
                 </tr>
               ))}
@@ -212,7 +308,7 @@ export function M5ReadingTheNumbers() {
 
         <div className="mb-4 rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
-            Load-bearing vs. overhyped
+            Validated vs. unvalidated
           </span>
           <p className="mb-3 text-sm leading-relaxed text-ink/80">
             Every number above is real, but not every number can carry the weight of a strategy claim. Before a
@@ -220,7 +316,7 @@ export function M5ReadingTheNumbers() {
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <p className="mb-1.5 text-caption font-semibold tracking-wide text-ink/55 uppercase">Load-bearing</p>
+              <p className="mb-1.5 text-caption font-semibold tracking-wide text-ink/55 uppercase">Validated</p>
               <ul className="list-outside list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-ink/80">
                 <li>Rate or share metrics, normalized against a stable prompt or keyword set</li>
                 <li>A trend confirmed across two or more comparable periods, not one snapshot</li>
@@ -228,12 +324,11 @@ export function M5ReadingTheNumbers() {
               </ul>
             </div>
             <div>
-              <p className="mb-1.5 text-caption font-semibold tracking-wide text-ink/55 uppercase">Overhyped</p>
+              <p className="mb-1.5 text-caption font-semibold tracking-wide text-ink/55 uppercase">Unvalidated</p>
               <ul className="list-outside list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-ink/80">
                 <li>A raw count on its own, especially right after the prompt or keyword set changed size</li>
                 <li>One week's mention-rate blip with no second period to confirm it</li>
                 <li>Prompt volume treated as an exact figure rather than a directional estimate</li>
-                <li>A headline-vs-daily mismatch misread as "the number changed" instead of "different math"</li>
               </ul>
             </div>
           </div>
@@ -268,8 +363,10 @@ export function M5ReadingTheNumbers() {
                   Ranks top 5 in GSC, strong citation rate, but under 100 GA4 users/month
                 </td>
                 <td className="px-3 py-3 align-top leading-relaxed text-ink/75">
-                  A technical or brand-awareness problem, not a content problem. The content is reachable and being
-                  surfaced; something between surfacing and the click is broken.
+                  Depends on query intent. If it's informational, this can just be expected: the AI answer or SERP
+                  feature satisfies the visitor and a click was never likely, not a problem. If it's transactional,
+                  the content is reachable and being surfaced but something between surfacing and the click is
+                  broken, check technical blockers and brand trust/CTR before assuming content is the issue.
                 </td>
               </tr>
               <tr>
@@ -297,8 +394,12 @@ export function M5ReadingTheNumbers() {
           <span className="font-semibold text-ink">On GA4 conversion validity specifically:</span> never cite a client's conversion
           numbers without first checking whether the underlying conversion event is actually configured and firing.
           A "0% conversion rate" is sometimes a real result and sometimes a broken event that never fires; a "500%
-          increase" is sometimes real growth and sometimes someone quietly fixing that same broken event. Both look
+          increase" is sometimes real growth and sometimes someone fixing that same broken event. Both look
           identical in the dashboard. Only the event configuration tells you which one you're looking at.
+        </p>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Conversion events also need to be reviewed with the client directly, since what counts as a "conversion" is
+          defined per account and isn't something you can infer from the dashboard alone.
         </p>
       </section>
 
@@ -314,11 +415,6 @@ export function M5ReadingTheNumbers() {
             <span className="font-semibold text-ink">Isolate what changed.</span> Same prompt set or keyword set, same date
             range, same platform and segment filters as whatever you're comparing against? A metric that moved
             because its denominator changed isn't the same signal as one that moved because performance changed.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Check headline math against daily math.</span> If a monthly headline and the
-            average of the daily figures underneath it don't match, confirm which one is traffic-weighted before
-            treating the mismatch as an error.
           </li>
           <li>
             <span className="font-semibold text-ink">Separate rate/share from raw count.</span> If only the raw count moved and the

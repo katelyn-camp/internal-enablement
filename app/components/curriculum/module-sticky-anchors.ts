@@ -17,4 +17,5 @@ export const moduleStickyAnchors: Record<string, string> = {
   "em-sa:m6": "the-three-moves",
   "em-sa:m7": "why-it-matters",
   "em-sa:m8": "step-1",
+  "em-sa:m9": "why-this-discipline-exists",
 };

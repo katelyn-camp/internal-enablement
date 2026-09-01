@@ -7,7 +7,6 @@ const OUTLINE = [
   { id: "the-three-moves", label: "The Three Moves" },
   { id: "cannibalization-audit", label: "Running a Cannibalization Audit" },
   { id: "dies-unlinked", label: "Why Net-New Content Dies Unlinked" },
-  { id: "realistic-velocity", label: "Setting Realistic Velocity" },
   { id: "making-the-call", label: "Making the Call" },
 ];
 
@@ -174,35 +173,6 @@ export function M6ContentStrategyLifecycle() {
         </p>
       </section>
 
-      <section id="realistic-velocity">
-        <SectionHeading>Setting Realistic Velocity</SectionHeading>
-        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Velocity is not just "how many pages can get published per month." It has to account for the maintenance
-          debt that publishing volume creates: every net-new page eventually needs a refresh, and content decays
-          faster in the AI-search era than it did in classic search, because a decayed page doesn't just slip in
-          rank, it can disappear from the answer layer entirely.
-        </p>
-        <ul className="mb-6 max-w-2xl list-outside list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
-          <li>
-            <span className="font-semibold text-ink">Accelerating net-new output is not automatically healthy.</span> A
-            team can be doubling its publishing volume year over year while a large backlog of older pages sits
-            unrefreshed and increasingly stale, a velocity number that looks great in isolation while quietly
-            building a maintenance debt no one is tracking.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Realistic velocity budgets capacity for both moves.</span> A plan
-            that only accounts for net-new production capacity, with no allocated refresh cadence, is not a
-            complete velocity plan, it's half of one.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Refresh cadence itself compounds.</span> Teams that moved from
-            occasional, reactive refreshes to a scheduled cadence, quarterly audits or monthly sprints instead of
-            fire drills, saw materially larger and faster gains than teams refreshing ad hoc, because the backlog
-            never got the chance to compound.
-          </li>
-        </ul>
-      </section>
-
       <section id="making-the-call">
         <SectionHeading>Making the Call</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
@@ -229,11 +199,6 @@ export function M6ContentStrategyLifecycle() {
             <span className="font-semibold text-ink">Plan the internal links before publishing.</span> Identify which
             existing pages, especially strong, already-ranking ones, will link to the new page at launch. If that
             list is empty, the page isn't ready to publish yet.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Size the velocity plan around both moves.</span> Confirm the
-            account's production capacity accounts for a refresh cadence on the existing library, not only new-page
-            output.
           </li>
         </ol>
         <div className="rounded-card border border-line bg-white p-5">

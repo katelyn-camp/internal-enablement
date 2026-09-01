@@ -8,14 +8,32 @@ const OUTLINE = [
   { id: "citation-hierarchy", label: "Mention & Citation Factor Hierarchy" },
   { id: "core-vocabulary", label: "Core Vocabulary" },
   { id: "crawler-differences", label: "How AI Crawlers Parse Pages Differently" },
-  { id: "query-fan-out", label: "Query Fan-Out" },
-  { id: "structural-citability", label: "Structural Citability" },
   { id: "verifying-js-rendering", label: "Verifying What a Crawler Actually Sees" },
+  { id: "structural-citability", label: "Structural Citability" },
+  { id: "off-site-signals", label: "Off-Site Signals: Third-Party Mentions & Citations" },
 ];
+
+function ExamplePill({ example }: { example: string }) {
+  return (
+    <span className="group relative inline-flex shrink-0">
+      <button
+        type="button"
+        className="inline-flex cursor-help items-center rounded-full border border-line bg-white px-2.5 py-0.5 text-caption font-semibold tracking-wide text-ink/45 uppercase transition-colors hover:border-ink/25 hover:text-ink/70"
+      >
+        Example
+      </button>
+      <span className="pointer-events-none absolute bottom-full right-0 z-20 mb-2 w-64 rounded-card border border-line bg-white p-3 text-left text-xs leading-relaxed text-ink/70 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100">
+        <span className="mb-1 block text-caption font-semibold tracking-wide text-ink uppercase">Example</span>
+        {example}
+      </span>
+    </span>
+  );
+}
 
 interface DefinitionEntry {
   term: string;
   definition: string;
+  example: string;
   link?: string;
 }
 
@@ -24,49 +42,64 @@ const CORE_VOCAB: DefinitionEntry[] = [
     term: "Retrieval",
     definition:
       "The step where an AI system pulls candidate content, from its own index, a live crawl, or a live web-search tool call, before generating an answer. A page has to survive retrieval before anything else about it matters.",
+    example:
+      "A user asks ChatGPT about AirOps pricing; its search tool call pulls candidate pages, including AirOps's own pricing page, before it drafts a reply.",
   },
   {
     term: "Grounding",
     definition:
       "Using retrieved external content as the factual basis for a generated answer, instead of relying on whatever the model already memorized during training. Grounded answers are the ones with something to cite; retrieval-augmented generation (RAG) is the usual mechanism behind them.",
+    example:
+      "Perplexity cites AirOps's docs page as the source for a feature claim, instead of describing the feature purely from training-time memory.",
   },
   {
     term: "Query fan-out",
     definition:
-      "A single prompt decomposed into several parallel sub-queries, each retrieved separately, then synthesized into one answer. The real target of a piece of content is the whole fanned-out cluster, not just the literal prompt. Full breakdown below.",
-    link: "#query-fan-out",
+      "A single prompt decomposed into several parallel sub-queries, each retrieved separately, then synthesized into one answer. The real target of a piece of content is the whole fanned-out cluster, not just the literal prompt.",
+    example:
+      "\"Best AEO platform\" fans out into \"AEO tools comparison,\" \"AirOps vs. competitor,\" and \"AEO platform pricing,\" each retrieved on its own.",
   },
   {
     term: "Chunk",
     definition:
       "The actual unit of text a system retrieves and can cite, a paragraph, a table row, an FAQ item, not the whole page. Most structural-citability advice exists because chunks, not pages, are what gets lifted and quoted.",
+    example: "A model quotes one FAQ answer and one table row off a features page, not the page as a whole.",
   },
   {
     term: "Structural citability",
     definition:
       "Whether an answer sits in a self-contained, clearly-labeled chunk a model can lift and quote cleanly, versus one that requires reading the whole page to reconstruct. Full breakdown below.",
+    example:
+      "An FAQ item stated as a full question with the answer right beneath it lifts cleanly; a claim buried in paragraph four of unrelated prose doesn't.",
     link: "#structural-citability",
   },
   {
     term: "LLM crawler (three roles)",
     definition:
       "Most major AI platforms run three distinct crawlers, not one: a training crawler (builds the base model), a search-index crawler (builds a retrieval index), and an on-demand fetcher (pulls a specific page live, mid-conversation). They can behave differently, and site owners can often block them separately.",
+    example:
+      "GPTBot indexes a page ahead of time for search, then a separate on-demand fetcher pulls that same page live when a user asks about it mid-conversation.",
   },
   {
     term: "JS-render blindness",
     definition:
       "Several major AI crawlers fetch raw HTML only and never execute JavaScript, so content injected client-side after page load is invisible to them even though it renders fine in a browser or for Googlebot. Full breakdown below.",
+    example:
+      "A price injected by client-side JavaScript shows up fine in a browser, but is blank to a crawler that only reads the raw HTML response.",
     link: "#crawler-differences",
   },
   {
     term: "llms.txt",
     definition:
       "A proposed, unofficial file (styled after robots.txt) some sites publish to hand an AI system curated context about themselves. No major AI platform has confirmed reading it in production as of this writing, so treat it as an experimental signal, not a lever to prioritize.",
+    example: "A site publishes /llms.txt summarizing its key pages for AI systems, the way sitemap.xml does for search engines.",
   },
   {
     term: "Direct-answer format",
     definition:
       "Writing the specific answer plainly, early in a section, before caveats or framing. Reduces how much a model has to paraphrase to extract a usable claim, and reduces the odds it extracts the wrong sentence.",
+    example:
+      "\"What is technical SEO?\" answered with the actual definition in the first sentence, not after three sentences of throat-clearing.",
   },
 ];
 
@@ -94,8 +127,7 @@ const CITATION_HIERARCHY: CitationFactorTier[] = [
     whatItMeans:
       "Whether the content answers the prompt, and the cluster of sub-queries a system fans that prompt out into, not just its headline phrasing.",
     whyItSitsHere:
-      "The biggest lever once content is retrievable. A perfectly retrievable page still loses the citation if it only answers the literal prompt and not the angles the system actually fans it out into.",
-    link: "#query-fan-out",
+      "One of the highest-leverage factors once content is retrievable. A perfectly retrievable page still loses the citation if it only answers the literal prompt and not the angles the system actually fans it out into.",
   },
   {
     tier: "3",
@@ -113,12 +145,13 @@ const CITATION_HIERARCHY: CitationFactorTier[] = [
       "How often other sources across the web name the brand in the same context, linked or not.",
     whyItSitsHere:
       "Plays the role authority & trust plays in SEO, but weighted differently: available industry data shows unlinked brand mentions correlating with AI-citation likelihood more strongly than backlinks do.",
+    link: "#off-site-signals",
   },
 ];
 
 interface CrawlerRow {
   platform: string;
-  crawlers: string;
+  crawlers: string[];
   rendersJs: string;
   implication: string;
 }
@@ -126,29 +159,69 @@ interface CrawlerRow {
 const CRAWLER_TABLE: CrawlerRow[] = [
   {
     platform: "OpenAI (ChatGPT)",
-    crawlers: "GPTBot (train) · OAI-SearchBot (search index) · ChatGPT-User (on-demand fetch)",
+    crawlers: ["GPTBot (train)", "OAI-SearchBot (search index)", "ChatGPT-User (on-demand fetch)"],
     rendersJs: "No",
     implication:
       "Whatever ships in the raw HTTP response is the entire universe of content these crawlers see. Anything injected by client-side JavaScript after load doesn't exist for any of the three, no matter how it looks in a browser.",
   },
   {
     platform: "Anthropic (Claude)",
-    crawlers: "ClaudeBot (train) · Claude-SearchBot (search index) · Claude-User (on-demand fetch)",
+    crawlers: ["ClaudeBot (train)", "Claude-SearchBot (search index)", "Claude-User (on-demand fetch)"],
     rendersJs: "No",
     implication: "Same failure mode as OpenAI's crawlers: a plain HTTP fetch, no rendering step, so JS-injected content is invisible.",
   },
   {
     platform: "Perplexity",
-    crawlers: "PerplexityBot, plus third-party crawler partners",
+    crawlers: ["PerplexityBot", "third-party crawler partners"],
     rendersJs: "No",
     implication: "Perplexity's own documentation describes a fetch-based crawler, not a rendering one, so the same constraint applies again.",
   },
   {
     platform: "Google (AI Overviews / AI Mode)",
-    crawlers: "Googlebot",
+    crawlers: ["Googlebot"],
     rendersJs: "Yes",
     implication:
       "AI Overviews and AI Mode ride on the same Search index Googlebot builds using its full rendering pipeline, so content that only exists after JS executes is usually visible to Google even though it's invisible to the other three.",
+  },
+];
+
+interface DomainTypeRow {
+  domainType: string;
+  examples: string;
+  favoredBy: string;
+  whyItGetsPicked: string;
+}
+
+const DOMAIN_TYPES: DomainTypeRow[] = [
+  {
+    domainType: "Community & discussion",
+    examples: "Reddit, Quora, LinkedIn",
+    favoredBy: "Reddit is the single most-cited domain across most platforms; Perplexity leans on Reddit and LinkedIn especially hard for B2B queries.",
+    whyItGetsPicked: "Genuine, first-person discussion the model can treat as independent testimony, not marketing copy.",
+  },
+  {
+    domainType: "Encyclopedic / reference",
+    examples: "Wikipedia",
+    favoredBy: "ChatGPT most heavily; a large-scale citation study of ChatGPT sources put Wikipedia at roughly 8% of all citations, well ahead of any single other domain.",
+    whyItGetsPicked: "Structured, heavily corroborated, and treated as a default trustworthy baseline.",
+  },
+  {
+    domainType: "Review & comparison platforms",
+    examples: "G2, Capterra, TrustRadius, Yelp",
+    favoredBy: "Recommendation and commercial-investigation style prompts across platforms; Perplexity for B2B software specifically.",
+    whyItGetsPicked: "Aggregates independent user ratings the model can cite as social proof instead of a vendor's own claims.",
+  },
+  {
+    domainType: "Editorial & trade press",
+    examples: "Forbes and comparable industry trade publications",
+    favoredBy: "ChatGPT and Google AI Overviews both favor editorial sources for authority-dependent prompts.",
+    whyItGetsPicked: "Independent authorship carries more weight than a brand describing itself.",
+  },
+  {
+    domainType: "Video",
+    examples: "YouTube",
+    favoredBy: "Google AI Overviews and Perplexity, pulling from transcripts.",
+    whyItGetsPicked: "Walkthroughs, demos, and comparisons often get covered in more hands-on detail on video than in text, and the model is reading the transcript, not watching the video, so that detail is just as extractable as any other page's text.",
   },
 ];
 
@@ -197,7 +270,6 @@ export function M4AeoFundamentalsManagedServices() {
           crawlability has meant roughly one thing for years. Several of the AI platforms that matter most for
           citation don&rsquo;t render JavaScript at all, which means a page can be fully crawlable and ranking in
           Google while being functionally invisible to the crawler deciding whether ChatGPT or Claude ever cites it.
-          That distinction is the throughline of this module.
         </p>
       </section>
 
@@ -246,22 +318,26 @@ export function M4AeoFundamentalsManagedServices() {
 
       <section id="core-vocabulary">
         <SectionHeading>Core Vocabulary</SectionHeading>
+        <p className="mb-2 max-w-2xl text-sm leading-relaxed text-ink/50 italic">
+          Performance metrics were covered earlier. These terms are the mechanics behind citation itself.
+        </p>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/50 italic">
-          Mention Rate, Citation Rate, and Share of Voice, the metrics used to measure AEO performance, are covered in
-          full in an earlier module. The terms below are the mechanics behind how content actually gets found and
-          cited, not the metrics used to score it afterward.
+          Hover or tap the <span className="font-semibold text-ink/70">EXAMPLE</span> tag on any term below to see it in action.
         </p>
         <ul className="mb-6 grid gap-2 sm:grid-cols-2">
           {CORE_VOCAB.map((item) => (
             <li key={item.term} className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-              <div className="font-semibold text-ink">
-                {item.link ? (
-                  <a href={item.link} className="underline decoration-line underline-offset-2 hover:text-forest">
-                    {item.term}
-                  </a>
-                ) : (
-                  item.term
-                )}
+              <div className="flex items-start justify-between gap-2">
+                <div className="font-semibold text-ink">
+                  {item.link ? (
+                    <a href={item.link} className="underline decoration-line underline-offset-2 hover:text-forest">
+                      {item.term}
+                    </a>
+                  ) : (
+                    item.term
+                  )}
+                </div>
+                <ExamplePill example={item.example} />
               </div>
               <div className="my-2 border-t border-line" />
               <div>{item.definition}</div>
@@ -273,8 +349,8 @@ export function M4AeoFundamentalsManagedServices() {
       <section id="crawler-differences">
         <SectionHeading>How AI Crawlers Parse Pages Differently</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          This is the single most consequential platform difference for AEO work, and the one most likely to get
-          missed on an audit that only checks &ldquo;is this page indexed&rdquo; the traditional-SEO way.
+          This is the single biggest platform difference in AEO, and the easiest one for a traditional
+          &ldquo;is this page indexed&rdquo; audit to miss entirely.
         </p>
         <div className="mb-4 overflow-x-auto rounded-card border border-line">
           <table className="w-full min-w-[760px] border-collapse text-sm">
@@ -290,7 +366,11 @@ export function M4AeoFundamentalsManagedServices() {
               {CRAWLER_TABLE.map((row) => (
                 <tr key={row.platform}>
                   <td className="px-3 py-3 align-top font-semibold text-ink">{row.platform}</td>
-                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.crawlers}</td>
+                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">
+                    {row.crawlers.map((crawler) => (
+                      <div key={crawler}>{crawler}</div>
+                    ))}
+                  </td>
                   <td className="px-3 py-3 align-top font-semibold text-ink">{row.rendersJs}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.implication}</td>
                 </tr>
@@ -303,79 +383,6 @@ export function M4AeoFundamentalsManagedServices() {
           the exact same page is functionally blank to GPTBot, ClaudeBot, and PerplexityBot if its content loads via
           client-side JavaScript. &ldquo;Crawlable&rdquo; and &ldquo;AEO-crawlable&rdquo; are not the same claim, and
           treating them as interchangeable is the most common mistake this creates.
-        </p>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/50 italic">
-          Crawler behavior is publicly documented but not contractually fixed, and platforms update their crawlers
-          without much notice. Treat this table as a snapshot worth re-verifying per account, not a permanent fact to
-          memorize and stop checking. The verification workflow below is how you check it directly instead of relying
-          on a table going stale.
-        </p>
-      </section>
-
-      <section id="query-fan-out">
-        <SectionHeading>Query Fan-Out</SectionHeading>
-        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Several AI systems, most visibly Google&rsquo;s AI Mode, don&rsquo;t answer a prompt from a single retrieval
-          pass. They decompose one prompt into several parallel sub-queries, retrieve separately for each, then
-          synthesize one answer from the combined result set.
-        </p>
-        <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
-            Why this changes the target
-          </span>
-          <p className="text-sm leading-relaxed text-ink/80">
-            The real target of a piece of content isn&rsquo;t the literal string a user typed. It&rsquo;s the whole
-            cluster of sub-queries the system might fan that prompt out into. A page written narrowly to one exact
-            phrasing can be retrievable and relevant to the literal prompt and still lose every fanned-out sub-query
-            that asks the same thing from an angle a competitor&rsquo;s page happens to cover instead.
-          </p>
-        </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/50 italic">
-          This is the AEO-specific extension of the keyword-clustering logic from SEO&rsquo;s content and keyword gap
-          analysis. Turning this into an actual prompt set, built from real buyer language instead of guessed angles,
-          is covered step by step in a later module, not here.
-        </p>
-      </section>
-
-      <section id="structural-citability">
-        <SectionHeading>Structural Citability</SectionHeading>
-        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          A retrievable, relevant page can still lose the citation to a competitor whose answer is simply easier to
-          lift. Structural citability is what closes that gap.
-        </p>
-        <ul className="mb-6 max-w-2xl list-outside list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
-          <li>
-            <span className="font-semibold text-ink">Self-contained chunks:</span> each paragraph or section answers
-            on its own, without depending on context from earlier paragraphs to make sense. Models frequently
-            retrieve and quote a chunk, not the whole page; a claim that only makes sense three paragraphs into
-            context gets mangled or dropped when lifted alone.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Direct-answer framing:</span> the specific answer stated
-            plainly, early in a section, before caveats or marketing framing. Reduces how much paraphrasing a model
-            has to do, and reduces the odds it extracts the wrong sentence.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Descriptive headers matching real questions:</span> headers
-            phrased the way a person would actually ask, not just a keyword phrase. Headers are one of the strongest
-            structural cues a retrieval system uses to match a chunk to a query.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Structured data / schema markup:</span> FAQ, Article, and
-            Product schema implemented and valid (full mechanics covered in an earlier module). Gives a
-            machine-readable signal about what a chunk actually is, on top of whatever the prose already implies.
-          </li>
-          <li>
-            <span className="font-semibold text-ink">Tables and lists for scannable facts:</span> comparable facts,
-            specs, pricing tiers, pros and cons, presented as a table or list rather than buried in prose. Easier for
-            a model to parse cleanly and cite accurately, and less likely to introduce a paraphrasing error.
-          </li>
-        </ul>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          <span className="font-semibold text-ink">On llms.txt:</span> some sites now publish an llms.txt file, a
-          proposed, unofficial analog to robots.txt meant to hand an AI system curated context about the site. No
-          major AI platform has confirmed reading it in production as of this writing, so treat it as an experimental
-          signal worth watching, not a lever to prioritize over the mechanisms above.
         </p>
       </section>
 
@@ -409,21 +416,131 @@ export function M4AeoFundamentalsManagedServices() {
           </li>
           <li>
             <span className="font-semibold text-ink">Flag it, don&rsquo;t just note it.</span> If the content
-            genuinely only exists after JavaScript executes, it needs server-side rendering, static generation, or a
-            dynamic-rendering fallback that serves crawlers a pre-rendered version. That&rsquo;s a dev/engineering
-            fix, not a copy fix, route it accordingly instead of sending it to a content queue.
+            genuinely only exists after JavaScript executes, that&rsquo;s a dev/engineering fix, not a copy fix,
+            route it accordingly instead of sending it to a content queue. What that fix actually looks like is
+            below.
           </li>
         </ol>
-
+        <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
+          That workflow is per-URL. To check an entire site at once instead of one page at a time, Screaming Frog
+          SEO Spider can crawl it twice, once in Text Only mode (no rendering, the same view a GPTBot/ClaudeBot/PerplexityBot-style
+          crawler gets) and once with JavaScript rendering turned on, then diff the two crawls to surface every URL
+          where content only shows up after JS executes.
+        </p>
         <div className="rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
-            Where this goes next
+            If you find a real gap
+          </span>
+          <p className="mb-3 text-sm leading-relaxed text-ink/80">
+            The fix depends on how much of the rendering architecture is on the table:
+          </p>
+          <ul className="list-outside list-disc space-y-2 pl-5 text-sm leading-relaxed text-ink/80">
+            <li>
+              <span className="font-semibold text-ink">Best fix &mdash; server-side rendering or static generation.</span>{" "}
+              Have the framework (Next.js, Nuxt, Angular Universal, etc.) render the content into the initial HTML
+              response instead of injecting it client-side after load. This is the only option that also improves
+              things for Googlebot and real users, not just AI crawlers.
+            </li>
+            <li>
+              <span className="font-semibold text-ink">Faster fix &mdash; dynamic rendering.</span> Bot-detection
+              middleware routes known AI-crawler user agents (GPTBot, ClaudeBot, PerplexityBot, etc.) to a
+              pre-rendered HTML snapshot while everyone else still gets the normal client-rendered app. A managed
+              service like Prerender.io does this without building the rendering infrastructure in-house.
+              Google&rsquo;s old free option for this, Rendertron, was deprecated, so this is now either a paid
+              managed service or a DIY headless-browser setup (Puppeteer, Playwright).
+            </li>
+            <li>
+              <span className="font-semibold text-ink">Either way, it&rsquo;s an engineering ticket.</span> Not
+              something copy or content can fix on its own, route it to dev/engineering with the specific gap
+              attached, not a general &ldquo;AI can&rsquo;t see our site&rdquo; note.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="structural-citability">
+        <SectionHeading>Structural Citability</SectionHeading>
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          A retrievable, relevant page can still lose the citation to a competitor whose answer is simply easier to
+          lift. Structural citability is what closes that gap.
+        </p>
+        <ul className="mb-6 max-w-2xl list-outside list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
+          <li>
+            <span className="font-semibold text-ink">Self-contained chunks:</span> each paragraph or section answers
+            on its own, without depending on context from earlier paragraphs to make sense. Models frequently
+            retrieve and quote a chunk, not the whole page; a claim that only makes sense three paragraphs into
+            context gets mangled or dropped when lifted alone.
+          </li>
+          <li>
+            <span className="font-semibold text-ink">Direct-answer framing:</span> the specific answer stated
+            plainly, early in a section, before caveats or marketing framing. Reduces how much paraphrasing a model
+            has to do, and reduces the odds it extracts the wrong sentence.
+          </li>
+          <li>
+            <span className="font-semibold text-ink">Descriptive headers matching real questions:</span> headers
+            phrased the way a person would actually ask, not just a keyword phrase. Headers are one of the strongest
+            structural cues a retrieval system uses to match a chunk to a query.
+          </li>
+          <li>
+            <span className="font-semibold text-ink">Structured data / schema markup:</span> FAQ, Article, and
+            Product schema implemented and valid. Gives a machine-readable signal about what a chunk actually is,
+            on top of whatever the prose already implies.
+          </li>
+          <li>
+            <span className="font-semibold text-ink">Tables and lists for scannable facts:</span> comparable facts,
+            specs, pricing tiers, pros and cons, presented as a table or list rather than buried in prose. Easier for
+            a model to parse cleanly and cite accurately, and less likely to introduce a paraphrasing error.
+          </li>
+        </ul>
+        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
+          <span className="font-semibold text-ink">On llms.txt:</span> some sites now publish an llms.txt file, a
+          proposed, unofficial analog to robots.txt meant to hand an AI system curated context about the site. No
+          major AI platform has confirmed reading it in production as of this writing, so treat it as an experimental
+          signal worth watching, not a lever to prioritize over the mechanisms above.
+        </p>
+      </section>
+
+      <section id="off-site-signals">
+        <SectionHeading>Off-Site Signals: Third-Party Mentions &amp; Citations</SectionHeading>
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Everything above this point is about the account&rsquo;s own domain: whether a crawler can reach it,
+          whether it answers the right cluster of queries, whether it&rsquo;s structured to be lifted cleanly. None
+          of that determines whether a third-party page gets cited instead. For most prompts that aren&rsquo;t
+          purely branded or navigational, it does.
+        </p>
+        <div className="mb-4 overflow-x-auto rounded-card border border-line">
+          <table className="w-full min-w-[760px] border-collapse text-sm">
+            <thead>
+              <tr className="bg-paper-2">
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Domain type</th>
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Examples</th>
+                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Favored by</th>
+                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why it gets picked</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-line">
+              {DOMAIN_TYPES.map((row) => (
+                <tr key={row.domainType}>
+                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.domainType}</td>
+                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.examples}</td>
+                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.favoredBy}</td>
+                  <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whyItGetsPicked}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="mb-6 rounded-card border border-line bg-white p-5">
+          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+            Backlinks, or just being named?
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
-            This page gives you the mechanisms and the reasoning framework, not the full manual AEO audit checklist,
-            and not the prompt-set-building workflow that operationalizes query fan-out into an actual prompt list.
-            Both are covered step by step in later modules. Treat this as the conceptual foundation you bring into
-            that work, not a substitute for it.
+            For classic SEO, a backlink is the unit that matters. For AI citation specifically, available industry
+            data (the same Ahrefs correlation study behind the SEO module&rsquo;s Off-Page Fundamentals content)
+            shows unlinked brand mentions correlating with AI-citation likelihood more strongly than backlinks do.
+            Getting named in a G2 review, a Reddit thread, or a trade-press roundup counts for AEO even with no
+            hyperlink attached, which is a different game than classic link building and worth saying explicitly to
+            an account that&rsquo;s only ever budgeted for the latter.
           </p>
         </div>
       </section>

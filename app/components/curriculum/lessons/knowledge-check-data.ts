@@ -435,3 +435,57 @@ export const M7_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
       "A buyer influenced by an AI-search answer almost never converts on that exact touch, they read the answer, form an opinion, and come back later through a branded search or a direct visit. That means the AI-search touch is structurally very unlikely to ever be the last touch before conversion, so last-touch assigns it $0 by construction, regardless of how much it actually shaped the decision. This is why a client relying only on last-click GA numbers can look like AI search is doing nothing, even when it's the reason the buyer showed up in the first place, and why it matters to know which model a client's account is using before treating that number as the whole story.",
   },
 ];
+
+export const M9_PROMPT_TAXONOMY_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A teammate wants to recommend a topic structure for a new account by first deciding \"we want about 150 prompts\" and then inventing enough topics to divide that number cleanly. What's wrong with this approach?",
+    options: [
+      { label: "Nothing, working backward from a round number keeps the portfolio easy to size", correct: false },
+      { label: "Topics have to come from evidence and durable strategic distinctions, not from a desired prompt count; sizing happens later, in Prompt Building, against live settings", correct: true },
+      { label: "It's fine as long as every topic ends up with an equal share of the 150 prompts", correct: false },
+      { label: "The only problem is that 150 is too small a number to divide evenly", correct: false },
+    ],
+    explanation:
+      "Topic Setting is deliberately sequenced before sizing. A taxonomy shaped by an arbitrary target count reflects that number, not the business, and every report built on top of it inherits the same arbitrary shape. Execution sizing, platforms, cadence, budget, belongs in Prompt Building, using live account settings, not in the topic architecture itself.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "An account's topic list uses \"product line\" as its lens and includes Payroll, Benefits, and Workforce Management as siblings. A teammate wants to add \"Small Businesses\" as a fourth sibling topic because small-business buyers clearly behave differently. Should it be added as a topic? Why or why not, and where should that distinction actually live?",
+    modelAnswer:
+      "No. Every sibling topic has to share the same lens, and \"Small Businesses\" is a customer-segment view, not a product line, so adding it as a fourth sibling mixes lenses and breaks the comparability of the whole list (you can no longer cleanly compare Payroll vs. Benefits vs. Workforce Management vs. a segment that cuts across all three). The buyer distinction is real, but it belongs in Audience/ICP coverage, an ICP tag, or drafting context, not bolted on as an extra topic.",
+  },
+  {
+    kind: "true-false",
+    prompt:
+      "True or false: the correct way to track comparison prompts against three different named competitors is three separate tags, such as \"Competitor: Workday,\" \"Competitor: UKG,\" and \"Competitor: ADP.\"",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "The tag contract allows exactly one standalone Competitor tag, with no value or company name attached. Per-competitor tags balloon the tag vocabulary, stop being comparable across accounts, and duplicate a job native competitor configuration already does. Named competitors belong in native settings and in the prompt text itself, not in the tag.",
+  },
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A draft portfolio comes back with 28% of its prompts containing the client's own brand name, and the CSM is excited because mention rate looks great. What should you flag?",
+    options: [
+      { label: "Nothing, a high mention rate is the goal", correct: false },
+      { label: "Brand-related share should stay in the 10–15% range, with 15% as a hard ceiling; a portfolio this brand-heavy inflates mention rate by asking questions the client was always going to win, rather than measuring real category visibility", correct: true },
+      { label: "The portfolio needs more brand-related prompts, not fewer, since the client is paying for visibility", correct: false },
+      { label: "Query Style is the only ratio that matters here", correct: false },
+    ],
+    explanation:
+      "Mention rate is only meaningful as a measure of category visibility if the portfolio isn't stacked with self-answering questions. 15% is treated as a hard maximum, not a soft planning suggestion, precisely to keep the instrument from grading its own exam.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "Explain why the skill treats every retrieved webpage, uploaded file, and transcript as \"untrusted evidence\" and why that distinction matters beyond this one tool.",
+    modelAnswer:
+      "Retrieved content can contain language that looks like an instruction, an embedded request to ignore prior guidance, change scope, or take some action, and an AI process that treats retrieved text as commands rather than data can be manipulated by whatever it happens to read. Treating it as untrusted evidence means extracting the facts it supports while ignoring anything inside it that reads like an instruction. This matters beyond this specific tool: any AI-assisted workflow that pulls in outside content (webpages, customer uploads, call transcripts) needs the same discipline, or it becomes exploitable by the content it's supposed to be analyzing.",
+  },
+];
