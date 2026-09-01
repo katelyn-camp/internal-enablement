@@ -104,7 +104,8 @@ export const modules: ModuleEntry[] = [
     audience: "shared",
     emSaDepth:
       "Reason about on-page/off-page/technical mechanisms on an unfamiliar page; diagnose whether a technical or content issue is the real cause; run the keyword→content→prompt gap-analysis transfer logic.",
-    salesDepth: "Explain why site architecture and page speed matter to visibility, enough to spot an obvious opportunity on a prospect's site.",
+    salesDepth:
+      "Explain why SEO fundamentals still matter inside the AI-search story, and use a site's technical foundation (or a locked CMS) as a qualifying signal on a discovery call.",
     knowledgeCheck: "Quiz + diagnose-from-symptom (Managed Services); opportunity-spotting prompt (Sales)",
     groupSession: "GS2 (Managed Services)",
     appliedProject: "Part of manual audit",
@@ -118,7 +119,8 @@ export const modules: ModuleEntry[] = [
     audience: "shared",
     emSaDepth:
       "Explain why AI crawlers parse differently (incl. JS-render blindness), query fan-out, structural citability; verify whether LLM crawlers parse a page's JS.",
-    salesDepth: "Explain, at prospect depth, why ChatGPT/Claude/Perplexity/AI Mode cite differently and why crawlability matters.",
+    salesDepth:
+      "Explain, in a CMO's language, why ChatGPT/Claude/Perplexity see and trust a site differently than Google does, and use that gap as a credibility-earning moment on a call.",
     knowledgeCheck: "Quiz",
     groupSession: "GS2 (Managed Services)",
     appliedProject: "Part of manual AEO audit",
@@ -132,7 +134,8 @@ export const modules: ModuleEntry[] = [
     audience: "shared",
     emSaDepth:
       "Trace each dashboard number to how it's built and to the outcome it implies; say what GA4/GSC/Semrush/Ahrefs each tell you; validate a suspicious data point before presenting.",
-    salesDepth: "Read a client's headline numbers and say where they come from, without the tool-level validation.",
+    salesDepth:
+      "Translate a client's headline numbers to the altitude the person across the table actually owns, CMO company-level vs. VP of Growth team-level, without needing to validate the tooling behind them.",
     knowledgeCheck: "Free-response: gut-check a planted-bad-data scenario",
     groupSession: "GS2 (Managed Services)",
     appliedProject: "Feeds audits + recs deck",
@@ -145,7 +148,8 @@ export const modules: ModuleEntry[] = [
     phase: "phase1",
     audience: "shared",
     emSaDepth: "Choose refresh vs. net-new vs. consolidate; run a cannibalization audit; set realistic velocity; explain why net-new content dies unlinked.",
-    salesDepth: "Speak to refresh-vs-net-new and velocity conceptually as a talk track.",
+    salesDepth:
+      "Turn refresh vs. net-new vs. consolidate into a business case tied to a stated goal, not a tactic pitched before the goal is known.",
     knowledgeCheck: "Quiz + refresh/net-new/consolidate scenario",
     groupSession: "N/A",
     appliedProject: "Part of recs deck",
@@ -158,7 +162,8 @@ export const modules: ModuleEntry[] = [
     phase: "phase1",
     audience: "shared",
     emSaDepth: "Compute how dollar credit splits across a multi-touch journey under the common attribution models; explain what Google Analytics defaults to and why that default can't be computed by hand; know to check which attribution model a client's GA property uses before interpreting their conversion numbers.",
-    salesDepth: "Explain why a client's GA-reported AI-search conversions can look smaller than expected, without needing to compute the attribution models by hand.",
+    salesDepth:
+      "Explain why a client's GA-reported AI-search conversions can look smaller than expected, and hold the line between the visibility impact we can already prove and the business impact we're still building measurement for.",
     knowledgeCheck: "Multiple-choice + free-response: compute attribution credit splits and explain GA defaults",
     groupSession: "N/A",
     appliedProject: "Part of recs deck",
@@ -171,7 +176,8 @@ export const modules: ModuleEntry[] = [
     phase: "phase1",
     audience: "shared",
     emSaDepth: "Run a comprehensive manual site audit by hand, with separate pre-sales and post-sales checklists (access/data differ).",
-    salesDepth: "Run a light diagnostic audit to surface opportunities on a prospect's site, not the full audit.",
+    salesDepth:
+      "Run a light diagnostic pass, anchored in a fit hypothesis built from the six Cs, to surface opportunities on a prospect's site, not the full audit.",
     knowledgeCheck: "Checklist completion (submitted)",
     groupSession: "GS2 (Managed Services)",
     appliedProject: "Comprehensive audit (Managed Services) · diagnostic audit (Sales)",
@@ -193,8 +199,8 @@ export const modules: ModuleEntry[] = [
     title: "Prompt & Taxonomy Strategy",
     phase: "phase2",
     audience: "em-sa",
-    objective: "Build a manual prompt set from GSC queries, call transcripts, real buyer language; design topic/tag/persona structure; run a prompt-gap analysis.",
-    knowledgeCheck: "Submit a draft prompt set",
+    objective: "Explain why topic architecture must come from evidence and durable buyer-decision distinctions, not a desired prompt count; apply the Topic/Funnel/tag contract so a portfolio stays comparable over time; recognize the guardrails, brand-share cap, query-style mix, and account-eligibility, that keep a prompt portfolio a fair and defensible test of AI-search visibility; run a gap analysis comparing an account's actual topics against a recommended structure.",
+    knowledgeCheck: "Multiple-choice + free-response: topic/tag design and portfolio guardrails",
     groupSession: "GS3 (Managed Services)",
     appliedProject: "Prompt strategy plan",
     appliedProjectOptions: [

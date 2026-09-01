@@ -6,7 +6,7 @@ function depthCopy(module: ModuleEntry, audience: Audience): { label: string; te
   if (module.emSaDepth || module.salesDepth) {
     return audience === "em-sa"
       ? { label: "Services can (comprehensive)", text: module.emSaDepth ?? "" }
-      : { label: "Sales can speak to (diagnostic/lighter)", text: module.salesDepth ?? "" };
+      : { label: "Sales can speak to", text: module.salesDepth ?? "" };
   }
   if (module.objective) {
     return { label: "You will be able to…", text: module.objective };
