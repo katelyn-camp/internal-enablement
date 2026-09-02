@@ -4,7 +4,7 @@ import { PageOutline } from "@/app/components/nav/PageOutline";
 const OUTLINE = [
   { id: "why-it-still-matters", label: "Why SEO Still Matters Here" },
   { id: "the-credibility-bar", label: "The Credibility Bar" },
-  { id: "reading-a-site", label: "Reading a Site Like a Rep" },
+  { id: "site-diagnostic", label: "The Light SEO Diagnostic" },
   { id: "vocabulary", label: "Vocabulary" },
 ];
 
@@ -12,6 +12,61 @@ interface DefinitionEntry {
   term: string;
   definition: string;
 }
+
+interface DiagnosticEntry {
+  action: string;
+  pointsTo: string;
+  whyItMatters: string;
+}
+
+const DIAGNOSTIC: DiagnosticEntry[] = [
+  {
+    action: "Search “site:theirdomain.com” on Google and skim what comes back.",
+    pointsTo:
+      "If a surprisingly small number of pages return, or key pages are missing entirely, this is a crawl or indexing problem, not a ranking problem.",
+    whyItMatters:
+      "A page Google hasn’t indexed isn’t being crawled by AI bots either. Nothing to trust, nothing to cite. Every AEO conversation with this prospect is talking about a house with no foundation until this gets fixed.",
+  },
+  {
+    action:
+      "Open theirdomain.com/robots.txt and check the disallow list for GPTBot, PerplexityBot, ClaudeBot, or Google-Extended.",
+    pointsTo:
+      "A site can be actively, and often unknowingly, blocking the exact bots that feed AI answer engines while still ranking fine in classic Google search.",
+    whyItMatters:
+      "This is the single most 2020s-specific finding on this list. A prospect can be confident in their SEO and still be invisible in ChatGPT or Perplexity because someone, often a developer, years ago, locked the door to AI crawlers with a rule written before AI search existed. Nothing else here makes the SEO-vs-AEO distinction this concretely.",
+  },
+  {
+    action: "Load the homepage on a fresh connection and just watch it: instant, or does it visibly crawl in?",
+    pointsTo: "Page bloat: oversized images, unoptimized scripts, or unnecessary third-party tags.",
+    whyItMatters:
+      "A slow homepage gets crawled less thoroughly, since crawl budget is finite, and converts worse for the humans who wait it out anyway. Site speed hasn’t stopped mattering just because AI entered the picture; it’s still one of the first things a bot or a buyer bounces on.",
+  },
+  {
+    action: "Click through the top-level nav and a few footer links.",
+    pointsTo: "Broken or dead links, a sign the site hasn’t been actively maintained.",
+    whyItMatters:
+      "Broken links strand crawlers mid-path and cut off the authority a link structure is supposed to pass through the site. It’s also a fast, visible tell that this prospect’s foundation hasn’t been touched in a while, useful color for a discovery call.",
+  },
+  {
+    action: "Look for a blog or resource hub, and check the date on the most recent post.",
+    pointsTo: "Whether there’s an active content engine, or a hub that was built once and abandoned.",
+    whyItMatters:
+      "AI answer engines favor sources that are current and keep publishing on a topic. A hub with a most-recent post from two years ago means there’s nothing new for an AI to find, trust, or cite, no matter how good the older content was.",
+  },
+  {
+    action:
+      "Scan the homepage’s first screen for one clear, quotable sentence answering “what does this company actually do?”",
+    pointsTo: "Whether the copy is written to be extracted, or just written to sound good.",
+    whyItMatters:
+      "AI Overviews and chat answers work by lifting a concise, self-contained claim out of a page. Vague hero copy gives an AI nothing clean to quote, so it quotes a competitor instead.",
+  },
+  {
+    action: "Pull the site up on your phone.",
+    pointsTo: "Mobile responsiveness and layout problems that don’t show up on a laptop screen.",
+    whyItMatters:
+      "Google has indexed primarily off the mobile version of a site for years, and most real buyers today are looking a company up on their phone in the moment, not at a desk. A site that only works on desktop is failing on both counts at once.",
+  },
+];
 
 const VOCAB: DefinitionEntry[] = [
   {
@@ -110,17 +165,47 @@ export function M3SeoFundamentalsSales() {
         </p>
       </section>
 
-      <section id="reading-a-site">
-        <SectionHeading>Reading a Site Like a Rep</SectionHeading>
-        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          You don&rsquo;t need to run an audit to notice something&rsquo;s off. A few patterns are visible in
-          minutes and reliably point at real, sellable problems: messy or inconsistent navigation, broken links, no
-          real content hub or blog, a slow and bloated homepage, or a site that clearly hasn&rsquo;t been
-          technically maintained in years. Spotting these is pattern recognition, noticing the smoke. Diagnosing the
-          actual fire, and fixing it, is what Services does next.
+      <section id="site-diagnostic">
+        <SectionHeading>The Light SEO Diagnostic</SectionHeading>
+        <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
+          You don&rsquo;t need to run an audit to notice something&rsquo;s off. Everything below takes under a
+          minute per item, needs nothing but a browser, and reliably points at real, sellable problems. Spotting
+          these is pattern recognition, noticing the smoke. Diagnosing the actual fire, and fixing it, is what
+          Services does next. Open an item to see what it points to and why it still matters now that AI search is
+          part of the picture.
         </p>
 
-        <div className="mb-6 rounded-card border border-line bg-white p-5">
+        <ol className="mb-6 max-w-2xl space-y-3">
+          {DIAGNOSTIC.map((item, index) => (
+            <li key={item.action}>
+              <details className="group rounded-card border border-line bg-white p-4 open:bg-paper-2">
+                <summary className="flex cursor-pointer list-none items-start gap-3 text-sm leading-relaxed font-medium text-ink select-none">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest text-[0.7rem] font-semibold text-signal">
+                    {index + 1}
+                  </span>
+                  <span className="flex-1">{item.action}</span>
+                  <span className="mt-0.5 shrink-0 text-ink/40 transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div className="mt-3 space-y-3 border-t border-line pt-3 pl-8">
+                  <p className="text-sm leading-relaxed text-ink/80">
+                    <span className="mb-1 block text-caption font-semibold tracking-wide text-ink/45 uppercase">
+                      What it might point to
+                    </span>
+                    {item.pointsTo}
+                  </p>
+                  <p className="text-sm leading-relaxed text-ink/80">
+                    <span className="mb-1 block text-caption font-semibold tracking-wide text-ink/45 uppercase">
+                      Why it matters today
+                    </span>
+                    {item.whyItMatters}
+                  </p>
+                </div>
+              </details>
+            </li>
+          ))}
+        </ol>
+
+        <div className="rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
             The question that qualifies the deal
           </span>
@@ -128,16 +213,10 @@ export function M3SeoFundamentalsSales() {
             &ldquo;Who actually publishes to your site, and how long does that take?&rdquo; A locked CMS, where
             marketing doesn&rsquo;t control its own publishing pipeline, doesn&rsquo;t rule out an engagement, but it
             changes what can be promised and how fast. That&rsquo;s an expectation-setting question worth asking
-            early, not a disqualifier discovered late.
+            early, once the diagnostic above has given you something to ask it about, not a disqualifier discovered
+            late.
           </p>
         </div>
-
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          Site architecture and page speed matter for the same reason they always have: a shallow, logical structure
-          gets everything crawled and lets authority flow through the site; a slow, bloated homepage gets crawled
-          less and converts worse. Neither one is a story to tell in depth on a discovery call. Both are worth
-          naming as evidence that the foundation needs work before any AI-visibility investment can compound.
-        </p>
       </section>
 
       <section id="vocabulary">
