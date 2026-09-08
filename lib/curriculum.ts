@@ -1,7 +1,7 @@
 /**
  * Project Upskill curriculum: single source of truth for both the EM/SA
  * and Sales module trees. Transcribed from the "Project Upskill: Category
- * Enablement" Notion doc. Shared modules (Phase 0 + Phase 1, M0–M8) exist
+ * Enablement" Notion doc. Shared modules (Phase 1 + Phase 2, M0–M8) exist
  * once here and render under both /em-sa and /sales with the depth column
  * appropriate to that audience; EM/SA and Sales never get separate data
  * entries for the same topic, only separate URLs and separate copy fields.
@@ -30,9 +30,9 @@ export interface ModuleEntry {
   title: string;
   phase: Phase;
   audience: ModuleAudience;
-  /** Phase 0 / Phase 2 modules: one objective, same for every role that gets the module. */
+  /** Phase 1 / Phase 3 modules: one objective, same for every role that gets the module. */
   objective?: string;
-  /** Phase 1 (M3–M8) only: the EM/SA-comprehensive vs. Sales-diagnostic depth split. */
+  /** Phase 2 (M3–M8) only: the EM/SA-comprehensive vs. Sales-diagnostic depth split. */
   emSaDepth?: string;
   salesDepth?: string;
   /** Where this module's Sales-track content is a reduced-depth pass of an EM/SA module. */
@@ -51,7 +51,7 @@ export interface ModuleEntry {
 }
 
 export const modules: ModuleEntry[] = [
-  // Phase 0: The New World (shared, Sept 1 milestone)
+  // Phase 1: The New World (shared, Sept 16 milestone)
   {
     slug: "m0",
     code: "M0",
@@ -97,7 +97,7 @@ export const modules: ModuleEntry[] = [
     status: "content-pending",
   },
 
-  // Phase 1: Core Shared Enablement (EM/SA comprehensive; Sales lighter, opportunity-spotting)
+  // Phase 2: Core Shared Enablement (EM/SA comprehensive; Sales lighter, opportunity-spotting)
   {
     slug: "m3",
     code: "M3",
@@ -195,7 +195,7 @@ export const modules: ModuleEntry[] = [
     status: "content-pending",
   },
 
-  // Phase 2: EM/SA-Advanced modules
+  // Phase 3: EM/SA-Advanced modules
   {
     slug: "m9",
     code: "M9",
@@ -361,7 +361,7 @@ export const modules: ModuleEntry[] = [
     status: "content-pending",
   },
 
-  // Phase 2: Sales track (PMM-owned, coordinated here)
+  // Phase 3: Sales track (PMM-owned, coordinated here)
   {
     slug: "s1",
     code: "S1",
@@ -428,7 +428,7 @@ export function moduleTitleForAudience(m: ModuleEntry, audience: Audience): stri
 }
 
 export const PHASE_LABELS: Record<Phase, string> = {
-  phase0: "Phase 0 · The New World",
-  phase1: "Phase 1 · Core Shared Enablement",
-  phase2: "Phase 2 · Role Specialization",
+  phase0: "Phase 1 · The New World",
+  phase1: "Phase 2 · Core Shared Enablement",
+  phase2: "Phase 3 · Role Specialization",
 };

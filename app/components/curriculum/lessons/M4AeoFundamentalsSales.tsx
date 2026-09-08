@@ -267,7 +267,7 @@ export function M4AeoFundamentalsSales() {
       <section id="five-channels">
         <SectionHeading>The Five Channels Behind an AI Answer</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Every AI answer about a brand is assembled from the same five channels Phase 0 already introduced: Owned
+          Every AI answer about a brand is assembled from the same five channels Phase 1 already introduced: Owned
           Content, External Content, Paid, Social &amp; Influencer, and Community. These are channels, categories of
           where content lives and who created it, not the names of AirOps&rsquo; own service lines: a single
           service like Offsite touches External, Community, and Social &amp; Influencer content in the same
@@ -304,7 +304,7 @@ export function M4AeoFundamentalsSales() {
           </table>
         </div>
         <p className="text-xs leading-relaxed text-ink/45">
-          {CHANNEL_ORDER.join(", ")}, in that order, is how Phase 0 first laid out these five for investment
+          {CHANNEL_ORDER.join(", ")}, in that order, is how Phase 1 first laid out these five for investment
           planning; the figures above measure something different, and only Owned and Community currently have
           their own clean numbers.
         </p>

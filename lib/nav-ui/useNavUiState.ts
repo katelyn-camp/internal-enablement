@@ -9,7 +9,7 @@ interface NavUiState {
   expandedIds: string[];
 }
 
-// Only Phase 0 starts open, for both audiences; Phase 1 and Phase 2 stay
+// Only Phase 1 starts open, for both audiences; Phase 2 and Phase 3 stay
 // collapsed until someone clicks into them. Once a group is toggled, the
 // persisted state (below) takes over. The "Existing Reference Library"
 // group (and its own expandable parents, Workflows / Anatomy of Pages) is

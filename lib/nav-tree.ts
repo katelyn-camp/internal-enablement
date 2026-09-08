@@ -19,16 +19,16 @@ export interface NavGroupConfig {
 }
 
 const PHASE_NAV_LABEL: Record<Phase, string> = {
-  phase0: "Phase 0",
-  phase1: "Phase 1",
-  phase2: "Phase 2",
+  phase0: "Phase 1",
+  phase1: "Phase 2",
+  phase2: "Phase 3",
 };
 
 /** Descriptive name + gate date from the "Proposed timeline" table in the Notion doc, per audience. */
 function phaseSubtitle(phase: Phase, audience: Audience): string {
-  if (phase === "phase0") return "The New World · Sept 1";
-  if (phase === "phase1") return "The Shared Enablement · Sept 11";
-  return audience === "sales" ? "The Sales Team · Sept 25" : "The Engagement Managers and the Solution Architects · Sept 25";
+  if (phase === "phase0") return "The New World · Sept 16";
+  if (phase === "phase1") return "The Shared Enablement · Sept 23";
+  return audience === "sales" ? "The Sales Team · Sept 30" : "The Engagement Managers and the Solution Architects · Sept 30";
 }
 
 /**

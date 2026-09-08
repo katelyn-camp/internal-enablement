@@ -50,7 +50,7 @@ export function M5ReadingTheNumbersSales() {
       <section id="two-altitudes">
         <SectionHeading>The Same Number, Two Altitudes</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Mention rate, citation rate, and share of voice were already covered as metrics in Phase 0. The skill this
+          Mention rate, citation rate, and share of voice were already covered as metrics in Phase 1. The skill this
           module adds isn&rsquo;t a new metric, it&rsquo;s translation: the same number means something different
           depending on whether the person across the table thinks about their business at the team level or the
           company level. Bring a team-level metric to a company-level conversation and it reads as noise, even when
@@ -163,7 +163,7 @@ export function M5ReadingTheNumbersSales() {
           </li>
         </ul>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/50 italic">
-          Mention rate, citation rate, and share of voice were defined in Phase 0 and aren&rsquo;t redefined here.
+          Mention rate, citation rate, and share of voice were defined in Phase 1 and aren&rsquo;t redefined here.
           This module is about where those metrics land once they leave the dashboard, not what they mean on their
           own.
         </p>
