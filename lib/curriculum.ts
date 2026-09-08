@@ -408,6 +408,20 @@ export const modules: ModuleEntry[] = [
     appliedProjectOptions: ["3-minute \"why the AI-Search channel mix matters\" pitch"],
     status: "content-pending",
   },
+  {
+    slug: "s4",
+    code: "S4",
+    title: "Competitive Landscape",
+    phase: "phase2",
+    audience: "sales",
+    objective:
+      "Explain the four paths a CMO is weighing when addressing AI search, hiring in-house, a traditional agency, a self-serve tool, or an AI-native services partner, and position AirOps against each with a live-ready talk track.",
+    knowledgeCheck: "N/A",
+    groupSession: "N/A",
+    appliedProject: "N/A",
+    appliedProjectOptions: ["Deliver the talk track for one path live, graded by a peer"],
+    status: "content-pending",
+  },
 ];
 
 const PHASE_ORDER: Phase[] = ["phase0", "phase1", "phase2"];
