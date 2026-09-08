@@ -293,6 +293,7 @@ export function KnowledgeCheckButton({
   title,
   questions,
   className,
+  highlightUntilSubmitted,
 }: {
   /** Stable id for progress tracking, e.g. the module slug "m1". */
   id: string;
@@ -300,12 +301,20 @@ export function KnowledgeCheckButton({
   questions: KnowledgeCheckQuestion[];
   /** Overrides the default pill styling/positioning, e.g. to fix it above the "On this page" nav. */
   className?: string;
+  /** Pulses the button (see .hotspot-pulse in globals.css) until this id's knowledge check has been submitted once. */
+  highlightUntilSubmitted?: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const { state } = useProgress();
+  const showHighlight = highlightUntilSubmitted && !state.knowledgeCheckSubmissions[id];
 
   return (
     <>
-      <button type="button" onClick={() => setOpen(true)} className={className ?? DEFAULT_TRIGGER_CLASSES}>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className={`${className ?? DEFAULT_TRIGGER_CLASSES} ${showHighlight ? "hotspot-pulse" : ""}`}
+      >
         Knowledge Check
       </button>
       <KnowledgeCheckModal id={id} title={title} questions={questions} open={open} onClose={() => setOpen(false)} />

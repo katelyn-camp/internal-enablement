@@ -181,6 +181,7 @@ export function M1AISearchLandscape() {
             title="The AI Search Landscape"
             questions={M1_KNOWLEDGE_CHECK}
             className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+            highlightUntilSubmitted
           />
         }
       />

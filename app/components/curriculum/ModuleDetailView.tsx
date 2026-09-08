@@ -2,81 +2,14 @@ import { Audience, ModuleEntry } from "@/lib/curriculum";
 import { ContentPendingTag } from "@/app/components/ContentPendingTag";
 import { lessonComponents } from "./lessons";
 
-function depthCopy(module: ModuleEntry, audience: Audience): { label: string; text: string } | null {
-  if (module.emSaDepth || module.salesDepth) {
-    return audience === "em-sa"
-      ? { label: "Services can (comprehensive)", text: module.emSaDepth ?? "" }
-      : { label: "Sales can speak to", text: module.salesDepth ?? "" };
-  }
-  if (module.objective) {
-    return { label: "You will be able to…", text: module.objective };
-  }
-  return null;
-}
-
-/** Splits a semicolon-delimited capability sentence into standalone bullet items. */
-function splitIntoObjectives(text: string): string[] {
-  return text
-    .split(";")
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1));
-}
-
-function DeliveryRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col gap-1 border-t border-line py-3 first:border-t-0 sm:flex-row sm:items-baseline sm:gap-4">
-      <dt className="w-48 shrink-0 text-caption font-semibold tracking-wide text-ink/45 uppercase">{label}</dt>
-      <dd className="text-sm text-ink/80">{value}</dd>
-    </div>
-  );
-}
-
 export function ModuleDetailView({ module, audience }: { module: ModuleEntry; audience: Audience }) {
-  const audienceContent = audience === "em-sa" ? module.emSaContent : module.salesContent;
-  const hasCustomObjectives = !!audienceContent?.learningObjectives;
-  // Orientation gets its own hand-written objectives paragraph (both audiences); every
-  // other module's objective/depth copy is auto-split into a bulleted "Learning Objectives" list.
-  const skipObjectivesTransform = module.slug === "m0" || hasCustomObjectives;
-  const depth = hasCustomObjectives
-    ? { label: "Learning Objectives", text: audienceContent!.learningObjectives! }
-    : depthCopy(module, audience);
-  const showDeliveryModel = !audienceContent?.hideDeliveryModel;
   const projectOptions =
     audience === "sales" && module.salesAppliedProjectOptions ? module.salesAppliedProjectOptions : module.appliedProjectOptions;
   const LessonComponent = lessonComponents[`${audience}:${module.slug}`];
 
   return (
     <div className="space-y-10">
-      {depth &&
-        (skipObjectivesTransform ? (
-          <section>
-            <h2 className="mb-2 font-display text-h2 text-ink">{depth.label}</h2>
-            <p className="max-w-2xl text-sm leading-relaxed text-ink/80">{depth.text}</p>
-          </section>
-        ) : (
-          <section>
-            <h2 className="mb-2 font-display text-h2 text-ink">Learning Objectives</h2>
-            <ul className="max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
-              {splitIntoObjectives(depth.text).map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </section>
-        ))}
-
       {module.source && <p className="text-caption font-medium tracking-wide text-ink/40 uppercase">Source: {module.source}</p>}
-
-      {showDeliveryModel && (
-        <section>
-          <h2 className="mb-3 font-display text-h2 text-ink">How this module is assessed</h2>
-          <dl>
-            <DeliveryRow label="Knowledge check" value={module.knowledgeCheck} />
-            <DeliveryRow label="Group session" value={module.groupSession} />
-            <DeliveryRow label="Applied project" value={module.appliedProject} />
-          </dl>
-        </section>
-      )}
 
       {projectOptions && projectOptions.length > 0 && (
         <section>
