@@ -4,6 +4,7 @@ import { PageOutline } from "@/app/components/nav/PageOutline";
 const OUTLINE = [
   { id: "goal-first", label: "Business Goal First, Tactic Second" },
   { id: "the-talk-track", label: "Refresh vs. Net-New, as a Talk Track" },
+  { id: "beyond-owned-content", label: "Owned Content Is One Piece of the Mix" },
   { id: "sizing-the-chef", label: "Sizing the Chef, Not Picking a Menu Item" },
   { id: "qualifying-questions", label: "Qualifying Questions" },
 ];
@@ -48,8 +49,7 @@ export function M6ContentStrategyLifecycleSales() {
             &ldquo;Is the goal to be known for something new, or to win more of what you&rsquo;re already known for?&rdquo;
             A brand expanding into an adjacent category needs coverage that doesn&rsquo;t exist yet, closer to
             net-new. A brand trying to hold ground it already owns needs its existing pages sharper and better
-            linked, closer to refresh. Getting this backwards means hitting a content target while missing the
-            actual business goal entirely.
+            linked, closer to refresh.
           </p>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
@@ -61,8 +61,8 @@ export function M6ContentStrategyLifecycleSales() {
       <section id="the-talk-track">
         <SectionHeading>Refresh vs. Net-New, as a Talk Track</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Once the goal is clear, these are the three moves worth naming out loud, and how to pitch each one in a
-          way a CMO can defend to their own leadership.
+          Once the goal is clear, here are the three moves, and how to pitch each one in a way a CMO can defend to
+          their own leadership.
         </p>
         <div className="mb-4 overflow-x-auto rounded-card border border-line">
           <table className="w-full min-w-[640px] border-collapse text-sm">
@@ -90,6 +90,40 @@ export function M6ContentStrategyLifecycleSales() {
         </p>
       </section>
 
+      <section id="beyond-owned-content">
+        <SectionHeading>Owned Content Is One Piece of the Mix</SectionHeading>
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+          Refresh, net-new, and consolidate are moves for Owned Content. The same business goal also decides what
+          belongs in the other four channels of the bespoke channel mix: External Content, Paid (AI ads), Social
+          &amp; Influencer, and Community.
+        </p>
+        <div className="mb-4 rounded-card border border-line bg-white p-5">
+          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+            How the goal becomes a channel mix
+          </span>
+          <ol className="list-outside list-decimal space-y-2 pl-5 text-sm leading-relaxed text-ink/80">
+            <li>Audit against the stated goal.</li>
+            <li>
+              If the goal is being recommended more often, the audit surfaces what the account is currently being
+              recommended for, the sentiment of those recommendations, who&rsquo;s being recommended instead, and
+              what those competitors are doing differently.
+            </li>
+            <li>
+              The audit also maps every external property where the account should be mentioned and isn&rsquo;t, or
+              is mentioned incorrectly.
+            </li>
+            <li>
+              From there, the content strategy targets the properties that are already being cited, not just
+              publishing more content in general.
+            </li>
+          </ol>
+        </div>
+        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
+          Owned Content stays part of the talk track under every goal. External Content, Paid, Social &amp;
+          Influencer, and Community are what get added or dropped depending on what the audit finds.
+        </p>
+      </section>
+
       <section id="sizing-the-chef">
         <SectionHeading>Sizing the Chef, Not Picking a Menu Item</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
@@ -98,12 +132,20 @@ export function M6ContentStrategyLifecycleSales() {
           the constraints, and cooks from there. That&rsquo;s the frame to carry into any content conversation:
           the size and shape of the work depends on the account, not on a fixed package.
         </p>
+        <p className="mb-3 max-w-2xl text-sm leading-relaxed text-ink/70">
+          What changes that size is the same handful of signals scoping already looks at:
+        </p>
+        <ul className="mb-4 max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
+          <li>How many product lines or personas need coverage.</li>
+          <li>How competitive the target space is.</li>
+          <li>
+            How complex the org is to work with, a single approver moves faster than a company where every page
+            needs five sign-offs.
+          </li>
+        </ul>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          What changes that size is the same handful of signals scoping already looks at: how many product lines or
-          personas need coverage, how competitive the target space is, and how complex the org is to work with, a
-          single approver moves faster than a company where every page needs five sign-offs. None of that needs to
-          be quoted on a discovery call. It just explains why two accounts asking for &ldquo;the same thing&rdquo;
-          can turn into very different-sized engagements.
+          None of that needs to be quoted on a discovery call. It just explains why two accounts asking for
+          &ldquo;the same thing&rdquo; can turn into very different-sized engagements.
         </p>
       </section>
 
@@ -111,7 +153,6 @@ export function M6ContentStrategyLifecycleSales() {
         <SectionHeading>Qualifying Questions</SectionHeading>
         <ul className="max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>Is the goal to defend a category you already own, or break into one you don&rsquo;t yet?</li>
-          <li>Does your team control publishing to your own site, or does content go through a locked CMS or a partner?</li>
           <li>Do you already have pages that touch this topic, even loosely, or would this be starting from zero?</li>
           <li>What would you need to see in the first 90 days to call this worth continuing?</li>
         </ul>

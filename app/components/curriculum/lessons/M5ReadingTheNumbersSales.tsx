@@ -53,14 +53,8 @@ export function M5ReadingTheNumbersSales() {
           Mention rate, citation rate, and share of voice were already covered as metrics in Phase 1. The skill this
           module adds isn&rsquo;t a new metric, it&rsquo;s translation: the same number means something different
           depending on whether the person across the table thinks about their business at the team level or the
-          company level. Bring a team-level metric to a company-level conversation and it reads as noise, even when
-          the number itself is accurate and good news.
+          company level.
         </p>
-        <div className="mb-2 flex justify-end">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-2 px-3 py-1 text-caption font-semibold tracking-wide text-ink/45 uppercase">
-            <span aria-hidden>⇄</span> Scroll for more
-          </span>
-        </div>
         <div className="mb-6 overflow-x-auto rounded-card border border-line">
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
@@ -91,9 +85,8 @@ export function M5ReadingTheNumbersSales() {
       <section id="know-who-you-are-talking-to">
         <SectionHeading>Know Who You&rsquo;re Talking To</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          The VP of Growth or Performance and the CMO aren&rsquo;t just two seniority levels of the same role. They
-          answer for different things, and knowing which one is in the room changes which numbers are worth
-          leading with.
+          The VP of Growth or Performance and the CMO answer for different things, and knowing which one is in the
+          room changes which numbers are worth leading with.
         </p>
         <div className="mb-4 grid gap-3 sm:grid-cols-2">
           <div className="rounded-card border border-line bg-paper-2 p-4">
@@ -119,10 +112,9 @@ export function M5ReadingTheNumbersSales() {
           </div>
         </div>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
-          The stakes for a CMO specifically are higher than they look. It&rsquo;s one of the most frequently
-          replaced executive roles, in part because marketing is easy to frame as a cost center and hard to defend
-          in purely tangible terms. Numbers that connect to revenue and pipeline aren&rsquo;t just persuasive to a
-          CMO, they&rsquo;re personally protective.
+          A CMO is one of the most frequently replaced executive roles, in part because marketing is easy to frame
+          as a cost center and hard to defend in purely tangible terms. Numbers that connect to revenue and
+          pipeline aren&rsquo;t just persuasive to a CMO, they&rsquo;re personally protective.
         </p>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
           One more tell worth knowing: how a CMO came up. A CMO who rose through growth and performance already
@@ -138,8 +130,8 @@ export function M5ReadingTheNumbersSales() {
       <section id="deal-vocabulary">
         <SectionHeading>Deal Vocabulary</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          None of this requires becoming a marketing analyst. It requires never getting caught flat-footed by a
-          term that comes up in nearly every conversation with this buyer.
+          None of this requires becoming a marketing analyst. It requires knowing the handful of terms that come up
+          in nearly every conversation with this buyer.
         </p>
         <ul className="mb-6 grid gap-2 sm:grid-cols-2">
           <li className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
@@ -162,6 +154,63 @@ export function M5ReadingTheNumbersSales() {
             Growth or CMO ultimately answers for. A team-level metric only matters once it can be connected to this.
           </li>
         </ul>
+        <div className="mb-6 rounded-card border border-line bg-paper-2 p-5">
+          <span className="mb-3 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+            Worked example
+          </span>
+          <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/80">
+            American Residential Services (ARS), a residential plumbing and HVAC company, is deciding whether a
+            $250,000 AirOps Services engagement is worth it. This is illustrative. These are not the real numbers.
+          </p>
+          <dl className="mb-4 max-w-2xl space-y-3 text-sm leading-relaxed text-ink/80">
+            <div>
+              <dt className="font-semibold text-ink">LTV</dt>
+              <dd>
+                $4,500. Once ARS wins a customer, that customer keeps coming back for plumbing, HVAC, and other
+                repairs, so lifetime value runs high relative to any single job.
+              </dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-ink">Target CAC</dt>
+              <dd>$1,500, using the 3:1 LTV-to-CAC ratio that&rsquo;s a common benchmark for a healthy channel.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-ink">Customers needed to justify the spend</dt>
+              <dd>$250,000 &divide; $1,500 &asymp; 167 customers in the first year.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-ink">Payback period</dt>
+              <dd>
+                ARS customers average one $650 service call per quarter, or about $217 a month. $1,500 &divide; $217
+                puts payback at roughly seven months, inside the twelve-month target from Payback period above.
+              </dd>
+            </div>
+          </dl>
+          <p className="mb-3 max-w-2xl text-sm leading-relaxed text-ink/80">
+            Once those numbers hold up, the next question is where the $250,000 comes from.
+          </p>
+          <div className="mb-3 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-card border border-line bg-white p-4">
+              <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-semibold tracking-wide text-paper uppercase">
+                Net new budget
+              </span>
+              <p className="text-sm leading-relaxed text-ink/80">
+                If the $250,000 is added on top of what ARS already spends, all 167 customers are incremental.
+                Nothing else in ARS&rsquo;s marketing mix changes.
+              </p>
+            </div>
+            <div className="rounded-card border border-line bg-white p-4">
+              <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-semibold tracking-wide text-paper uppercase">
+                Reallocated budget
+              </span>
+              <p className="text-sm leading-relaxed text-ink/80">
+                If the $250,000 instead comes out of a channel running at, say, a $2,200 CAC, that channel would
+                have produced about 114 customers ($250,000 &divide; $2,200) with the same money. The gain from
+                switching is the difference, about 53 customers, not the full 167.
+              </p>
+            </div>
+          </div>
+        </div>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/50 italic">
           Mention rate, citation rate, and share of voice were defined in Phase 1 and aren&rsquo;t redefined here.
           This module is about where those metrics land once they leave the dashboard, not what they mean on their
