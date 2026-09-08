@@ -204,7 +204,17 @@ const WHY_NOW = [
 export function M0Orientation() {
   return (
     <div className="space-y-12">
-      <CategoryEnablementSlideDeck />
+      <div className="space-y-3">
+        <CategoryEnablementSlideDeck />
+        <a
+          href="https://us-91640.app.gong.io/call?id=7019411764590764556"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center rounded-full bg-forest px-4 py-2 text-sm font-semibold text-signal transition-opacity hover:opacity-90"
+        >
+          Watch the Call Recording
+        </a>
+      </div>
 
       <header>
         <h2 className="mb-2 font-display text-h2 text-ink">AirOps Today vs. Where We&rsquo;re Headed</h2>
