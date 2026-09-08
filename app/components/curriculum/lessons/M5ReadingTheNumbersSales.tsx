@@ -59,16 +59,16 @@ export function M5ReadingTheNumbersSales() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Team-level number</th>
-                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Company-level version</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why it needs translating</th>
+                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Team-level number</th>
+                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Company-level version</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why it needs translating</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {ALTITUDE_TABLE.map((row) => (
                 <tr key={row.teamLevel}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.teamLevel}</td>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.companyLevel}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.teamLevel}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.companyLevel}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whyItTranslates}</td>
                 </tr>
               ))}
@@ -90,7 +90,7 @@ export function M5ReadingTheNumbersSales() {
         </p>
         <div className="mb-4 grid gap-3 sm:grid-cols-2">
           <div className="rounded-card border border-line bg-paper-2 p-4">
-            <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-semibold tracking-wide text-paper uppercase">
+            <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-medium tracking-wide text-paper uppercase">
               VP of Growth / Performance
             </span>
             <p className="text-sm leading-relaxed text-ink/80">
@@ -100,7 +100,7 @@ export function M5ReadingTheNumbersSales() {
             </p>
           </div>
           <div className="rounded-card border border-line bg-white p-4">
-            <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+            <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
               CMO
             </span>
             <p className="text-sm leading-relaxed text-ink/80">
@@ -135,27 +135,27 @@ export function M5ReadingTheNumbersSales() {
         </p>
         <ul className="mb-6 grid gap-2 sm:grid-cols-2">
           <li className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-            <span className="font-semibold text-ink">CAC (Customer Acquisition Cost):</span> what it costs to bring
+            <span className="font-medium text-ink">CAC (Customer Acquisition Cost):</span> what it costs to bring
             in one new customer. There&rsquo;s no universal &ldquo;good&rdquo; number, it depends entirely on what
             that customer is worth.
           </li>
           <li className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-            <span className="font-semibold text-ink">LTV (Lifetime Value):</span> what a customer is worth over the
+            <span className="font-medium text-ink">LTV (Lifetime Value):</span> what a customer is worth over the
             life of the relationship. The ratio of LTV to CAC, not either number alone, is what tells you whether a
             channel is worth investing in.
           </li>
           <li className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-            <span className="font-semibold text-ink">Payback period:</span> how long it takes to earn back what was
+            <span className="font-medium text-ink">Payback period:</span> how long it takes to earn back what was
             spent acquiring a customer. Under twelve months is a common best-in-class target, though it varies with
             deal size.
           </li>
           <li className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-            <span className="font-semibold text-ink">Qualified pipeline:</span> the company-level number a VP of
+            <span className="font-medium text-ink">Qualified pipeline:</span> the company-level number a VP of
             Growth or CMO ultimately answers for. A team-level metric only matters once it can be connected to this.
           </li>
         </ul>
         <div className="mb-6 rounded-card border border-line bg-paper-2 p-5">
-          <span className="mb-3 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-3 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Worked example
           </span>
           <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/80">
@@ -164,22 +164,22 @@ export function M5ReadingTheNumbersSales() {
           </p>
           <dl className="mb-4 max-w-2xl space-y-3 text-sm leading-relaxed text-ink/80">
             <div>
-              <dt className="font-semibold text-ink">LTV</dt>
+              <dt className="font-medium text-ink">LTV</dt>
               <dd>
                 $4,500. Once ARS wins a customer, that customer keeps coming back for plumbing, HVAC, and other
                 repairs, so lifetime value runs high relative to any single job.
               </dd>
             </div>
             <div>
-              <dt className="font-semibold text-ink">Target CAC</dt>
+              <dt className="font-medium text-ink">Target CAC</dt>
               <dd>$1,500, using the 3:1 LTV-to-CAC ratio that&rsquo;s a common benchmark for a healthy channel.</dd>
             </div>
             <div>
-              <dt className="font-semibold text-ink">Customers needed to justify the spend</dt>
+              <dt className="font-medium text-ink">Customers needed to justify the spend</dt>
               <dd>$250,000 &divide; $1,500 &asymp; 167 customers in the first year.</dd>
             </div>
             <div>
-              <dt className="font-semibold text-ink">Payback period</dt>
+              <dt className="font-medium text-ink">Payback period</dt>
               <dd>
                 ARS customers average one $650 service call per quarter, or about $217 a month. $1,500 &divide; $217
                 puts payback at roughly seven months, inside the twelve-month target from Payback period above.
@@ -191,7 +191,7 @@ export function M5ReadingTheNumbersSales() {
           </p>
           <div className="mb-3 grid gap-3 sm:grid-cols-2">
             <div className="rounded-card border border-line bg-white p-4">
-              <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-semibold tracking-wide text-paper uppercase">
+              <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-medium tracking-wide text-paper uppercase">
                 Net new budget
               </span>
               <p className="text-sm leading-relaxed text-ink/80">
@@ -200,7 +200,7 @@ export function M5ReadingTheNumbersSales() {
               </p>
             </div>
             <div className="rounded-card border border-line bg-white p-4">
-              <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-semibold tracking-wide text-paper uppercase">
+              <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-medium tracking-wide text-paper uppercase">
                 Reallocated budget
               </span>
               <p className="text-sm leading-relaxed text-ink/80">
@@ -227,7 +227,7 @@ export function M5ReadingTheNumbersSales() {
           the altitude the person in front of you owns.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             A CMO&rsquo;s own words
           </span>
           <p className="text-sm leading-relaxed text-ink/80">

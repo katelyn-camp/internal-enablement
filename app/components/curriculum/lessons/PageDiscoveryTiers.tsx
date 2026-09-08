@@ -29,7 +29,7 @@ function TierCard({ label, detail, tone }: { label: string; detail: string; tone
   const c = CARD_TONE[tone];
   return (
     <div className={`w-36 flex-shrink-0 rounded-card border ${c.border} ${c.bg} p-3 text-center sm:w-40`}>
-      <div className={`mb-1 text-sm font-semibold ${c.label}`}>{label}</div>
+      <div className={`mb-1 text-sm font-medium ${c.label}`}>{label}</div>
       <p className={`text-xs leading-relaxed ${c.detail}`}>{detail}</p>
     </div>
   );
@@ -88,9 +88,9 @@ export function PageDiscoveryTiers() {
         <table className="w-full min-w-[420px] border-collapse text-sm">
           <thead>
             <tr className="bg-paper-2">
-              <th className="px-3 py-2 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">In sitemap?</th>
-              <th className="px-3 py-2 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Found by a link crawl?</th>
-              <th className="px-3 py-2 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Tier</th>
+              <th className="px-3 py-2 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">In sitemap?</th>
+              <th className="px-3 py-2 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Found by a link crawl?</th>
+              <th className="px-3 py-2 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Tier</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-line">
@@ -98,7 +98,7 @@ export function PageDiscoveryTiers() {
               <tr key={row.tier}>
                 <td className="px-3 py-2 align-top text-ink/75">{row.inSitemap}</td>
                 <td className="px-3 py-2 align-top text-ink/75">{row.foundByLinkCrawl}</td>
-                <td className="px-3 py-2 align-top font-semibold text-ink">{row.tier}</td>
+                <td className="px-3 py-2 align-top font-medium text-ink">{row.tier}</td>
               </tr>
             ))}
           </tbody>

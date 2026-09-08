@@ -21,7 +21,7 @@ export function AudienceSwitcher({ audience, onNavigate }: { audience: Audience;
           href={opt.href}
           onClick={onNavigate}
           aria-current={audience === opt.audience ? "page" : undefined}
-          className={`rounded-full px-3 py-1 text-caption font-semibold tracking-wide uppercase transition-colors ${
+          className={`rounded-full px-3 py-1 text-caption font-medium tracking-wide uppercase transition-colors ${
             audience === opt.audience ? "bg-ink text-paper" : "text-ink/55 hover:text-ink"
           }`}
         >

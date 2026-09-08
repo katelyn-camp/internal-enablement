@@ -142,15 +142,15 @@ function TodayHeadedTable() {
       <table className="w-full min-w-[640px] border-collapse text-sm">
         <thead>
           <tr className="bg-paper-2">
-            <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Dimension</th>
-            <th className="w-[37.5%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Today</th>
-            <th className="w-[37.5%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Headed</th>
+            <th className="w-1/4 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Dimension</th>
+            <th className="w-[37.5%] px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Today</th>
+            <th className="w-[37.5%] px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Headed</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-line">
           {TODAY_VS_HEADED.map((row) => (
             <tr key={row.dimension}>
-              <td className="px-3 py-3 align-top font-semibold text-ink">{row.dimension}</td>
+              <td className="px-3 py-3 align-top font-medium text-ink">{row.dimension}</td>
               <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.today}</td>
               <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.headed}</td>
             </tr>
@@ -167,15 +167,15 @@ function RoleTable({ rows }: { rows: RoleRow[] }) {
       <table className="w-full min-w-[520px] border-collapse text-sm">
         <thead>
           <tr className="bg-paper-2">
-            <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase"></th>
-            <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Today</th>
-            <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Headed</th>
+            <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase"></th>
+            <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Today</th>
+            <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Headed</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-line">
           {rows.map((row) => (
             <tr key={row.label}>
-              <td className="px-3 py-3 align-top font-semibold text-ink">{row.label}</td>
+              <td className="px-3 py-3 align-top font-medium text-ink">{row.label}</td>
               <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.today}</td>
               <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.headed}</td>
             </tr>
@@ -210,7 +210,7 @@ export function M0Orientation() {
           href="https://us-91640.app.gong.io/call?id=7019411764590764556"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center rounded-full bg-forest px-4 py-2 text-sm font-semibold text-signal transition-opacity hover:opacity-90"
+          className="inline-flex items-center rounded-full bg-forest px-4 py-2 text-sm font-medium text-paper transition-opacity hover:opacity-90"
         >
           Watch the Call Recording
         </a>
@@ -226,7 +226,7 @@ export function M0Orientation() {
       <section>
         <div className="mb-4 grid gap-3 sm:grid-cols-2">
           <div className="rounded-card border border-line bg-paper-2 p-4">
-            <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-semibold tracking-wide text-paper uppercase">
+            <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-medium tracking-wide text-paper uppercase">
               Today
             </span>
             <p className="text-sm leading-relaxed text-ink/80">
@@ -234,7 +234,7 @@ export function M0Orientation() {
             </p>
           </div>
           <div className="rounded-card border border-line bg-white p-4">
-            <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+            <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
               Headed
             </span>
             <p className="text-sm leading-relaxed text-ink/80">
@@ -258,7 +258,7 @@ export function M0Orientation() {
         <ul className="space-y-2">
           {WHY_NOW.map((item) => (
             <li key={item.lead} className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-              <span className="font-semibold text-ink">{item.lead}</span> {item.rest}
+              <span className="font-medium text-ink">{item.lead}</span> {item.rest}
             </li>
           ))}
         </ul>

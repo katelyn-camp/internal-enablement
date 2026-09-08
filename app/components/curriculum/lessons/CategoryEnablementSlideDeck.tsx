@@ -90,7 +90,7 @@ export function CategoryEnablementSlideDeck({ variant = "embedded" }: { variant?
       <button
         type="button"
         onClick={toggleFullscreen}
-        className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-caption font-semibold tracking-wide text-white uppercase backdrop-blur transition-colors hover:bg-black/80"
+        className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-caption font-medium tracking-wide text-white uppercase backdrop-blur transition-colors hover:bg-black/80"
       >
         {isFullscreen ? "Exit full screen" : "Full screen"}
       </button>

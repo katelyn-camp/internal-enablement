@@ -24,7 +24,7 @@ export default function ResearchLibraryPage() {
         </div>
       )}
 
-      <p className="mb-4 text-caption font-semibold uppercase tracking-wide text-ink/45">
+      <p className="mb-4 text-caption font-medium uppercase tracking-wide text-ink/45">
         Example entries — demonstrating the format, not real sources
       </p>
       <ResearchLibraryClient entries={researchEntries} />

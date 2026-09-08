@@ -4,31 +4,41 @@
  * Design tokens for the SAM/SA SEO+AEO enablement reference site.
  * This is intentionally NOT the standard AirOps product brand kit —
  * a quieter, warmer, more editorial system. See project brief.
+ * Palette, radius, and font weights are mapped onto AirOps Brand 2.0
+ * (off-black/off-white/linen neutrals, deep-green accent) while keeping
+ * this file's own token names so existing component classes don't change.
  */
 :root {
   --color-ink: #1d1b19;
+  --color-ink-muted: #726e68;
+  --color-ink-faint: #938e88;
   --color-paper: #fbfaf9;
   --color-paper-2: #f7f6f3;
   --color-paper-3: #f2f0ed;
   --color-line: #e7e4e0;
-  --color-forest: #002912;
-  --color-signal: #00ff72;
+  --color-clay: #d4d0cc;
+  --color-forest: #002910;
+  --color-signal: #00e584;
   --color-white: #ffffff;
 }
 
 @theme inline {
   --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-ink-faint: var(--color-ink-faint);
   --color-paper: var(--color-paper);
   --color-paper-2: var(--color-paper-2);
   --color-paper-3: var(--color-paper-3);
   --color-line: var(--color-line);
+  --color-clay: var(--color-clay);
   --color-forest: var(--color-forest);
   --color-signal: var(--color-signal);
   --color-white: var(--color-white);
 
-  /* Serrif VF (display) and Saans (body) are AirOps' real licensed typefaces. */
+  /* Serrif VF (display), Saans (body/UI), and Saans Mono (eyebrows/pills/axis labels). */
   --font-display: var(--font-serrif);
   --font-sans: var(--font-saans);
+  --font-mono: var(--font-saans-mono);
 
   /* Explicit type scale — do not rely on Tailwind defaults. */
   --text-display: 3.5rem;
@@ -44,7 +54,8 @@
   --text-caption: 0.8125rem;
   --text-caption--line-height: 1.4;
 
-  --radius-card: 14px;
+  /* Brand 2.0: 8px radius for controls/containers, 999px for pills (rounded-full). */
+  --radius-card: 8px;
 }
 
 /* Only the mobile header is sticky now (the sidebar isn't) — desktop deep links don't need the offset. */
@@ -90,10 +101,10 @@ body {
 @keyframes pulse-marker {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(0, 255, 114, 0.45);
+    box-shadow: 0 0 0 0 rgba(0, 229, 132, 0.45);
   }
   50% {
-    box-shadow: 0 0 0 6px rgba(0, 255, 114, 0);
+    box-shadow: 0 0 0 6px rgba(0, 229, 132, 0);
   }
 }
 

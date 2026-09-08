@@ -45,7 +45,7 @@ export function EcosystemHeader() {
   return (
     <div className="sticky top-14 z-20 mb-3 border-b border-line bg-paper lg:top-0">
       <h2 className="pt-3 font-display text-h2 text-ink">The Ecosystem</h2>
-      <p className="pb-3 pt-1 text-caption font-semibold tracking-wide text-ink/50 uppercase">{activeLabel}</p>
+      <p className="pb-3 pt-1 text-caption font-medium tracking-wide text-ink/50 uppercase">{activeLabel}</p>
     </div>
   );
 }

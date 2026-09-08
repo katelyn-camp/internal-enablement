@@ -44,7 +44,7 @@ export function WorkflowEntryView({ workflow }: { workflow: WorkflowEntry }) {
             href={workflow.templateUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full bg-signal px-4 py-2 text-sm font-semibold text-ink transition-transform hover:scale-[1.02]"
+            className="inline-flex items-center gap-1.5 rounded-full bg-signal px-4 py-2 text-sm font-medium text-ink transition-transform hover:scale-[1.02]"
           >
             Open the template
             <span aria-hidden>→</span>

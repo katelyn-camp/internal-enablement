@@ -46,7 +46,7 @@ export function M8ManualAuditMethodology() {
 
           {video.folderStructure && (
             <div className="mt-3 max-w-md rounded-card border border-line bg-paper-2 p-5">
-              <div className="flex items-center gap-2 text-sm font-semibold text-ink">
+              <div className="flex items-center gap-2 text-sm font-medium text-ink">
                 <FolderIcon className="shrink-0" color={video.accentColor} />
                 {video.folderStructure.root}
               </div>

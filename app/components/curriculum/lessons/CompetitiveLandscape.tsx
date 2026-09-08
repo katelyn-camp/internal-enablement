@@ -75,7 +75,7 @@ export function CompetitiveLandscape() {
         those get decided in isolation.
       </p>
 
-      <div className="mb-2 text-center text-caption font-semibold tracking-wide text-ink/45 uppercase">
+      <div className="mb-2 text-center text-caption font-medium tracking-wide text-ink/45 uppercase">
         The decisions marketing leaders now face
       </div>
       <DecisionWeb />
@@ -84,13 +84,13 @@ export function CompetitiveLandscape() {
       </p>
 
       <div className="mx-auto mb-8 max-w-2xl rounded-card border border-line bg-paper-2 p-4 text-center text-sm leading-relaxed text-ink/80">
-        <span className="font-semibold text-ink">AirOps doesn&rsquo;t answer one of these questions, it answers all
+        <span className="font-medium text-ink">AirOps doesn&rsquo;t answer one of these questions, it answers all
         of them together</span>, and executes on the answer. Because these decisions shape each other, solving them
         one at a time is what slows brands down; solving them together is how they reach the outcomes they want
         faster.
       </div>
 
-      <div className="mb-2 text-center text-caption font-semibold tracking-wide text-ink/45 uppercase">
+      <div className="mb-2 text-center text-caption font-medium tracking-wide text-ink/45 uppercase">
         Who we&rsquo;re actually competing against
       </div>
       <p className="mx-auto mb-4 max-w-2xl text-center text-sm leading-relaxed text-ink/70">
@@ -99,7 +99,7 @@ export function CompetitiveLandscape() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {COMPETITOR_TYPES.map((c) => (
           <div key={c.name} className="rounded-card border border-line bg-white p-4 text-center">
-            <div className="mb-1.5 text-sm font-semibold text-ink">{c.name}</div>
+            <div className="mb-1.5 text-sm font-medium text-ink">{c.name}</div>
             <p className="text-xs leading-relaxed text-ink/65">{c.description}</p>
           </div>
         ))}

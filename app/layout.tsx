@@ -23,6 +23,14 @@ const saans = localFont({
   display: "swap",
 });
 
+// Saans Mono: eyebrows, pills/tags, and axis labels (Brand 2.0).
+const saansMono = localFont({
+  src: "./fonts/SaansMono-Medium.ttf",
+  variable: "--font-saans-mono",
+  weight: "500",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "SAM/SA Enablement: SEO + AEO Reference",
   description:
@@ -38,7 +46,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${serrif.variable} ${saans.variable} h-full antialiased`}
+      className={`${serrif.variable} ${saans.variable} ${saansMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper text-ink">
         <NavShell>{children}</NavShell>

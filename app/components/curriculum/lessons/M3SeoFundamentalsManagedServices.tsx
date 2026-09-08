@@ -500,7 +500,7 @@ export function M3SeoFundamentalsManagedServices() {
             id="m3-managed-services"
             title="SEO Fundamentals & Technical Foundations"
             questions={M3_MANAGED_SERVICES_KNOWLEDGE_CHECK}
-            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
           />
         }
       />
@@ -557,17 +557,17 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-12 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Tier</th>
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Factor</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What it means</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why it sits here</th>
+                <th className="w-12 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Tier</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Factor</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What it means</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why it sits here</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {RANKING_HIERARCHY.map((row) => (
                 <tr key={row.tier}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.tier}</td>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.tier}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">
                     {row.link ? (
                       <a href={row.link} className="underline decoration-line underline-offset-2 hover:text-forest">
                         {row.factor}
@@ -595,7 +595,7 @@ export function M3SeoFundamentalsManagedServices() {
         <ul className="mb-6 grid gap-2 sm:grid-cols-2">
           {CORE_VOCAB.map((item) => (
             <li key={item.term} className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-              <div className="font-semibold text-ink">
+              <div className="font-medium text-ink">
                 {item.link ? (
                   <a href={item.link} className="underline decoration-line underline-offset-2 hover:text-forest">
                     {item.term}
@@ -621,15 +621,15 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Surface</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What it is</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What it competes for</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Surface</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What it is</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What it competes for</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {SERP_SURFACES.map((row) => (
                 <tr key={row.surface}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.surface}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.surface}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whatItIs}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.competesFor}</td>
                 </tr>
@@ -656,7 +656,7 @@ export function M3SeoFundamentalsManagedServices() {
 
         <h3 className="mb-2 font-display text-h3 text-ink">The Four Intent Types</h3>
         <div className="mb-2 flex justify-end">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-2 px-3 py-1 text-caption font-semibold tracking-wide text-ink/45 uppercase">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-2 px-3 py-1 text-caption font-medium tracking-wide text-ink/45 uppercase">
             <span aria-hidden>⇄</span> Scroll for more
           </span>
         </div>
@@ -664,20 +664,20 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[1100px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="sticky left-0 z-20 w-[10%] border-r border-line bg-paper-2 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                <th className="sticky left-0 z-20 w-[10%] border-r border-line bg-paper-2 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                   Intent
                 </th>
-                <th className="w-[20%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Definition</th>
-                <th className="w-[12%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Example</th>
-                <th className="w-[13%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Funnel stage</th>
-                <th className="w-[25%] px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Content types</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Business outcome</th>
+                <th className="w-[20%] px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Definition</th>
+                <th className="w-[12%] px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Example</th>
+                <th className="w-[13%] px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Funnel stage</th>
+                <th className="w-[25%] px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Content types</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Business outcome</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {INTENT_TABLE.map((row) => (
                 <tr key={row.intent}>
-                  <td className="sticky left-0 z-10 border-r border-line bg-paper px-3 py-3 align-top font-semibold text-ink">
+                  <td className="sticky left-0 z-10 border-r border-line bg-paper px-3 py-3 align-top font-medium text-ink">
                     {row.intent}
                   </td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.definition}</td>
@@ -705,7 +705,7 @@ export function M3SeoFundamentalsManagedServices() {
         <ul className="mb-6 grid gap-2 sm:grid-cols-3">
           {SEO_ROLES.map((role) => (
             <li key={role.role} className="flex flex-col rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-              <p className="mb-2 font-semibold text-ink">{role.role}</p>
+              <p className="mb-2 font-medium text-ink">{role.role}</p>
               <ul className="mb-2 list-outside list-disc space-y-1 pl-4 text-ink/75">
                 {role.owns.map((item) => (
                   <li key={item}>{item}</li>
@@ -733,15 +733,15 @@ export function M3SeoFundamentalsManagedServices() {
         <ul className="mb-4 grid gap-4 sm:grid-cols-2">
           {GAP_ANALYSIS_TYPES.map((item) => (
             <li key={item.name} className="flex flex-col rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-              <p className="mb-2 font-semibold text-ink">{item.name}</p>
+              <p className="mb-2 font-medium text-ink">{item.name}</p>
               <div className="mb-3 rounded-card border border-line bg-paper p-3">
-                <p className="mb-1 text-caption font-semibold tracking-wide text-ink/50 uppercase">Goal</p>
+                <p className="mb-1 text-caption font-medium tracking-wide text-ink/50 uppercase">Goal</p>
                 <p className="text-ink/75">{item.goal}</p>
               </div>
-              <p className="mb-1 text-caption font-semibold tracking-wide text-ink/50 uppercase">Typical tools</p>
+              <p className="mb-1 text-caption font-medium tracking-wide text-ink/50 uppercase">Typical tools</p>
               <p className="mb-3 text-ink/75">{item.tools}</p>
               <div className="mt-auto border-t border-line pt-3">
-                <p className="mb-1 text-caption font-semibold tracking-wide text-ink/50 uppercase">Outcome</p>
+                <p className="mb-1 text-caption font-medium tracking-wide text-ink/50 uppercase">Outcome</p>
                 <p className="text-ink/75">{item.outcome}</p>
               </div>
             </li>
@@ -762,7 +762,7 @@ export function M3SeoFundamentalsManagedServices() {
         <ul className="grid gap-4 sm:grid-cols-3">
           {OFFPAGE_FUNDAMENTALS.map((item) => (
             <li key={item.title} className="flex flex-col rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-              <p className="mb-2 font-semibold text-ink">{item.title}</p>
+              <p className="mb-2 font-medium text-ink">{item.title}</p>
               <p className="text-ink/75">{item.description}</p>
             </li>
           ))}
@@ -780,15 +780,15 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Component</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What it means</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Signals that demonstrate it</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Component</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What it means</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Signals that demonstrate it</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {EEAT_TABLE.map((row) => (
                 <tr key={row.component}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.component}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.component}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whatItMeans}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.signals}</td>
                 </tr>
@@ -840,15 +840,15 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Mechanism</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What good looks like</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why it matters</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Mechanism</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What good looks like</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why it matters</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {ONPAGE_MECHANISMS.map((row) => (
                 <tr key={row.mechanism}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.mechanism}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.mechanism}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.goodLooksLike}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whyItMatters}</td>
                 </tr>
@@ -862,15 +862,15 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Mechanism</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What good looks like</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why it matters</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Mechanism</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What good looks like</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why it matters</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {OFFPAGE_MECHANISMS.map((row) => (
                 <tr key={row.mechanism}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.mechanism}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.mechanism}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.goodLooksLike}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whyItMatters}</td>
                 </tr>
@@ -891,12 +891,12 @@ export function M3SeoFundamentalsManagedServices() {
         </p>
         <ul className="mb-6 max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-semibold text-ink">Technical failure:</span> the page can&rsquo;t be found, can&rsquo;t be
+            <span className="font-medium text-ink">Technical failure:</span> the page can&rsquo;t be found, can&rsquo;t be
             indexed, or is too slow or broken to be usable. Start here whenever a page ranks nowhere at all, or
             performance dropped suddenly and sitewide, since that rules out a one-off content problem.
           </li>
           <li>
-            <span className="font-semibold text-ink">Content failure:</span> the page is crawled and indexed fine,
+            <span className="font-medium text-ink">Content failure:</span> the page is crawled and indexed fine,
             but doesn&rsquo;t rank, or ranks and doesn&rsquo;t convert, because it doesn&rsquo;t match intent, isn&rsquo;t deep enough, or is
             stale relative to what&rsquo;s now ranking.
           </li>
@@ -910,15 +910,15 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Check</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Where to look</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why here, not somewhere else</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Check</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Where to look</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why here, not somewhere else</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {TECHNICAL_FAILURE_CHECKS.map((row) => (
                 <tr key={row.check}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.check}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.check}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whereToLook}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whyHere}</td>
                 </tr>
@@ -935,15 +935,15 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Check</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Where to look</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why here, not somewhere else</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Check</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Where to look</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why here, not somewhere else</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {CONTENT_FAILURE_CHECKS.map((row) => (
                 <tr key={row.check}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.check}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.check}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whereToLook}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whyHere}</td>
                 </tr>
@@ -964,15 +964,15 @@ export function M3SeoFundamentalsManagedServices() {
           <table className="w-full min-w-[640px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Tool</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What it&rsquo;s for</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Question it answers</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Tool</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What it&rsquo;s for</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Question it answers</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {TOOLS.map((row) => (
                 <tr key={row.tool}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.tool}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.tool}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whatItsFor}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.question}</td>
                 </tr>

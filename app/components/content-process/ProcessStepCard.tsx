@@ -29,15 +29,15 @@ export function ProcessStepCard({ step }: { step: ProcessStep }) {
       {open && (
         <div className="space-y-5 border-t border-line px-5 pb-6 pt-5 pl-[4.25rem]">
           <div>
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">What happens at this step</p>
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">What happens at this step</p>
             <p className="text-sm leading-relaxed text-ink/80">{step.whatHappens}</p>
           </div>
           <div>
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">Why it matters</p>
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">Why it matters</p>
             <p className="text-sm leading-relaxed text-ink/80">{step.whyItMatters}</p>
           </div>
           <div>
-            <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-ink/55">Factors &amp; considerations</p>
+            <p className="mb-2 text-caption font-medium uppercase tracking-wide text-ink/55">Factors &amp; considerations</p>
             <ul className="ml-4 list-disc space-y-1 text-sm leading-relaxed text-ink/80">
               {step.factors.map((f) => (
                 <li key={f}>{f}</li>
@@ -46,7 +46,7 @@ export function ProcessStepCard({ step }: { step: ProcessStep }) {
           </div>
           {step.agentHandles && (
             <div className="rounded-lg bg-forest px-4 py-3 text-sm leading-relaxed text-white">
-              <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-signal">Where an AirOps agent typically handles this today</p>
+              <p className="mb-1 text-caption font-medium uppercase tracking-wide text-signal">Where an AirOps agent typically handles this today</p>
               {step.agentHandles}
             </div>
           )}

@@ -12,7 +12,7 @@ export default function ContentFunnelPage() {
         behind it.
       </p>
       <div className="mb-10 max-w-2xl rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/70">
-        <span className="font-semibold text-ink">A company&rsquo;s goals change the emphasis: </span>
+        <span className="font-medium text-ink">A company&rsquo;s goals change the emphasis: </span>
         a company focused on top-of-funnel growth will weight Awareness and Consideration content much more heavily;
         one focused on expansion/retention revenue will invest more in the bottom of the funnel instead. This page
         shows the full shape — matching a specific client&rsquo;s actual weighting to it is a strategy conversation, not a

@@ -34,7 +34,7 @@ export function CopyTextBlock({ text, label = "Example prompt", copyLabel = "Cop
         <button
           type="button"
           onClick={handleCopy}
-          className={`rounded-full px-3 py-1 text-caption font-semibold transition-colors ${
+          className={`rounded-full px-3 py-1 text-caption font-medium transition-colors ${
             copied ? "bg-forest text-white" : "bg-signal text-ink hover:brightness-95"
           }`}
         >

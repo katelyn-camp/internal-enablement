@@ -40,7 +40,7 @@ export function ComparisonToggle() {
         <dl className="divide-y divide-line">
           {ROWS.map((row) => (
             <div key={String(row.key)} className="grid gap-1 py-3 sm:grid-cols-[220px_1fr] sm:gap-4">
-              <dt className="text-caption font-semibold uppercase tracking-wide text-ink/50">{row.label}</dt>
+              <dt className="text-caption font-medium uppercase tracking-wide text-ink/50">{row.label}</dt>
               <dd className="text-sm leading-relaxed text-ink/80">{active[row.key] as string}</dd>
             </div>
           ))}

@@ -49,7 +49,7 @@ const BLIND_SPOTS = [
 export function MetricsCompositeRead() {
   return (
     <div>
-      <div className="mb-2 text-center text-caption font-semibold tracking-wide text-ink/45 uppercase">
+      <div className="mb-2 text-center text-caption font-medium tracking-wide text-ink/45 uppercase">
         Reading these three together
       </div>
       <h3 className="mb-6 text-center font-display text-h3 text-ink">
@@ -57,7 +57,7 @@ export function MetricsCompositeRead() {
       </h3>
 
       <div className="mx-auto mb-8 max-w-2xl rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-        <span className="font-semibold text-ink">None of these three numbers mean anything if you&rsquo;re tracking
+        <span className="font-medium text-ink">None of these three numbers mean anything if you&rsquo;re tracking
         the wrong prompts.</span> Track the prompts real buyers actually ask, and these metrics tell you the truth
         about your position. Track the wrong prompts, and you&rsquo;re optimizing for a version of the market that
         doesn&rsquo;t exist.
@@ -66,15 +66,15 @@ export function MetricsCompositeRead() {
       <div className="mb-8 grid gap-3 sm:grid-cols-3">
         {WHAT_EACH_ANSWERS.map((item) => (
           <div key={item.term} className="rounded-card border border-line bg-white p-4">
-            <div className="mb-1 text-sm font-semibold text-ink">{item.term}</div>
-            <div className="mb-2 text-xs font-semibold tracking-wide text-forest uppercase">{item.lead}</div>
+            <div className="mb-1 text-sm font-medium text-ink">{item.term}</div>
+            <div className="mb-2 text-xs font-medium tracking-wide text-forest uppercase">{item.lead}</div>
             <p className="text-xs leading-relaxed text-ink/70">{item.body}</p>
           </div>
         ))}
       </div>
 
       <div className="mx-auto max-w-2xl rounded-card border border-line bg-paper-2 p-4">
-        <div className="mb-1 text-sm font-semibold text-ink">Why look at all three together?</div>
+        <div className="mb-1 text-sm font-medium text-ink">Why look at all three together?</div>
         <p className="mb-3 text-xs leading-relaxed text-ink/70">
           Each one catches a different blind spot the other two can&rsquo;t see. Track only one, and you&rsquo;ll
           miss a real problem the others would have caught.
@@ -82,7 +82,7 @@ export function MetricsCompositeRead() {
         <ul className="space-y-2">
           {BLIND_SPOTS.map((item) => (
             <li key={item.ifYouOnlyTrack} className="rounded-card border border-line bg-white p-3 text-sm leading-relaxed text-ink/80">
-              <span className="font-semibold text-ink">Track only {item.ifYouOnlyTrack}</span>
+              <span className="font-medium text-ink">Track only {item.ifYouOnlyTrack}</span>
               <span className="text-ink/60"> and you might not notice </span>
               {item.youMightMiss}
             </li>

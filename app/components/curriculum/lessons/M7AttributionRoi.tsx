@@ -104,7 +104,7 @@ function JourneyDiagram() {
       {positions.map((x, i) => (
         <g key={i}>
           <circle cx={x} cy={35} r={13} className="fill-forest" />
-          <text x={x} y={40} textAnchor="middle" className="fill-signal text-[11px] font-semibold">
+          <text x={x} y={40} textAnchor="middle" className="fill-signal text-[11px] font-medium">
             {i + 1}
           </text>
           {JOURNEY_TOUCHES[i].map((line, li) => (
@@ -142,7 +142,7 @@ export function M7AttributionRoi() {
             id="m7-managed-services"
             title="Attribution & ROI"
             questions={M7_MANAGED_SERVICES_KNOWLEDGE_CHECK}
-            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
           />
         }
       />
@@ -152,7 +152,7 @@ export function M7AttributionRoi() {
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
           Every conversion number a client shows you, whether it's in Google Analytics, a board deck, or a number
           AirOps surfaces, is the output of an{" "}
-          <span className="font-semibold text-ink">attribution model</span>, a rule for splitting credit for a
+          <span className="font-medium text-ink">attribution model</span>, a rule for splitting credit for a
           conversion across the touchpoints that led to it. The same buyer journey can look completely different
           depending on which rule is applied: a channel that closed the deal can look either decisive or invisible
           purely because of how credit got sliced, not because of anything that actually changed about its
@@ -176,7 +176,7 @@ export function M7AttributionRoi() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {MODELS.map((model) => (
             <div key={model.id} className="rounded-card border border-line bg-white p-5">
-              <h3 className="mb-1.5 text-base font-semibold text-ink">{model.name}</h3>
+              <h3 className="mb-1.5 text-base font-medium text-ink">{model.name}</h3>
               <p className="mb-3 text-sm leading-relaxed text-ink/70">{model.definition}</p>
               <ModelDiagram weights={model.weights} />
               <p className="mt-3 text-xs leading-relaxed text-ink/50 italic">{model.note}</p>
@@ -203,15 +203,15 @@ export function M7AttributionRoi() {
           <table className="w-full min-w-[760px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                   Model
                 </th>
                 {TOUCH_COLUMN_LABELS.map((label) => (
-                  <th key={label} className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                  <th key={label} className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                     {label}
                   </th>
                 ))}
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Total</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Total</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
@@ -220,11 +220,11 @@ export function M7AttributionRoi() {
                 const total = dollars.reduce((sum, d) => sum + d, 0);
                 return (
                   <tr key={model.id}>
-                    <td className="px-3 py-3 align-top font-semibold text-ink">{model.name}</td>
+                    <td className="px-3 py-3 align-top font-medium text-ink">{model.name}</td>
                     {dollars.map((d, i) => (
                       <td
                         key={i}
-                        className={`px-3 py-3 align-top text-ink/75 ${i === 3 ? "font-semibold text-ink" : ""}`}
+                        className={`px-3 py-3 align-top text-ink/75 ${i === 3 ? "font-medium text-ink" : ""}`}
                       >
                         ${d.toFixed(2)}
                       </td>
@@ -241,13 +241,13 @@ export function M7AttributionRoi() {
       <section id="ga-defaults">
         <SectionHeading>What Google Analytics Defaults To</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Of the six models above, <span className="font-semibold text-ink">data-driven</span> is the one GA4
+          Of the six models above, <span className="font-medium text-ink">data-driven</span> is the one GA4
           actually runs by default. It replaced last-click as the platform-wide default a few years ago. Last-click
           and the other four named models are still available, but a property has to be manually switched to one of
           them under Attribution Settings.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             The practical takeaway
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -279,7 +279,7 @@ export function M7AttributionRoi() {
           the reason.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             The takeaway
           </span>
           <p className="text-sm leading-relaxed text-ink/80">

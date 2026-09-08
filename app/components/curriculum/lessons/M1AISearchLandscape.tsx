@@ -25,11 +25,11 @@ function Chip({ children }: { children: React.ReactNode }) {
 
 function StatusPill({ status }: { status: "live" | "soon" }) {
   return status === "live" ? (
-    <span className="inline-flex items-center rounded-full bg-forest px-2.5 py-0.5 text-caption font-semibold tracking-wide text-signal uppercase">
+    <span className="inline-flex items-center rounded-full bg-forest px-2.5 py-0.5 text-caption font-mono font-medium tracking-wide text-paper uppercase">
       Live
     </span>
   ) : (
-    <span className="inline-flex items-center rounded-full border border-line bg-paper-2 px-2.5 py-0.5 text-caption font-semibold tracking-wide text-ink/45 uppercase">
+    <span className="inline-flex items-center rounded-full border border-line bg-paper-2 px-2.5 py-0.5 text-caption font-medium tracking-wide text-ink/45 uppercase">
       Coming soon
     </span>
   );
@@ -95,12 +95,12 @@ function ChannelCard({ channel }: { channel: ChannelEntry }) {
   return (
     <div className="flex flex-col gap-2 rounded-card border border-line bg-white p-4">
       <div className="flex items-center justify-between gap-2">
-        <span className="text-sm font-semibold text-ink">{channel.name}</span>
+        <span className="text-sm font-medium text-ink">{channel.name}</span>
         <StatusPill status={channel.status} />
       </div>
       <p className="text-xs leading-relaxed text-ink/70">{channel.description}</p>
       <details className="text-xs" open={channel.status === "live"}>
-        <summary className="cursor-pointer font-semibold text-forest select-none">Tactics</summary>
+        <summary className="cursor-pointer font-medium text-forest select-none">Tactics</summary>
         <ul className="mt-2 list-outside list-disc space-y-1 pl-4 leading-relaxed text-ink/70">
           {channel.tactics.map((t) => (
             <li key={t}>{t}</li>
@@ -180,7 +180,7 @@ export function M1AISearchLandscape() {
             id="m1"
             title="The AI Search Landscape"
             questions={M1_KNOWLEDGE_CHECK}
-            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
             highlightUntilSubmitted
           />
         }
@@ -197,7 +197,7 @@ export function M1AISearchLandscape() {
         <ul className="mb-6 grid gap-2 sm:grid-cols-2">
           {DEFINITIONS.map((item) => (
             <li key={item.term} className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-              <span className="font-semibold text-ink">{item.term}:</span> {item.definition}
+              <span className="font-medium text-ink">{item.term}:</span> {item.definition}
             </li>
           ))}
         </ul>
@@ -207,11 +207,11 @@ export function M1AISearchLandscape() {
           <table className="w-full min-w-[640px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase"></th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase"></th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                   Search (what you already know)
                 </th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                   AI Search (the new category)
                 </th>
               </tr>
@@ -219,7 +219,7 @@ export function M1AISearchLandscape() {
             <tbody className="divide-y divide-line">
               {VOCABULARY_TABLE.map((row) => (
                 <tr key={row.level}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.level}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.level}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.search}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.aiSearch}</td>
                 </tr>
@@ -229,7 +229,7 @@ export function M1AISearchLandscape() {
         </div>
 
         <div className="mt-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             What changed
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -256,7 +256,7 @@ export function M1AISearchLandscape() {
         <FlowArrow />
 
         <div id="surfaces-anchor" className="mx-auto max-w-2xl rounded-card border border-dashed border-line p-5 text-center">
-          <div className="text-caption font-semibold tracking-wide text-ink/45 uppercase">Surfaces</div>
+          <div className="text-caption font-medium tracking-wide text-ink/45 uppercase">Surfaces</div>
           <div className="mt-1 font-display text-h3 font-bold text-ink">Where Discovery Happens</div>
           <p className="mt-2 mb-4 text-xs text-ink/45">Click a surface to learn more</p>
           <SurfacesExplorer />
@@ -264,9 +264,9 @@ export function M1AISearchLandscape() {
         <FlowArrow />
 
         <div id="channels-anchor" className="mb-4 text-center">
-          <div className="text-caption font-semibold tracking-wide text-ink/45 uppercase">Channels</div>
+          <div className="text-caption font-medium tracking-wide text-ink/45 uppercase">Channels</div>
           <div className="mt-1 font-display text-h3 font-bold text-ink">How AirOps Influences the Surfaces</div>
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-caption font-semibold tracking-wide text-ink/40 uppercase">
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-caption font-medium tracking-wide text-ink/40 uppercase">
             <span className="inline-flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-signal" aria-hidden />
               Live
@@ -305,7 +305,7 @@ export function M1AISearchLandscape() {
       <section id="opportunity">
         <SectionHeading>The Surface Opportunity</SectionHeading>
         <div className="mb-6 text-center">
-          <div className="text-caption font-semibold tracking-wide text-ink/45 uppercase">Usage volume</div>
+          <div className="text-caption font-medium tracking-wide text-ink/45 uppercase">Usage volume</div>
           <div className="mt-1 font-display text-h3 font-bold text-ink">Company-Reported Scale, By Surface</div>
         </div>
         <UsageOpportunity />

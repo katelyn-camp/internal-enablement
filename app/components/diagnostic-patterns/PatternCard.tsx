@@ -26,7 +26,7 @@ export function PatternCard({ pattern }: { pattern: DiagnosticPattern }) {
       {open && (
         <div className="space-y-5 border-t border-line px-5 pb-6 pt-5">
           <div>
-            <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-ink/55">Signs &amp; symptoms</p>
+            <p className="mb-2 text-caption font-medium uppercase tracking-wide text-ink/55">Signs &amp; symptoms</p>
             <ul className="ml-4 list-disc space-y-1 text-sm leading-relaxed text-ink/80">
               {pattern.signs.map((s) => (
                 <li key={s}>{s}</li>
@@ -34,7 +34,7 @@ export function PatternCard({ pattern }: { pattern: DiagnosticPattern }) {
             </ul>
           </div>
           <div>
-            <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-ink/55">Root causes to evaluate</p>
+            <p className="mb-2 text-caption font-medium uppercase tracking-wide text-ink/55">Root causes to evaluate</p>
             <ul className="ml-4 list-disc space-y-1 text-sm leading-relaxed text-ink/80">
               {pattern.rootCauses.map((c) => (
                 <li key={c}>{c}</li>
@@ -42,7 +42,7 @@ export function PatternCard({ pattern }: { pattern: DiagnosticPattern }) {
             </ul>
           </div>
           <div>
-            <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-ink/55">What this means for strategy</p>
+            <p className="mb-2 text-caption font-medium uppercase tracking-wide text-ink/55">What this means for strategy</p>
             <p className="text-sm leading-relaxed text-ink/80">{pattern.strategyImplications}</p>
           </div>
         </div>

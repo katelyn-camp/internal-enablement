@@ -13,7 +13,7 @@ export function SectionHeading({ children }: { children: React.ReactNode }) {
 /** A labeled break between two major parts of a lesson, e.g. "same backbone, mapped to enablement". */
 export function FlowDivider({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-4 text-caption font-semibold tracking-wide text-ink/45 uppercase">
+    <div className="flex items-center gap-4 text-caption font-medium tracking-wide text-ink/45 uppercase">
       <span className="h-px flex-1 bg-line" />
       {children}
       <span className="h-px flex-1 bg-line" />

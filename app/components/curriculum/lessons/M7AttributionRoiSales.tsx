@@ -24,7 +24,7 @@ export function M7AttributionRoiSales() {
           of being surprised by it, is what this module is for.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Say this, not a promise
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -45,12 +45,12 @@ export function M7AttributionRoiSales() {
         </p>
         <ul className="mb-4 max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-semibold text-ink">Last-touch</span> (the old default) gives all the credit to
+            <span className="font-medium text-ink">Last-touch</span> (the old default) gives all the credit to
             whatever happened right before conversion, usually a branded search or a direct visit, and zeroes out an
             AI-search answer someone read weeks earlier.
           </li>
           <li>
-            <span className="font-semibold text-ink">Data-driven</span> (GA4&rsquo;s current default) spreads
+            <span className="font-medium text-ink">Data-driven</span> (GA4&rsquo;s current default) spreads
             credit algorithmically across the whole journey, which can surface real credit for that same AI-search
             touch, or very little, depending entirely on the account&rsquo;s own data.
           </li>
@@ -72,7 +72,7 @@ export function M7AttributionRoiSales() {
         </p>
         <div className="mb-6 grid gap-3 sm:grid-cols-2">
           <div className="rounded-card border border-line bg-paper-2 p-4">
-            <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-semibold tracking-wide text-paper uppercase">
+            <span className="mb-2 inline-flex items-center rounded-full bg-ink px-3 py-1 text-caption font-medium tracking-wide text-paper uppercase">
               Level 1 · Action to visibility
             </span>
             <p className="text-sm leading-relaxed text-ink/80">
@@ -81,7 +81,7 @@ export function M7AttributionRoiSales() {
             </p>
           </div>
           <div className="rounded-card border border-line bg-white p-4">
-            <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+            <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
               Level 2 · Visibility to business impact
             </span>
             <p className="text-sm leading-relaxed text-ink/80">

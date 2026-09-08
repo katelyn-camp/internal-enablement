@@ -50,7 +50,7 @@ export function M6ContentStrategyLifecycle() {
             id="m6-managed-services"
             title="Content Strategy, Lifecycle & Production"
             questions={M6_MANAGED_SERVICES_KNOWLEDGE_CHECK}
-            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
           />
         }
       />
@@ -68,15 +68,15 @@ export function M6ContentStrategyLifecycle() {
           <table className="w-full min-w-[760px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Move</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Use when</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Common mistake</th>
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Move</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Use when</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Common mistake</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {THREE_MOVES.map((row) => (
                 <tr key={row.move}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.move}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.move}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.useWhen}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.risk}</td>
                 </tr>
@@ -85,7 +85,7 @@ export function M6ContentStrategyLifecycle() {
           </table>
         </div>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Case proof: refresh beats net-new
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -105,7 +105,7 @@ export function M6ContentStrategyLifecycle() {
           or two pages both weakly cited for the same AI answer instead of one page cited strongly.
         </p>
         <div className="mb-4 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             A real example
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -120,23 +120,23 @@ export function M6ContentStrategyLifecycle() {
         </div>
         <ol className="mb-6 max-w-2xl list-outside list-decimal space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-semibold text-ink">Map every page to its primary target intent.</span> Pull the top
+            <span className="font-medium text-ink">Map every page to its primary target intent.</span> Pull the top
             queries each page ranks for (GSC) and the prompts each page gets cited for, not just its assigned
             keyword.
           </li>
           <li>
-            <span className="font-semibold text-ink">Flag pages sharing a primary intent.</span> Two pages ranking or
+            <span className="font-medium text-ink">Flag pages sharing a primary intent.</span> Two pages ranking or
             getting cited for the same core question, within a similar position range, are candidates, not two
             pages that merely live in the same folder or share a topic tag.
           </li>
           <li>
-            <span className="font-semibold text-ink">Decide merge vs. differentiate.</span> If both pages genuinely
+            <span className="font-medium text-ink">Decide merge vs. differentiate.</span> If both pages genuinely
             answer the same question the same way, merge and redirect. If they can be repositioned to answer
             distinct sub-intents (e.g. one commercial, one educational), differentiate instead of merging, that's a
             content-strategy call, not an automatic redirect.
           </li>
           <li>
-            <span className="font-semibold text-ink">Consolidate signal, don't just delete.</span> A 301 redirect from
+            <span className="font-medium text-ink">Consolidate signal, don't just delete.</span> A 301 redirect from
             the weaker URL to the stronger one preserves whatever link equity the weaker page had, rather than
             losing it outright.
           </li>
@@ -152,7 +152,7 @@ export function M6ContentStrategyLifecycle() {
           earned, and invisible to the internal signals that would otherwise vouch for it.
         </p>
         <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             The practice this implies
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -179,28 +179,28 @@ export function M6ContentStrategyLifecycle() {
         </p>
         <ol className="mb-6 max-w-2xl list-outside list-decimal space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-semibold text-ink">Check for cannibalization first.</span> If two existing pages are
+            <span className="font-medium text-ink">Check for cannibalization first.</span> If two existing pages are
             already splitting the same intent, resolve that before anything else, it's usually the fastest, lowest-
             risk win available and it's pure subtraction.
           </li>
           <li>
-            <span className="font-semibold text-ink">Check whether an existing page can be refreshed.</span> If a page
+            <span className="font-medium text-ink">Check whether an existing page can be refreshed.</span> If a page
             already ranks, is cited, or has any real history against the target intent, refresh before creating,
             it starts from a head start net-new can't match.
           </li>
           <li>
-            <span className="font-semibold text-ink">Confirm it's a genuine gap before creating.</span> Net-new is
+            <span className="font-medium text-ink">Confirm it's a genuine gap before creating.</span> Net-new is
             justified only when no existing page covers the intent even loosely, not merely when no page covers it
             perfectly.
           </li>
           <li>
-            <span className="font-semibold text-ink">Plan the internal links before publishing.</span> Identify which
+            <span className="font-medium text-ink">Plan the internal links before publishing.</span> Identify which
             existing pages, especially strong, already-ranking ones, will link to the new page at launch. If that
             list is empty, the page isn't ready to publish yet.
           </li>
         </ol>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             The bar for this module
           </span>
           <p className="text-sm leading-relaxed text-ink/80">

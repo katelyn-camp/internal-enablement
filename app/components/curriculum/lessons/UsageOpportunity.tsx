@@ -24,7 +24,7 @@ function BlindSpotCard({ entry }: { entry: (typeof BLIND_SPOTS)[number] }) {
   return (
     <div className="rounded-card border border-dashed border-line bg-paper-2 p-4">
       <div className="mb-3">
-        <div className="text-sm font-semibold text-ink">{entry.name}</div>
+        <div className="text-sm font-medium text-ink">{entry.name}</div>
         <div className="text-xs text-ink/50">{entry.tagline}</div>
       </div>
       <div className="mb-3 flex flex-wrap gap-4">
@@ -47,28 +47,28 @@ export function UsageOpportunity() {
     <div>
       <ul className="mb-6 grid gap-2 rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/75 sm:grid-cols-2">
         <li>
-          <span className="font-semibold text-ink">Not apples-to-apples.</span> Google&rsquo;s figures are reach
+          <span className="font-medium text-ink">Not apples-to-apples.</span> Google&rsquo;s figures are reach
           inside Search, closer to &ldquo;how many people saw one&rdquo; than &ldquo;how many chose to open an
           app,&rdquo; which is what the rest of these numbers measure.
         </li>
         <li>
-          <span className="font-semibold text-ink">Google is structurally different.</span> Its scale is baked into
+          <span className="font-medium text-ink">Google is structurally different.</span> Its scale is baked into
           Search itself: every searcher is a potential viewer by default, with no separate opt-in required.
         </li>
         <li>
-          <span className="font-semibold text-ink">Grok&rsquo;s number is incidental.</span> Disclosed in
+          <span className="font-medium text-ink">Grok&rsquo;s number is incidental.</span> Disclosed in
           SpaceX&rsquo;s IPO paperwork, not a Grok-specific announcement, and blended across X plus the standalone
           app.
         </li>
         <li>
-          <span className="font-semibold text-ink">Claude and Perplexity aren&rsquo;t pictured.</span> Neither has a
+          <span className="font-medium text-ink">Claude and Perplexity aren&rsquo;t pictured.</span> Neither has a
           comparable, current usage-count figure. See the blind spots below the chart instead.
         </li>
       </ul>
 
       <div className="rounded-card border border-line bg-white p-5">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-          <span className="text-caption font-semibold tracking-wide text-ink/45 uppercase">
+          <span className="text-caption font-medium tracking-wide text-ink/45 uppercase">
             Most recent officially-disclosed figure, log scale
           </span>
           <div className="flex flex-wrap gap-4">
@@ -101,7 +101,7 @@ export function UsageOpportunity() {
                       style={{ width: `${pct}%` }}
                     />
                     <span
-                      className="absolute top-1/2 -translate-y-1/2 text-xs font-semibold whitespace-nowrap text-ink"
+                      className="absolute top-1/2 -translate-y-1/2 text-xs font-medium whitespace-nowrap text-ink"
                       style={{ left: `calc(${pct}% + 8px)` }}
                     >
                       {entry.displayValue}
@@ -132,14 +132,14 @@ export function UsageOpportunity() {
         </p>
 
         <details className="mt-4 text-xs">
-          <summary className="cursor-pointer font-semibold text-forest select-none">View as table</summary>
+          <summary className="cursor-pointer font-medium text-forest select-none">View as table</summary>
           <div className="mt-3 overflow-x-auto">
             <table className="w-full min-w-[480px] border-collapse text-xs">
               <thead>
                 <tr className="border-b border-line text-left text-[0.7rem] tracking-wide text-ink/45 uppercase">
-                  <th className="py-1.5 pr-3 font-semibold">Platform</th>
-                  <th className="py-1.5 pr-3 font-semibold">Figure</th>
-                  <th className="py-1.5 font-semibold">Date stated</th>
+                  <th className="py-1.5 pr-3 font-medium">Platform</th>
+                  <th className="py-1.5 pr-3 font-medium">Figure</th>
+                  <th className="py-1.5 font-medium">Date stated</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-line">

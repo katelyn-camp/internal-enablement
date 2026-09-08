@@ -42,7 +42,7 @@ export function M6ContentStrategyLifecycleSales() {
           share all call for a completely different content plan, even on the exact same website.
         </p>
         <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Ask this before proposing anything
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -68,14 +68,14 @@ export function M6ContentStrategyLifecycleSales() {
           <table className="w-full min-w-[640px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Move</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">How to pitch it</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Move</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">How to pitch it</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {TALK_TRACK.map((row) => (
                 <tr key={row.move}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.move}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.move}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.pitchAs}</td>
                 </tr>
               ))}
@@ -98,7 +98,7 @@ export function M6ContentStrategyLifecycleSales() {
           &amp; Influencer, and Community.
         </p>
         <div className="mb-4 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             How the goal becomes a channel mix
           </span>
           <ol className="list-outside list-decimal space-y-2 pl-5 text-sm leading-relaxed text-ink/80">

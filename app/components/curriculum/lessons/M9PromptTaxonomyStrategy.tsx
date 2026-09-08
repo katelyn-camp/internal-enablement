@@ -292,7 +292,7 @@ function TopicFanoutDiagram() {
     <svg viewBox="0 0 900 180" className="h-auto w-full">
       {/* Company */}
       <rect x={370} y={8} width={160} height={34} rx={8} className="fill-forest" />
-      <text x={450} y={30} textAnchor="middle" className="fill-signal text-[12px] font-semibold">
+      <text x={450} y={30} textAnchor="middle" className="fill-signal text-[12px] font-medium">
         Gusto
       </text>
 
@@ -306,7 +306,7 @@ function TopicFanoutDiagram() {
           <line x1={cx} y1={58} x2={cx} y2={74} className="stroke-line" strokeWidth={2} />
           {/* topic box */}
           <rect x={cx - 95} y={74} width={190} height={34} rx={8} className="fill-white stroke-line" />
-          <text x={cx} y={96} textAnchor="middle" className="fill-ink text-[11px] font-semibold">
+          <text x={cx} y={96} textAnchor="middle" className="fill-ink text-[11px] font-medium">
             {FANOUT_TOPICS[i]}
           </text>
 
@@ -342,7 +342,7 @@ export function M9PromptTaxonomyStrategy() {
             id="m9-prompt-taxonomy"
             title="Prompt & Taxonomy Strategy"
             questions={M9_PROMPT_TAXONOMY_KNOWLEDGE_CHECK}
-            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
           />
         }
       />
@@ -368,19 +368,19 @@ export function M9PromptTaxonomyStrategy() {
       <section id="topics-and-prompts">
         <SectionHeading>What a Topic Is, What a Prompt Is</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          A <span className="font-semibold text-ink">Topic</span> is a durable strategic question family, a big,
+          A <span className="font-medium text-ink">Topic</span> is a durable strategic question family, a big,
           lasting area of the business that AI-search visibility gets organized and reported on. Payroll is a Topic.
           Benefits is a Topic. A Topic is not a page type, a funnel stage, a named competitor, a one-off campaign, or
           a bucket sized to hit some prompt count.
         </p>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          A <span className="font-semibold text-ink">Prompt</span> is one specific, tracked question, written the
+          A <span className="font-medium text-ink">Prompt</span> is one specific, tracked question, written the
           way a real buyer would actually ask it, that gets sent to an AI answer engine like ChatGPT to see whether
           and how a brand shows up in the answer. Every Prompt belongs to exactly one Topic, sits at one stage of the
           buyer's decision, and gets scored and reviewed before it's tracked.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Topic vs. Prompt, in one line
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -401,14 +401,14 @@ export function M9PromptTaxonomyStrategy() {
           <table className="w-full min-w-[600px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Test</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">The question it answers</th>
+                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Test</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">The question it answers</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {TOPIC_TESTS.map((t) => (
                 <tr key={t.test}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{t.test}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{t.test}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{t.question}</td>
                 </tr>
               ))}
@@ -416,13 +416,13 @@ export function M9PromptTaxonomyStrategy() {
           </table>
         </div>
         <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <p className="mb-4 text-caption font-semibold tracking-wide text-ink/45 uppercase">
+          <p className="mb-4 text-caption font-medium tracking-wide text-ink/45 uppercase">
             Does this deserve its own Topic for Gusto?
           </p>
           <div className="mb-5">
             <div className="mb-2 flex flex-wrap items-center gap-3">
-              <span className="text-lg font-semibold text-ink">"Payroll"</span>
-              <span className="inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+              <span className="text-lg font-medium text-ink">"Payroll"</span>
+              <span className="inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
                 True
               </span>
             </div>
@@ -433,8 +433,8 @@ export function M9PromptTaxonomyStrategy() {
           </div>
           <div className="border-t border-line pt-5">
             <div className="mb-2 flex flex-wrap items-center gap-3">
-              <span className="text-lg font-semibold text-ink">"Q1 Payroll Tax Season Prep"</span>
-              <span className="inline-flex items-center rounded-full border border-line px-3 py-1 text-caption font-semibold tracking-wide text-ink/60 uppercase">
+              <span className="text-lg font-medium text-ink">"Q1 Payroll Tax Season Prep"</span>
+              <span className="inline-flex items-center rounded-full border border-line px-3 py-1 text-caption font-medium tracking-wide text-ink/60 uppercase">
                 False
               </span>
             </div>
@@ -450,7 +450,7 @@ export function M9PromptTaxonomyStrategy() {
         </div>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
           There's one more rule: every Topic on the list has to be divided up the same way. We call that dividing
-          line the <span className="font-semibold text-ink">lens</span>. Before locking one in, it's worth knowing
+          line the <span className="font-medium text-ink">lens</span>. Before locking one in, it's worth knowing
           the full menu, several different lenses can make strategic sense, and the right one depends on the
           business.
         </p>
@@ -458,15 +458,15 @@ export function M9PromptTaxonomyStrategy() {
           <table className="w-full min-w-[680px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Lens</th>
-                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Divides the business by</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">When it's the right choice</th>
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Lens</th>
+                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Divides the business by</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">When it's the right choice</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {LENSES.map((lens) => (
                 <tr key={lens.name}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{lens.name}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{lens.name}</td>
                   <td className="px-3 py-3 align-top text-ink/75">{lens.dividesBy}</td>
                   <td className="px-3 py-3 align-top text-ink/75">{lens.whenItFits}</td>
                 </tr>
@@ -481,7 +481,7 @@ export function M9PromptTaxonomyStrategy() {
         <div className="mb-6 max-w-2xl space-y-3">
           {LENS_EXAMPLES.map((ex) => (
             <details key={ex.lens} className="group rounded-card border border-line bg-white p-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium text-ink [&::-webkit-details-marker]:hidden">
                 <span>
                   {ex.lens} <span className="text-ink/40">·</span> {ex.company}
                 </span>
@@ -502,15 +502,15 @@ export function M9PromptTaxonomyStrategy() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Check</th>
-                <th className="w-1/3 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Ask this</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What failing it looks like</th>
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Check</th>
+                <th className="w-1/3 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Ask this</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What failing it looks like</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {LENS_CHECKS.map((c) => (
                 <tr key={c.check}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{c.check}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{c.check}</td>
                   <td className="px-3 py-3 align-top text-ink/75">{c.question}</td>
                   <td className="px-3 py-3 align-top text-ink/75">{c.example}</td>
                 </tr>
@@ -530,7 +530,7 @@ export function M9PromptTaxonomyStrategy() {
           also feels like a real, important area.
         </p>
         <div className="mb-4 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             A mixed-lens mistake
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -553,27 +553,27 @@ export function M9PromptTaxonomyStrategy() {
           <table className="w-full min-w-[640px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Comparison</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Different buyer?</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Different problem?</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Different competitors?</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Verdict</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Comparison</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Different buyer?</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Different problem?</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Different competitors?</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Verdict</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               <tr>
-                <td className="px-3 py-3 align-top font-semibold text-ink">"Payroll" vs. "Benefits"</td>
+                <td className="px-3 py-3 align-top font-medium text-ink">"Payroll" vs. "Benefits"</td>
                 <td className="px-3 py-3 align-top text-ink/75">Yes, whoever runs payroll vs. whoever manages health insurance</td>
                 <td className="px-3 py-3 align-top text-ink/75">Yes, paying wages vs. providing benefits</td>
                 <td className="px-3 py-3 align-top text-ink/75">Yes, payroll vendors vs. benefits providers</td>
-                <td className="px-3 py-3 align-top font-semibold text-ink">Two separate Topics</td>
+                <td className="px-3 py-3 align-top font-medium text-ink">Two separate Topics</td>
               </tr>
               <tr>
-                <td className="px-3 py-3 align-top font-semibold text-ink">"Payroll for small businesses" vs. "Payroll for enterprises"</td>
+                <td className="px-3 py-3 align-top font-medium text-ink">"Payroll for small businesses" vs. "Payroll for enterprises"</td>
                 <td className="px-3 py-3 align-top text-ink/75">Yes, a small business owner vs. an HR director</td>
                 <td className="px-3 py-3 align-top text-ink/75">No, both are "pay employees correctly and on time"</td>
                 <td className="px-3 py-3 align-top text-ink/75">Mostly the same</td>
-                <td className="px-3 py-3 align-top font-semibold text-ink">One Topic ("Payroll"), with a company-size tag</td>
+                <td className="px-3 py-3 align-top font-medium text-ink">One Topic ("Payroll"), with a company-size tag</td>
               </tr>
             </tbody>
           </table>
@@ -592,7 +592,7 @@ export function M9PromptTaxonomyStrategy() {
         <div className="mb-6 max-w-2xl space-y-3">
           {COVERAGE_QUESTIONS.map((q) => (
             <details key={q.question} className="group rounded-card border border-line bg-white p-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium text-ink [&::-webkit-details-marker]:hidden">
                 {q.question}
                 <span className="shrink-0 text-lg leading-none text-ink/40 transition-transform duration-150 group-open:rotate-45">
                   +
@@ -612,9 +612,9 @@ export function M9PromptTaxonomyStrategy() {
         <SectionHeading>What Gets Tagged, and Why</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
           Two parts of this are non-negotiable. Every prompt gets exactly one primary Topic, and exactly one
-          required Funnel tag: <span className="font-semibold text-ink">Awareness</span>,{" "}
-          <span className="font-semibold text-ink">Consideration</span>, or{" "}
-          <span className="font-semibold text-ink">Decision</span>. Notice that's the same three-stage vocabulary
+          required Funnel tag: <span className="font-medium text-ink">Awareness</span>,{" "}
+          <span className="font-medium text-ink">Consideration</span>, or{" "}
+          <span className="font-medium text-ink">Decision</span>. Notice that's the same three-stage vocabulary
           used for marketing attribution in Attribution &amp; ROI, a prompt's Funnel tag reflects the same
           buyer-decision maturity you'd use to read a client's GA conversions.
         </p>
@@ -629,15 +629,15 @@ export function M9PromptTaxonomyStrategy() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Check</th>
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Ask this</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why it matters</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Check</th>
+                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Ask this</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why it matters</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {TAG_CHECKS.map((t) => (
                 <tr key={t.check}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{t.check}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{t.check}</td>
                   <td className="px-3 py-3 align-top text-ink/75">{t.question}</td>
                   <td className="px-3 py-3 align-top text-ink/75">{t.why}</td>
                 </tr>
@@ -653,7 +653,7 @@ export function M9PromptTaxonomyStrategy() {
           inside a Topic that it's no longer filtering anything, it comes out.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             The competitor-tag anti-pattern
           </span>
           <p className="mb-3 text-sm leading-relaxed text-ink/80">
@@ -683,7 +683,7 @@ export function M9PromptTaxonomyStrategy() {
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {FUNNEL_STAGES.map((stage) => (
             <div key={stage} className="rounded-card border border-line bg-white p-4">
-              <span className="mb-3 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+              <span className="mb-3 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
                 {stage}
               </span>
               <ul className="space-y-1.5 text-sm leading-relaxed text-ink/75">
@@ -718,34 +718,34 @@ export function M9PromptTaxonomyStrategy() {
         </p>
         <ul className="mb-6 max-w-2xl list-outside list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-semibold text-ink">Brand-related share stays capped at 10–15%.</span> Stack a
+            <span className="font-medium text-ink">Brand-related share stays capped at 10–15%.</span> Stack a
             portfolio with prompts that already contain the client's own brand name and mention rate climbs for a
             reason that has nothing to do with real category visibility, closer to grading your own exam than
             measuring it. 15% is a hard ceiling, not a soft target.
           </li>
           <li>
-            <span className="font-semibold text-ink">Query Style holds near a 10% keyword / 90% developed mix.</span> Real
+            <span className="font-medium text-ink">Query Style holds near a 10% keyword / 90% developed mix.</span> Real
             buyers search both ways, terse search-bar phrasing and fuller natural-language questions. The mix
             exists to mirror that reality, not as a shortcut for padding volume, and a developed question never gets
             relabeled Keyword just to hit the ratio.
           </li>
           <li>
-            <span className="font-semibold text-ink">Every prompt needs a natural path for the account to appear.</span> A
+            <span className="font-medium text-ink">Every prompt needs a natural path for the account to appear.</span> A
             comparison prompt that names one or more competitors while structurally excluding the client's brand
             fails outright, and an illustrative "companies like X, such as Y" mention defaults back to the client's
             own brand whenever the client is itself a sourced example of that category.
           </li>
         </ul>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Rigged versus fair
           </span>
           <p className="mb-2 text-sm leading-relaxed text-ink/80">
-            <span className="font-semibold text-ink">Rigged:</span> "Why is [Client] the best payroll platform for
+            <span className="font-medium text-ink">Rigged:</span> "Why is [Client] the best payroll platform for
             distributed teams?", the answer is baked into the question.
           </p>
           <p className="text-sm leading-relaxed text-ink/80">
-            <span className="font-semibold text-ink">Fair:</span> "What should a distributed team look for in a
+            <span className="font-medium text-ink">Fair:</span> "What should a distributed team look for in a
             payroll platform?", a real category question the client is reasonably eligible to appear in, on the
             merits, alongside anyone else.
           </p>
@@ -769,7 +769,7 @@ export function M9PromptTaxonomyStrategy() {
           through the process rather than quietly carrying the old sign-off forward.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Human review before anything ships
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -796,9 +796,9 @@ export function M9PromptTaxonomyStrategy() {
         <div className="space-y-6">
           {WORKFLOWS.map((wf) => (
             <div key={wf.name} className="rounded-card border border-line bg-white p-5">
-              <h3 className="mb-1.5 text-base font-semibold text-ink">{wf.name}</h3>
+              <h3 className="mb-1.5 text-base font-medium text-ink">{wf.name}</h3>
               <p className="mb-3 text-sm leading-relaxed text-ink/70">{wf.whatItIs}</p>
-              <p className="mb-1.5 text-caption font-semibold tracking-wide text-ink/45 uppercase">How you do it</p>
+              <p className="mb-1.5 text-caption font-medium tracking-wide text-ink/45 uppercase">How you do it</p>
               <ol className="list-outside list-decimal space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
                 {wf.how.map((step, i) => (
                   <li key={i}>{step}</li>

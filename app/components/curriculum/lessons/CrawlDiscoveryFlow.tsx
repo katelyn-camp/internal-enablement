@@ -16,7 +16,7 @@ const DISCOVERY_PATH: CrawlStep[] = [
 function PathCard({ label, detail }: { label: string; detail: string }) {
   return (
     <div className="w-36 flex-shrink-0 rounded-card border border-line bg-paper-2 p-3 text-center sm:w-40">
-      <div className="mb-1 text-sm font-semibold text-ink">{label}</div>
+      <div className="mb-1 text-sm font-medium text-ink">{label}</div>
       <p className="text-xs leading-relaxed text-ink/65">{detail}</p>
     </div>
   );

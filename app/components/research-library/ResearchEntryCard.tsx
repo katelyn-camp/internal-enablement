@@ -12,7 +12,7 @@ export function ResearchEntryCard({ entry }: { entry: ResearchEntry }) {
     >
       <div className="flex flex-wrap items-center gap-2">
         <span
-          className={`rounded-full px-2.5 py-0.5 text-caption font-semibold uppercase tracking-wide ${
+          className={`rounded-full px-2.5 py-0.5 text-caption font-medium uppercase tracking-wide ${
             entry.type === "internal" ? "bg-forest text-white" : "border border-line bg-paper-2 text-ink/60"
           }`}
         >

@@ -18,12 +18,12 @@ function ExamplePill({ example }: { example: string }) {
     <span className="group relative inline-flex shrink-0">
       <button
         type="button"
-        className="inline-flex cursor-help items-center rounded-full border border-line bg-white px-2.5 py-0.5 text-caption font-semibold tracking-wide text-ink/45 uppercase transition-colors hover:border-ink/25 hover:text-ink/70"
+        className="inline-flex cursor-help items-center rounded-full border border-line bg-white px-2.5 py-0.5 text-caption font-medium tracking-wide text-ink/45 uppercase transition-colors hover:border-ink/25 hover:text-ink/70"
       >
         Example
       </button>
       <span className="pointer-events-none absolute bottom-full right-0 z-20 mb-2 w-64 rounded-card border border-line bg-white p-3 text-left text-xs leading-relaxed text-ink/70 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100">
-        <span className="mb-1 block text-caption font-semibold tracking-wide text-ink uppercase">Example</span>
+        <span className="mb-1 block text-caption font-medium tracking-wide text-ink uppercase">Example</span>
         {example}
       </span>
     </span>
@@ -235,7 +235,7 @@ export function M4AeoFundamentalsManagedServices() {
             id="m4-managed-services"
             title="AEO Fundamentals & Platform Differences"
             questions={M4_MANAGED_SERVICES_KNOWLEDGE_CHECK}
-            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
           />
         }
       />
@@ -283,17 +283,17 @@ export function M4AeoFundamentalsManagedServices() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-12 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Tier</th>
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Factor</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What it means</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why it sits here</th>
+                <th className="w-12 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Tier</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Factor</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What it means</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why it sits here</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {CITATION_HIERARCHY.map((row) => (
                 <tr key={row.tier}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.tier}</td>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.tier}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">
                     {row.link ? (
                       <a href={row.link} className="underline decoration-line underline-offset-2 hover:text-forest">
                         {row.factor}
@@ -322,13 +322,13 @@ export function M4AeoFundamentalsManagedServices() {
           Performance metrics were covered earlier. These terms are the mechanics behind citation itself.
         </p>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/50 italic">
-          Hover or tap the <span className="font-semibold text-ink/70">EXAMPLE</span> tag on any term below to see it in action.
+          Hover or tap the <span className="font-medium text-ink/70">EXAMPLE</span> tag on any term below to see it in action.
         </p>
         <ul className="mb-6 grid gap-2 sm:grid-cols-2">
           {CORE_VOCAB.map((item) => (
             <li key={item.term} className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
               <div className="flex items-start justify-between gap-2">
-                <div className="font-semibold text-ink">
+                <div className="font-medium text-ink">
                   {item.link ? (
                     <a href={item.link} className="underline decoration-line underline-offset-2 hover:text-forest">
                       {item.term}
@@ -356,22 +356,22 @@ export function M4AeoFundamentalsManagedServices() {
           <table className="w-full min-w-[760px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Platform</th>
-                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Crawler(s)</th>
-                <th className="w-24 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Renders JS?</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What that means for AEO</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Platform</th>
+                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Crawler(s)</th>
+                <th className="w-24 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Renders JS?</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What that means for AEO</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {CRAWLER_TABLE.map((row) => (
                 <tr key={row.platform}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.platform}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.platform}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">
                     {row.crawlers.map((crawler) => (
                       <div key={crawler}>{crawler}</div>
                     ))}
                   </td>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.rendersJs}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.rendersJs}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.implication}</td>
                 </tr>
               ))}
@@ -395,27 +395,27 @@ export function M4AeoFundamentalsManagedServices() {
         </p>
         <ol className="mb-6 max-w-2xl list-outside list-decimal space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-semibold text-ink">Pull the raw HTTP response, not the rendered page.</span> Fetch
+            <span className="font-medium text-ink">Pull the raw HTTP response, not the rendered page.</span> Fetch
             the URL the way a non-rendering crawler would, e.g. <code className="rounded bg-paper-3 px-1.5 py-0.5 text-xs">curl -A &quot;GPTBot&quot; &lt;url&gt;</code>,
             or a browser&rsquo;s &ldquo;View Page Source&rdquo; (not &ldquo;Inspect,&rdquo; which shows the post-render DOM).
           </li>
           <li>
-            <span className="font-semibold text-ink">Compare it against the rendered DOM.</span> Open the same URL in
+            <span className="font-medium text-ink">Compare it against the rendered DOM.</span> Open the same URL in
             a browser, open dev tools, and inspect the live DOM after JavaScript has executed.
           </li>
           <li>
-            <span className="font-semibold text-ink">Isolate the specific claim.</span> Diff the two: is the exact
+            <span className="font-medium text-ink">Isolate the specific claim.</span> Diff the two: is the exact
             sentence or data point the account wants cited present verbatim in the raw response, or does it only
             appear after JavaScript runs?
           </li>
           <li>
-            <span className="font-semibold text-ink">Cross-check against Google&rsquo;s own view.</span> Use Search
+            <span className="font-medium text-ink">Cross-check against Google&rsquo;s own view.</span> Use Search
             Console&rsquo;s URL Inspection &rarr; View Crawled Page &rarr; rendered HTML to see what Googlebot&rsquo;s
             rendering pipeline captured. If Google&rsquo;s rendered version has the content but the raw HTTP response
             doesn&rsquo;t, that gap is exactly the difference between visible-to-Google and visible-to-GPTBot/ClaudeBot/PerplexityBot.
           </li>
           <li>
-            <span className="font-semibold text-ink">Flag it, don&rsquo;t just note it.</span> If the content
+            <span className="font-medium text-ink">Flag it, don&rsquo;t just note it.</span> If the content
             genuinely only exists after JavaScript executes, that&rsquo;s a dev/engineering fix, not a copy fix,
             route it accordingly instead of sending it to a content queue. What that fix actually looks like is
             below.
@@ -428,7 +428,7 @@ export function M4AeoFundamentalsManagedServices() {
           where content only shows up after JS executes.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             If you find a real gap
           </span>
           <p className="mb-3 text-sm leading-relaxed text-ink/80">
@@ -436,13 +436,13 @@ export function M4AeoFundamentalsManagedServices() {
           </p>
           <ul className="list-outside list-disc space-y-2 pl-5 text-sm leading-relaxed text-ink/80">
             <li>
-              <span className="font-semibold text-ink">Best fix: server-side rendering or static generation.</span>{" "}
+              <span className="font-medium text-ink">Best fix: server-side rendering or static generation.</span>{" "}
               Have the framework (Next.js, Nuxt, Angular Universal, etc.) render the content into the initial HTML
               response instead of injecting it client-side after load. This is the only option that also improves
               things for Googlebot and real users, not just AI crawlers.
             </li>
             <li>
-              <span className="font-semibold text-ink">Faster fix: dynamic rendering.</span> Bot-detection
+              <span className="font-medium text-ink">Faster fix: dynamic rendering.</span> Bot-detection
               middleware routes known AI-crawler user agents (GPTBot, ClaudeBot, PerplexityBot, etc.) to a
               pre-rendered HTML snapshot while everyone else still gets the normal client-rendered app. A managed
               service like Prerender.io does this without building the rendering infrastructure in-house.
@@ -450,7 +450,7 @@ export function M4AeoFundamentalsManagedServices() {
               managed service or a DIY headless-browser setup (Puppeteer, Playwright).
             </li>
             <li>
-              <span className="font-semibold text-ink">Either way, it&rsquo;s an engineering ticket.</span> Not
+              <span className="font-medium text-ink">Either way, it&rsquo;s an engineering ticket.</span> Not
               something copy or content can fix on its own, route it to dev/engineering with the specific gap
               attached, not a general &ldquo;AI can&rsquo;t see our site&rdquo; note.
             </li>
@@ -466,34 +466,34 @@ export function M4AeoFundamentalsManagedServices() {
         </p>
         <ul className="mb-6 max-w-2xl list-outside list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-semibold text-ink">Self-contained chunks:</span> each paragraph or section answers
+            <span className="font-medium text-ink">Self-contained chunks:</span> each paragraph or section answers
             on its own, without depending on context from earlier paragraphs to make sense. Models frequently
             retrieve and quote a chunk, not the whole page; a claim that only makes sense three paragraphs into
             context gets mangled or dropped when lifted alone.
           </li>
           <li>
-            <span className="font-semibold text-ink">Direct-answer framing:</span> the specific answer stated
+            <span className="font-medium text-ink">Direct-answer framing:</span> the specific answer stated
             plainly, early in a section, before caveats or marketing framing. Reduces how much paraphrasing a model
             has to do, and reduces the odds it extracts the wrong sentence.
           </li>
           <li>
-            <span className="font-semibold text-ink">Descriptive headers matching real questions:</span> headers
+            <span className="font-medium text-ink">Descriptive headers matching real questions:</span> headers
             phrased the way a person would actually ask, not just a keyword phrase. Headers are one of the strongest
             structural cues a retrieval system uses to match a chunk to a query.
           </li>
           <li>
-            <span className="font-semibold text-ink">Structured data / schema markup:</span> FAQ, Article, and
+            <span className="font-medium text-ink">Structured data / schema markup:</span> FAQ, Article, and
             Product schema implemented and valid. Gives a machine-readable signal about what a chunk actually is,
             on top of whatever the prose already implies.
           </li>
           <li>
-            <span className="font-semibold text-ink">Tables and lists for scannable facts:</span> comparable facts,
+            <span className="font-medium text-ink">Tables and lists for scannable facts:</span> comparable facts,
             specs, pricing tiers, pros and cons, presented as a table or list rather than buried in prose. Easier for
             a model to parse cleanly and cite accurately, and less likely to introduce a paraphrasing error.
           </li>
         </ul>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          <span className="font-semibold text-ink">On llms.txt:</span> some sites now publish an llms.txt file, a
+          <span className="font-medium text-ink">On llms.txt:</span> some sites now publish an llms.txt file, a
           proposed, unofficial analog to robots.txt meant to hand an AI system curated context about the site. No
           major AI platform has confirmed reading it in production as of this writing, so treat it as an experimental
           signal worth watching, not a lever to prioritize over the mechanisms above.
@@ -512,16 +512,16 @@ export function M4AeoFundamentalsManagedServices() {
           <table className="w-full min-w-[760px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Domain type</th>
-                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Examples</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Favored by</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Why it gets picked</th>
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Domain type</th>
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Examples</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Favored by</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why it gets picked</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {DOMAIN_TYPES.map((row) => (
                 <tr key={row.domainType}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.domainType}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.domainType}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.examples}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.favoredBy}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whyItGetsPicked}</td>
@@ -531,7 +531,7 @@ export function M4AeoFundamentalsManagedServices() {
           </table>
         </div>
         <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Backlinks, or just being named?
           </span>
           <p className="text-sm leading-relaxed text-ink/80">

@@ -31,7 +31,7 @@ export function MiniTimelineChart({
 
   return (
     <div>
-      <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">{label}</p>
+      <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">{label}</p>
       <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full" role="img" aria-label={`${label}, illustrative weekly trend`}>
         <line x1={PAD} y1={HEIGHT - PAD} x2={WIDTH - PAD} y2={HEIGHT - PAD} stroke="#E7E4E0" strokeWidth={1} />
         {markX !== null && (

@@ -9,13 +9,13 @@ function PodRoleBar({ children }: { children: React.ReactNode }) {
 export function ServiceEngagementPod() {
   return (
     <div className="mx-auto max-w-2xl rounded-card border border-line bg-paper-2 p-6 sm:p-8">
-      <div className="mb-5 text-center text-caption font-semibold tracking-wide text-ink/45 uppercase">
+      <div className="mb-5 text-center text-caption font-medium tracking-wide text-ink/45 uppercase">
         How we deliver with an expert pod
       </div>
 
       <PodRoleBar>EM (Engagement Manager)</PodRoleBar>
 
-      <div className="my-4 text-center text-sm font-semibold tracking-wide text-forest">
+      <div className="my-4 text-center text-sm font-medium tracking-wide text-forest">
         Channel Strategist + Delivery Experts
       </div>
 
@@ -23,7 +23,7 @@ export function ServiceEngagementPod() {
         {SPOKES.map((s) => (
           <div
             key={s}
-            className="flex items-center justify-center rounded-card border border-line bg-white px-2 py-4 text-center text-sm font-semibold text-ink"
+            className="flex items-center justify-center rounded-card border border-line bg-white px-2 py-4 text-center text-sm font-medium text-ink"
           >
             {s}
           </div>

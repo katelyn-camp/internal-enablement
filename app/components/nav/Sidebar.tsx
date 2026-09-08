@@ -158,7 +158,7 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
                     className="flex w-full items-center justify-between gap-2 px-3 py-1.5 text-left"
                   >
                     <span className="text-left">
-                      <span className="block text-caption font-semibold tracking-wide text-ink/45 uppercase">{group.label}</span>
+                      <span className="block text-caption font-medium tracking-wide text-ink/45 uppercase">{group.label}</span>
                       {group.subtitle && (
                         <span className="mt-0.5 block text-[11px] leading-snug font-normal normal-case tracking-normal text-ink/40">
                           {group.subtitle}
@@ -167,7 +167,7 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
                     </span>
                     <span
                       aria-hidden
-                      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-line text-xs font-semibold text-ink/50"
+                      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-line text-xs font-medium text-ink/50"
                     >
                       {isExpanded(group.id) ? "−" : "+"}
                     </span>

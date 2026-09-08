@@ -70,7 +70,7 @@ export function VennDiagram() {
           <text x={CX2 + 30} y={CY - R + 30} className="pointer-events-none font-display text-[28px] font-medium" fill="#002912">
             AEO
           </text>
-          <text x={MID_X} y={CY + 6} textAnchor="middle" className="pointer-events-none text-[15px] font-semibold" fill="#1D1B19">
+          <text x={MID_X} y={CY + 6} textAnchor="middle" className="pointer-events-none text-[15px] font-medium" fill="#1D1B19">
             Both
           </text>
         </svg>

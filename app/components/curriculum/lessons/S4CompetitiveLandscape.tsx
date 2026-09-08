@@ -116,13 +116,13 @@ export function S4CompetitiveLandscape() {
         <div className="grid gap-3 sm:grid-cols-2">
           {PATHS.map((p) => (
             <div key={p.name} className="rounded-card border border-line bg-white p-4">
-              <div className="mb-2 text-sm font-semibold text-ink">{p.name}</div>
+              <div className="mb-2 text-sm font-medium text-ink">{p.name}</div>
               <p className="mb-2 text-xs leading-relaxed text-ink/70">
-                <span className="font-semibold text-ink/50 uppercase tracking-wide text-[0.65rem]">What it is: </span>
+                <span className="font-medium text-ink/50 uppercase tracking-wide text-[0.65rem]">What it is: </span>
                 {p.whatItIs}
               </p>
               <p className="text-xs leading-relaxed text-ink/70">
-                <span className="font-semibold text-ink/50 uppercase tracking-wide text-[0.65rem]">Why it&rsquo;s considered: </span>
+                <span className="font-medium text-ink/50 uppercase tracking-wide text-[0.65rem]">Why it&rsquo;s considered: </span>
                 {p.whyConsidered}
               </p>
             </div>
@@ -139,13 +139,13 @@ export function S4CompetitiveLandscape() {
         <div className="space-y-4">
           {POSITIONING.map((row) => (
             <div key={row.path} className="rounded-card border border-line bg-paper-2 p-4">
-              <div className="mb-2 text-sm font-semibold text-ink">{row.path}</div>
+              <div className="mb-2 text-sm font-medium text-ink">{row.path}</div>
               <p className="mb-2 text-xs leading-relaxed text-ink/70">
-                <span className="font-semibold text-ink/50 uppercase tracking-wide text-[0.65rem]">The real limitation: </span>
+                <span className="font-medium text-ink/50 uppercase tracking-wide text-[0.65rem]">The real limitation: </span>
                 {row.realLimitation}
               </p>
               <p className="text-xs leading-relaxed text-ink/70">
-                <span className="font-semibold text-ink/50 uppercase tracking-wide text-[0.65rem]">How AirOps positions: </span>
+                <span className="font-medium text-ink/50 uppercase tracking-wide text-[0.65rem]">How AirOps positions: </span>
                 {row.howAirOpsPositions}
               </p>
             </div>
@@ -162,7 +162,7 @@ export function S4CompetitiveLandscape() {
         <div className="space-y-4">
           {TALK_TRACKS.map((t) => (
             <div key={t.path} className="rounded-card border border-line bg-white p-5">
-              <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+              <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
                 {t.path}
               </span>
               <p className="text-sm leading-relaxed text-ink/80">&ldquo;{t.quote}&rdquo;</p>

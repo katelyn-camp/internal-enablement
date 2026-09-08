@@ -64,13 +64,13 @@ export function TraditionalSearchBridge() {
         <table className="w-full min-w-[720px] border-collapse text-sm">
           <thead>
             <tr className="bg-paper-2">
-              <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+              <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                 Traditional Metric
               </th>
-              <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+              <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                 AI Search Equivalent
               </th>
-              <th className="w-3/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+              <th className="w-3/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                 The Real Difference
               </th>
             </tr>
@@ -78,8 +78,8 @@ export function TraditionalSearchBridge() {
           <tbody className="divide-y divide-line">
             {METRIC_BRIDGE.map((row) => (
               <tr key={row.traditional}>
-                <td className="px-3 py-3 align-top font-semibold text-ink">{row.traditional}</td>
-                <td className="px-3 py-3 align-top font-semibold text-forest">{row.aiSearch}</td>
+                <td className="px-3 py-3 align-top font-medium text-ink">{row.traditional}</td>
+                <td className="px-3 py-3 align-top font-medium text-forest">{row.aiSearch}</td>
                 <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.difference}</td>
               </tr>
             ))}

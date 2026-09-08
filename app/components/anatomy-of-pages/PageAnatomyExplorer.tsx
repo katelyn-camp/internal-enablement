@@ -49,11 +49,11 @@ export function PageAnatomyExplorer({ pageType }: { pageType: PageType }) {
         }
         renderDetail={(zone) => (
           <>
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">What it is</p>
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">What it is</p>
             <p className="mb-4 text-sm leading-relaxed text-ink/85">{zone.whatItIs}</p>
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">Why it matters for SEO/AEO</p>
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">Why it matters for SEO/AEO</p>
             <p className="mb-4 text-sm leading-relaxed text-ink/85">{zone.whySeoAeo}</p>
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">What good looks like</p>
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">What good looks like</p>
             <p className="text-sm leading-relaxed text-ink/85">{zone.whatGoodLooksLike}</p>
           </>
         )}

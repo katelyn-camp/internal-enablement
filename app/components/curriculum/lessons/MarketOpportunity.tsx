@@ -40,7 +40,7 @@ function BoldText({ text }: { text: string }) {
     <>
       {parts.map((part, i) =>
         part.startsWith("**") && part.endsWith("**") ? (
-          <strong key={i} className="font-semibold text-ink">
+          <strong key={i} className="font-medium text-ink">
             {part.slice(2, -2)}
           </strong>
         ) : (
@@ -99,7 +99,7 @@ function OpportunityCircles() {
           className="absolute w-28 -translate-x-1/2 -translate-y-1/2 text-center"
           style={{ left: toPct(ADDRESSABLE_CIRCLE.cx, width), top: toPct(ADDRESSABLE_CIRCLE.cy, height) }}
         >
-          <div className="font-display text-h3 text-signal">$20–21B</div>
+          <div className="font-display text-h3 text-paper">$20–21B</div>
           <div className="mt-0.5 text-[0.65rem] leading-snug text-paper/85">Market Opportunity for Services</div>
         </div>
 
@@ -123,7 +123,7 @@ function OpportunityCircles() {
 function OpportunitySection({ title, bullets }: { title: string; bullets: string[] }) {
   return (
     <div className="rounded-card border border-line bg-paper-2 p-4">
-      <div className="mb-2 text-sm font-semibold text-ink">{title}</div>
+      <div className="mb-2 text-sm font-medium text-ink">{title}</div>
       <ul className="list-outside list-disc space-y-2 pl-4 text-sm leading-relaxed text-ink/75">
         {bullets.map((b, i) => (
           <li key={i}>

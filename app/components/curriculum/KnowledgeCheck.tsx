@@ -34,7 +34,7 @@ function ChoiceQuestion({
 }) {
   return (
     <div>
-      <p className="mb-2 text-sm font-semibold text-ink">
+      <p className="mb-2 text-sm font-medium text-ink">
         {index}. {question.prompt}
       </p>
       <div className="space-y-1.5">
@@ -55,12 +55,12 @@ function ChoiceQuestion({
             >
               <span>{opt.label}</span>
               {revealed && opt.correct && (
-                <span className="shrink-0 rounded-full bg-forest px-2 py-0.5 text-[0.65rem] font-semibold tracking-wide text-signal uppercase">
+                <span className="shrink-0 rounded-full bg-forest px-2 py-0.5 text-[0.65rem] font-medium tracking-wide text-signal uppercase">
                   Correct
                 </span>
               )}
               {revealed && isSelected && !opt.correct && (
-                <span className="shrink-0 text-[0.65rem] font-semibold tracking-wide text-ink/40 uppercase">Not quite</span>
+                <span className="shrink-0 text-[0.65rem] font-medium tracking-wide text-ink/40 uppercase">Not quite</span>
               )}
             </button>
           );
@@ -86,7 +86,7 @@ function FreeResponseQuestion({
 }) {
   return (
     <div>
-      <p className="mb-2 text-sm font-semibold text-ink">
+      <p className="mb-2 text-sm font-medium text-ink">
         {index}. {question.prompt}
       </p>
       <textarea
@@ -99,7 +99,7 @@ function FreeResponseQuestion({
       />
       {revealed && (
         <div className="mt-2 rounded-card border border-line bg-paper-2 p-3">
-          <div className="mb-1 text-[0.65rem] font-semibold tracking-wide text-ink/45 uppercase">Model answer</div>
+          <div className="mb-1 text-[0.65rem] font-medium tracking-wide text-ink/45 uppercase">Model answer</div>
           <p className="text-xs leading-relaxed text-ink/70">{question.modelAnswer}</p>
         </div>
       )}
@@ -212,7 +212,7 @@ function KnowledgeCheckModal({
       >
         <div className="flex items-start justify-between gap-4 border-b border-line p-5">
           <div>
-            <div className="text-caption font-semibold tracking-wide text-ink/45 uppercase">Knowledge check</div>
+            <div className="text-caption font-medium tracking-wide text-ink/45 uppercase">Knowledge check</div>
             <h3 className="mt-1 font-display text-h3 text-ink">{title}</h3>
           </div>
           <button
@@ -251,11 +251,11 @@ function KnowledgeCheckModal({
 
         <div className="space-y-3 border-t border-line p-5">
           {submitted ? (
-            <p className="text-center text-sm font-semibold text-forest">Submitted. Answers are marked above.</p>
+            <p className="text-center text-sm font-medium text-forest">Submitted. Answers are marked above.</p>
           ) : (
             <>
               <div>
-                <label htmlFor={`${id}-email`} className="mb-1 block text-caption font-semibold tracking-wide text-ink/45 uppercase">
+                <label htmlFor={`${id}-email`} className="mb-1 block text-caption font-medium tracking-wide text-ink/45 uppercase">
                   Your email
                 </label>
                 <input
@@ -272,7 +272,7 @@ function KnowledgeCheckModal({
                 type="button"
                 onClick={handleSubmit}
                 disabled={!canSubmit}
-                className="w-full rounded-full bg-forest px-4 py-2.5 text-sm font-semibold text-signal transition-opacity disabled:opacity-40"
+                className="w-full rounded-full bg-forest px-4 py-2.5 text-sm font-medium text-signal transition-opacity disabled:opacity-40"
               >
                 {submitting ? "Submitting…" : "Submit"}
               </button>
@@ -286,7 +286,7 @@ function KnowledgeCheckModal({
 }
 
 const DEFAULT_TRIGGER_CLASSES =
-  "inline-flex shrink-0 items-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3";
+  "inline-flex shrink-0 items-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3";
 
 export function KnowledgeCheckButton({
   id,

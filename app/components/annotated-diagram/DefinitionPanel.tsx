@@ -38,7 +38,7 @@ export function DefinitionPanel<T extends AnnotatedHotspot>({
       <div className="rounded-card border border-line bg-paper-2 p-5">
         {activeItem ? (
           <div>
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-forest">
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-forest">
               Hotspot {activeItem.marker}
             </p>
             <h3 className="font-display text-h3 mb-3 text-ink">{activeItem.label}</h3>
@@ -72,7 +72,7 @@ export function DefinitionPanel<T extends AnnotatedHotspot>({
                   }`}
                 >
                   <span
-                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold ${
+                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-medium ${
                       isViewed ? "bg-forest text-white" : "bg-paper-3 text-ink/50"
                     }`}
                   >

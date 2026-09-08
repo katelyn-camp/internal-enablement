@@ -66,7 +66,7 @@ export function SerpExplorer() {
         {/* Ad / paid result */}
         <div id="paid-result" className="relative rounded-card border border-line bg-white p-4">
           {marker("paid-result")}
-          <p className="mb-1 text-caption font-semibold text-ink/45">Sponsored</p>
+          <p className="mb-1 text-caption font-medium text-ink/45">Sponsored</p>
           <div className="mb-0.5 flex items-center gap-1.5 text-[13px] text-ink/50">
             <span className="h-3.5 w-3.5 rounded-full bg-paper-3" aria-hidden />
             www.monday.com/pm-software
@@ -84,7 +84,7 @@ export function SerpExplorer() {
             <span className="text-signal" aria-hidden>
               ✦
             </span>
-            <p className="text-caption font-semibold uppercase tracking-wide text-ink/60">AI Overview</p>
+            <p className="text-caption font-medium uppercase tracking-wide text-ink/60">AI Overview</p>
           </div>
           <p className="text-sm leading-relaxed text-ink/85">
             The best project management software for remote teams typically combines async-friendly task tracking,
@@ -237,7 +237,7 @@ export function SerpExplorer() {
         renderDetail={(h) => (
           <>
             <p className="mb-4 text-sm leading-relaxed text-ink/85">{h.definition}</p>
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">
               Why a SAM/SA should care
             </p>
             <p className="text-sm leading-relaxed text-ink/85">{h.whyItMatters}</p>

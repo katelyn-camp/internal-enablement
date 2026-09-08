@@ -271,7 +271,7 @@ function DefinedTerm({ label, definition, example }: { label: string; definition
       <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 w-72 -translate-x-1/2 rounded-card border border-line bg-white p-3 text-left text-xs leading-relaxed text-ink/70 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100">
         <span className="mb-1.5 block">{definition}</span>
         <span className="block text-ink/50">
-          <span className="font-semibold text-ink/60">Example: </span>
+          <span className="font-medium text-ink/60">Example: </span>
           {example}
         </span>
       </span>
@@ -337,7 +337,7 @@ function DiagnosticAccordion({ items }: { items: DiagnosticEntry[] }) {
         <li key={item.action}>
           <details className="group rounded-card border border-line bg-white p-4 open:bg-paper-2">
             <summary className="flex cursor-pointer list-none items-start gap-3 text-sm leading-relaxed font-medium text-ink select-none">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest text-[0.7rem] font-semibold text-signal">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest text-[0.7rem] font-medium text-paper">
                 {index + 1}
               </span>
               <span className="flex-1">{item.action}</span>
@@ -345,13 +345,13 @@ function DiagnosticAccordion({ items }: { items: DiagnosticEntry[] }) {
             </summary>
             <div className="mt-3 space-y-3 border-t border-line pt-3 pl-8">
               <p className="text-sm leading-relaxed text-ink/80">
-                <span className="mb-1 block text-caption font-semibold tracking-wide text-ink/45 uppercase">
+                <span className="mb-1 block text-caption font-medium tracking-wide text-ink/45 uppercase">
                   What it might point to
                 </span>
                 {withDefinedTerms(item.pointsTo)}
               </p>
               <p className="text-sm leading-relaxed text-ink/80">
-                <span className="mb-1 block text-caption font-semibold tracking-wide text-ink/45 uppercase">
+                <span className="mb-1 block text-caption font-medium tracking-wide text-ink/45 uppercase">
                   Why it matters today
                 </span>
                 {withDefinedTerms(item.whyItMatters)}
@@ -394,20 +394,20 @@ export function M3SeoFundamentalsSales() {
         </p>
         <ol className="mb-6 max-w-2xl list-outside list-decimal space-y-2 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-semibold text-ink">Crawlability &amp; indexability.</span> Can a bot reach the
+            <span className="font-medium text-ink">Crawlability &amp; indexability.</span> Can a bot reach the
             page and choose to store it at all. A prerequisite, not a competing factor, nothing else here matters
             until this clears.
           </li>
           <li>
-            <span className="font-semibold text-ink">Search intent match.</span> Does the page answer the specific
+            <span className="font-medium text-ink">Search intent match.</span> Does the page answer the specific
             goal behind the query. The single biggest driver of movement once a page is eligible to rank at all.
           </li>
           <li>
-            <span className="font-semibold text-ink">Technical health.</span> Page speed, mobile-friendliness, clean
+            <span className="font-medium text-ink">Technical health.</span> Page speed, mobile-friendliness, clean
             markup, no crawl errors. Necessary to let relevance come through, not a substitute for it.
           </li>
           <li>
-            <span className="font-semibold text-ink">Authority &amp; trust.</span> Backlink quality, domain
+            <span className="font-medium text-ink">Authority &amp; trust.</span> Backlink quality, domain
             reputation, E-E-A-T signals. Decides the winner only once competing pages already match intent well.
           </li>
         </ol>
@@ -424,7 +424,7 @@ export function M3SeoFundamentalsSales() {
         <div className="mb-3 grid gap-3 sm:grid-cols-3">
           <div className="rounded-card border border-line bg-white p-5">
             <p className="font-display text-h3 text-ink">18.7% → 10.2%</p>
-            <p className="mt-1 text-sm font-semibold text-ink">Position 2 to Position 3</p>
+            <p className="mt-1 text-sm font-medium text-ink">Position 2 to Position 3</p>
             <p className="mt-2 text-xs leading-relaxed text-ink/60">
               Slipping a single spot on page one costs almost half the clicks a result was getting.
               <span className="mt-1 block text-ink/40">— SE Ranking, 2025</span>
@@ -432,7 +432,7 @@ export function M3SeoFundamentalsSales() {
           </div>
           <div className="rounded-card border border-line bg-white p-5">
             <p className="font-display text-h3 text-ink">0.63%</p>
-            <p className="mt-1 text-sm font-semibold text-ink">Of all clicks land on page 2</p>
+            <p className="mt-1 text-sm font-medium text-ink">Of all clicks land on page 2</p>
             <p className="mt-2 text-xs leading-relaxed text-ink/60">
               Falling off page one isn&rsquo;t a gradual decline, it&rsquo;s a cliff, effectively the same as not
               ranking at all.
@@ -441,7 +441,7 @@ export function M3SeoFundamentalsSales() {
           </div>
           <div className="rounded-card border border-line bg-white p-5">
             <p className="font-display text-h3 text-ink">15% → 8%</p>
-            <p className="mt-1 text-sm font-semibold text-ink">Click-through when an AI Overview appears</p>
+            <p className="mt-1 text-sm font-medium text-ink">Click-through when an AI Overview appears</p>
             <p className="mt-2 text-xs leading-relaxed text-ink/60">
               Even a page-one result gets clicked roughly half as often once Google adds an AI summary above it.
               <span className="mt-1 block text-ink/40">— Pew Research Center, 2025</span>
@@ -466,7 +466,7 @@ export function M3SeoFundamentalsSales() {
         </p>
 
         <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             What Google actually says about AI content
           </span>
           <p className="mb-2 text-sm leading-relaxed text-ink/80">
@@ -486,20 +486,20 @@ export function M3SeoFundamentalsSales() {
           {ALGORITHM_UPDATES.map((row) => (
             <div key={row.update} className="rounded-card border border-line bg-white p-4">
               <div className="mb-2 flex flex-wrap items-baseline gap-2">
-                <span className="font-semibold text-ink">{row.update}</span>
-                <span className="rounded-full border border-line bg-paper-2 px-2 py-0.5 text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                <span className="font-medium text-ink">{row.update}</span>
+                <span className="rounded-full border border-line bg-paper-2 px-2 py-0.5 text-caption font-medium tracking-wide text-ink/50 uppercase">
                   {row.type}
                 </span>
               </div>
               <div className="space-y-2">
                 <p className="text-sm leading-relaxed text-ink/80">
-                  <span className="mb-1 block text-caption font-semibold tracking-wide text-ink/45 uppercase">
+                  <span className="mb-1 block text-caption font-medium tracking-wide text-ink/45 uppercase">
                     What it actually targeted
                   </span>
                   {withDefinedTerms(row.target)}
                 </p>
                 <p className="text-sm leading-relaxed text-ink/80">
-                  <span className="mb-1 block text-caption font-semibold tracking-wide text-ink/45 uppercase">
+                  <span className="mb-1 block text-caption font-medium tracking-wide text-ink/45 uppercase">
                     Why it matters for the pitch
                   </span>
                   {withDefinedTerms(row.takeaway)}
@@ -549,8 +549,8 @@ export function M3SeoFundamentalsSales() {
           {INDUSTRY_PATTERNS.map((row) => (
             <div key={row.industry} className="rounded-card border border-line bg-white p-4">
               <div className="mb-2 flex flex-wrap items-baseline gap-2">
-                <span className="font-semibold text-ink">{withDefinedTerms(row.industry)}</span>
-                <span className="rounded-full border border-line bg-paper-2 px-2 py-0.5 text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                <span className="font-medium text-ink">{withDefinedTerms(row.industry)}</span>
+                <span className="rounded-full border border-line bg-paper-2 px-2 py-0.5 text-caption font-medium tracking-wide text-ink/50 uppercase">
                   {row.whatMattersMost}
                 </span>
               </div>
@@ -565,7 +565,7 @@ export function M3SeoFundamentalsSales() {
         <ul className="grid gap-2 sm:grid-cols-2">
           {VOCAB.map((item) => (
             <li key={item.term} className="rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
-              <span className="font-semibold text-ink">{item.term}:</span> {item.definition}
+              <span className="font-medium text-ink">{item.term}:</span> {item.definition}
             </li>
           ))}
         </ul>

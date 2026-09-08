@@ -103,7 +103,7 @@ function TagPill({ tag }: { tag: string }) {
       <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 w-64 -translate-x-1/2 rounded-card border border-line bg-white p-3 text-left text-xs leading-relaxed text-ink/70 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100">
         <span className="mb-1.5 block">{def.definition}</span>
         <span className="block text-ink/50">
-          <span className="font-semibold text-ink/60">Example: </span>
+          <span className="font-medium text-ink/60">Example: </span>
           {def.example}
         </span>
       </span>
@@ -116,10 +116,10 @@ function LayerCard({ layer }: { layer: AeoLayer }) {
   return (
     <div style={{ marginInline: `${insetPercent}%` }} className="rounded-card border border-line bg-white p-4">
       <div className="mb-1.5 flex items-center gap-2">
-        <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest text-caption font-semibold text-signal">
+        <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest text-caption font-medium text-paper">
           {layer.layer}
         </span>
-        <span className="font-semibold text-ink">{layer.title}</span>
+        <span className="font-medium text-ink">{layer.title}</span>
       </div>
       <p className="mb-3 text-xs leading-relaxed text-ink/65">{layer.description}</p>
       <div className="flex flex-wrap gap-1.5">

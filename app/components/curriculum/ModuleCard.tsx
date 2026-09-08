@@ -25,7 +25,7 @@ export function ModuleCard({ module, audience }: { module: ModuleEntry; audience
       </div>
       <h3 className="font-display text-h3 text-ink">{moduleTitleForAudience(module, audience)}</h3>
       <p className="text-sm leading-relaxed text-ink/70">{depthBlurb(module, audience)}</p>
-      <span className="mt-auto text-caption font-semibold text-forest">View module →</span>
+      <span className="mt-auto text-caption font-medium text-forest">View module →</span>
     </Link>
   );
 }

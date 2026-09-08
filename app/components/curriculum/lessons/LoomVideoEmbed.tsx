@@ -79,7 +79,7 @@ export function LoomVideoEmbed({
         </svg>
       </span>
 
-      <span className="mt-4 text-caption font-semibold uppercase tracking-wide text-ink/45">{step}</span>
+      <span className="mt-4 text-caption font-medium uppercase tracking-wide text-ink/45">{step}</span>
       <h3 className="mt-1 max-w-[80%] font-display text-lg leading-snug text-ink">{title}</h3>
 
       <span className="absolute inset-0 flex items-center justify-center">

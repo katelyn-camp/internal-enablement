@@ -13,7 +13,7 @@ export function WorkflowCard({ workflow }: { workflow: WorkflowEntry }) {
         {workflow.status === "stub" && <ContentPendingTag />}
       </div>
       <p className="text-sm leading-relaxed text-ink/70">{workflow.summary}</p>
-      <span className="mt-auto text-caption font-semibold text-forest">View workflow →</span>
+      <span className="mt-auto text-caption font-medium text-forest">View workflow →</span>
     </Link>
   );
 }

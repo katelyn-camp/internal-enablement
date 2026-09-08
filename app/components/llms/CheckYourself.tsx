@@ -21,7 +21,7 @@ export function CheckYourself() {
         const picked = scenario.options.find((o) => o.id === pickedId);
         return (
           <div key={scenario.id} className="rounded-card border border-line bg-white p-5">
-            <p className="mb-3 text-caption font-semibold uppercase tracking-wide text-ink/45">Scenario {i + 1}</p>
+            <p className="mb-3 text-caption font-medium uppercase tracking-wide text-ink/45">Scenario {i + 1}</p>
             <p className="mb-4 text-sm leading-relaxed text-ink/85">{scenario.prompt}</p>
             <div className="flex flex-col gap-2">
               {scenario.options.map((option) => (

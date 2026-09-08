@@ -49,13 +49,13 @@ export function FunnelDiagram() {
                 style={{ clipPath: clipPathFor(stage.topPct, stage.bottomPct) }}
               >
                 <span
-                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
+                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-medium ${
                     viewed ? "bg-forest text-white" : active ? "bg-ink text-signal" : "bg-signal text-ink"
                   }`}
                 >
                   {viewed ? "✓" : stage.marker}
                 </span>
-                <span className="text-sm font-semibold text-ink">{stage.label}</span>
+                <span className="text-sm font-medium text-ink">{stage.label}</span>
               </div>
             );
           })}
@@ -75,10 +75,10 @@ export function FunnelDiagram() {
         emptyDescription="Click any stage of the funnel to see the search intent, example queries, content types, and purpose behind it."
         renderDetail={(stage) => (
           <>
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">Search intent</p>
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">Search intent</p>
             <p className="mb-4 text-sm leading-relaxed text-ink/85">{stage.searchIntent}</p>
 
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">Example queries</p>
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">Example queries</p>
             <ul className="mb-4 space-y-1">
               {stage.exampleQueries.map((q) => (
                 <li key={q} className="rounded-lg bg-white px-3 py-1.5 text-sm text-ink/80">
@@ -87,7 +87,7 @@ export function FunnelDiagram() {
               ))}
             </ul>
 
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">Content types</p>
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">Content types</p>
             <div className="mb-4 flex flex-wrap gap-1.5">
               {stage.contentTypes.map((c) => (
                 <span key={c} className="rounded-full border border-line bg-white px-2.5 py-0.5 text-[12px] text-ink/70">
@@ -96,7 +96,7 @@ export function FunnelDiagram() {
               ))}
             </div>
 
-            <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ink/55">Purpose</p>
+            <p className="mb-1 text-caption font-medium uppercase tracking-wide text-ink/55">Purpose</p>
             <p className="text-sm leading-relaxed text-ink/85">{stage.purpose}</p>
           </>
         )}

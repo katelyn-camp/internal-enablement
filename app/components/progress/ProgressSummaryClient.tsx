@@ -60,7 +60,7 @@ export function ProgressSummaryClient() {
         <button
           type="button"
           onClick={handleCopy}
-          className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+          className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
             copied ? "bg-forest text-white" : "bg-signal text-ink hover:brightness-95"
           }`}
         >

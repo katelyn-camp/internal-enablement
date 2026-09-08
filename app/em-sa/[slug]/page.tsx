@@ -41,7 +41,7 @@ export default async function EmSaModulePage({ params }: { params: Promise<{ slu
               id={curriculumModule.slug}
               title={curriculumModule.title}
               questions={questions}
-              className="inline-flex shrink-0 items-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3 xl:hidden"
+              className="inline-flex shrink-0 items-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3 xl:hidden"
             />
           )
         }

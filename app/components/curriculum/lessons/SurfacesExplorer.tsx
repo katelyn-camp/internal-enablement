@@ -27,7 +27,7 @@ function TooltipChip({ label, tooltip }: { label: string; tooltip: string }) {
         {label}
       </button>
       <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 w-64 -translate-x-1/2 rounded-card border border-line bg-white p-3 text-left text-xs leading-relaxed text-ink/70 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100">
-        <span className="mb-1 block text-caption font-semibold tracking-wide text-ink uppercase">{label}</span>
+        <span className="mb-1 block text-caption font-medium tracking-wide text-ink uppercase">{label}</span>
         {tooltip}
       </span>
     </span>
@@ -37,7 +37,7 @@ function TooltipChip({ label, tooltip }: { label: string; tooltip: string }) {
 const TAG_PATTERN_SOURCE = String.raw`\[(OFFICIAL\/INDUSTRY|OFFICIAL|INDUSTRY|UNCONFIRMED)([^\]]*)\]`;
 
 const TAG_STYLES: Record<string, string> = {
-  OFFICIAL: "bg-forest text-signal",
+  OFFICIAL: "bg-forest text-paper",
   INDUSTRY: "border border-line bg-paper-2 text-ink/60",
   UNCONFIRMED: "border border-dashed border-line text-ink/45",
   "OFFICIAL/INDUSTRY": "border border-line bg-paper-2 text-ink/60",
@@ -57,7 +57,7 @@ function TaggedText({ text }: { text: string }) {
     const detail = match[2].replace(/^[,\s-]+/, "").trim();
     nodes.push(
       <span key={key++} className="inline-flex flex-wrap items-baseline gap-1 align-baseline">
-        <span className={`rounded-full px-2 py-0.5 text-[0.65rem] font-semibold tracking-wide uppercase ${TAG_STYLES[tier] ?? TAG_STYLES.INDUSTRY}`}>
+        <span className={`rounded-full px-2 py-0.5 text-[0.65rem] font-medium tracking-wide uppercase ${TAG_STYLES[tier] ?? TAG_STYLES.INDUSTRY}`}>
           {tier}
         </span>
         {detail && <span className="text-xs text-ink/45 italic">{detail}</span>}
@@ -72,7 +72,7 @@ function TaggedText({ text }: { text: string }) {
 function ProfileSection({ section }: { section: SurfaceSection }) {
   return (
     <div className="space-y-2">
-      {section.heading && <h4 className="text-sm font-semibold text-ink">{section.heading}</h4>}
+      {section.heading && <h4 className="text-sm font-medium text-ink">{section.heading}</h4>}
       {section.paragraphs?.map((p, i) => (
         <p key={i} className="text-sm leading-relaxed text-ink/75">
           <TaggedText text={p} />
@@ -82,7 +82,7 @@ function ProfileSection({ section }: { section: SurfaceSection }) {
         <ul className="list-outside list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-ink/75">
           {section.bullets.map((b, i) => (
             <li key={i}>
-              {b.label && <span className="font-semibold text-ink">{b.label}</span>}
+              {b.label && <span className="font-medium text-ink">{b.label}</span>}
               {b.label ? ": " : ""}
               <TaggedText text={b.text} />
             </li>
@@ -137,7 +137,7 @@ function SurfacePanel({ activeKey, onClose }: { activeKey: string | null; onClos
           <>
             <div className="flex items-start justify-between gap-4 border-b border-line p-6">
               <div>
-                <div className="text-caption font-semibold tracking-wide text-ink/45 uppercase">Surface sourcing</div>
+                <div className="text-caption font-medium tracking-wide text-ink/45 uppercase">Surface sourcing</div>
                 <h3 className="mt-1 font-display text-h2 text-ink">{profile.name}</h3>
               </div>
               <button
@@ -152,7 +152,7 @@ function SurfacePanel({ activeKey, onClose }: { activeKey: string | null; onClos
 
             <div className="flex-1 overflow-y-auto p-6">
               <div className="mb-6 rounded-card border border-line bg-paper-2 p-4">
-                <div className="text-caption font-semibold tracking-wide text-ink/45 uppercase">How people interact</div>
+                <div className="text-caption font-medium tracking-wide text-ink/45 uppercase">How people interact</div>
                 <p className="mt-1 mb-3 text-xs leading-relaxed text-ink/45">
                   Where someone encounters this surface, distinct from where its answers are sourced, below. UIs
                   change roughly monthly for the bigger players; treat this as accurate for August 2026, not
@@ -160,11 +160,11 @@ function SurfacePanel({ activeKey, onClose }: { activeKey: string | null; onClos
                 </p>
                 <div className="space-y-3 text-sm leading-relaxed text-ink/75">
                   <div>
-                    <span className="font-semibold text-ink">Where it lives: </span>
+                    <span className="font-medium text-ink">Where it lives: </span>
                     {profile.interaction.whereItLives}
                   </div>
                   <div>
-                    <span className="font-semibold text-ink">Search &amp; citations: </span>
+                    <span className="font-medium text-ink">Search &amp; citations: </span>
                     {profile.interaction.howCitationsShow}
                   </div>
                   {profile.interaction.note && (
@@ -176,7 +176,7 @@ function SurfacePanel({ activeKey, onClose }: { activeKey: string | null; onClos
               <div className="mb-6 grid grid-cols-2 gap-3">
                 {profile.quickFacts.map((f) => (
                   <div key={f.label} className="rounded-card border border-line bg-paper-2 p-3">
-                    <div className="text-[0.7rem] font-semibold tracking-wide text-ink/40 uppercase">{f.label}</div>
+                    <div className="text-[0.7rem] font-medium tracking-wide text-ink/40 uppercase">{f.label}</div>
                     <div className="mt-1 text-xs leading-snug text-ink/75">{f.value}</div>
                   </div>
                 ))}
@@ -193,7 +193,7 @@ function SurfacePanel({ activeKey, onClose }: { activeKey: string | null; onClos
               </div>
 
               <div className="mt-8 border-t border-line pt-4">
-                <div className="mb-2 text-caption font-semibold tracking-wide text-ink/40 uppercase">Sources</div>
+                <div className="mb-2 text-caption font-medium tracking-wide text-ink/40 uppercase">Sources</div>
                 <ul className="space-y-1 text-xs text-ink/55">
                   {profile.sources.map((s) => (
                     <li key={s.url}>

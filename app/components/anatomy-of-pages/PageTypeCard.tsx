@@ -13,7 +13,7 @@ export function PageTypeCard({ pageType }: { pageType: PageType }) {
         {pageType.status === "stub" && <ContentPendingTag />}
       </div>
       <p className="text-sm leading-relaxed text-ink/70">{pageType.summary}</p>
-      <span className="mt-auto text-caption font-semibold text-forest">
+      <span className="mt-auto text-caption font-medium text-forest">
         {pageType.status === "full" ? `Explore ${pageType.zones.length} zones →` : "View →"}
       </span>
     </Link>

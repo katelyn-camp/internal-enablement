@@ -33,7 +33,7 @@ export function PageOutline({ sections, footer }: { sections: OutlineSection[]; 
   return (
     <>
       <nav aria-label="On this page" className="fixed right-6 top-28 hidden w-52 xl:block">
-        <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-ink/40">On this page</p>
+        <p className="mb-2 text-caption font-medium uppercase tracking-wide text-ink/40">On this page</p>
         <ul className="space-y-1.5 border-l border-line pl-3">
           {sections.map((s) => (
             <li key={s.id}>
@@ -52,7 +52,7 @@ export function PageOutline({ sections, footer }: { sections: OutlineSection[]; 
       </nav>
 
       <details className="mb-8 rounded-card border border-line bg-paper-2 p-3 xl:hidden">
-        <summary className="cursor-pointer text-caption font-semibold uppercase tracking-wide text-ink/50">
+        <summary className="cursor-pointer text-caption font-medium uppercase tracking-wide text-ink/50">
           Jump to a section
         </summary>
         <ul className="mt-2 space-y-1.5">

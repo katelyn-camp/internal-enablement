@@ -229,16 +229,16 @@ export function M4AeoFundamentalsSales() {
           <table className="w-full min-w-[640px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/3 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Platform</th>
-                <th className="w-24 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Renders JS?</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What that means for the pitch</th>
+                <th className="w-1/3 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Platform</th>
+                <th className="w-24 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Renders JS?</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What that means for the pitch</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {PLATFORM_TABLE.map((row) => (
                 <tr key={row.platform}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.platform}</td>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.rendersJs}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.platform}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.rendersJs}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whatThatMeans}</td>
                 </tr>
               ))}
@@ -246,7 +246,7 @@ export function M4AeoFundamentalsSales() {
           </table>
         </div>
         <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Say it like this
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -285,18 +285,18 @@ export function M4AeoFundamentalsSales() {
           <table className="w-full min-w-[640px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Channel</th>
-                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Channel</th>
+                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                   What it actually drives
                 </th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What that means for the pitch</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What that means for the pitch</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {CHANNEL_INFLUENCE.map((row) => (
                 <tr key={row.channel}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.channel}</td>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.shareOfCitations}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.channel}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.shareOfCitations}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.whatThatMeans}</td>
                 </tr>
               ))}
@@ -309,7 +309,7 @@ export function M4AeoFundamentalsSales() {
           their own clean numbers.
         </p>
         <div className="mt-6 mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Say it like this
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -330,8 +330,8 @@ export function M4AeoFundamentalsSales() {
           {CHANNEL_INDUSTRY_PATTERNS.map((row) => (
             <div key={row.industry} className="rounded-card border border-line bg-white p-4">
               <div className="mb-2 flex flex-wrap items-baseline gap-2">
-                <span className="font-semibold text-ink">{row.industry}</span>
-                <span className="rounded-full border border-line bg-paper-2 px-2 py-0.5 text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                <span className="font-medium text-ink">{row.industry}</span>
+                <span className="rounded-full border border-line bg-paper-2 px-2 py-0.5 text-caption font-medium tracking-wide text-ink/50 uppercase">
                   {row.whatMattersMost}
                 </span>
               </div>
@@ -348,7 +348,7 @@ export function M4AeoFundamentalsSales() {
       <section id="surface-channel-preference">
         <SectionHeading>Channel Preference, By AI Surface</SectionHeading>
         <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             How Services uses this
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -371,19 +371,19 @@ export function M4AeoFundamentalsSales() {
           <table className="w-full min-w-[820px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Surface</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Owned</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Third-Party (Not Owned)</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">
+                <th className="w-1/6 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Surface</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Owned</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Third-Party (Not Owned)</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                   Community Reliance
                 </th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Paid / Ads Status</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Paid / Ads Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {SURFACE_PROFILES.map((row) => (
                 <tr key={row.surface}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.surface}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.surface}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.owned}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.thirdParty}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.communityReliance}</td>
@@ -397,7 +397,7 @@ export function M4AeoFundamentalsSales() {
         <div className="mb-4 space-y-3">
           {SURFACE_PROFILES.map((row) => (
             <div key={row.surface} className="rounded-card border border-line bg-white p-4">
-              <div className="mb-2 font-semibold text-ink">{row.surface}</div>
+              <div className="mb-2 font-medium text-ink">{row.surface}</div>
               <p className="text-sm leading-relaxed text-ink/80">{row.profile}</p>
             </div>
           ))}
@@ -442,7 +442,7 @@ export function M4AeoFundamentalsSales() {
           when nothing is wrong with the legacy product itself.
         </p>
         <div className="mb-6 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             The pattern, not the brand names
           </span>
           <p className="text-sm leading-relaxed text-ink/80">

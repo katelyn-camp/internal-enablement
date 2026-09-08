@@ -20,7 +20,7 @@ const DELIVERY_STEPS: DeliveryStep[] = [
 function StepCard({ step }: { step: DeliveryStep }) {
   return (
     <div className="rounded-card border border-line bg-paper-2 p-4">
-      <div className="mb-1.5 text-sm font-semibold text-ink">{step.name}</div>
+      <div className="mb-1.5 text-sm font-medium text-ink">{step.name}</div>
       <p className="text-xs leading-relaxed text-ink/65">{step.description}</p>
     </div>
   );

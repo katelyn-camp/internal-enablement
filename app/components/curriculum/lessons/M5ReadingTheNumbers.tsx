@@ -170,7 +170,7 @@ function withBoldLead({ text, lead }: { text: string; lead?: string }) {
   if (!lead || !text.startsWith(lead)) return text;
   return (
     <>
-      <span className="font-semibold text-ink">{lead}</span>
+      <span className="font-medium text-ink">{lead}</span>
       {text.slice(lead.length)}
     </>
   );
@@ -186,7 +186,7 @@ export function M5ReadingTheNumbers() {
             id="m5-managed-services"
             title="Reading the Numbers: Dashboards, Tools & Data"
             questions={M5_MANAGED_SERVICES_KNOWLEDGE_CHECK}
-            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-semibold tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
           />
         }
       />
@@ -203,15 +203,15 @@ export function M5ReadingTheNumbers() {
           <table className="w-full min-w-[760px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Source</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What it actually measures</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What it can't tell you</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Source</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What it actually measures</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What it can't tell you</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {TOOL_MAP.map((row) => (
                 <tr key={row.tool}>
-                  <td className="px-3 py-3 align-top font-semibold text-ink">{row.tool}</td>
+                  <td className="px-3 py-3 align-top font-medium text-ink">{row.tool}</td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">
                     {withBoldLead({ text: row.measures, lead: row.measuresLead })}
                   </td>
@@ -224,7 +224,7 @@ export function M5ReadingTheNumbers() {
           </table>
         </div>
         <div className="mb-4 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Reading all four together
           </span>
           <p className="mb-3 text-sm leading-relaxed text-ink/80">
@@ -232,16 +232,16 @@ export function M5ReadingTheNumbers() {
           </p>
           <ul className="mb-3 list-outside list-disc space-y-2 pl-5 text-sm leading-relaxed text-ink/80">
             <li>
-              <span className="font-semibold text-ink">GSC + GA4:</span> pre-click versus post-click, what Google
+              <span className="font-medium text-ink">GSC + GA4:</span> pre-click versus post-click, what Google
               shows against what actually happens once someone lands.
             </li>
             <li>
-              <span className="font-semibold text-ink">Semrush / Ahrefs:</span> the competitive frame neither GSC
+              <span className="font-medium text-ink">Semrush / Ahrefs:</span> the competitive frame neither GSC
               nor GA4 has on its own, whether an opportunity is even sized right, or a competitor is already
               winning it.
             </li>
             <li>
-              <span className="font-semibold text-ink">AirOps Insights:</span> the layer none of the other three
+              <span className="font-medium text-ink">AirOps Insights:</span> the layer none of the other three
               fully reach, what AI models say about the brand in generated answers, including mentions that never
               produce a GSC impression or a GA4 session at all.
             </li>
@@ -257,7 +257,7 @@ export function M5ReadingTheNumbers() {
           points at a real lever and which one is an artifact of how the measurement works.
         </p>
         <div className="mb-4 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             &ldquo;High&rdquo; and &ldquo;low&rdquo; are relative, not benchmarked
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
@@ -271,7 +271,7 @@ export function M5ReadingTheNumbers() {
           </p>
         </div>
         <div className="mb-2 flex justify-end">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-2 px-3 py-1 text-caption font-semibold tracking-wide text-ink/45 uppercase">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-2 px-3 py-1 text-caption font-medium tracking-wide text-ink/45 uppercase">
             <span aria-hidden>⇄</span> Scroll for more
           </span>
         </div>
@@ -279,16 +279,16 @@ export function M5ReadingTheNumbers() {
           <table className="w-full min-w-[1040px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="sticky left-0 z-20 w-1/6 border-r border-line bg-paper-2 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Pattern in the numbers</th>
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What&rsquo;s actually happening</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Potential hypotheses to check</th>
-                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Where to look next</th>
+                <th className="sticky left-0 z-20 w-1/6 border-r border-line bg-paper-2 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Pattern in the numbers</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What&rsquo;s actually happening</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Potential hypotheses to check</th>
+                <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Where to look next</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {METRIC_PATTERNS.map((row) => (
                 <tr key={row.pattern}>
-                  <td className="sticky left-0 z-10 border-r border-line bg-paper px-3 py-3 align-top font-semibold text-ink">
+                  <td className="sticky left-0 z-10 border-r border-line bg-paper px-3 py-3 align-top font-medium text-ink">
                     {row.pattern}
                   </td>
                   <td className="px-3 py-3 align-top leading-relaxed text-ink/75">{row.meansThat}</td>
@@ -307,7 +307,7 @@ export function M5ReadingTheNumbers() {
         </div>
 
         <div className="mb-4 rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Validated vs. unvalidated
           </span>
           <p className="mb-3 text-sm leading-relaxed text-ink/80">
@@ -316,7 +316,7 @@ export function M5ReadingTheNumbers() {
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <p className="mb-1.5 text-caption font-semibold tracking-wide text-ink/55 uppercase">Validated</p>
+              <p className="mb-1.5 text-caption font-medium tracking-wide text-ink/55 uppercase">Validated</p>
               <ul className="list-outside list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-ink/80">
                 <li>Rate or share metrics, normalized against a stable prompt or keyword set</li>
                 <li>A trend confirmed across two or more comparable periods, not one snapshot</li>
@@ -324,7 +324,7 @@ export function M5ReadingTheNumbers() {
               </ul>
             </div>
             <div>
-              <p className="mb-1.5 text-caption font-semibold tracking-wide text-ink/55 uppercase">Unvalidated</p>
+              <p className="mb-1.5 text-caption font-medium tracking-wide text-ink/55 uppercase">Unvalidated</p>
               <ul className="list-outside list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-ink/80">
                 <li>A raw count on its own, especially right after the prompt or keyword set changed size</li>
                 <li>One week's mention-rate blip with no second period to confirm it</li>
@@ -344,7 +344,7 @@ export function M5ReadingTheNumbers() {
       <section id="number-to-outcome">
         <SectionHeading>From Number to Outcome</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          GSC and the AI-visibility metrics both describe <span className="font-semibold text-ink">potential</span>: whether the
+          GSC and the AI-visibility metrics both describe <span className="font-medium text-ink">potential</span>: whether the
           content is reachable and whether AI models are aware of it. Neither one, alone, tells you whether any of
           that reach actually mattered to the business. That's what GA4 is for, and reading the two layers together
           is what turns a metrics readout into a real diagnosis.
@@ -353,8 +353,8 @@ export function M5ReadingTheNumbers() {
           <table className="w-full min-w-[640px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">Combination</th>
-                <th className="px-3 py-2.5 text-left text-caption font-semibold tracking-wide text-ink/50 uppercase">What it implies</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Combination</th>
+                <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">What it implies</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
@@ -391,7 +391,7 @@ export function M5ReadingTheNumbers() {
           </table>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          <span className="font-semibold text-ink">On GA4 conversion validity specifically:</span> never cite a client's conversion
+          <span className="font-medium text-ink">On GA4 conversion validity specifically:</span> never cite a client's conversion
           numbers without first checking whether the underlying conversion event is actually configured and firing.
           A "0% conversion rate" is sometimes a real result and sometimes a broken event that never fires; a "500%
           increase" is sometimes real growth and sometimes someone fixing that same broken event. Both look
@@ -411,33 +411,33 @@ export function M5ReadingTheNumbers() {
         </p>
         <ol className="mb-6 max-w-2xl list-outside list-decimal space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-semibold text-ink">Isolate what changed.</span> Same prompt set or keyword set, same date
+            <span className="font-medium text-ink">Isolate what changed.</span> Same prompt set or keyword set, same date
             range, same platform and segment filters as whatever you're comparing against? A metric that moved
             because its denominator changed isn't the same signal as one that moved because performance changed.
           </li>
           <li>
-            <span className="font-semibold text-ink">Separate rate/share from raw count.</span> If only the raw count moved and the
+            <span className="font-medium text-ink">Separate rate/share from raw count.</span> If only the raw count moved and the
             rate or share stayed flat, suspect prompt-set or keyword-set growth before crediting a real
             improvement.
           </li>
           <li>
-            <span className="font-semibold text-ink">Cross-reference the adjacent layer.</span> A GSC ranking claim should show up
+            <span className="font-medium text-ink">Cross-reference the adjacent layer.</span> A GSC ranking claim should show up
             somewhere close in time as GA4 organic traffic; a citation-rate claim should be checkable against real
             AI answers, not just the summary tile. If two adjacent numbers can't agree even directionally,
             something's mis-set-up, not just noisy.
           </li>
           <li>
-            <span className="font-semibold text-ink">Confirm the underlying config is real.</span> For any GA4 conversion or event
+            <span className="font-medium text-ink">Confirm the underlying config is real.</span> For any GA4 conversion or event
             number specifically, confirm the event is actually configured and firing before citing it as a
             performance signal.
           </li>
           <li>
-            <span className="font-semibold text-ink">Only then explain it.</span> State plainly what actually moved and why, real
+            <span className="font-medium text-ink">Only then explain it.</span> State plainly what actually moved and why, real
             change or measurement artifact, rather than repeating the number as though it speaks for itself.
           </li>
         </ol>
         <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
+          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             The bar for this module
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
