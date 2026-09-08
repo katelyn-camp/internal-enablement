@@ -92,8 +92,7 @@ export function M6ContentStrategyLifecycle() {
             Two real refresh-first results: one team scaled its refresh cadence roughly 5x and saw traffic gains
             within days of publishing the updates, no new URLs involved. Another team focused specifically on
             refresh workflows over net-new production and posted double-digit percentage lifts in organic traffic,
-            signups, and AI visibility in the same period. Neither result required new content, both came from
-            making existing pages actually answer the moment better.
+            signups, and AI visibility in the same period.
           </p>
         </div>
       </section>
@@ -148,10 +147,9 @@ export function M6ContentStrategyLifecycle() {
         <SectionHeading>Why Net-New Content Dies Unlinked</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
           A brand-new URL starts with nothing: no backlinks, no ranking history, and critically, no internal links
-          pointing to it from anywhere else on the site. Nothing about publishing a page guarantees anything else
-          will connect to it. Left alone, a new page is effectively orphaned, harder for crawlers to discover,
-          disconnected from whatever topical authority the rest of the site has already earned, and invisible to
-          the internal signals that would otherwise vouch for it.
+          pointing to it from anywhere else on the site. Left alone, a new page is effectively orphaned, harder for
+          crawlers to discover, disconnected from whatever topical authority the rest of the site has already
+          earned, and invisible to the internal signals that would otherwise vouch for it.
         </p>
         <div className="mb-6 rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">

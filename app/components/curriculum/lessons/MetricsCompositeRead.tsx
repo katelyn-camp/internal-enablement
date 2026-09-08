@@ -53,16 +53,14 @@ export function MetricsCompositeRead() {
         Reading these three together
       </div>
       <h3 className="mb-6 text-center font-display text-h3 text-ink">
-        What Mention Rate, Citation Rate, and Share of Voice Are Really Telling You
+        What Mention Rate, Citation Rate, and Share of Voice Tell You
       </h3>
 
       <div className="mx-auto mb-8 max-w-2xl rounded-card border border-line bg-paper-2 p-4 text-sm leading-relaxed text-ink/80">
         <span className="font-semibold text-ink">None of these three numbers mean anything if you&rsquo;re tracking
-        the wrong prompts.</span> Mention rate, citation rate, and share of voice are only as good as the prompt set
-        behind them. Track the prompts real buyers actually ask, and these metrics tell you the truth about your
-        position. Track the wrong prompts, and you&rsquo;re optimizing for a version of the market that doesn&rsquo;t
-        exist. Getting the prompt set right isn&rsquo;t step one of the analysis, it&rsquo;s the thing the entire
-        analysis depends on.
+        the wrong prompts.</span> Track the prompts real buyers actually ask, and these metrics tell you the truth
+        about your position. Track the wrong prompts, and you&rsquo;re optimizing for a version of the market that
+        doesn&rsquo;t exist.
       </div>
 
       <div className="mb-8 grid gap-3 sm:grid-cols-3">

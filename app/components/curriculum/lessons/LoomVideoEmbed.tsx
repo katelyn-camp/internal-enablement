@@ -10,7 +10,7 @@ function formatDuration(totalSeconds: number) {
 
 /**
  * Loom videos as a designed poster card (icon + step + title) rather than
- * Loom's own auto-generated screen-grab thumbnail — those are all just
+ * Loom's own auto-generated screen-grab thumbnail, since those are all just
  * similar-looking browser/Drive screenshots and don't read as distinct at a
  * glance. The iframe only mounts once clicked, so a page with several of
  * these doesn't load several video players up front.
@@ -18,7 +18,7 @@ function formatDuration(totalSeconds: number) {
  * `accentColor` is a real AirOps brand hex (see audit-methodology-videos.ts)
  * rather than a Tailwind token, applied via inline style like the
  * channel-mix chart elsewhere in this repo. It's only ever used as a small
- * fill (icon badge, play button), never as text-on-color — some of these
+ * fill (icon badge, play button), never as text-on-color, since some of these
  * hexes are too dark for white text to read reliably on top of them.
  */
 export function LoomVideoEmbed({

@@ -26,7 +26,7 @@ export function M8ManualAuditMethodology() {
 
       <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
         An eight-part walkthrough of one full manual audit, start to finish, recorded on a real (anonymized)
-        account. Watch in order — each step builds on the folders and files the previous one produced.
+        account. Watch in order, since each step builds on the folders and files the previous one produced.
       </p>
 
       {auditMethodologyVideos.map((video) => (

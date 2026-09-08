@@ -141,22 +141,22 @@ interface EeatComponent {
 
 const EEAT_TABLE: EeatComponent[] = [
   {
-    component: "E — Experience",
+    component: "E: Experience",
     whatItMeans: "Firsthand, lived experience with the topic, not just knowledge about it.",
     signals: "Original photos or data, first-person accounts (\"I used this for three months\"), specifics only someone who actually did the thing would know.",
   },
   {
-    component: "E — Expertise",
+    component: "E: Expertise",
     whatItMeans: "Depth of skill or knowledge in the subject matter.",
     signals: "Author credentials and bios, technically accurate detail, citations to primary sources.",
   },
   {
-    component: "A — Authoritativeness",
+    component: "A: Authoritativeness",
     whatItMeans: "Being recognized as a go-to source on the topic, by others, not just self-claimed.",
     signals: "Being cited and linked to by other reputable sites, industry recognition, consistent coverage of a topic over time.",
   },
   {
-    component: "T — Trustworthiness",
+    component: "T: Trustworthiness",
     whatItMeans: "Whether the content and the site can be relied on: accurate, transparent, and safe.",
     signals: "Secure site (HTTPS), transparent authorship and sourcing, accurate and current information, no deceptive practices.",
   },

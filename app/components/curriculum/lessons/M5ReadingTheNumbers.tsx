@@ -407,8 +407,7 @@ export function M5ReadingTheNumbers() {
         <SectionHeading>Validating a Suspicious Number</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
           Before any number goes into a client-facing deck, especially one that looks like unusually good or bad
-          news, it earns a quick pass through this sequence. This is the gut-check habit this module is actually
-          building, not a one-time checklist.
+          news, run it through this sequence. Treat it as a habit, not a one-time checklist.
         </p>
         <ol className="mb-6 max-w-2xl list-outside list-decimal space-y-2.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
@@ -444,8 +443,7 @@ export function M5ReadingTheNumbers() {
           <p className="text-sm leading-relaxed text-ink/80">
             Not memorizing every formula behind every tile, tools update their calculations without much notice.
             The bar is catching a suspicious number before it goes into a deck, knowing which of the four sources
-            to check to validate it, and being able to explain in one sentence why it moved. That's what separates
-            reading a dashboard from actually understanding it.
+            to check to validate it, and being able to explain in one sentence why it moved.
           </p>
         </div>
       </section>

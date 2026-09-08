@@ -80,7 +80,7 @@ export function CompetitiveLandscape() {
       </div>
       <DecisionWeb />
       <p className="mx-auto mb-8 max-w-md text-center text-xs text-ink/45">
-        Every one of these shapes the others, plus plenty of other pain points beyond just these four.
+        Every line above is drawn, both edges and both diagonals, since each question touches every other one.
       </p>
 
       <div className="mx-auto mb-8 max-w-2xl rounded-card border border-line bg-paper-2 p-4 text-center text-sm leading-relaxed text-ink/80">

@@ -1,5 +1,5 @@
 /**
- * M8 "Manual Audit Methodology" video series — an 8-part walkthrough of one
+ * M8 "Manual Audit Methodology" video series: an 8-part walkthrough of one
  * full manual audit end to end, recorded on a real (anonymized) account.
  * Videos are hosted on Loom and embedded directly (via LoomVideoEmbed), not
  * linked out to. Order matters: each step builds on files/folders the
@@ -7,8 +7,8 @@
  *
  * `durationSeconds` comes from Loom's public oEmbed endpoint
  * (`loom.com/v1/oembed?url=.../share/{loomId}`). Poster art is bespoke (see
- * LoomVideoEmbed + audit-methodology-icons.tsx), not a Loom screen-grab —
- * those all look like near-identical browser/Drive screenshots.
+ * LoomVideoEmbed + audit-methodology-icons.tsx), not a Loom screen-grab,
+ * since those all look like near-identical browser/Drive screenshots.
  *
  * `accentColor` cycles through the real AirOps brand hex codes already used
  * for the channel-mix chart elsewhere in this repo (see channel-mix-data.ts:
@@ -54,7 +54,7 @@ export const auditMethodologyVideos: AuditMethodologyVideo[] = [
   {
     slug: "step-2a",
     step: "Step 2a",
-    title: "AEO Analysis — Citations & Mentions",
+    title: "AEO Analysis: Citations & Mentions",
     synopsis:
       "Kick off the AEO side of the audit using Strategy 360 to pull the client's citations and mentions: which prompts cite the client's own domain vs. third-party domains, and where those citations come from.",
     loomId: "2a52aaba4f064241bcd5acc90ba365c4",
@@ -66,7 +66,7 @@ export const auditMethodologyVideos: AuditMethodologyVideo[] = [
     step: "Step 2b",
     title: "AEO Gap Analysis & Outreach Targets",
     synopsis:
-      "Turn the citations/mentions export into a full AEO gap analysis — prompt gaps, citation gaps, and prioritized outreach targets — then edit out AI-sounding phrasing before it goes near a client deliverable.",
+      "Turn the citations/mentions export into a full AEO gap analysis (prompt gaps, citation gaps, and prioritized outreach targets), then edit out AI-sounding phrasing before it goes near a client deliverable.",
     loomId: "80f7abb7fd454dd8b3f09fad006ea669",
     durationSeconds: 234,
     accentColor: "#5b254f",
@@ -86,7 +86,7 @@ export const auditMethodologyVideos: AuditMethodologyVideo[] = [
     step: "Step 4",
     title: "Content Gap Analysis",
     synopsis:
-      "Add page-level Search Console traffic data to the keyword gap output and have Claude turn the combination into a prioritized content gap analysis — content strategy, not just a keyword list.",
+      "Add page-level Search Console traffic data to the keyword gap output and have Claude turn the combination into a prioritized content gap analysis: content strategy, not just a keyword list.",
     loomId: "7cfcf6b043fe472a882e81bc726414d8",
     durationSeconds: 256,
     accentColor: "#ff6337",
@@ -106,7 +106,7 @@ export const auditMethodologyVideos: AuditMethodologyVideo[] = [
     step: "Step 6",
     title: "Traffic & Keyword Benchmarks",
     synopsis:
-      "Fill out traffic and keyword benchmarks: total ranking keywords, striking-distance keywords (rank 4–20), and indexed-but-not-ranking pages — then sanity-check the audit's depth against a prior account before building the final deck.",
+      "Fill out traffic and keyword benchmarks: total ranking keywords, striking-distance keywords (rank 4–20), and indexed-but-not-ranking pages, then sanity-check the audit's depth against a prior account before building the final deck.",
     loomId: "12db8d128ea4449c9c0adcce5cd0a669",
     durationSeconds: 448,
     accentColor: "#3d365e",

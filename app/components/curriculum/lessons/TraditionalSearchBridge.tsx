@@ -42,7 +42,7 @@ const METRIC_BRIDGE: MetricBridgeRow[] = [
     traditional: "Clicks / CTR",
     aiSearch: "No clean equivalent",
     difference:
-      "The one that doesn't translate. AI answers are built to resolve the question inside the answer itself, so the click-through-to-verify behavior traditional search depends on is exactly what's eroding. Worth stating plainly as a gap, not glossing over it.",
+      "The one that doesn't translate. AI answers are built to resolve the question inside the answer itself, so the click-through-to-verify behavior traditional search depends on is exactly what's eroding.",
   },
   {
     traditional: "No traditional equivalent",

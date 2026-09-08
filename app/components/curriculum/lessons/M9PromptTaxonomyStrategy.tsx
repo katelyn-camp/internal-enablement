@@ -358,7 +358,7 @@ export function M9PromptTaxonomyStrategy() {
         </p>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
           <code className="rounded bg-paper-2 px-1.5 py-0.5 text-xs">sb-prompt-tool</code> is the internal Claude
-          skill that designs, audits, and builds these portfolios with the rigor that makes them defensible. You
+          skill that designs, audits, and builds these portfolios. You
           won't necessarily run it yourself, but you will present its output to clients, judge whether an account's
           existing topic structure is sound, and explain to a skeptical stakeholder why a portfolio was built the way
           it was.
@@ -483,7 +483,7 @@ export function M9PromptTaxonomyStrategy() {
             <details key={ex.lens} className="group rounded-card border border-line bg-white p-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
                 <span>
-                  {ex.lens} <span className="text-ink/40">&mdash;</span> {ex.company}
+                  {ex.lens} <span className="text-ink/40">·</span> {ex.company}
                 </span>
                 <span className="shrink-0 text-lg leading-none text-ink/40 transition-transform duration-150 group-open:rotate-45">
                   +

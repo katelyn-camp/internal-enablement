@@ -7,8 +7,8 @@ import { useEffect, useRef, useState } from "react";
 // full screen. It only breaks down when squeezed into a small embedded box:
 // its fixed-pixel padding/font-sizes assume roughly this much room, so it
 // clips/overflows at small sizes. Rendering the iframe at this native size
-// and scaling the whole thing down with a CSS transform (embedded view only
-// — never in full screen) keeps every proportion identical to the full-screen
+// and scaling the whole thing down with a CSS transform (embedded view only,
+// never in full screen) keeps every proportion identical to the full-screen
 // view instead of letting the deck's own layout reflow and clip.
 const DECK_WIDTH = 1280;
 const DECK_HEIGHT = 720;

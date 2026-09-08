@@ -159,10 +159,10 @@ export function M7AttributionRoi() {
           performance.
         </p>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          This matters directly for AI search work. A buyer influenced by an AI-search answer almost never converts
-          on that exact touch, they research, then come back later through a branded search or a direct visit. The
-          model a client's analytics setup uses determines whether that earlier AI-search touch gets any credit at
-          all. Before this module goes further, you need to know these models yourself.
+          A buyer influenced by an AI-search answer almost never converts on that exact touch, they research, then
+          come back later through a branded search or a direct visit. The model a client's analytics setup uses
+          determines whether that earlier AI-search touch gets any credit at all. Before this module goes further,
+          you need to know these models yourself.
         </p>
       </section>
 
@@ -280,7 +280,7 @@ export function M7AttributionRoi() {
         </p>
         <div className="rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-forest px-3 py-1 text-caption font-semibold tracking-wide text-signal uppercase">
-            The reframe this module teaches
+            The takeaway
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
             The same buyer journey can make an AI-search investment look decisive or invisible in a client's own

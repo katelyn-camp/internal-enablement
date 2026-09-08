@@ -349,8 +349,8 @@ export function M4AeoFundamentalsManagedServices() {
       <section id="crawler-differences">
         <SectionHeading>How AI Crawlers Parse Pages Differently</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          This is the single biggest platform difference in AEO, and the easiest one for a traditional
-          &ldquo;is this page indexed&rdquo; audit to miss entirely.
+          Whether a crawler renders JavaScript is a platform difference a traditional &ldquo;is this page
+          indexed&rdquo; audit typically doesn&rsquo;t check.
         </p>
         <div className="mb-4 overflow-x-auto rounded-card border border-line">
           <table className="w-full min-w-[760px] border-collapse text-sm">
@@ -436,13 +436,13 @@ export function M4AeoFundamentalsManagedServices() {
           </p>
           <ul className="list-outside list-disc space-y-2 pl-5 text-sm leading-relaxed text-ink/80">
             <li>
-              <span className="font-semibold text-ink">Best fix &mdash; server-side rendering or static generation.</span>{" "}
+              <span className="font-semibold text-ink">Best fix: server-side rendering or static generation.</span>{" "}
               Have the framework (Next.js, Nuxt, Angular Universal, etc.) render the content into the initial HTML
               response instead of injecting it client-side after load. This is the only option that also improves
               things for Googlebot and real users, not just AI crawlers.
             </li>
             <li>
-              <span className="font-semibold text-ink">Faster fix &mdash; dynamic rendering.</span> Bot-detection
+              <span className="font-semibold text-ink">Faster fix: dynamic rendering.</span> Bot-detection
               middleware routes known AI-crawler user agents (GPTBot, ClaudeBot, PerplexityBot, etc.) to a
               pre-rendered HTML snapshot while everyone else still gets the normal client-rendered app. A managed
               service like Prerender.io does this without building the rendering infrastructure in-house.

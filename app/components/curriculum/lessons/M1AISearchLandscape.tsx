@@ -190,8 +190,8 @@ export function M1AISearchLandscape() {
         <SectionHeading>Getting the Vocabulary Right</SectionHeading>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
           These four words get used loosely in conversation, but they sit at four different levels, and mixing them
-          up is the fastest way to lose credibility on a call. Here&rsquo;s what each one actually means, and how it
-          maps to the Search vocabulary our clients already know.
+          up on a call misstates what AirOps actually does for a client. Here&rsquo;s what each one actually means,
+          and how it maps to the Search vocabulary our clients already know.
         </p>
 
         <ul className="mb-6 grid gap-2 sm:grid-cols-2">
