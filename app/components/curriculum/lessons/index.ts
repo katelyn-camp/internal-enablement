@@ -13,8 +13,8 @@ import { M6ContentStrategyLifecycleSales } from "./M6ContentStrategyLifecycleSal
 import { M7AttributionRoi } from "./M7AttributionRoi";
 import { M7AttributionRoiSales } from "./M7AttributionRoiSales";
 import { M8ManualAuditMethodology } from "./M8ManualAuditMethodology";
-import { M8ManualAuditMethodologySales } from "./M8ManualAuditMethodologySales";
 import { M9PromptTaxonomyStrategy } from "./M9PromptTaxonomyStrategy";
+import { AirOpsResearchDigest } from "@/app/components/research-digest/AirOpsResearchDigest";
 
 /**
  * Real, written lesson bodies, keyed by "audience:slug", looked up from
@@ -41,6 +41,6 @@ export const lessonComponents: Record<string, ComponentType> = {
   "em-sa:m7": M7AttributionRoi,
   "sales:m7": M7AttributionRoiSales,
   "em-sa:m8": M8ManualAuditMethodology,
-  "sales:m8": M8ManualAuditMethodologySales,
+  "sales:m8": AirOpsResearchDigest,
   "em-sa:m9": M9PromptTaxonomyStrategy,
 };

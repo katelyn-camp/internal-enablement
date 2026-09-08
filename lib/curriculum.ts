@@ -37,6 +37,8 @@ export interface ModuleEntry {
   salesDepth?: string;
   /** Where this module's Sales-track content is a reduced-depth pass of an EM/SA module. */
   source?: string;
+  /** Overrides `title` on the Sales track only, for a shared module slot repurposed with different subject matter. */
+  salesTitle?: string;
   knowledgeCheck: string;
   groupSession: string;
   appliedProject: string;
@@ -74,7 +76,7 @@ export const modules: ModuleEntry[] = [
     phase: "phase0",
     audience: "shared",
     objective:
-      "Use Category / Surface / Channel / Tactic correctly; explain the AI-Search channel mix (Owned, Earned, Social/Influencer, Community, Paid) and where AirOps' offering sits, without collapsing \"channel\" and \"surface\"; identify a brand's largest opportunities and locate them within the channel mix.",
+      "Use Category / Surface / Channel / Tactic correctly; explain the AI-Search channel mix (Owned Content, External Content, Social & Influencer, Community, Paid) and where AirOps' offering sits, without collapsing \"channel\" and \"surface\"; identify a brand's largest opportunities and locate them within the channel mix.",
     knowledgeCheck: "Free-response: define the 4 levels + one client example + one opportunity mapped to the mix",
     groupSession: "GS1",
     appliedProject: "N/A",
@@ -147,7 +149,7 @@ export const modules: ModuleEntry[] = [
     title: "Content Strategy, Lifecycle & Production",
     phase: "phase1",
     audience: "shared",
-    emSaDepth: "Choose refresh vs. net-new vs. consolidate; run a cannibalization audit; set realistic velocity; explain why net-new content dies unlinked.",
+    emSaDepth: "Choose refresh vs. net-new vs. consolidate, in that order of preference; run a cannibalization audit; explain why net-new content dies unlinked without an internal-linking plan at launch.",
     salesDepth:
       "Turn refresh vs. net-new vs. consolidate into a business case tied to a stated goal, not a tactic pitched before the goal is known.",
     knowledgeCheck: "Quiz + refresh/net-new/consolidate scenario",
@@ -173,11 +175,12 @@ export const modules: ModuleEntry[] = [
     slug: "m8",
     code: "M8",
     title: "Manual Audit Methodology",
+    salesTitle: "AirOps Research",
     phase: "phase1",
     audience: "shared",
-    emSaDepth: "Run a comprehensive manual site audit by hand, with separate pre-sales and post-sales checklists (access/data differ).",
+    emSaDepth: "Run a full manual site audit end to end, from folder setup through AEO citation/gap analysis, keyword and content gap analysis, technical SEO crawl, traffic and keyword benchmarks, to generating and QA-ing the final client-ready deck.",
     salesDepth:
-      "Run a light diagnostic pass, anchored in a fit hypothesis built from the six Cs, to surface opportunities on a prospect's site, not the full audit.",
+      "Pull a specific, sourced fact from AirOps' own research, citations, freshness, third-party signals, into a call, and know when the mechanism behind a number matters more than the number itself.",
     knowledgeCheck: "Checklist completion (submitted)",
     groupSession: "GS2 (Managed Services)",
     appliedProject: "Comprehensive audit (Managed Services) · diagnostic audit (Sales)",
@@ -185,10 +188,10 @@ export const modules: ModuleEntry[] = [
       "Comprehensive manual SEO audit of an at-risk account",
       "Comprehensive manual AEO audit of the same account, then compare",
     ],
-    salesAppliedProjectOptions: [
-      "Light opportunity-spotting audit of a real prospect's site to feed a discovery call",
-      "Annotate a prospect's headline visibility numbers into a talk track",
-    ],
+    salesAppliedProjectOptions: [],
+    salesContent: {
+      hideDeliveryModel: true,
+    },
     status: "content-pending",
   },
 
@@ -417,6 +420,11 @@ export function getModulesForAudience(audience: Audience): ModuleEntry[] {
 
 export function getModuleBySlug(slug: string): ModuleEntry | undefined {
   return modules.find((m) => m.slug === slug);
+}
+
+/** A module's displayed title for one audience, honoring `salesTitle` when the Sales track repurposes a shared slot. */
+export function moduleTitleForAudience(m: ModuleEntry, audience: Audience): string {
+  return audience === "sales" && m.salesTitle ? m.salesTitle : m.title;
 }
 
 export const PHASE_LABELS: Record<Phase, string> = {

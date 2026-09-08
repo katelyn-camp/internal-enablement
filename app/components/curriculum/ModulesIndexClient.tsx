@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Audience, ModuleEntry, PHASE_LABELS, Phase } from "@/lib/curriculum";
+import { Audience, ModuleEntry, PHASE_LABELS, Phase, moduleTitleForAudience } from "@/lib/curriculum";
 import { ModuleCard } from "./ModuleCard";
 
 const PHASE_ORDER: Phase[] = ["phase0", "phase1", "phase2"];
@@ -12,8 +12,8 @@ export function ModulesIndexClient({ modules, audience }: { modules: ModuleEntry
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return modules;
-    return modules.filter((m) => m.title.toLowerCase().includes(q) || m.code.toLowerCase().includes(q));
-  }, [modules, query]);
+    return modules.filter((m) => moduleTitleForAudience(m, audience).toLowerCase().includes(q) || m.code.toLowerCase().includes(q));
+  }, [modules, query, audience]);
 
   const byPhase = useMemo(() => {
     const map = new Map<Phase, ModuleEntry[]>();

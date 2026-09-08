@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getModuleBySlug, getModulesForAudience } from "@/lib/curriculum";
+import { getModuleBySlug, getModulesForAudience, moduleTitleForAudience } from "@/lib/curriculum";
 import { ModuleDetailView } from "@/app/components/curriculum/ModuleDetailView";
 import { ModuleEyebrow } from "@/app/components/curriculum/ModuleEyebrow";
 import { PageVisitTracker } from "@/app/components/shared/PageVisitTracker";
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const curriculumModule = getModuleBySlug(slug);
   if (!curriculumModule) return {};
-  return { title: `Category Enablement: ${curriculumModule.title}` };
+  return { title: `Category Enablement: ${moduleTitleForAudience(curriculumModule, "sales")}` };
 }
 
 export default async function SalesModulePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -25,11 +25,11 @@ export default async function SalesModulePage({ params }: { params: Promise<{ sl
   return (
     <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8 lg:py-14 xl:pr-[17rem]">
       <PageVisitTracker id={`sales:${curriculumModule.slug}`} />
-      <Breadcrumbs trail={[{ label: "Sales Curriculum", href: "/sales" }, { label: curriculumModule.title }]} />
+      <Breadcrumbs trail={[{ label: "Sales Curriculum", href: "/sales" }, { label: moduleTitleForAudience(curriculumModule, "sales") }]} />
       <div className="mb-3">
         <ModuleEyebrow code={curriculumModule.code} />
       </div>
-      <h1 className="font-display text-h1 mb-8 text-ink">{curriculumModule.title}</h1>
+      <h1 className="font-display text-h1 mb-8 text-ink">{moduleTitleForAudience(curriculumModule, "sales")}</h1>
       <ModuleDetailView module={curriculumModule} audience="sales" />
     </div>
   );

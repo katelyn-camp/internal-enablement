@@ -4,7 +4,7 @@ import { PageOutline } from "@/app/components/nav/PageOutline";
 const OUTLINE = [
   { id: "two-altitudes", label: "The Same Number, Two Altitudes" },
   { id: "know-who-you-are-talking-to", label: "Know Who You're Talking To" },
-  { id: "vocabulary-cold", label: "Vocabulary a Rep Needs Cold" },
+  { id: "deal-vocabulary", label: "Deal Vocabulary" },
   { id: "not-the-dashboard", label: "You Don't Have to Be the Dashboard" },
 ];
 
@@ -135,8 +135,8 @@ export function M5ReadingTheNumbersSales() {
         </p>
       </section>
 
-      <section id="vocabulary-cold">
-        <SectionHeading>Vocabulary a Rep Needs Cold</SectionHeading>
+      <section id="deal-vocabulary">
+        <SectionHeading>Deal Vocabulary</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
           None of this requires becoming a marketing analyst. It requires never getting caught flat-footed by a
           term that comes up in nearly every conversation with this buyer.

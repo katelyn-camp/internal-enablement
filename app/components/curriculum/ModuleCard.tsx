@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Audience, ModuleEntry } from "@/lib/curriculum";
+import { Audience, ModuleEntry, moduleTitleForAudience } from "@/lib/curriculum";
 import { ContentPendingTag } from "@/app/components/ContentPendingTag";
 import { ModuleEyebrow } from "./ModuleEyebrow";
 import { lessonComponents } from "./lessons";
@@ -23,7 +23,7 @@ export function ModuleCard({ module, audience }: { module: ModuleEntry; audience
         <ModuleEyebrow code={module.code} />
         {!hasWrittenLesson && <ContentPendingTag />}
       </div>
-      <h3 className="font-display text-h3 text-ink">{module.title}</h3>
+      <h3 className="font-display text-h3 text-ink">{moduleTitleForAudience(module, audience)}</h3>
       <p className="text-sm leading-relaxed text-ink/70">{depthBlurb(module, audience)}</p>
       <span className="mt-auto text-caption font-semibold text-forest">View module →</span>
     </Link>

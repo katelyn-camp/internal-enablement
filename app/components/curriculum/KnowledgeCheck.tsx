@@ -16,6 +16,9 @@ function useMounted(): boolean {
   );
 }
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const REMEMBERED_EMAIL_KEY = "enablement-knowledge-check-email";
+
 function ChoiceQuestion({
   question,
   index,
@@ -120,8 +123,20 @@ function KnowledgeCheckModal({
   const mounted = useMounted();
   const { submitKnowledgeCheck } = useProgress();
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
   const [choiceAnswers, setChoiceAnswers] = useState<Record<number, number>>({});
   const [freeTextAnswers, setFreeTextAnswers] = useState<Record<number, string>>({});
+
+  useEffect(() => {
+    try {
+      const remembered = window.localStorage.getItem(REMEMBERED_EMAIL_KEY);
+      if (remembered) setEmail(remembered);
+    } catch {
+      // localStorage unavailable (private browsing, etc.) — email field just starts blank.
+    }
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -142,11 +157,37 @@ function KnowledgeCheckModal({
   const allAnswered = questions.every((q, i) =>
     q.kind === "free-response" ? freeTextAnswers[i]?.trim() : choiceAnswers[i] !== undefined,
   );
+  const emailValid = EMAIL_PATTERN.test(email.trim());
+  const canSubmit = allAnswered && emailValid && !submitting;
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    const trimmedEmail = email.trim();
     const answers = questions.map((q, i) => (q.kind === "free-response" ? (freeTextAnswers[i] ?? "") : (choiceAnswers[i] ?? -1)));
-    setSubmitted(true);
-    submitKnowledgeCheck(id, answers);
+
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const response = await fetch("/api/knowledge-check", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ checkId: id, email: trimmedEmail, answers }),
+      });
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}));
+        throw new Error(body.error ?? "Failed to save submission");
+      }
+      try {
+        window.localStorage.setItem(REMEMBERED_EMAIL_KEY, trimmedEmail);
+      } catch {
+        // localStorage unavailable — non-fatal, just won't be remembered next time.
+      }
+      setSubmitted(true);
+      submitKnowledgeCheck(id, answers);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Failed to save submission");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   // Rendered into document.body directly: a sticky/fixed ancestor (the module title bar,
@@ -208,18 +249,34 @@ function KnowledgeCheckModal({
           )}
         </div>
 
-        <div className="border-t border-line p-5">
+        <div className="space-y-3 border-t border-line p-5">
           {submitted ? (
             <p className="text-center text-sm font-semibold text-forest">Submitted. Answers are marked above.</p>
           ) : (
-            <button
-              type="button"
-              onClick={handleSubmit}
-              disabled={!allAnswered}
-              className="w-full rounded-full bg-forest px-4 py-2.5 text-sm font-semibold text-signal transition-opacity disabled:opacity-40"
-            >
-              Submit
-            </button>
+            <>
+              <div>
+                <label htmlFor={`${id}-email`} className="mb-1 block text-caption font-semibold tracking-wide text-ink/45 uppercase">
+                  Your email
+                </label>
+                <input
+                  id={`${id}-email`}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@airops.com"
+                  className="w-full rounded-card border border-line bg-paper-2 p-2.5 text-sm text-ink placeholder:text-ink/35 focus:border-forest focus:outline-none"
+                />
+              </div>
+              {submitError && <p className="text-xs font-medium text-red-600">{submitError}</p>}
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={!canSubmit}
+                className="w-full rounded-full bg-forest px-4 py-2.5 text-sm font-semibold text-signal transition-opacity disabled:opacity-40"
+              >
+                {submitting ? "Submitting…" : "Submit"}
+              </button>
+            </>
           )}
         </div>
       </div>
