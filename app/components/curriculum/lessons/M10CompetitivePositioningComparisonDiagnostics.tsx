@@ -70,7 +70,7 @@ const ANATOMY_BLOCKS: AnatomyBlock[] = [
   {
     block: "Verdict block (\"choose X if / choose Y if\")",
     whatItDoes: "Segments the recommendation by buyer situation instead of declaring one universal winner.",
-    whyItMatters: "This is also the concession mechanism covered next: the block where a real, specific limitation gets named.",
+    whyItMatters: "The concession mechanism covered next in The Positioning Edge.",
   },
   {
     block: "Migration / switching section",
@@ -184,7 +184,7 @@ interface IndustryPattern {
 const INDUSTRY_PATTERNS: IndustryPattern[] = [
   {
     segment: "High-consideration B2B SaaS",
-    howItFunctions: "Core infrastructure, not a nice-to-have. This is where the highest-converting bottom-funnel content in the whole site usually lives.",
+    howItFunctions: "Core infrastructure, not a nice-to-have: usually the highest-converting bottom-funnel content on the whole site.",
     whatsStructurallyDifferent: "Nothing structural, the standard anatomy above is built for exactly this case.",
   },
   {
