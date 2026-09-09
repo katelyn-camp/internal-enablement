@@ -3,7 +3,7 @@ import { PageOutline } from "@/app/components/nav/PageOutline";
 
 const OUTLINE = [
   { id: "why-this-comes-up", label: "Why This Comes Up in Every Deal" },
-  { id: "same-journey-two-verdicts", label: "The Same Journey, Two Verdicts" },
+  { id: "same-journey-two-verdicts", label: "The Same Journey, Different Verdicts" },
   { id: "two-levels-of-roi", label: "Two Levels of ROI" },
   { id: "the-line-not-to-cross", label: "The Line Not to Cross" },
 ];
@@ -25,7 +25,7 @@ export function M7AttributionRoiSales() {
       </section>
 
       <section id="same-journey-two-verdicts">
-        <SectionHeading>The Same Journey, Two Verdicts</SectionHeading>
+        <SectionHeading>The Same Journey, Different Verdicts</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
           A client&rsquo;s own analytics can make the exact same buyer journey look decisive or completely
           invisible, depending only on which attribution model their Google Analytics property happens to run, not
@@ -33,30 +33,44 @@ export function M7AttributionRoiSales() {
         </p>
         <ul className="mb-4 max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>
-            <span className="font-medium text-ink">Last-touch</span> (the old default) gives all the credit to
+            <span className="font-medium text-ink">First-touch</span> gives all the credit to whatever brought the
+            buyer in originally, and none to anything that nurtured them afterward.
+          </li>
+          <li>
+            <span className="font-medium text-ink">Last-touch</span> (the old GA default) gives all the credit to
             whatever happened right before conversion, usually a branded search or a direct visit, and zeroes out an
             AI-search answer someone read weeks earlier.
           </li>
           <li>
-            <span className="font-medium text-ink">Data-driven</span> (GA4&rsquo;s current default) spreads
-            credit algorithmically across the whole journey, which can surface real credit for that same AI-search
-            touch, or very little, depending entirely on the account&rsquo;s own data.
+            <span className="font-medium text-ink">Linear</span> splits credit evenly across every touch, treating a
+            passing ad impression the same as the touch that actually moved the buyer.
+          </li>
+          <li>
+            <span className="font-medium text-ink">Time-decay</span> gives more credit to touches closer to the
+            conversion, less to earlier ones like an AI-search answer read weeks out.
+          </li>
+          <li>
+            <span className="font-medium text-ink">U-shaped</span> weights the first and last touch heavily and
+            splits a smaller share across everything in between.
+          </li>
+          <li>
+            <span className="font-medium text-ink">Data-driven</span> (GA4&rsquo;s current default) is algorithmic,
+            not a fixed rule. It estimates each touch&rsquo;s contribution from the account&rsquo;s own data, which
+            can surface real credit for an AI-search touch, or very little, depending entirely on that account.
           </li>
         </ul>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          None of this needs to be computed by hand on a call. What&rsquo;s worth knowing is that a client&rsquo;s
-          &ldquo;AI-search isn&rsquo;t driving anything&rdquo; conclusion is sometimes a real result and sometimes
-          just a property still set to an attribution model that structurally can&rsquo;t see it. That&rsquo;s a
-          one-question fix: ask which attribution model their property is running before accepting either verdict
-          at face value.
+          A client&rsquo;s &ldquo;AI-search isn&rsquo;t driving anything&rdquo; conclusion is sometimes a real
+          result and sometimes just a property still set to a model that structurally can&rsquo;t see it. That&rsquo;s
+          a conversation worth having with the CMO directly: ask how they&rsquo;re currently doing attribution,
+          and which model their property is running, before accepting either verdict at face value.
         </p>
       </section>
 
       <section id="two-levels-of-roi">
         <SectionHeading>Two Levels of ROI</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          When a prospect asks for ROI, they&rsquo;re really asking two separate questions, and conflating them is
-          where most overclaiming happens.
+          When a prospect asks for ROI, they&rsquo;re really asking two separate questions.
         </p>
         <div className="mb-6 grid gap-3 sm:grid-cols-2">
           <div className="rounded-card border border-line bg-paper-2 p-4">
@@ -64,8 +78,8 @@ export function M7AttributionRoiSales() {
               Level 1 · Action to visibility
             </span>
             <p className="text-sm leading-relaxed text-ink/80">
-              Did the work move mention rate, citation rate, and share of voice? This is provable now, and
-              it&rsquo;s the honest, defensible claim to lead with.
+              Did the work move mention rate, citation rate, and share of voice? This can be measured and reported
+              on now.
             </p>
           </div>
           <div className="rounded-card border border-line bg-white p-4">
@@ -74,14 +88,14 @@ export function M7AttributionRoiSales() {
             </span>
             <p className="text-sm leading-relaxed text-ink/80">
               Did that visibility actually turn into pipeline and revenue? Still being built out as a category, for
-              AirOps and for everyone in it. Talk about the direction of the work, not a guaranteed number.
+              AirOps and for everyone in it.
             </p>
           </div>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          Selling Level 1 honestly is a strength, not a consolation prize: it&rsquo;s a claim that can actually be
-          backed up in a monthly report. Promising Level 2 before the measurement exists to support it is the
-          fastest way to lose credibility the moment a CFO asks to see the math.
+          Level 1 can be backed up in a monthly report. Level 2 depends on measurement that doesn&rsquo;t exist yet
+          for anyone in the category, so a specific revenue number tied to AI-search visibility isn&rsquo;t
+          something a rep can produce.
         </p>
       </section>
 
