@@ -35,6 +35,18 @@ export const metadata: Metadata = {
   title: "SAM/SA Enablement: SEO + AEO Reference",
   description:
     "Internal reference for AirOps Strategic Account Managers and Solution Architects: SERP anatomy, glossary, LLM retrieval mechanics, and the audit workflow library.",
+  openGraph: {
+    title: "SAM/SA Enablement: SEO + AEO Reference",
+    description:
+      "Internal reference for AirOps Strategic Account Managers and Solution Architects: SERP anatomy, glossary, LLM retrieval mechanics, and the audit workflow library.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SAM/SA Enablement: SEO + AEO Reference",
+    description:
+      "Internal reference for AirOps Strategic Account Managers and Solution Architects: SERP anatomy, glossary, LLM retrieval mechanics, and the audit workflow library.",
+  },
 };
 
 export default function RootLayout({
