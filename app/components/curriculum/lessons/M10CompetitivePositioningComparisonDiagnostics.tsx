@@ -313,10 +313,6 @@ export function M10CompetitivePositioningComparisonDiagnostics() {
             </tbody>
           </table>
         </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          One page per pair. A three-way comparison is a separate, lower-volume intent, and crams poorly onto a
-          page built for two, give it its own page only if the search volume actually supports it.
-        </p>
       </section>
 
       <section id="the-positioning-edge">
