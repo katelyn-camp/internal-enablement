@@ -293,7 +293,8 @@ export function S5FirstCallDeckWalkthrough() {
 }
 
 function DeckViewer() {
-  const [index, setIndex] = useState(0);
+  const [rawIndex, setIndex] = useState(0);
+  const index = Math.min(Math.max(rawIndex, 0), SLIDES.length - 1);
   const slide = SLIDES[index];
   const firstNumber = parseInt(slide.numbers.split(/[–-]/)[0], 10);
   const hasImage = firstNumber <= 33;
