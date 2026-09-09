@@ -246,7 +246,7 @@ export const modules: ModuleEntry[] = [
     title: "Multi-Brand, Multi-Location & M&A Structure",
     phase: "phase2",
     audience: "em-sa",
-    objective: "Sequence a consolidation without losing visibility; decide merge vs. keep-separate; protect equity through migration.",
+    objective: "Decide whether a multi-brand portfolio, a multi-location footprint, or a post-M&A entity should be tracked as one thing or kept separate; sequence any consolidation without losing visibility; protect equity through migration.",
     knowledgeCheck: "Scenario free-response",
     groupSession: "N/A",
     appliedProject: "Optional recs-deck slot",

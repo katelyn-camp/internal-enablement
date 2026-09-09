@@ -701,6 +701,60 @@ export const M8_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   },
 ];
 
+export const M12_MULTI_BRAND_MA_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A company operating three product lines under three unrelated brand names is acquiring a fourth brand that serves a genuinely different buyer, solves a different problem, and competes against a different set of rivals. What does the shared diagnostic say about tracking it?",
+    options: [
+      { label: "Merge it into one shared Topic list and prompt portfolio immediately, since it's now under one parent", correct: false },
+      { label: "Keep it tracked separately, since all three of buyer, problem, and competitor genuinely differ", correct: true },
+      { label: "Split the difference by tracking half its Topics separately and half combined", correct: false },
+      { label: "Wait a year before deciding, since new acquisitions are always merged eventually", correct: false },
+    ],
+    explanation:
+      "The same three-part test from Prompt & Taxonomy Strategy, different buyer, different problem, different competitors, decides this at the portfolio level too. When all three genuinely differ, that's a signal to keep the brand's Topic list and prompt portfolio separate, the same logic a house-of-brands parent already applies across its other brands.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "An account is migrating from an old domain to a new one after an acquisition. In the first week, organic visibility drops 45%. A teammate says this is a normal reindexing dip and to wait it out. Do you agree, and what would you check first?",
+    modelAnswer:
+      "No. A 10-20% dip in the first one to two weeks is the normal range even for a clean migration, but a 30%+ first-week drop is a specific warning sign of a redirect or indexing problem, not ordinary turbulence. The first thing to check is the redirect mapping itself: whether it's a proper one-to-one 301 mapping prioritized by each page's prior strength, or a blanket domain-level redirect (or worse, 302s) that isn't transferring equity the way a correct migration would. Waiting it out risks the kind of prolonged recovery, sometimes many months, seen in poorly executed migrations.",
+  },
+  {
+    kind: "true-false",
+    prompt:
+      "True or false: for preserving link equity during a domain migration, a temporary (302) redirect is just as effective as a permanent (301) redirect, since both send the visitor to the right page.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "A 301 signals a permanent move; a 302 or 307 tells crawlers the old URL might come back, which can stall the transfer of ranking signal even though the visitor still lands in the right place. Reaching the same destination isn't the same as transferring the same equity.",
+  },
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A multi-location client wants every location page built from one strict corporate template, with only the town name changed, to keep messaging perfectly consistent. What's the risk?",
+    options: [
+      { label: "No risk, consistency is what corporate brand control is for", correct: false },
+      { label: "This is a direct match for the doorway-abuse pattern Google's own spam policy specifically names, templated pages differing only by a swapped town name", correct: true },
+      { label: "The only risk is that customers might notice the templates look similar", correct: false },
+      { label: "This is fine as long as each page uses a different template design", correct: false },
+    ],
+    explanation:
+      "Google's September 2025 spam update specifically targeted templated location pages with near-identical copy differing only by town name. The fix is a content-matrix split: corporate owns the reusable substantive core, but each location page needs something genuinely local, real pricing, real reviews, real staff, layered on top.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A brand is being divested from its parent company. Content on both the parent's site and the new standalone site still cross-references each other, and both are starting to rank for some of the same terms. Name the two main failure modes at risk here and how you'd address them.",
+    modelAnswer:
+      "The two named failure modes are authority fragmentation (the combined link equity and domain strength the properties used to share now splits across two weaker properties instead of concentrating on one) and keyword cannibalization (the two sides keep competing for the same queries and citations as if they were still one entity). The fix starts with settling trademark and domain-name rights early, then deploying explicit brand-separation signals on both properties, updated metadata and navigation, so crawlers stop treating them as one overlapping entity, and running the shared buyer/problem/competitor diagnostic to decide where content should genuinely differentiate rather than keep publishing redundantly on both sides.",
+  },
+];
+
 export const M11_EXTERNAL_CONTENT_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   {
     kind: "multiple-choice",

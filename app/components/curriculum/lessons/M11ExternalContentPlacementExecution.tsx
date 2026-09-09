@@ -28,7 +28,7 @@ const SCOPE_ROWS: ScopeRow[] = [
   },
   {
     category: "Third-party comparison content",
-    whatItIs: "A publisher's own \"X vs. Y\" or \"X alternatives\" piece, already cited for a tracked comparison-stage prompt. Not the client's own comparison page, that's Competitive Positioning &amp; Comparison Diagnostics.",
+    whatItIs: "A publisher's own \"X vs. Y\" or \"X alternatives\" piece, already cited for a tracked comparison-stage prompt. Not the client's own comparison page, that's Competitive Positioning & Comparison Diagnostics.",
     inScope: true,
   },
   {
@@ -98,7 +98,7 @@ interface GapAnalysisStep {
 const GAP_ANALYSIS_STEPS: GapAnalysisStep[] = [
   {
     step: "Start from the tracked prompt portfolio",
-    whatYouDo: "Use the account's existing Topic and Prompt structure from Prompt &amp; Taxonomy Strategy as the starting point, not a fresh brainstorm of \"places we should be mentioned.\"",
+    whatYouDo: "Use the account's existing Topic and Prompt structure from Prompt & Taxonomy Strategy as the starting point, not a fresh brainstorm of \"places we should be mentioned.\"",
   },
   {
     step: "Pull what's actually cited for those prompts today",
@@ -141,7 +141,7 @@ export function M11ExternalContentPlacementExecution() {
         footer={
           <KnowledgeCheckButton
             id="m11-external-content"
-            title="External Content &amp; Third-Party Placement Execution"
+            title="External Content & Third-Party Placement Execution"
             questions={M11_EXTERNAL_CONTENT_KNOWLEDGE_CHECK}
             className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
           />
