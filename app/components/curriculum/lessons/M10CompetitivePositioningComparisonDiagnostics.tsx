@@ -285,11 +285,6 @@ export function M10CompetitivePositioningComparisonDiagnostics() {
             </tbody>
           </table>
         </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          This distinction matters before any diagnosis starts: a page that fails to be a comparison page at all
-          isn&rsquo;t underperforming as one, it needs to become one first, or it isn&rsquo;t the right candidate for
-          this diagnostic at all.
-        </p>
       </section>
 
       <section id="anatomy">
