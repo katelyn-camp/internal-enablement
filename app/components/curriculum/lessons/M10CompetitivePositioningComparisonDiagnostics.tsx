@@ -484,10 +484,11 @@ export function M10CompetitivePositioningComparisonDiagnostics() {
           </table>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          Remember the tag guardrail from Prompt &amp; Taxonomy Strategy: competitor tracking lives in native
-          competitor configuration and in prompt wording, not in a sprawling per-competitor tag vocabulary. This
-          cadence is what actually feeds that configuration and this content, it&rsquo;s the ongoing input, not a
-          separate system running in parallel.
+          Prompt &amp; Taxonomy Strategy has a guardrail against building a sprawling per-competitor tag vocabulary:
+          competitor tracking belongs in native competitor configuration and in prompt wording instead. The cadence
+          above is how that native configuration, and this comparison content, actually stay current. It isn&rsquo;t
+          a separate tracking system running alongside them, it&rsquo;s the source feeding updates into the one that
+          already exists.
         </p>
       </section>
 
