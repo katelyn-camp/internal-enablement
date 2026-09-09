@@ -39,7 +39,7 @@ function SayItLikeThis({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-6 rounded-card border border-line bg-white p-5">
       <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
-        Say it like this
+        Using the data
       </span>
       <p className="text-sm leading-relaxed text-ink/80">{children}</p>
     </div>
