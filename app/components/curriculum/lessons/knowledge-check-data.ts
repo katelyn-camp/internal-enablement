@@ -701,6 +701,60 @@ export const M8_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   },
 ];
 
+export const M10_COMPETITIVE_POSITIONING_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A client's blog post mentions a competitor by name once, in a single sentence, while discussing the category broadly. A teammate wants to run it through the comparison-page diagnostic. What should you tell them?",
+    options: [
+      { label: "Run it through the diagnostic, any page naming a competitor qualifies", correct: false },
+      { label: "It isn't a comparison page at all, it's a category/editorial page, since it doesn't name a specific pair, resolve to a verdict, or target a shortlist buyer", correct: true },
+      { label: "It qualifies, but only if the competitor is named in the title too", correct: false },
+      { label: "It qualifies as long as the mention is favorable to the client", correct: false },
+    ],
+    explanation:
+      "A comparison page is defined by a named pair (in the title/H1/URL), a structured side-by-side claim set, a resolved verdict, and bottom-funnel shortlist intent. A single passing mention inside broader category content has none of these, it needs to become a comparison page first, or it isn't the right candidate for this diagnostic.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "An account's \"Us vs. Competitor\" page lists 15 features the client wins on and zero the competitor wins on. Traffic is fine but time-on-page is low and it never gets cited in AI answers. Which diagnostic bucket does this fall into, and what's the fix?",
+    modelAnswer:
+      "This is a content/positioning problem, not an authority or architecture one: the page reads as one-sided marketing copy rather than an assessment, so both a skeptical reader and an AI extraction pass have no real claim to check it against and tend to discount it. The fix is to add a real, specific concession, one place where the competitor is genuinely the better fit for some real segment, written in an adjudicating tone (\"the better fit if X matters more to you than Y\") rather than first-person superlatives. The page stays standalone; it needs a rewrite of the positioning, not new links or new sourcing.",
+  },
+  {
+    kind: "true-false",
+    prompt:
+      "True or false: adding rich schema markup to a comparison page is one of the strongest levers available for improving its AI-citation rate.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "Schema markup is worth adding for rich-result eligibility, but it's hygiene, not a meaningful citation lever on its own. Structural extractability (clean heading hierarchy, an FAQ block, self-contained sections) and sourcing are what actually move citation odds.",
+  },
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A junior teammate proposes generating 40 \"[Client] vs. [Competitor]\" pages by taking one template and swapping only the competitor's name, to cover every competitor mentioned in sales calls. What's the risk?",
+    options: [
+      { label: "No risk, more comparison pages always help", correct: false },
+      { label: "This matches Google's scaled content abuse and doorway abuse patterns, since the pages add little unique value per page beyond the swapped name, regardless of how they were produced", correct: true },
+      { label: "The only risk is that it will take too long to write 40 pages manually", correct: false },
+      { label: "This is fine as long as the pages are written by a human rather than generated", correct: false },
+    ],
+    explanation:
+      "Google's own framing is explicit that the deciding factor is value per page, not page count or whether AI, automation, or a human produced it. A template with only the competitor's name swapped has none of the genuinely specific content, real pricing, real verdict, real sourcing, that a defensible comparison page needs. Five thorough pages beat twenty templated ones.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "Explain why a comparison page that concedes one real, specific limitation tends to get more of its other claims accepted, both by a human reader and by an AI system extracting claims from the page, than a page that lists only positives.",
+    modelAnswer:
+      "A page listing only positives gives the reader nothing to verify, so it reads the same as any other vendor's marketing copy and every claim on it is reasonably discounted as biased. A page that names one real, checkable limitation gives the reader a concrete data point they can go confirm; once that one claim checks out, the reader has a basis for treating the rest of the page's claims as accurate rather than promotional. The same logic applies to AI extraction: neutral, adjudicating language with a real concession is easier to treat as a reliable, reusable claim than persuasive, one-sided copy, which is harder to reuse safely without carrying its bias along with it.",
+  },
+];
+
 export const M9_PROMPT_TAXONOMY_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   {
     kind: "multiple-choice",

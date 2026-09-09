@@ -15,6 +15,7 @@ import { M7AttributionRoi } from "./M7AttributionRoi";
 import { M7AttributionRoiSales } from "./M7AttributionRoiSales";
 import { M8ManualAuditMethodology } from "./M8ManualAuditMethodology";
 import { M9PromptTaxonomyStrategy } from "./M9PromptTaxonomyStrategy";
+import { M10CompetitivePositioningComparisonDiagnostics } from "./M10CompetitivePositioningComparisonDiagnostics";
 import { S4CompetitiveLandscape } from "./S4CompetitiveLandscape";
 import { AirOpsResearchDigest } from "@/app/components/research-digest/AirOpsResearchDigest";
 
@@ -45,5 +46,6 @@ export const lessonComponents: Record<string, ComponentType<{ audience?: Audienc
   "em-sa:m8": M8ManualAuditMethodology,
   "sales:m8": AirOpsResearchDigest,
   "em-sa:m9": M9PromptTaxonomyStrategy,
+  "em-sa:m10": M10CompetitivePositioningComparisonDiagnostics,
   "sales:s4": S4CompetitiveLandscape,
 };
