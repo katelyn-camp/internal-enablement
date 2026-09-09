@@ -240,13 +240,6 @@ const SLIDES: Slide[] = [
     talkingPoints:
       "Close on the agenda's third item, next steps, before this slide, not after it. Don't let the deck's literal last slide be the last thing you say, the close is a conversation, not a slide.",
   },
-  {
-    numbers: "34",
-    label: "Parking Lot",
-    copy: ["(intentionally blank)"],
-    talkingPoints:
-      "A working appendix marker, not a slide you present. It's a landing spot for you to drop extra material, a competitive comparison, deeper pricing detail, a specific case study, if a particular call needs backup slides beyond the standard 33. Skip it in the numbered flow.",
-  },
 ];
 
 export function S5FirstCallDeckWalkthrough() {
