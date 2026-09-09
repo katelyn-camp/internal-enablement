@@ -701,6 +701,60 @@ export const M8_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   },
 ];
 
+export const M13_COMPLIANCE_REGULATED_INDUSTRIES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A CSM asks you to confirm that a batch of new content for a fintech client is \"fully compliant\" so it can ship today. What should you tell them?",
+    options: [
+      { label: "Confirm it, the content follows the general red-flag checklist so it's safe to represent as compliant", correct: false },
+      { label: "AirOps can draft and flag known risk areas, but the client's own compliance or legal function is the only party with the authority to approve it, that determination isn't AirOps' to make", correct: true },
+      { label: "Compliance only matters for healthcare clients, not fintech, so this doesn't apply", correct: false },
+      { label: "Ship it, and let the client raise it only if a regulator ever asks", correct: false },
+    ],
+    explanation:
+      "The core boundary in this module: AirOps drafts and flags, the client's legal or compliance function approves. Representing content as \"compliant\" claims an authority AirOps doesn't have and creates liability without any actual review behind it.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A teammate says, \"This client is HIPAA compliant, so we're fine using their customer call transcripts as source material for a content workflow.\" What's wrong with that reasoning?",
+    modelAnswer:
+      "It conflates two separate things: HIPAA is a data-privacy and security law governing how protected health information gets handled, not a marketing-claims rule, and being \"HIPAA compliant\" as an organization doesn't by itself authorize a vendor to touch PHI. What actually has to exist first is a signed Business Associate Agreement (BAA) between the client and AirOps specifically, since AirOps would become a business associate by processing that data. Absent a confirmed BAA, the safe default is to treat the call transcripts as off-limits for workflow ingestion, regardless of the client's own HIPAA compliance status.",
+  },
+  {
+    kind: "true-false",
+    prompt:
+      "True or false: there is a published, confirmed policy from Google or the major AI platforms stating that YMYL (Your Money or Your Life) scoring applies to AI Overview or chatbot answers the same way it applies to classic Google Search ranking.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "No such policy is published. YMYL is a defined concept in Google's Search Quality Rater Guidelines for classic search. AI answers do appear more hedged and disclaimer-heavy on medical and financial queries, but that's practitioner pattern-matching, not a documented mechanism, treat the parallel as a reasonable working assumption, not an established fact.",
+  },
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A national insurance client wants a new campaign live in every state within two weeks. What's the realistic planning consideration?",
+    options: [
+      { label: "Two weeks is fine everywhere, insurance advertising rules are federal and uniform across states", correct: false },
+      { label: "NAIC model advertising regulations are adopted, and vary, state by state; some states require pre-clearance before use rather than file-and-use, so the campaign is only as fast as its slowest state", correct: true },
+      { label: "State rules only matter for life and annuity products, this campaign is exempt regardless of product line", correct: false },
+      { label: "Filing timelines are irrelevant since AirOps' own review covers it", correct: false },
+    ],
+    explanation:
+      "Insurance advertising regulation runs through NAIC model regulations that states adopt individually, with real variation, including whether a state requires approval before use or allows file-and-use after the fact. A national launch date has to account for the slowest-clearing state, not the fastest.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "Explain why \"risk-tiering\" content before scheduling it matters for a regulated account's production calendar, using a concrete example of a fast-moving piece and a slow-moving piece.",
+    modelAnswer:
+      "Not all content carries the same compliance risk, so treating everything on the same production timeline either slows down low-risk content unnecessarily or, worse, rushes high-risk content past a review it actually needs. An evergreen, definitional piece, for example an explainer on how a type of account or policy generally works, makes no specific claim and can typically move through review quickly. A piece with a performance number, an efficacy claim, or anything resembling a guarantee, for example a page citing a specific investment return or a specific health outcome, needs compliance pre-approval and a real review buffer before it can ship. Scheduling both at the same cadence is what causes a launch date to slip when the higher-risk piece gets stuck in review.",
+  },
+];
+
 export const M12_MULTI_BRAND_MA_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   {
     kind: "multiple-choice",

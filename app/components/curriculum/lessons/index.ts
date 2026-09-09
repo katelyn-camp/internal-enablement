@@ -18,6 +18,7 @@ import { M9PromptTaxonomyStrategy } from "./M9PromptTaxonomyStrategy";
 import { M10CompetitivePositioningComparisonDiagnostics } from "./M10CompetitivePositioningComparisonDiagnostics";
 import { M11ExternalContentPlacementExecution } from "./M11ExternalContentPlacementExecution";
 import { M12MultiBrandMultiLocationMA } from "./M12MultiBrandMultiLocationMA";
+import { M13ComplianceRegulatedIndustries } from "./M13ComplianceRegulatedIndustries";
 import { S4CompetitiveLandscape } from "./S4CompetitiveLandscape";
 import { S5FirstCallDeckWalkthrough } from "./S5FirstCallDeckWalkthrough";
 import { AirOpsResearchDigest } from "@/app/components/research-digest/AirOpsResearchDigest";
@@ -52,6 +53,7 @@ export const lessonComponents: Record<string, ComponentType<{ audience?: Audienc
   "em-sa:m10": M10CompetitivePositioningComparisonDiagnostics,
   "em-sa:m11": M11ExternalContentPlacementExecution,
   "em-sa:m12": M12MultiBrandMultiLocationMA,
+  "em-sa:m13": M13ComplianceRegulatedIndustries,
   "sales:s4": S4CompetitiveLandscape,
   "sales:s5": S5FirstCallDeckWalkthrough,
 };

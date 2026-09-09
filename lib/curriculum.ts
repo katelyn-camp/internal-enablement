@@ -258,7 +258,8 @@ export const modules: ModuleEntry[] = [
     title: "Compliance & Regulated Industries",
     phase: "phase2",
     audience: "em-sa",
-    objective: "(validate first) Plan production velocity around compliance review; keep language citable while compliant.",
+    objective:
+      "Plan content production velocity around a regulated client's compliance review cycle; know the vendor/client boundary (AirOps drafts and flags, the client's legal or compliance function approves); recognize the cross-vertical red flags in fintech, healthcare, and insurance content.",
     knowledgeCheck: "Short scenario",
     groupSession: "N/A",
     appliedProject: "N/A",
