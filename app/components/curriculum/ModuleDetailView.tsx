@@ -4,7 +4,9 @@ import { lessonComponents } from "./lessons";
 
 export function ModuleDetailView({ module, audience }: { module: ModuleEntry; audience: Audience }) {
   const projectOptions =
-    audience === "sales" && module.salesAppliedProjectOptions ? module.salesAppliedProjectOptions : module.appliedProjectOptions;
+    audience === "sales"
+      ? module.salesAppliedProjectOptions ?? module.appliedProjectOptions
+      : undefined;
   const LessonComponent = lessonComponents[`${audience}:${module.slug}`];
 
   return (
