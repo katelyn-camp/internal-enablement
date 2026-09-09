@@ -231,10 +231,10 @@ export const modules: ModuleEntry[] = [
   {
     slug: "m11",
     code: "M11",
-    title: "Offsite & Third-Party Placement Execution",
+    title: "External Content & Third-Party Placement Execution",
     phase: "phase2",
     audience: "em-sa",
-    objective: "Run a citation-gap analysis; decide which forums/sites to monitor; scope placement work.",
+    objective: "Run a citation-gap analysis against tracked prompts to find already-cited third-party articles missing or misrepresenting the brand; decide between mention-building and mention-correction; scope the placement work.",
     knowledgeCheck: "Citation-gap mini-exercise",
     groupSession: "GS3 (Managed Services)",
     appliedProject: "Optional recs-deck slot",

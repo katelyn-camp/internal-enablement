@@ -701,6 +701,60 @@ export const M8_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   },
 ];
 
+export const M11_EXTERNAL_CONTENT_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A citation-gap review turns up a Reddit thread that's cited for one of an account's tracked prompts, and the client isn't mentioned in it. Does this belong in External Content execution?",
+    options: [
+      { label: "Yes, any cited source where the client is missing is an External Content target", correct: false },
+      { label: "No, Reddit and forum threads are Community's participation and seeding motion, a different channel with different mechanics", correct: true },
+      { label: "Yes, but only if the thread also has a high domain authority", correct: false },
+      { label: "No, because Reddit threads are never cited by AI platforms", correct: false },
+    ],
+    explanation:
+      "External Content covers listicles, third-party comparison content, and review roundups, publisher and editorial sources. Reddit threads and forums sit under Community, a separate channel with its own participation and seeding mechanics. Routing this finding to External Content would misassign the work.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A citation-gap review finds that a \"Best Payroll Software\" roundup, cited for three tracked prompts, does mention the client, but says the client doesn't offer multi-state payroll, when it's supported the feature for over a year. Which track does this fall into, and what does the work actually involve?",
+    modelAnswer:
+      "This is mention correction, not mention building, the client is already named, but the claim is factually wrong and outdated. The work is identifying the exact incorrect line and reaching the publisher or author to correct that specific claim, not relitigating the whole piece or treating it as a fresh outreach target. Because the article is already cited across three tracked prompts, the fix has leverage well beyond a single correction.",
+  },
+  {
+    kind: "true-false",
+    prompt:
+      "True or false: a brand mention needs a backlink back to the client's site to meaningfully help AI-citation visibility.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "Nofollow links are nearly as predictive of citation as dofollow links (0.509 vs. 0.504 correlation), so link \"authority\" in the classic SEO sense barely applies here. A mention with real supporting information can carry nearly the same weight whether or not it links back.",
+  },
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A teammate wants to rule out a mention-building target because the article's domain authority looks mediocre. What should you tell them?",
+    options: [
+      { label: "They're right to rule it out, domain authority is the strongest predictor of citation", correct: false },
+      { label: "Domain authority barely correlates with citation, always-cited and never-cited pages land at nearly the same average DA, so a mid-tier site already being cited for a tracked prompt outweighs a high-DA site that isn't", correct: true },
+      { label: "Domain authority only matters for mention correction, not mention building", correct: false },
+      { label: "They're right, but only because nofollow links are the real disqualifier", correct: false },
+    ],
+    explanation:
+      "Always-cited pages average DA 53.0 vs. 55.7 for never-cited pages, essentially a wash, and most citations go to sites in the DA 20–80 middle. Whether an article is already being cited for a tracked prompt is the signal that matters here, not its domain authority score.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A CSM argues the account should finish its owned-content refresh before starting any External Content work, since Google still sends the account real traffic. Explain the tension in that argument and how you'd actually decide.",
+    modelAnswer:
+      "Google's ranking, and Google AI Overviews specifically, draw from Google's own index, so owned-content work does protect that specific surface. But other AI platforms like ChatGPT and Perplexity pull heavily from third-party sources regardless of how well the client ranks on Google, roughly 85% of brand mentions in AI answers come from third-party domains, not the brand's own site. So finishing owned content first doesn't address the majority of what decides visibility on those platforms. The two aren't strictly sequential; the actual answer comes from a citation-gap analysis for this specific account, which shows whether the biggest remaining gap sits on the client's own site or in the third-party articles already being cited around it.",
+  },
+];
+
 export const M10_COMPETITIVE_POSITIONING_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   {
     kind: "multiple-choice",
