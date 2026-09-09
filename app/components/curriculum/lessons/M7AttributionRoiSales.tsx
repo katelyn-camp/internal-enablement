@@ -108,7 +108,7 @@ export function M7AttributionRoiSales() {
         <ul className="max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>Ask what their CAC or payback-period target is, and how far off current performance sits from it.</li>
           <li>Ask whether paid performance is declining or getting more expensive, the single most common reason a CMO starts looking elsewhere.</li>
-          <li>Never promise a specific revenue number tied to AI-search visibility. Promise the direction and the honesty of the measurement.</li>
+          <li>Never promise a specific revenue number tied to AI-search visibility.</li>
         </ul>
       </section>
     </div>
