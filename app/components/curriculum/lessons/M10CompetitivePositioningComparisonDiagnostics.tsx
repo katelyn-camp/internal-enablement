@@ -318,18 +318,16 @@ export function M10CompetitivePositioningComparisonDiagnostics() {
       <section id="the-positioning-edge">
         <SectionHeading>The Positioning Edge</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Name one real, specific place a competitor is the better fit, for some real segment of buyer, and claim the
-          edge on the dimension that actually matters most to the buyer this page is written for. A page that lists
-          only positives reads as an advertisement, and a
-          skeptical reader, or an AI system extracting claims from it, has no way to check any of those claims
-          against reality. A page that also names one real limitation gives the reader something they can verify,
-          which changes how every other claim on the page gets treated.
+          Name one place a competitor is the better fit for some segment of buyer, and claim the edge on the
+          dimension that matters most to the buyer this page is written for. A page that lists only positives gives
+          a skeptical reader, or an AI system extracting its claims, nothing to check them against. A page that also
+          names one real limitation gives the reader something they can verify, which changes how every other claim
+          on the page gets treated.
         </p>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
           The concession has to be real and specific, not decorative. &ldquo;We&rsquo;re not for everyone&rdquo;
           concedes nothing checkable. &ldquo;Team B is the stronger fit if you need same-day phone support, we
-          don&rsquo;t offer that&rdquo; concedes something a reader can actually go verify, and that&rsquo;s what
-          makes it do any work at all.
+          don&rsquo;t offer that&rdquo; concedes something a reader can verify.
         </p>
         <div className="mb-4 rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
