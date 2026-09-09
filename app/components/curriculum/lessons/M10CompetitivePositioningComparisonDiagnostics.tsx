@@ -55,7 +55,7 @@ const ANATOMY_BLOCKS: AnatomyBlock[] = [
   {
     block: "Differentiation block",
     whatItDoes: "Names the 2–3 dimensions that actually drive this decision, up front, before the full feature table.",
-    whyItMatters: "Buries the real decision inside a 40-row table and the reader never finds the two things that actually mattered.",
+    whyItMatters: "Lets a reader grasp the real decision immediately, and gives an AI system a compact, extractable summary instead of one it has to derive by parsing a 40-row table.",
   },
   {
     block: "Feature / spec table",
@@ -85,7 +85,7 @@ const ANATOMY_BLOCKS: AnatomyBlock[] = [
   {
     block: "CTA",
     whatItDoes: "One clear next step, sized to where a shortlist buyer actually is.",
-    whyItMatters: "A comparison page is bottom-funnel; the CTA should assume the reader is close to deciding, not still browsing.",
+    whyItMatters: "A reader this close to a decision converts on a CTA that matches that, and bounces off one written for someone still browsing.",
   },
 ];
 
