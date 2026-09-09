@@ -20,8 +20,7 @@ export function M7AttributionRoiSales() {
           budget and asks one question above all others: &ldquo;what do I get if I give you more money?&rdquo; Paid
           media gets over-funded relative to everything else for one reason: it&rsquo;s the one channel where that
           question has a clean, provable answer. Every other channel, including AI search, is asking a CMO to trust
-          a portfolio of bets they can&rsquo;t fully trace dollar for dollar. Anticipating that discomfort, instead
-          of being surprised by it, is what this module is for.
+          a portfolio of bets they can&rsquo;t fully trace dollar for dollar.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
