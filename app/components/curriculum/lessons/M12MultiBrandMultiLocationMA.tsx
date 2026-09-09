@@ -274,10 +274,13 @@ export function M12MultiBrandMultiLocationMA() {
         <SectionHeading>Why This Discipline Exists</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
           Everything covered so far in this curriculum assumes a single brand on a single domain. Enterprise accounts
-          break that assumption constantly, in three specific ways: a parent company running several distinct
-          brands, a single brand operating across many physical locations or franchisees, and a merger, acquisition,
-          or divestiture that changes the structure entirely partway through an engagement.
+          break that assumption constantly, in three specific ways:
         </p>
+        <ul className="mb-4 max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/70">
+          <li>A parent company running several distinct brands.</li>
+          <li>A single brand operating across many physical locations or franchisees.</li>
+          <li>A merger, acquisition, or divestiture that changes the structure entirely partway through an engagement.</li>
+        </ul>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
           Each of these looks like a different problem on the surface, but all three reduce to the same underlying
           question: should this be tracked, measured, and built as one thing, or as several separate things? Get that
