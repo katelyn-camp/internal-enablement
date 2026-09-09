@@ -327,17 +327,27 @@ function DeckViewer() {
         >
           ← Previous
         </button>
-        <select
-          value={index}
-          onChange={(e) => setIndex(Number(e.target.value))}
-          className="rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink"
-        >
-          {SLIDES.map((s, i) => (
-            <option key={s.numbers} value={i}>
-              Slide {s.numbers}: {s.label}
-            </option>
-          ))}
-        </select>
+        <div className="relative w-60 sm:w-72">
+          <select
+            value={index}
+            onChange={(e) => setIndex(Number(e.target.value))}
+            className="w-full appearance-none truncate rounded-full border border-line bg-paper-2 py-1.5 pl-3 pr-8 text-xs font-medium tracking-wide text-ink"
+          >
+            {SLIDES.map((s, i) => (
+              <option key={s.numbers} value={i}>
+                Slide {s.numbers}: {s.label}
+              </option>
+            ))}
+          </select>
+          <svg
+            viewBox="0 0 12 12"
+            fill="none"
+            aria-hidden
+            className="pointer-events-none absolute right-3 top-1/2 h-3 w-3 -translate-y-1/2 text-ink/40"
+          >
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
         <button
           type="button"
           onClick={() => setIndex((i) => Math.min(i + 1, SLIDES.length - 1))}
