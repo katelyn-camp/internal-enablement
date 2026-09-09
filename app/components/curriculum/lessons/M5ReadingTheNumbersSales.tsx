@@ -1,5 +1,7 @@
 import { SectionHeading } from "./shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
+import { KnowledgeCheckButton } from "@/app/components/curriculum/KnowledgeCheck";
+import { M5_SALES_KNOWLEDGE_CHECK } from "./knowledge-check-data";
 
 const OUTLINE = [
   { id: "two-altitudes", label: "The Same Number, Two Altitudes" },
@@ -45,7 +47,17 @@ const ALTITUDE_TABLE: AltitudeRow[] = [
 export function M5ReadingTheNumbersSales() {
   return (
     <div className="space-y-12">
-      <PageOutline sections={OUTLINE} />
+      <PageOutline
+        sections={OUTLINE}
+        footer={
+          <KnowledgeCheckButton
+            id="m5-sales"
+            title="Reading the Numbers: Dashboards, Tools & Data"
+            questions={M5_SALES_KNOWLEDGE_CHECK}
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+          />
+        }
+      />
 
       <section id="two-altitudes">
         <SectionHeading>The Same Number, Two Altitudes</SectionHeading>

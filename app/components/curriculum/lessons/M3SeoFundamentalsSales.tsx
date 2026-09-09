@@ -1,5 +1,7 @@
 import { SectionHeading } from "./shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
+import { KnowledgeCheckButton } from "@/app/components/curriculum/KnowledgeCheck";
+import { M3_SALES_KNOWLEDGE_CHECK } from "./knowledge-check-data";
 
 const OUTLINE = [
   { id: "why-it-still-matters", label: "Why SEO Still Matters Here" },
@@ -367,7 +369,17 @@ function DiagnosticAccordion({ items }: { items: DiagnosticEntry[] }) {
 export function M3SeoFundamentalsSales() {
   return (
     <div className="space-y-12">
-      <PageOutline sections={OUTLINE} />
+      <PageOutline
+        sections={OUTLINE}
+        footer={
+          <KnowledgeCheckButton
+            id="m3-sales"
+            title="SEO Fundamentals & Technical Foundations"
+            questions={M3_SALES_KNOWLEDGE_CHECK}
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+          />
+        }
+      />
 
       <section id="why-it-still-matters">
         <SectionHeading>Why SEO Still Matters Here</SectionHeading>

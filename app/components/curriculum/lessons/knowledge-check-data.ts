@@ -436,6 +436,271 @@ export const M7_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   },
 ];
 
+/**
+ * Scoped to the Sales side of M3: the four-factor ranking order, the robots.txt
+ * AI-bot-block check, and why a technically broken site is a shared SEO/AEO problem.
+ * One free-response question is framed as a CMO objection to rehearse turning the
+ * concept into a live talk track, not just recall.
+ */
+export const M3_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt:
+      "A prospect's site is fast, has clean markup, and a strong backlink profile, but still isn't ranking for its main keyword. Per this module's ranking factor order, what has to be checked first, before backlinks are even worth discussing?",
+    options: [
+      { label: "Crawlability and indexability", correct: false },
+      { label: "Search intent match", correct: true },
+      { label: "Authority and trust", correct: false },
+      { label: "Domain age", correct: false },
+    ],
+    explanation:
+      "Speed, clean markup, and backlinks already point past the crawlability floor, so the next factor in line is whether the page actually matches what the searcher is looking for. Authority is a tiebreaker further down the order, it can't fix an intent mismatch.",
+  },
+  {
+    kind: "true-false",
+    prompt: "True or false: a 404 when checking a prospect's robots.txt file means the site is blocking all bots by default.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "No file means no explicit disallow rules, the default is crawl everything. The signal worth checking for is a file that exists and specifically names an AI bot like GPTBot in its disallow list.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A prospect insists their organic traffic is healthy, but their blog hasn't published anything in two years. What should that make you suspicious of going forward, and why does it matter more for AI visibility than for classic ranking stability?",
+    modelAnswer:
+      "A content engine that was built once and abandoned. Traffic looking fine today doesn't mean it stays that way, AI answer engines specifically favor sources that are current and still publishing on a topic, so a stale hub gives an AI nothing new to find, trust, or cite going forward, even if the older content once ranked well.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A CMO tells you: \"We already rank #1 on Google for our category, why do we need to talk about AI search at all?\" How do you respond?",
+    modelAnswer:
+      "Ranking well in classic Google search and being visible to ChatGPT, Claude, and Perplexity aren't the same thing, those platforms don't render JavaScript and weigh trust differently than Google does, so a #1 organic ranking doesn't guarantee AI visibility. AEO builds on top of what SEO already earned rather than replacing it, and a technically broken foundation, like content invisible to AI crawlers, is a real problem those platforms have even when Google ranking looks fine.",
+  },
+];
+
+/**
+ * Scoped to the Sales side of M4: the non-rendering platforms, the channel-influence
+ * split (owned vs. community/third-party), and using a JS-rendering gap or a channel-mix
+ * imbalance as a discovery-call hook. Includes one CMO-objection free-response.
+ */
+export const M4_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt: "Per the platform table in this module, which three platforms don't render JavaScript at all?",
+    options: [
+      { label: "ChatGPT, Claude, Perplexity", correct: true },
+      { label: "ChatGPT, Claude, Google AI Overviews", correct: false },
+      { label: "Claude, Perplexity, Gemini", correct: false },
+      { label: "All five surfaces render JavaScript the same way", correct: false },
+    ],
+    explanation:
+      "ChatGPT, Claude, and Perplexity all read the raw HTTP response only. Google AI Overviews and AI Mode are the outlier, they ride on Googlebot's full rendering pipeline.",
+  },
+  {
+    kind: "true-false",
+    prompt: "True or false: a brand's own website is the single largest source of what AI platforms say about it.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "Owned content accounts for roughly 15-25% of citations. Community sources, Reddit, YouTube, LinkedIn, and similar, account for roughly 48% on their own, before External Content and Social & Influencer are even added in.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A prospect's pricing numbers load correctly in a browser but are injected by client-side JavaScript after the page renders. What's the risk specific to AI-search visibility, and what would you tell them to check?",
+    modelAnswer:
+      "ChatGPT, Claude, and Perplexity don't render JavaScript, so if the pricing only exists post-render, those three would never see it, even though Google renders the page fine and shows it correctly in classic search. The prospect should check the raw HTTP response for that page against what actually shows up in a browser's rendered view to confirm whether the pricing is present before the render step or only after it.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A CMO pushes back: \"Our content team already publishes constantly on our own site, why would this be a priority?\" How do you respond?",
+    modelAnswer:
+      "Publishing volume on their own domain doesn't change the fact that owned content only accounts for roughly 15-25% of what AI platforms actually cite, while community sources like Reddit, YouTube, and LinkedIn account for roughly 48% on their own. No matter how much they publish, most of what AI platforms say about the brand is being decided somewhere they don't control yet, which is exactly why external and community presence has to be part of the plan, not a replacement for the owned-content work already happening.",
+  },
+];
+
+/**
+ * Scoped to the Sales side of M5: translating a team-level number to the altitude
+ * the person across the table owns, the CAC/LTV/payback vocabulary, and knowing what's
+ * Services' job to validate versus a rep's job to translate. One CMO-facing free-response.
+ */
+export const M5_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt: "Per this module, which number would you lead with when the person across the table is a CMO rather than a VP of Growth?",
+    options: [
+      { label: "The team-level number, e.g. \"we got cited\"", correct: false },
+      { label: "The company-level translation, e.g. \"trusted market visibility\"", correct: true },
+      { label: "Whichever number is easiest to pull up on a dashboard", correct: false },
+      { label: "Raw citation count for the month", correct: false },
+    ],
+    explanation:
+      "A CMO owns the whole marketing organization's position and impact, not the mechanics behind a single metric. The company-level version of a number is the one they can actually defend to their own board or CFO.",
+  },
+  {
+    kind: "true-false",
+    prompt:
+      "True or false: a CMO who rose through brand or product marketing typically knows team-level mechanics like CAC and payback period as fluently as a CMO who rose through growth or performance.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "A growth-background CMO already knows the team-level numbers cold. A brand or product-background CMO leans harder on their VP of Growth for that detail and cares more about how the brand is represented, that's an attention and priority gap, not a knowledge gap.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "Using the same 3:1 LTV-to-CAC logic as the ARS worked example, a prospect reports an LTV of $9,000. What target CAC would justify that same ratio, and why does the ratio matter more than either number alone?",
+    modelAnswer:
+      "$9,000 divided by 3 is a target CAC of $3,000. The ratio is what tells you whether a channel is worth investing in, a high LTV alone doesn't justify unlimited spend to acquire a customer, and a low CAC alone doesn't matter if that customer isn't worth much over time. The two numbers only mean something read together.",
+  },
+  {
+    kind: "free-response",
+    prompt: "A CMO asks you directly: \"What's our cost per lead going to look like with this program?\" How do you respond?",
+    modelAnswer:
+      "Don't invent or promise a specific number, validating a figure like that is Services' job, not something to answer live off the top of your head. The better move is the one a CMO themselves would make: know who on the account's side owns that team-level detail, and bring the company-level story, what this does for trusted visibility and qualified pipeline, to the person actually in front of you.",
+  },
+];
+
+/**
+ * Scoped to the Sales side of M6: goal-first framing before pitching a tactic, the
+ * refresh/net-new/consolidate talk track, and sizing an engagement to the account rather
+ * than a fixed package. One CMO-facing free-response tests turning a tactic request back
+ * into a goal question.
+ */
+export const M6_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt: "Per the talk track in this module, which content move is described as the fastest path to proof, since it uses equity the account already paid for?",
+    options: [
+      { label: "Net-new", correct: false },
+      { label: "Refresh", correct: true },
+      { label: "Consolidate", correct: false },
+      { label: "All three move at the same speed", correct: false },
+    ],
+    explanation:
+      "Refresh uses existing links, existing rank, and existing familiarity instead of starting at zero, which makes it lower-risk and faster to prove than net-new content.",
+  },
+  {
+    kind: "true-false",
+    prompt: "True or false: net-new content should be the default recommendation whenever a prospect wants to grow visibility in a new area.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "Net-new is only worth proposing once a real gap is confirmed, not just a page that could be better. Recommending it before confirming the gap reads as pitching a tactic instead of solving a problem.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A prospect's page already ranks #4, has some backlinks, and gets steady traffic, but a junior teammate wants to pitch a brand-new page instead. What should be recommended, and why?",
+    modelAnswer:
+      "Refresh the existing page rather than propose net-new. It already carries links, ranking history, and familiarity that a brand-new URL would start without, which makes refresh both faster to prove and lower risk, the fix the talk track leads with by default.",
+  },
+  {
+    kind: "free-response",
+    prompt: "A CMO says: \"We want to publish twice as much content next quarter to grow our AI visibility.\" How do you respond?",
+    modelAnswer:
+      "Ask what business goal is actually driving the request, being known for something new versus winning more of what's already owned, since that answer decides whether refresh, net-new, or consolidate is the right move, not a fixed content quota. The frame worth using is sizing the chef, not picking a menu item: the right size and shape of the work depends on what an audit finds, not on doubling a number before anyone's confirmed a real gap.",
+  },
+];
+
+/**
+ * Scoped to the Sales side of M7, already covered by M7AttributionRoiSales.tsx: attribution
+ * model literacy, the two levels of ROI, and the line not to cross on CAC/LTV or revenue
+ * promises. Includes a CMO-facing free-response on the revenue-guarantee objection.
+ */
+export const M7_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt: "Which attribution model was Google Analytics' old default, and zeroes out an AI-search touch a buyer read weeks before converting?",
+    options: [
+      { label: "First-touch", correct: false },
+      { label: "Last-touch", correct: true },
+      { label: "U-shaped", correct: false },
+      { label: "Data-driven", correct: false },
+    ],
+    explanation:
+      "Last-touch gives all the credit to whatever happened right before conversion, usually a branded search or a direct visit, and gives none to an earlier AI-search touch no matter how much it shaped the decision.",
+  },
+  {
+    kind: "true-false",
+    prompt: "True or false: GA4's current default, data-driven attribution, always gives real credit to an AI-search touch.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "Data-driven attribution is algorithmic, not a fixed rule, it estimates credit from the account's own data. That can surface real credit for an AI-search touch, or very little, entirely depending on that account.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A client's GA4 property shows almost no conversions tied to AI search and concludes the channel isn't driving anything. What should you find out before accepting that conclusion?",
+    modelAnswer:
+      "Which attribution model the client's property is actually running. A model like last-touch structurally can't see an AI-search touch that happened weeks before the buyer converted through a branded search or direct visit, so the conclusion could be a real result or just a property that was never going to be able to see that credit in the first place.",
+  },
+  {
+    kind: "free-response",
+    prompt: "A CMO asks you: \"Can you guarantee this will show up as revenue in our reporting?\" How do you respond?",
+    modelAnswer:
+      "No, and say so directly. Level 1, whether the work moved mention rate, citation rate, and share of voice, can be measured and reported on now. Level 2, whether that visibility turns into pipeline and revenue, is still being built out as a category, for AirOps and everyone in it, so a specific revenue number isn't something to promise. Commit to reporting Level 1 honestly rather than overpromising Level 2.",
+  },
+];
+
+/**
+ * Scoped to the Sales side of M8 (AirOps Research): the volatility of AI visibility,
+ * the gap between Google rank and AI citation, and using a sourced fact live on a call
+ * rather than memorizing the whole digest. Includes a CMO-facing free-response on why
+ * AI Overviews matter even when Google traffic still looks healthy.
+ */
+export const M8_SALES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
+  {
+    kind: "multiple-choice",
+    prompt: "Per this module, what share of Google AI Overview citations come from URLs outside Google's own top 20 organic results?",
+    options: [
+      { label: "About 10%", correct: false },
+      { label: "About 30%", correct: false },
+      { label: "About 59.6%", correct: true },
+      { label: "Nearly 100%", correct: false },
+    ],
+    explanation:
+      "Ranking well organically is still a meaningful signal, 80% of cited brands rank in Google's organic top three, but 59.6% of AI Overview citations still come from outside the top 20, so a strong Google rank doesn't guarantee AI Overview citation.",
+  },
+  {
+    kind: "true-false",
+    prompt: "True or false: once a brand appears in an AI answer, it reliably reappears in the same answer to the same query going forward.",
+    options: [
+      { label: "True", correct: false },
+      { label: "False", correct: true },
+    ],
+    explanation:
+      "Only about 30% of brands stay visible across consecutive AI answers to the same query, and only 20% hold visibility across five consecutive runs. AI citation is volatile, not a stable ranking.",
+  },
+  {
+    kind: "free-response",
+    prompt:
+      "A prospect asks how a page that already ranks #1 on Google could still not get cited by ChatGPT. Using two facts from this module, explain why.",
+    modelAnswer:
+      "Google rank and AI citation are correlated, not identical. A page ranking #1 in Google does get cited more often than a lower-ranked page, but 59.6% of AI Overview citations still come from outside Google's top 20, so ranking well doesn't guarantee citation. On top of that, 85% of brand mentions in AI answers come from third-party domains, not the brand's own site, so even a page ranking #1 on the brand's own domain is competing against comparison pages, reviews, and community sources for the actual citation.",
+  },
+  {
+    kind: "free-response",
+    prompt: "A CMO says: \"Google still sends us plenty of traffic, why should we care about AI Overviews eating into search clicks?\" How do you respond?",
+    modelAnswer:
+      "AI Overviews went from appearing in under 5% of Google results to over a quarter of them in about six months, and click-through rate drops 61% the moment one shows up on a query. The traffic isn't gone, it's landing somewhere a rank tracker can't see, and that visibility is volatile besides, only one in five brands hold their spot across five consecutive runs of the same query, so today's healthy traffic number doesn't guarantee next week's.",
+  },
+];
+
 export const M9_PROMPT_TAXONOMY_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
   {
     kind: "multiple-choice",

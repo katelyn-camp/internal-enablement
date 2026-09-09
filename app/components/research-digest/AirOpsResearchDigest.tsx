@@ -1,5 +1,7 @@
 import { SectionHeading } from "@/app/components/curriculum/lessons/shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
+import { KnowledgeCheckButton } from "@/app/components/curriculum/KnowledgeCheck";
+import { M8_SALES_KNOWLEDGE_CHECK } from "@/app/components/curriculum/lessons/knowledge-check-data";
 
 const OUTLINE = [
   { id: "market-context", label: "Where AI Search Stands Today" },
@@ -73,7 +75,17 @@ const REPORTS: Report[] = [
 export function AirOpsResearchDigest() {
   return (
     <div className="space-y-12">
-      <PageOutline sections={OUTLINE} />
+      <PageOutline
+        sections={OUTLINE}
+        footer={
+          <KnowledgeCheckButton
+            id="m8-sales"
+            title="AirOps Research"
+            questions={M8_SALES_KNOWLEDGE_CHECK}
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+          />
+        }
+      />
 
       <section id="market-context">
         <SectionHeading>Where AI Search Stands Today</SectionHeading>

@@ -9,13 +9,19 @@ import {
   M6_MANAGED_SERVICES_KNOWLEDGE_CHECK,
   M7_MANAGED_SERVICES_KNOWLEDGE_CHECK,
   M9_PROMPT_TAXONOMY_KNOWLEDGE_CHECK,
+  M3_SALES_KNOWLEDGE_CHECK,
+  M4_SALES_KNOWLEDGE_CHECK,
+  M5_SALES_KNOWLEDGE_CHECK,
+  M6_SALES_KNOWLEDGE_CHECK,
+  M7_SALES_KNOWLEDGE_CHECK,
+  M8_SALES_KNOWLEDGE_CHECK,
 } from "@/app/components/curriculum/lessons/knowledge-check-data";
 
 /**
- * Maps each KnowledgeCheckButton `id` (delivery-team side only) to its question set and
- * the Airtable table it grades into. Table IDs are from the "appYeKEx7Sspa121K" base's
- * "M# [DT]" tables, whose fields (Q1..Qn, "Q# Correct", "Score") are index-aligned with
- * each question array below by design.
+ * Maps each KnowledgeCheckButton `id` to its question set and the Airtable table it
+ * grades into. Table IDs are from the "appYeKEx7Sspa121K" base's "M# [DT]" (delivery-team)
+ * and "M# [Sales]" tables, whose fields (Q1..Qn, "Q# Correct", "Score") are index-aligned
+ * with each question array below by design.
  */
 const KNOWLEDGE_CHECKS: Record<string, { tableId: string; questions: KnowledgeCheckQuestion[] }> = {
   m1: { tableId: "tblbUJLGZF06PJBPJ", questions: M1_KNOWLEDGE_CHECK },
@@ -26,6 +32,12 @@ const KNOWLEDGE_CHECKS: Record<string, { tableId: string; questions: KnowledgeCh
   "m6-managed-services": { tableId: "tblG6lrlLW7vhDzC4", questions: M6_MANAGED_SERVICES_KNOWLEDGE_CHECK },
   "m7-managed-services": { tableId: "tblwUEWV6i97wydUS", questions: M7_MANAGED_SERVICES_KNOWLEDGE_CHECK },
   "m9-prompt-taxonomy": { tableId: "tbl2MwJ2uD9eulCxz", questions: M9_PROMPT_TAXONOMY_KNOWLEDGE_CHECK },
+  "m3-sales": { tableId: "tblpEGPAiuScuinib", questions: M3_SALES_KNOWLEDGE_CHECK },
+  "m4-sales": { tableId: "tblRD6WDgcz5Srixs", questions: M4_SALES_KNOWLEDGE_CHECK },
+  "m5-sales": { tableId: "tblgz4RrROcJm5Ko9", questions: M5_SALES_KNOWLEDGE_CHECK },
+  "m6-sales": { tableId: "tblomIyj8lM2eC8Dz", questions: M6_SALES_KNOWLEDGE_CHECK },
+  "m7-sales": { tableId: "tblk3zLIJMqthebYd", questions: M7_SALES_KNOWLEDGE_CHECK },
+  "m8-sales": { tableId: "tblGqt36XHPNMGk3N", questions: M8_SALES_KNOWLEDGE_CHECK },
 };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

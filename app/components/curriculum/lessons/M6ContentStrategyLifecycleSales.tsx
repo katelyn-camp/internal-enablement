@@ -1,5 +1,7 @@
 import { SectionHeading } from "./shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
+import { KnowledgeCheckButton } from "@/app/components/curriculum/KnowledgeCheck";
+import { M6_SALES_KNOWLEDGE_CHECK } from "./knowledge-check-data";
 
 const OUTLINE = [
   { id: "goal-first", label: "Business Goal First, Tactic Second" },
@@ -32,7 +34,17 @@ const TALK_TRACK: MoveRow[] = [
 export function M6ContentStrategyLifecycleSales() {
   return (
     <div className="space-y-12">
-      <PageOutline sections={OUTLINE} />
+      <PageOutline
+        sections={OUTLINE}
+        footer={
+          <KnowledgeCheckButton
+            id="m6-sales"
+            title="Content Strategy, Lifecycle & Production"
+            questions={M6_SALES_KNOWLEDGE_CHECK}
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+          />
+        }
+      />
 
       <section id="goal-first">
         <SectionHeading>Business Goal First, Tactic Second</SectionHeading>

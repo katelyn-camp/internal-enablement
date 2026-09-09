@@ -2,6 +2,8 @@ import { SectionHeading } from "./shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
 import { CHANNEL_ORDER, type ChannelName } from "./channel-mix-data";
 import { AeoLayers } from "./AeoLayers";
+import { KnowledgeCheckButton } from "@/app/components/curriculum/KnowledgeCheck";
+import { M4_SALES_KNOWLEDGE_CHECK } from "./knowledge-check-data";
 
 const OUTLINE = [
   { id: "second-buyer", label: "The Second Buyer" },
@@ -193,7 +195,17 @@ const SURFACE_PROFILES: SurfaceProfile[] = [
 export function M4AeoFundamentalsSales() {
   return (
     <div className="space-y-12">
-      <PageOutline sections={OUTLINE} />
+      <PageOutline
+        sections={OUTLINE}
+        footer={
+          <KnowledgeCheckButton
+            id="m4-sales"
+            title="AEO Fundamentals & Platform Differences"
+            questions={M4_SALES_KNOWLEDGE_CHECK}
+            className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"
+          />
+        }
+      />
 
       <section id="second-buyer">
         <SectionHeading>The Second Buyer</SectionHeading>
