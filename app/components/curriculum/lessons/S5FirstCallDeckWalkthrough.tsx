@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { SectionHeading } from "./shared";
 import { PageOutline } from "@/app/components/nav/PageOutline";
 
@@ -7,31 +10,7 @@ const DECK_URL =
 const OUTLINE = [
   { id: "how-to-use-this", label: "How to Use This Page" },
   { id: "customize-before-every-call", label: "Customize Before Every Call" },
-  { id: "slide-1", label: "1. Cover" },
-  { id: "slide-3", label: "3. Agenda" },
-  { id: "slide-4", label: "4. Who We Are" },
-  { id: "slide-5", label: "5. Trusted By" },
-  { id: "slide-6", label: "6–7. The Market Shift" },
-  { id: "slide-8", label: "8. The Three Engines" },
-  { id: "slide-9", label: "9. The Fundamental Shift" },
-  { id: "slide-10", label: "10. Winners and Losers" },
-  { id: "slide-11", label: "11–12. The Reality Index" },
-  { id: "slide-13", label: "13. The New Playbook" },
-  { id: "slide-14", label: "14. Strategy, Channels, System" },
-  { id: "slide-15", label: "15–16. Intelligence, Action, Measurement" },
-  { id: "slide-17", label: "17–19. Category Influence Overview" },
-  { id: "slide-20", label: "20. Bring on Channel Experts" },
-  { id: "slide-21", label: "21–22. The Pod" },
-  { id: "slide-23", label: "23. End-to-End Positioning" },
-  { id: "slide-24", label: "24. Owned Content" },
-  { id: "slide-25", label: "25. External Content" },
-  { id: "slide-26", label: "26. AI Ads" },
-  { id: "slide-27", label: "27. Social and Influencer" },
-  { id: "slide-28", label: "28. Community" },
-  { id: "slide-29", label: "29. Airbnb Proof" },
-  { id: "slide-30", label: "30–31. Chime and LegalZoom Proof" },
-  { id: "slide-32", label: "32–33. Close" },
-  { id: "slide-34", label: "34. Parking Lot" },
+  { id: "deck-viewer", label: "Walk the Deck" },
 ];
 
 interface Slide {
@@ -312,51 +291,91 @@ export function S5FirstCallDeckWalkthrough() {
         </ul>
       </section>
 
-      {SLIDES.map((s) => {
-        const firstNumber = parseInt(s.numbers.split(/[–-]/)[0], 10);
-        const hasImage = firstNumber <= 33;
-        return (
-        <section id={`slide-${firstNumber}`} key={s.numbers}>
-          <SectionHeading>
-            Slide {s.numbers}: {s.label}
-          </SectionHeading>
-          {hasImage && (
-            <img
-              src={`/first-call-slides/slide-${String(firstNumber).padStart(2, "0")}.png`}
-              alt={`Slide ${s.numbers}: ${s.label}. ${s.copy.join(" ")}`}
-              className="mb-4 max-w-2xl aspect-[16/9] w-full rounded-card border border-line object-contain"
-            />
-          )}
-          <details className="group mb-4 max-w-2xl rounded-card border border-line bg-white p-5">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium text-ink [&::-webkit-details-marker]:hidden">
-              <span className="inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
-                Slide text
-              </span>
-              <span className="shrink-0 text-lg leading-none text-ink/40 transition-transform duration-150 group-open:rotate-45">
-                +
-              </span>
-            </summary>
-            <ul className="mt-3 list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
-              {s.copy.map((line, i) => (
-                <li key={i}>{line}</li>
-              ))}
-            </ul>
-          </details>
-          {s.flag && (
-            <div className="mb-4 max-w-2xl rounded-card border border-line bg-paper-2 p-4">
-              <span className="mb-2 inline-flex items-center rounded-full border border-line px-3 py-1 text-caption font-medium tracking-wide text-ink/60 uppercase">
-                Needs customization
-              </span>
-              <p className="text-sm leading-relaxed text-ink/80">{s.flag}</p>
-            </div>
-          )}
-          <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-            <span className="font-medium text-ink">Talking points: </span>
-            {s.talkingPoints}
-          </p>
-        </section>
-        );
-      })}
+      <section id="deck-viewer">
+        <SectionHeading>Walk the Deck</SectionHeading>
+        <DeckViewer />
+      </section>
+    </div>
+  );
+}
+
+function DeckViewer() {
+  const [index, setIndex] = useState(0);
+  const slide = SLIDES[index];
+  const firstNumber = parseInt(slide.numbers.split(/[–-]/)[0], 10);
+  const hasImage = firstNumber <= 33;
+  const atStart = index === 0;
+  const atEnd = index === SLIDES.length - 1;
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "ArrowRight") setIndex((i) => Math.min(i + 1, SLIDES.length - 1));
+      if (e.key === "ArrowLeft") setIndex((i) => Math.max(i - 1, 0));
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  return (
+    <div className="max-w-2xl">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={() => setIndex((i) => Math.max(i - 1, 0))}
+          disabled={atStart}
+          className="rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          ← Previous
+        </button>
+        <select
+          value={index}
+          onChange={(e) => setIndex(Number(e.target.value))}
+          className="rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink"
+        >
+          {SLIDES.map((s, i) => (
+            <option key={s.numbers} value={i}>
+              Slide {s.numbers}: {s.label}
+            </option>
+          ))}
+        </select>
+        <button
+          type="button"
+          onClick={() => setIndex((i) => Math.min(i + 1, SLIDES.length - 1))}
+          disabled={atEnd}
+          className="rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          Next →
+        </button>
+      </div>
+      <p className="mb-2 text-caption font-medium tracking-wide text-ink/45 uppercase">
+        Slide {index + 1} of {SLIDES.length}
+      </p>
+      <h3 className="mb-3 text-base font-medium text-ink">
+        Slide {slide.numbers}: {slide.label}
+      </h3>
+      {hasImage ? (
+        <img
+          src={`/first-call-slides/slide-${String(firstNumber).padStart(2, "0")}.png`}
+          alt={`Slide ${slide.numbers}: ${slide.label}`}
+          className="mb-4 aspect-[16/9] w-full rounded-card border border-line object-contain"
+        />
+      ) : (
+        <div className="mb-4 flex aspect-[16/9] w-full items-center justify-center rounded-card border border-line bg-paper-2 text-sm text-ink/45">
+          No slide image, appendix marker.
+        </div>
+      )}
+      {slide.flag && (
+        <div className="mb-4 rounded-card border border-line bg-paper-2 p-4">
+          <span className="mb-2 inline-flex items-center rounded-full border border-line px-3 py-1 text-caption font-medium tracking-wide text-ink/60 uppercase">
+            Needs customization
+          </span>
+          <p className="text-sm leading-relaxed text-ink/80">{slide.flag}</p>
+        </div>
+      )}
+      <p className="text-sm leading-relaxed text-ink/70">
+        <span className="font-medium text-ink">Talking points: </span>
+        {slide.talkingPoints}
+      </p>
     </div>
   );
 }
