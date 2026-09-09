@@ -94,16 +94,15 @@ export function M7AttributionRoiSales() {
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
           Level 1 can be backed up in a monthly report. Level 2 depends on measurement that doesn&rsquo;t exist yet
-          for anyone in the category, so a specific revenue number tied to AI-search visibility isn&rsquo;t
-          something a rep can produce.
+          for anyone in the category, so don&rsquo;t promise a specific revenue number tied to AI-search visibility.
         </p>
       </section>
 
       <section id="the-line-not-to-cross">
         <SectionHeading>The Line Not to Cross</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          A CAC or LTV number is never the thing to lead with. A rep doesn&rsquo;t need to know an account&rsquo;s
-          exact cost per lead, they need to know whether that account is close to its own target or far from it,
+          A CAC or LTV number is never the thing to lead with. You don&rsquo;t need to know an account&rsquo;s
+          exact cost per lead, you need to know whether that account is close to its own target or far from it,
           since that gap is what determines how urgent an organic, non-paid channel actually looks to them.
         </p>
         <ul className="max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
