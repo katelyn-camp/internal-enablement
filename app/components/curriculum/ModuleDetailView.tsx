@@ -28,7 +28,7 @@ export function ModuleDetailView({ module, audience }: { module: ModuleEntry; au
 
       {LessonComponent ? (
         <section>
-          <LessonComponent />
+          <LessonComponent audience={audience} />
         </section>
       ) : (
         <section>

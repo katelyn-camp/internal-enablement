@@ -5,6 +5,7 @@ import { M2_KNOWLEDGE_CHECK } from "./knowledge-check-data";
 import { MetricComparisonExplorer } from "./MetricComparisonExplorer";
 import { MetricsCompositeRead } from "./MetricsCompositeRead";
 import { TraditionalSearchBridge } from "./TraditionalSearchBridge";
+import { Audience } from "@/lib/curriculum";
 
 /**
  * Scaffold only: sections mirror the module's objective in lib/curriculum.ts (mention
@@ -16,14 +17,14 @@ const OUTLINE = [
   { id: "traditional-search-bridge", label: "From Traditional Search to AI Search" },
 ];
 
-export function M2MeasurementBenchmarking() {
+export function M2MeasurementBenchmarking({ audience }: { audience?: Audience }) {
   return (
     <div className="space-y-12">
       <PageOutline
         sections={OUTLINE}
         footer={
           <KnowledgeCheckButton
-            id="m2"
+            id={audience === "sales" ? "m2-sales" : "m2"}
             title="Measurement & Benchmarking Literacy"
             questions={M2_KNOWLEDGE_CHECK}
             className="flex w-full items-center justify-center rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-medium tracking-wide text-ink uppercase transition-colors hover:border-ink/25 hover:bg-paper-3"

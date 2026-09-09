@@ -26,6 +26,7 @@ import {
 const KNOWLEDGE_CHECKS: Record<string, { tableId: string; questions: KnowledgeCheckQuestion[] }> = {
   m1: { tableId: "tblbUJLGZF06PJBPJ", questions: M1_KNOWLEDGE_CHECK },
   m2: { tableId: "tbl4EGX9ZDIXfadZB", questions: M2_KNOWLEDGE_CHECK },
+  "m2-sales": { tableId: "tbl4S1iJgyER0nRBx", questions: M2_KNOWLEDGE_CHECK },
   "m3-managed-services": { tableId: "tblc1CFcNwvGz6oZK", questions: M3_MANAGED_SERVICES_KNOWLEDGE_CHECK },
   "m4-managed-services": { tableId: "tblypIKVjyrftCcAx", questions: M4_MANAGED_SERVICES_KNOWLEDGE_CHECK },
   "m5-managed-services": { tableId: "tbl9BJhwCmawAUbSk", questions: M5_MANAGED_SERVICES_KNOWLEDGE_CHECK },

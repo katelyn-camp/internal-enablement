@@ -1,4 +1,5 @@
 import { ComponentType } from "react";
+import { Audience } from "@/lib/curriculum";
 import { M0Orientation } from "./M0Orientation";
 import { M1AISearchLandscape } from "./M1AISearchLandscape";
 import { M2MeasurementBenchmarking } from "./M2MeasurementBenchmarking";
@@ -24,7 +25,7 @@ import { AirOpsResearchDigest } from "@/app/components/research-digest/AirOpsRes
  * is bespoke (tables, prose, whatever fits), so this is a plain registry
  * rather than a shared content schema.
  */
-export const lessonComponents: Record<string, ComponentType> = {
+export const lessonComponents: Record<string, ComponentType<{ audience?: Audience }>> = {
   "em-sa:m0": M0Orientation,
   "sales:m0": M0Orientation,
   "em-sa:m1": M1AISearchLandscape,
