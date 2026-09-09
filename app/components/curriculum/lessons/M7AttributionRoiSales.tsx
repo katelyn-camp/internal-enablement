@@ -61,9 +61,9 @@ export function M7AttributionRoiSales() {
         </ul>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
           A client&rsquo;s &ldquo;AI-search isn&rsquo;t driving anything&rdquo; conclusion is sometimes a real
-          result and sometimes just a property still set to a model that structurally can&rsquo;t see it. That&rsquo;s
-          a conversation worth having with the CMO directly: ask how they&rsquo;re currently doing attribution,
-          and which model their property is running, before accepting either verdict at face value.
+          result and sometimes just a property still set to a model that structurally can&rsquo;t see it. Ask the
+          CMO how they&rsquo;re currently doing attribution and which model their property is running before
+          accepting either verdict at face value.
         </p>
       </section>
 
