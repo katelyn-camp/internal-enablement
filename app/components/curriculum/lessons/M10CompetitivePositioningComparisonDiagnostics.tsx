@@ -70,7 +70,7 @@ const ANATOMY_BLOCKS: AnatomyBlock[] = [
   {
     block: "Verdict block (\"choose X if / choose Y if\")",
     whatItDoes: "Segments the recommendation by buyer situation instead of declaring one universal winner.",
-    whyItMatters: "This is also the concession mechanism covered next, the block that makes the rest of the page believable.",
+    whyItMatters: "This is also the concession mechanism covered next: the block where a real, specific limitation gets named.",
   },
   {
     block: "Migration / switching section",
@@ -327,9 +327,9 @@ export function M10CompetitivePositioningComparisonDiagnostics() {
       <section id="the-positioning-edge">
         <SectionHeading>The Positioning Edge</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          The single highest-leverage move in this content type: name one real, specific place a competitor is the
-          better fit, for some real segment of buyer, and claim the edge on the dimension that actually matters most
-          to the buyer this page is written for. A page that lists only positives reads as an advertisement, and a
+          Name one real, specific place a competitor is the better fit, for some real segment of buyer, and claim the
+          edge on the dimension that actually matters most to the buyer this page is written for. A page that lists
+          only positives reads as an advertisement, and a
           skeptical reader, or an AI system extracting claims from it, has no way to check any of those claims
           against reality. A page that also names one real limitation gives the reader something they can verify,
           which changes how every other claim on the page gets treated.
@@ -358,10 +358,9 @@ export function M10CompetitivePositioningComparisonDiagnostics() {
           </p>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          Voice matters as much as structure here. Write in the adjudicating third person, &ldquo;the better fit if X
-          matters more to you than Y&rdquo;, not first-person marketing voice, &ldquo;we&rsquo;re better
-          because&rdquo;. The first reads as an assessment; the second reads as an ad, no matter how accurate the
-          underlying claim is.
+          Write in the adjudicating third person, &ldquo;the better fit if X matters more to you than Y&rdquo;, not
+          first-person marketing voice, &ldquo;we&rsquo;re better because&rdquo;. The first reads as an assessment;
+          the second reads as an ad, no matter how accurate the underlying claim is.
         </p>
       </section>
 
