@@ -22,17 +22,6 @@ export function M7AttributionRoiSales() {
           question has a clean, provable answer. Every other channel, including AI search, is asking a CMO to trust
           a portfolio of bets they can&rsquo;t fully trace dollar for dollar.
         </p>
-        <div className="rounded-card border border-line bg-white p-5">
-          <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
-            Say this, not a promise
-          </span>
-          <p className="text-sm leading-relaxed text-ink/80">
-            &ldquo;Attribution for AI search is genuinely early, for everyone in this space, not just us. What we
-            can already show you is whether the work is moving your visibility. What we&rsquo;re actively building
-            is the connection from that visibility to your revenue.&rdquo; Naming the limit builds more trust than
-            pretending it&rsquo;s solved. People smell overclaiming from a long way off.
-          </p>
-        </div>
       </section>
 
       <section id="same-journey-two-verdicts">
