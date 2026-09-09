@@ -210,16 +210,16 @@ interface ChecklistItem {
 }
 
 const CHECKLIST: ChecklistItem[] = [
-  { check: "Named pair (or shortlist) in the title, H1, and URL, one page per pair", why: "This is what makes it a comparison page instead of a category page, and avoids the doorway pattern of near-duplicate pages." },
-  { check: "Verdict block names a real, specific case where the competitor is the better fit", why: "A concession that costs nothing isn't a concession; this is what keeps the rest of the page's claims from reading as one-sided." },
-  { check: "Every table claim is sourced against the competitor's current offering", why: "A stale or unsourceable claim is the fastest way to lose a skeptical buyer the moment they spot-check one row." },
-  { check: "Feature table is grouped and structured, not a wall of prose", why: "Structure, not just authority, is what makes a page easy to extract into an answer." },
-  { check: "Real pricing numbers, including the gotchas", why: "Pricing carries outsized weight because buyers usually can't get a clean picture from either vendor directly." },
-  { check: "Migration or switching content is present", why: "It answers a distinct, high-intent search the feature table alone doesn't cover." },
-  { check: "FAQ section with pair-specific, long-tail questions", why: "Each question is a self-contained, quotable chunk, exactly what gets lifted into an answer." },
-  { check: "The page is internally linked from at least one relevant live page", why: "An orphaned page doesn't get crawled or surfaced regardless of how good the content is." },
-  { check: "Tone is neutral and adjudicating, not first-person superlative", why: "Covered next: promotional language is discounted by skeptical readers and by AI extraction alike." },
-  { check: "Schema markup is present, but not treated as the growth lever", why: "It's hygiene for rich results. Structure and sourcing are what actually move citation, not the markup itself." },
+  { check: "Named pair in the title, H1, and URL", why: "One page per pair. This is what makes it a comparison page instead of a category page, and avoids the doorway pattern of near-duplicate pages." },
+  { check: "Verdict block names a real concession", why: "A specific case where the competitor is the better fit. A concession that costs nothing isn't a concession, and it's what keeps the rest of the page's claims from reading as one-sided." },
+  { check: "Every claim is sourced", why: "Against the competitor's current offering. A stale or unsourceable claim is the fastest way to lose a skeptical buyer the moment they spot-check one row." },
+  { check: "Feature table, not a wall of prose", why: "Grouped and structured. Structure, not just authority, is what makes a page easy to extract into an answer." },
+  { check: "Real pricing numbers", why: "Including the gotchas. Pricing carries outsized weight because buyers usually can't get a clean picture from either vendor directly." },
+  { check: "Migration or switching content", why: "Present on the page. It answers a distinct, high-intent search the feature table alone doesn't cover." },
+  { check: "Pair-specific FAQ section", why: "Long-tail questions. Each one is a self-contained, quotable chunk, exactly what gets lifted into an answer." },
+  { check: "Internally linked", why: "From at least one relevant live page. An orphaned page doesn't get crawled or surfaced regardless of how good the content is." },
+  { check: "Neutral, adjudicating tone", why: "Not first-person superlative. Covered in The Positioning Edge: promotional language is discounted by skeptical readers and by AI extraction alike." },
+  { check: "Schema markup present", why: "But not treated as the growth lever. It's hygiene for rich results. Structure and sourcing are what actually move citation, not the markup itself." },
 ];
 
 export function M10CompetitivePositioningComparisonDiagnostics() {
@@ -518,7 +518,7 @@ export function M10CompetitivePositioningComparisonDiagnostics() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr className="bg-paper-2">
-                <th className="w-2/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Check</th>
+                <th className="w-1/4 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Check</th>
                 <th className="px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">Why it matters</th>
               </tr>
             </thead>
