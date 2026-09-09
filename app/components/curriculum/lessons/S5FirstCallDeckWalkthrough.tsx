@@ -312,21 +312,36 @@ export function S5FirstCallDeckWalkthrough() {
         </ul>
       </section>
 
-      {SLIDES.map((s) => (
-        <section id={`slide-${s.numbers.split(/[–-]/)[0]}`} key={s.numbers}>
+      {SLIDES.map((s) => {
+        const firstNumber = parseInt(s.numbers.split(/[–-]/)[0], 10);
+        const hasImage = firstNumber <= 33;
+        return (
+        <section id={`slide-${firstNumber}`} key={s.numbers}>
           <SectionHeading>
             Slide {s.numbers}: {s.label}
           </SectionHeading>
-          <div className="mb-4 max-w-2xl rounded-card border border-line bg-white p-5">
-            <span className="mb-3 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
-              On the slide
-            </span>
-            <ul className="list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
+          {hasImage && (
+            <img
+              src={`/first-call-slides/slide-${String(firstNumber).padStart(2, "0")}.png`}
+              alt={`Slide ${s.numbers}: ${s.label}. ${s.copy.join(" ")}`}
+              className="mb-4 max-w-2xl aspect-[16/9] w-full rounded-card border border-line object-contain"
+            />
+          )}
+          <details className="group mb-4 max-w-2xl rounded-card border border-line bg-white p-5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium text-ink [&::-webkit-details-marker]:hidden">
+              <span className="inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
+                Slide text
+              </span>
+              <span className="shrink-0 text-lg leading-none text-ink/40 transition-transform duration-150 group-open:rotate-45">
+                +
+              </span>
+            </summary>
+            <ul className="mt-3 list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
               {s.copy.map((line, i) => (
                 <li key={i}>{line}</li>
               ))}
             </ul>
-          </div>
+          </details>
           {s.flag && (
             <div className="mb-4 max-w-2xl rounded-card border border-line bg-paper-2 p-4">
               <span className="mb-2 inline-flex items-center rounded-full border border-line px-3 py-1 text-caption font-medium tracking-wide text-ink/60 uppercase">
@@ -340,7 +355,8 @@ export function S5FirstCallDeckWalkthrough() {
             {s.talkingPoints}
           </p>
         </section>
-      ))}
+        );
+      })}
     </div>
   );
 }
