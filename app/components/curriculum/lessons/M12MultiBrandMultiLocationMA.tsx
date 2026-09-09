@@ -300,11 +300,18 @@ export function M12MultiBrandMultiLocationMA() {
           <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
             Applying the test up a level
           </span>
-          <p className="text-sm leading-relaxed text-ink/80">
+          <p className="mb-2 text-sm leading-relaxed text-ink/80">
             Two brands, two locations, or two newly merged companies get tracked and built separately only if all
-            three are genuinely true: a different buyer, a different problem being solved, and a different
-            competitive set. If even one of the three is actually the same, that&rsquo;s a signal toward unifying,
-            not a reason to keep them apart by default.
+            three are genuinely true:
+          </p>
+          <ul className="mb-2 list-outside list-disc space-y-1 pl-5 text-sm leading-relaxed text-ink/80">
+            <li>A different buyer.</li>
+            <li>A different problem being solved.</li>
+            <li>A different competitive set.</li>
+          </ul>
+          <p className="text-sm leading-relaxed text-ink/80">
+            If even one of the three is actually the same, that&rsquo;s a signal toward unifying, not a reason to
+            keep them apart by default.
           </p>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
