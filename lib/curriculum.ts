@@ -433,7 +433,6 @@ export const modules: ModuleEntry[] = [
     knowledgeCheck: "N/A",
     groupSession: "N/A",
     appliedProject: "Deliver the deck live, graded by a peer",
-    appliedProjectOptions: ["Deliver the full First Call deck live for a mock prospect, graded by a peer"],
     status: "content-pending",
   },
 ];
