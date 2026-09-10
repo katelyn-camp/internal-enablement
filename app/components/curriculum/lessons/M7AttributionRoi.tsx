@@ -178,8 +178,10 @@ export function M7AttributionRoi() {
           performance.
         </p>
         <p className="max-w-2xl text-sm leading-relaxed text-ink/70">
-          A buyer influenced by an AI-search answer almost never converts on that exact touch, they research, then
-          come back later through a branded search or a direct visit. The model a client's analytics setup uses
+          A buyer influenced by an AI-search answer often doesn't convert on that exact touch, especially for
+          upper- or mid-funnel queries, and frequently continues the journey through another channel, coming back
+          later through a branded search or a direct visit. Some AI referral sessions do convert in-session, on
+          high-intent queries, so it isn't a rule. The model a client's analytics setup uses
           determines whether that earlier AI-search touch gets any credit at all. Before this module goes further,
           you need to know these models yourself.
         </p>
