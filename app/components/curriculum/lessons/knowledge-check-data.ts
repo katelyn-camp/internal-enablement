@@ -287,7 +287,7 @@ export const M5_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
     prompt:
       "An account has a high mention rate but a low citation rate. A different account has the opposite: high citation rate, low mention rate. What does each pattern actually indicate, and does the same fix work for both?",
     modelAnswer:
-      "Not mirror images, and citation isn't strictly conditional on mention, a citation can attach without the brand ever being named. High mention/low citation: the model names the brand from general knowledge but rarely retrieves and links a page, could be a content gap or just a navigational/definitional intent where citation was never likely. High citation/low mention: check whether those citations actually name the brand. Mostly yes, weak brand recognition. Mostly no, citation without attribution, a branding gap. Both need follow-up (prompt coverage, intent, tracked-set size) before prescribing a fix; the fixes aren't interchangeable.",
+      "Not mirror images, and citation isn't strictly conditional on mention, a citation can attach without the brand ever being named. High mention/low citation: the model names the brand often but rarely also retrieves and links a page, worth investigating whether that's the model drawing on general knowledge rather than a live retrieval, versus a content gap, versus a navigational/definitional intent where citation was never likely. High citation/low mention: check whether those citations actually name the brand. Mostly yes, weak brand recognition. Mostly no, citation without attribution, a branding gap. Both need follow-up (prompt coverage, intent, tracked-set size) before prescribing a fix; the fixes aren't interchangeable.",
   },
   {
     kind: "free-response",
@@ -342,19 +342,19 @@ export const M6_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
     prompt: "Which of these is the clearest sign two pages need a cannibalization review, not two separate refreshes?",
     options: [
       { label: "Both pages are more than a year old", correct: false },
-      { label: "Both pages target the same query/intent and are splitting ranking or citation signal between them", correct: true },
+      { label: "Both pages target the same query/intent, overlapping URLs competing for the same ranking or citation opportunity and fragmenting the signal between them", correct: true },
       { label: "Both pages are in the same content folder", correct: false },
       { label: "Both pages have low word counts", correct: false },
     ],
     explanation:
-      "Cannibalization is specifically about two URLs competing for the same intent and splitting the same signal, whether that's organic position or AI citation credit, not simply two old or similarly-categorized pages.",
+      "Cannibalization is specifically about two URLs competing for the same intent and the same ranking or citation opportunity, fragmenting the signal between them instead of concentrating it on one page, not simply two old or similarly-categorized pages.",
   },
   {
     kind: "free-response",
     prompt:
       "An audit finds two pages on a client's site, an old blog post and a newer resource-hub article, both targeting the exact same query, and both are showing up (weakly) in AI Overviews for it. What's the fix, and why not just leave both since they're both getting some citation credit?",
     modelAnswer:
-      "301 redirect the weaker page into the stronger one and consolidate the content. Splitting the same intent across two URLs splits the signal, both organic ranking strength and AI citation credit, so neither page performs as well as one consolidated page would. \"Both get some credit\" is worse than \"one page gets all of it,\" because concentrated signal is what wins the top position or the citation, not distributed partial credit.",
+      "301 redirect the weaker page into the stronger one and consolidate the content. Targeting the same intent across two URLs creates a fragmented citation footprint across two URLs rather than a single authoritative resource, so neither page performs as well as one consolidated page would. \"Both get some credit\" is worse than \"one page gets all of it,\" because concentrated signal is what wins the top position or the citation, not distributed partial credit.",
   },
   {
     kind: "free-response",
@@ -418,7 +418,7 @@ export const M7_MANAGED_SERVICES_KNOWLEDGE_CHECK: KnowledgeCheckQuestion[] = [
       { label: "False", correct: true },
     ],
     explanation:
-      "GA4 used to default new properties to last-click, but the platform-wide default is now data-driven attribution, an algorithmic model that estimates each touchpoint's actual contribution from the account's own conversion paths rather than applying one fixed rule. Last-click and the other named models can still be selected manually under Attribution Settings.",
+      "GA4 used to default new properties to last-click, but the platform-wide default is now data-driven attribution, an algorithmic model that estimates each touchpoint's actual contribution from the account's own conversion paths rather than applying one fixed rule. First-click, linear, time-decay, and position-based were deprecated and are no longer selectable as of November 2023; a property can currently choose between data-driven, Paid & Organic Last Click, or Google Paid Channels Last Click.",
   },
   {
     kind: "free-response",

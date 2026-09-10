@@ -21,8 +21,9 @@ const METRIC_PATTERNS: MetricPattern[] = [
   {
     pattern: "High mention rate, low citation rate",
     meansThat:
-      "The model names the brand from its own general knowledge often, but rarely also retrieves and links a specific page when it does. Whether that's actually a problem depends on the intent behind those mentions.",
+      "The model names the brand often, but rarely also retrieves and links a specific page when it does. Whether that's actually a problem depends on the intent behind those mentions.",
     hypotheses: [
+      "The model is naming the brand from its own general knowledge rather than a live retrieval, so no page is in the loop to cite",
       "No content exists yet for the specific fanned-out sub-queries driving those mentions, a coverage gap, not a structure gap",
       "Content exists but isn't structured for extraction (self-contained chunks, direct-answer framing)",
       "The driving prompts are navigational or definitional intent, where being named is the win and a citation was never likely",
@@ -32,10 +33,10 @@ const METRIC_PATTERNS: MetricPattern[] = [
   {
     pattern: "High citation rate, low mention rate",
     meansThat:
-      "Two different causes produce this. If the cited answers mostly do name the brand, the model only says the name when a live retrieval forces it to, weak brand recognition. If many citations carry no named mention, that's citation without attribution, a branding gap, not a recognition gap. Check which is actually happening before assuming either.",
+      "The brand is getting cited, but in a narrow subset of responses, and named infrequently even where it is. Check whether the cited answers mostly do name the brand or mostly don't before assuming either explanation.",
     hypotheses: [
       "The tracked prompt set is small or narrow, so \"rare mention\" may be a sampling artifact, not a real footprint",
-      "Weak general brand recognition, the model doesn't reliably know the brand exists outside of a live retrieval",
+      "Weak general brand recognition: the model only says the name when a live retrieval forces it to, and doesn't reliably know the brand exists outside of one",
       "Citation without attribution: the model sources claims to the brand's page but never names the brand, a framing/branding gap rather than a recognition gap",
       "Content genuinely is narrow: winning a handful of specific prompts, invisible elsewhere",
     ],
@@ -55,7 +56,7 @@ const METRIC_PATTERNS: MetricPattern[] = [
   {
     pattern: "Citation count rising, citation rate and share flat",
     meansThat:
-      "The tracked prompt set almost certainly grew. More tracked questions mechanically produces more raw citations without any change in the account's real footprint.",
+      "Often indicates the tracked prompt set grew. More tracked questions mechanically produces more raw citations without any change in the account's real footprint.",
     hypotheses: [
       "New prompts were added to the tracked set (by far the most common driver)",
       "A tracked AI platform started answering more often or more verbosely for the same prompts, a platform-side change, not an account-side one",
@@ -132,10 +133,10 @@ const TOOL_MAP: ToolRow[] = [
   {
     tool: "Google Search Console (GSC)",
     measures:
-      "First-party ground truth for classic organic search: which queries actually trigger your pages, clicks, impressions, CTR, and average position, straight from Google, not modeled.",
-    measuresLead: "First-party ground truth for classic organic search",
+      "Authoritative first-party Google search data for classic organic search: which queries actually trigger your pages, clicks, impressions, CTR, and average position, straight from Google, not modeled.",
+    measuresLead: "Authoritative first-party Google search data",
     cantTellYou:
-      "Scoped only to the domain connected to this property, and can't tell an impression from being cited in an AI Overview apart from an impression from a normal listing, both count the same.",
+      "Scoped only to the domain connected to this property, and can't tell an impression from being cited in an AI Overview apart from an impression from a normal listing, both count the same. It also has real limitations of its own: row limits on exports, privacy filtering that omits low-volume queries, and a roughly two-day data-freshness lag.",
   },
   {
     tool: "Semrush / Ahrefs",
@@ -143,7 +144,7 @@ const TOOL_MAP: ToolRow[] = [
       "Third-party competitive intelligence: what keywords competitors rank for, estimated search volume, keyword difficulty, backlink profiles, market-opportunity sizing.",
     measuresLead: "Third-party competitive intelligence",
     cantTellYou:
-      "What actually happened on any real site. Volume and difficulty are modeled estimates from a crawled panel, not measured traffic, and neither tool sees AI-answer visibility at all.",
+      "What actually happened on any real site. Volume and difficulty are modeled estimates from a crawled panel, not measured traffic. Both now offer AI-visibility features too, but as third-party, modeled datasets with their own prompt sets, platform coverage, and methodology, not necessarily measuring the same prompt universe as AirOps Insights.",
     cantTellYouLead: "What actually happened on any real site",
   },
   {

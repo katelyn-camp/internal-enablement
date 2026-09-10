@@ -34,7 +34,7 @@ const THREE_MOVES: MoveRow[] = [
   {
     move: "Consolidate",
     useWhen:
-      "Two or more existing pages target the same intent and are splitting the same signal, organic ranking strength or AI citation credit, between them.",
+      "Two or more existing pages target the same intent, overlapping URLs competing for the same organic ranking or AI citation opportunity and creating a fragmented source footprint instead of one strong one.",
     risk:
       "Leaving both live because each gets \"some\" credit. Split signal usually loses to a competitor's single, consolidated page even when the combined content is stronger.",
   },
@@ -110,8 +110,9 @@ export function M6ContentStrategyLifecycle() {
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
             An account's decade-old blog post and its newer core resource article both targeted the identical
-            "payroll deductions" intent. Both showed up in AI Overviews for the same query, splitting citation
-            credit across two URLs instead of concentrating it on one. The fix wasn't new content: a 301 redirect
+            "payroll deductions" intent. Both showed up in AI Overviews for the same query, creating a fragmented
+            citation footprint across two URLs rather than a single authoritative resource. The fix wasn't new
+            content: a 301 redirect
             from the weaker page into the stronger one, done. No writing, no approvals, just subtraction. A
             separate account found the same pattern in reverse, two comparable pages competing for "cover letter
             for a manager"-type intent, resolved by merging the stronger sections of both into one consolidated
@@ -146,10 +147,12 @@ export function M6ContentStrategyLifecycle() {
       <section id="dies-unlinked">
         <SectionHeading>Why Net-New Content Dies Unlinked</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          A brand-new URL starts with nothing: no backlinks, no ranking history, and critically, no internal links
-          pointing to it from anywhere else on the site. Left alone, a new page is effectively orphaned, harder for
-          crawlers to discover, disconnected from whatever topical authority the rest of the site has already
-          earned, and invisible to the internal signals that would otherwise vouch for it.
+          A brand-new URL starts with no backlinks, no ranking history, and no authority of its own by default. It
+          doesn&rsquo;t have to start with zero internal links, those can and should be added as part of publication,
+          but in most cases that discovery has to be intentional. Without internal links, a new page can become
+          effectively orphaned or weakly integrated into the site structure: harder for crawlers to discover,
+          disconnected from whatever topical authority the rest of the site has already earned, and invisible to
+          the internal signals that would otherwise vouch for it.
         </p>
         <div className="mb-6 rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
@@ -194,9 +197,10 @@ export function M6ContentStrategyLifecycle() {
             perfectly.
           </li>
           <li>
-            <span className="font-medium text-ink">Plan the internal links before publishing.</span> Identify which
-            existing pages, especially strong, already-ranking ones, will link to the new page at launch. If that
-            list is empty, the page isn't ready to publish yet.
+            <span className="font-medium text-ink">Plan the internal links before publishing.</span> A launch plan
+            should include relevant internal links wherever possible, identify which existing pages, especially
+            strong, already-ranking ones, will link to the new page at launch. If none exist, that's a gap to
+            resolve quickly.
           </li>
         </ol>
         <div className="rounded-card border border-line bg-white p-5">

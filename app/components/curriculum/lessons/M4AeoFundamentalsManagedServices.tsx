@@ -55,7 +55,7 @@ const CORE_VOCAB: DefinitionEntry[] = [
   {
     term: "Query fan-out",
     definition:
-      "A single prompt decomposed into several parallel sub-queries, each retrieved separately, then synthesized into one answer. The real target of a piece of content is the whole fanned-out cluster, not just the literal prompt.",
+      "A retrieval behavior that can occur where a single prompt is decomposed into several parallel sub-queries, each retrieved separately, then synthesized into one answer, not the universal mechanics behind every generated answer. Where it does occur, the strategic takeaway holds: aim content at the broader semantic and question space around a topic, not just the literal prompt.",
     example:
       "\"Best AEO platform\" fans out into \"AEO tools comparison,\" \"AirOps vs. competitor,\" and \"AEO platform pricing,\" each retrieved on its own.",
   },
@@ -76,7 +76,7 @@ const CORE_VOCAB: DefinitionEntry[] = [
   {
     term: "LLM crawler (three roles)",
     definition:
-      "Most major AI platforms run three distinct crawlers, not one: a training crawler (builds the base model), a search-index crawler (builds a retrieval index), and an on-demand fetcher (pulls a specific page live, mid-conversation). They can behave differently, and site owners can often block them separately.",
+      "Some AI platforms distinguish up to three crawler roles rather than running just one: a training crawler (builds the base model), a search-index crawler (builds a retrieval index), and an on-demand fetcher (pulls a specific page live, mid-conversation). They can behave differently and be blocked separately, so a strategist needs to know which specific crawler or fetcher they're actually testing or blocking, not just the platform name.",
     example:
       "GPTBot indexes a page ahead of time for search, then a separate on-demand fetcher pulls that same page live when a user asks about it mid-conversation.",
   },
@@ -162,7 +162,7 @@ const CRAWLER_TABLE: CrawlerRow[] = [
     crawlers: ["GPTBot (train)", "OAI-SearchBot (search index)", "ChatGPT-User (on-demand fetch)"],
     rendersJs: "No",
     implication:
-      "Whatever ships in the raw HTTP response is the entire universe of content these crawlers see. Anything injected by client-side JavaScript after load doesn't exist for any of the three, no matter how it looks in a browser.",
+      "Whatever ships in the raw HTTP response is the content available to these crawlers from this URL. Anything injected by client-side JavaScript after load doesn't exist for any of the three, no matter how it looks in a browser. That's a statement about what this page hands the crawler, not about everything the answer engine can know or surface overall.",
   },
   {
     platform: "Anthropic (Claude)",
@@ -250,12 +250,11 @@ export function M4AeoFundamentalsManagedServices() {
           click at all, sometimes a citation with a link back to the source.
         </p>
         <p className="mb-2 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Before any of that can happen, three baseline conditions have to hold:
+          Before any of that can happen, two baseline conditions have to hold:
         </p>
         <ul className="mb-4 max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>The specific content has to be retrievable by whatever the AI system actually fetches or indexes, which only counts if it&rsquo;s present in that response, not just visible in a browser.</li>
           <li>The content has to contain an answer, a claim worded clearly enough to be picked out.</li>
-          <li>The source needs enough credibility signal elsewhere on the web for the model to prefer citing it over an alternative.</li>
         </ul>
         <p className="mb-2 max-w-2xl text-sm leading-relaxed text-ink/70">
           Clearing that bar only makes a page eligible. Actually winning the citation takes more:
@@ -263,6 +262,7 @@ export function M4AeoFundamentalsManagedServices() {
         <ul className="mb-6 max-w-2xl list-outside list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/80">
           <li>Structured for extraction, not just written well.</li>
           <li>Covers the surrounding cluster of questions a prompt fans out into, not just the target phrase.</li>
+          <li>Offsite authority and corroboration elsewhere on the web, which can improve the odds the model prefers citing this source over an alternative, though it isn&rsquo;t a prerequisite the way retrievability and a clear answer are.</li>
           <li>Corroborated by other sources in the same context.</li>
         </ul>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
@@ -310,9 +310,11 @@ export function M4AeoFundamentalsManagedServices() {
           </table>
         </div>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Same rule as SEO&rsquo;s hierarchy: a page can only move up this list in order. Fix retrievability before
-          worrying about prompt coverage, fix prompt coverage before worrying about structure, and don&rsquo;t expect
-          more third-party mentions to rescue a page a JS-blind crawler can&rsquo;t see in the first place.
+          Same idea as SEO&rsquo;s hierarchy: treat this as an internal diagnostic and prioritization framework, not a
+          description of how AI systems actually rank or select citations. As a troubleshooting order, check
+          retrievability before worrying about prompt coverage, check prompt coverage before worrying about
+          structure, and don&rsquo;t expect more third-party mentions to rescue a page a JS-blind crawler can&rsquo;t
+          see in the first place.
         </p>
       </section>
 
@@ -483,8 +485,10 @@ export function M4AeoFundamentalsManagedServices() {
           </li>
           <li>
             <span className="font-medium text-ink">Structured data / schema markup:</span> FAQ, Article, and
-            Product schema implemented and valid. Gives a machine-readable signal about what a chunk actually is,
-            on top of whatever the prose already implies.
+            Product schema implemented and valid. Still a technical best practice: an established, well-documented
+            SEO benefit for rich-result eligibility and classic search classification. Whether it directly helps
+            AEO citation the same way is unproven, treat it as hygiene worth keeping, not a citation lever on its
+            own.
           </li>
           <li>
             <span className="font-medium text-ink">Tables and lists for scannable facts:</span> comparable facts,

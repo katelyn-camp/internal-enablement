@@ -170,8 +170,10 @@ export function M7AttributionRoi() {
         <SectionHeading>Common Attribution Models</SectionHeading>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
           Each diagram below shows the same five-touch journey. Circle size is the share of credit that touch
-          receives; the badge at the end is the conversion. The first five are fixed rules you can compute by hand;
-          the last, data-driven, is the algorithmic model most real GA4 accounts actually run on.
+          receives; the badge at the end is the conversion. The first five are conceptual models, fixed rules you
+          can compute by hand, worth knowing because they show how differently a journey gets credited depending on
+          the rule; the last, data-driven, is the algorithmic model most real GA4 accounts actually run on today.
+          More on which of these GA4 still lets you actually select below.
         </p>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {MODELS.map((model) => (
@@ -241,10 +243,13 @@ export function M7AttributionRoi() {
       <section id="ga-defaults">
         <SectionHeading>What Google Analytics Defaults To</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Of the six models above, <span className="font-medium text-ink">data-driven</span> is the one GA4
-          actually runs by default. It replaced last-click as the platform-wide default a few years ago. Last-click
-          and the other four named models are still available, but a property has to be manually switched to one of
-          them under Attribution Settings.
+          The six models above are worth knowing conceptually, since they show how differently the same journey can
+          get credited, but GA4&rsquo;s actual current options are narrower. <span className="font-medium text-ink">
+          Data-driven</span> is the platform-wide default and the model most real GA4 accounts run on. First-click,
+          linear, time-decay, and position-based (U-shaped) were deprecated by Google and are no longer selectable
+          in GA4 as of November 2023, they&rsquo;re still useful mental models, just not switches you&rsquo;ll
+          actually find in a client&rsquo;s Attribution Settings anymore. What a property can currently choose
+          between is data-driven, Paid &amp; Organic Last Click, or Google Paid Channels Last Click.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">

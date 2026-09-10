@@ -83,7 +83,7 @@ const CORE_VOCAB: DefinitionEntry[] = [
   {
     term: "E-E-A-T",
     definition:
-      "Google's quality framework for evaluating content: Experience, Expertise, Authoritativeness, Trustworthiness. Not a direct ranking factor itself, but the lens raters and algorithms both use to approximate credibility, especially on topics where bad information carries real-world consequences. Full breakdown below.",
+      "Google's quality framework for evaluating content: Experience, Expertise, Authoritativeness, Trustworthiness. The framework raters use, with ranking systems relying on signals that can align with these qualities. Full breakdown below.",
     link: "#eeat",
   },
 ];
@@ -362,7 +362,7 @@ const ONPAGE_MECHANISMS: MechanismRow[] = [
   {
     mechanism: "Structured data / schema markup",
     goodLooksLike: "JSON-LD marking up entities, products, FAQs, and articles.",
-    whyItMatters: "Helps search engines and AI systems parse what a page is actually about, and is a prerequisite for many rich SERP features.",
+    whyItMatters: "Well-established for helping search engines classify and understand a page for classic search features, and a prerequisite for many rich SERP results. Google's current generative search guidance still points back to these same SEO fundamentals rather than requiring separate AI-specific schema, so treat it as a search-engine mechanism, not a confirmed LLM one.",
   },
   {
     mechanism: "Canonicalization",
@@ -372,7 +372,7 @@ const ONPAGE_MECHANISMS: MechanismRow[] = [
   {
     mechanism: "Page speed / Core Web Vitals",
     goodLooksLike: "Fast load, minimal layout shift, quick interactivity.",
-    whyItMatters: "A direct ranking factor and a crawl-efficiency factor, and the first thing a user notices.",
+    whyItMatters: "Part of Google's page-experience signals and important for UX and crawl efficiency, though Google has repeatedly cautioned against treating it as a direct ranking factor on its own. It's also the first thing a user notices.",
   },
 ];
 
@@ -396,11 +396,6 @@ const OFFPAGE_MECHANISMS: MechanismRow[] = [
     mechanism: "Nofollow / sponsored / UGC attributes",
     goodLooksLike: "Paid placements and user-generated links correctly tagged rel=\"sponsored\" or rel=\"ugc\" rather than passed as organic.",
     whyItMatters: "Mislabeling paid links as organic is a policy violation that can trigger a manual action; correct tagging keeps genuine editorial links carrying full signal.",
-  },
-  {
-    mechanism: "Toxic link disavowal",
-    goodLooksLike: "Periodic backlink audits that identify spammy or irrelevant links pointing at the site, disavowed through Search Console.",
-    whyItMatters: "A toxic link profile can suppress rankings sitewide, and disavowing is the main lever available to recover from it.",
   },
   {
     mechanism: "Unlinked brand mentions",
@@ -486,7 +481,7 @@ const CONTENT_FAILURE_CHECKS: DiagnosticCheck[] = [
   {
     check: "Freshness & engagement trend",
     whereToLook: "GA4 engagement trends over time, cross-checked against the page's last-updated date.",
-    whyHere: "GA4 is the only tool here that shows what happens after a visitor lands, so a slow decline in engagement is the signal content has gone stale, even before rankings visibly collapse.",
+    whyHere: "GA4 is the only tool here that shows what happens after a visitor lands, so a slow decline in engagement is an early sign worth investigating, often stale content, though traffic mix, seasonality, and intent shifts can drive the same pattern, even before rankings visibly collapse.",
   },
 ];
 
@@ -551,7 +546,10 @@ export function M3SeoFundamentalsManagedServices() {
 
         <h3 className="mb-2 font-display text-h3 text-ink">Ranking Factor Hierarchy</h3>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Put another way, Google&rsquo;s algorithm doesn&rsquo;t weigh these factors equally. They stack, in order:
+          Put another way, these aren&rsquo;t a strict universal ranking order so much as diagnostic layers. Crawlability
+          and indexability are prerequisites, everything else depends on the page being indexed at all, and the
+          relative weight of relevance, quality, authority, and page experience shifts depending on the query and
+          context:
         </p>
         <div className="mb-4 overflow-x-auto rounded-card border border-line">
           <table className="w-full min-w-[720px] border-collapse text-sm">
@@ -584,9 +582,11 @@ export function M3SeoFundamentalsManagedServices() {
           </table>
         </div>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
-          A page can only move up this hierarchy in order: fix crawlability before worrying about intent, fix intent
-          before worrying about page speed, and don&rsquo;t expect a backlink campaign to rescue a page that&rsquo;s
-          answering the wrong question.
+          Treat this as a troubleshooting and prioritization order, not an algorithmic formula. When a page
+          underperforms, check crawlability and indexability first: a page that isn&rsquo;t indexed can&rsquo;t rank on
+          anything else, so it&rsquo;s the first thing to rule out. From there, check intent match before assuming a
+          technical or authority problem, since a backlink campaign or a page-speed fix rarely rescues a page
+          that&rsquo;s answering the wrong question.
         </p>
       </section>
 
@@ -638,8 +638,11 @@ export function M3SeoFundamentalsManagedServices() {
           </table>
         </div>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
-          AI Overviews and AI Mode increasingly sit above everything else on the page, which is why citation inside
-          them (AEO) and classic ranking (SEO) are becoming two goals pursued from the same site and the same content.
+          AI Overviews and AI Mode are becoming increasingly prominent discovery surfaces within Google Search. AI
+          Overviews can appear prominently within the traditional SERP, though placement varies by query and SERP
+          composition, while AI Mode is a separate search experience tab rather than a module sitting above the page.
+          Either way, citation inside them (AEO) and classic ranking (SEO) are becoming two goals pursued from the
+          same site and the same content.
           Whether they run on the same trust signals is less settled: early industry data shows some overlap but also
           real differences in what each system weighs, so treat AEO and SEO as related, not identical.
         </p>
@@ -693,8 +696,8 @@ export function M3SeoFundamentalsManagedServices() {
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
           Mismatched intent is one of the most common reasons a page fails to rank even when it&rsquo;s technically
           sound and well written: it&rsquo;s answering a different question than the one being asked. This applies to
-          AI-generated answers just as much as classic rankings, since the same intent categories determine whether a
-          page gets surfaced or cited inside AI Overviews and AI Mode.
+          AI-generated answers just as much as classic rankings: the same underlying query intent is an important
+          factor in whether content is relevant enough to be surfaced or cited inside AI Overviews and AI Mode.
         </p>
       </section>
 
@@ -818,11 +821,12 @@ export function M3SeoFundamentalsManagedServices() {
 
         <h4 className="mb-2 font-display text-base text-ink">Concept: Link Equity</h4>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
-          Internal links do two jobs at once. They&rsquo;re the path a crawler follows from page to page, and they
-          pass a portion of a page&rsquo;s authority to whatever it links to. That&rsquo;s the same &ldquo;vote of
-          confidence&rdquo; logic covered in Off-Page Fundamentals, just happening between pages on the same site
-          instead of between different sites. A page that gets internal links, especially from other important
-          pages, gets crawled more and ranks with more authority behind it. A page that gets none gets neither.
+          Internal links do more than one job at once. They&rsquo;re the path a crawler follows from page to page, they
+          communicate hierarchy and structure by signaling which pages matter most on a site, and they distribute
+          link signals to whatever they point to, related to the same &ldquo;vote of confidence&rdquo; logic covered
+          in Off-Page Fundamentals, just happening between pages on the same site instead of between different sites.
+          A page that gets internal links, especially from other important pages, gets crawled more and discovered
+          more easily, and carries more of that distributed signal. A page that gets none gets neither.
         </p>
 
         <h4 className="mb-2 font-display text-base text-ink">Applying It: Where Does a Specific Page Land?</h4>

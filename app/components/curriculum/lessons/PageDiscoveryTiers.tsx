@@ -10,13 +10,13 @@ type Tone = "full" | "weak" | "dead";
 /** Applying the crawl mechanism + link equity to one page: three tiers, strongest signal to weakest. */
 const LINKED_PATH: TierStep[] = [
   { label: "Linked internally", detail: "Other pages point to it" },
-  { label: "Crawl queue", detail: "High priority, frequent revisits" },
-  { label: "Crawled → indexed", detail: "Full link equity flows in" },
+  { label: "Crawl queue", detail: "Often prioritized, revisited more often" },
+  { label: "Crawled → indexed", detail: "Signal flows in; strength depends on the linking pages" },
 ];
 
 const SITEMAP_ONLY_PATH: TierStep[] = [
   { label: "Listed in sitemap only", detail: "No internal links point to it" },
-  { label: "Crawled → indexed", detail: "Lower priority, no link equity" },
+  { label: "Crawled → indexed", detail: "Lower priority, little to no link signal" },
 ];
 
 const CARD_TONE = {
@@ -65,8 +65,8 @@ interface DiagnosticRow {
 }
 
 const DIAGNOSTIC_TABLE: DiagnosticRow[] = [
-  { inSitemap: "Yes", foundByLinkCrawl: "Yes", tier: "Linked internally, full signal" },
-  { inSitemap: "Yes", foundByLinkCrawl: "No", tier: "Sitemap-only, weak signal" },
+  { inSitemap: "Yes", foundByLinkCrawl: "Yes", tier: "Linked internally, stronger discovery signal" },
+  { inSitemap: "Yes", foundByLinkCrawl: "No", tier: "Sitemap-only, weaker discovery signal" },
   { inSitemap: "No", foundByLinkCrawl: "No", tier: "Orphaned, never discovered" },
 ];
 
@@ -108,7 +108,9 @@ export function PageDiscoveryTiers() {
         Run a crawler like Screaming Frog twice: once in spider mode from the homepage, which only follows links the
         way a bot would, and once in list mode fed the sitemap XML. A URL that shows up in the second crawl but not
         the first is sitemap-only. A URL that shows up in neither, cross-checked against a full URL export from the
-        CMS, is orphaned.
+        CMS, is orphaned. Being internally linked is a discovery-and-context tier, not a fixed amount of signal:
+        the actual value passed depends on the linking pages, the prominence and context of those links, and the
+        site&rsquo;s overall architecture.
       </p>
     </div>
   );
