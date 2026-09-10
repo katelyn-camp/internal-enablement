@@ -17,6 +17,7 @@ interface AttributionModel {
   definition: string;
   weights: number[];
   note: string;
+  deprecated?: boolean;
 }
 
 const MODELS: AttributionModel[] = [
@@ -26,13 +27,14 @@ const MODELS: AttributionModel[] = [
     definition: "100% of the credit goes to the very first touchpoint in the journey, no matter how many touches came after it.",
     weights: [1, 0, 0, 0, 0],
     note: "Answers “what got this buyer's attention in the first place.” Blind to everything that nurtured them afterward.",
+    deprecated: true,
   },
   {
     id: "last-touch",
     name: "Last-touch",
     definition: "100% of the credit goes to the final touchpoint immediately before conversion.",
     weights: [0, 0, 0, 0, 1],
-    note: "Answers “what closed the deal.” Blind to everything that built the interest in the first place, including an AI-search answer read weeks earlier.",
+    note: "Answers “what closed the deal.” Blind to everything that built the interest in the first place, including an AI-search answer read weeks earlier. This logic didn't disappear from GA4, it's what the current Paid & Organic Last Click option below runs on.",
   },
   {
     id: "linear",
@@ -40,6 +42,7 @@ const MODELS: AttributionModel[] = [
     definition: "Credit is split evenly across every touchpoint in the journey, the same amount no matter its position.",
     weights: [0.2, 0.2, 0.2, 0.2, 0.2],
     note: "Simple and fair-looking, but treats a passing ad impression the same as the touch that actually moved the buyer.",
+    deprecated: true,
   },
   {
     id: "time-decay",
@@ -47,6 +50,7 @@ const MODELS: AttributionModel[] = [
     definition: "Credit grows the closer a touchpoint sits to the conversion, using a decay curve. A common simplified version doubles the weight of each touch as it gets nearer to the close.",
     weights: [1 / 31, 2 / 31, 4 / 31, 8 / 31, 16 / 31],
     note: "Favors touches near the close. A reasonable default when the sales cycle is short and recency plausibly matters most.",
+    deprecated: true,
   },
   {
     id: "u-shaped",
@@ -54,6 +58,7 @@ const MODELS: AttributionModel[] = [
     definition: "40% of the credit goes to the first touch, 40% to the last touch, and the remaining 20% is split evenly across everything in between.",
     weights: [0.4, 0.0667, 0.0666, 0.0667, 0.4],
     note: "Rewards the touch that created the opportunity and the one that closed it, while still leaving something for the middle of the journey.",
+    deprecated: true,
   },
   {
     id: "data-driven",
@@ -61,6 +66,20 @@ const MODELS: AttributionModel[] = [
     definition: "An algorithmic model, not a fixed rule. Machine learning looks at an account's own conversion and non-conversion paths and estimates how much each touchpoint actually increased the probability of converting, then splits credit accordingly.",
     weights: [0.1, 0.15, 0.1, 0.25, 0.4],
     note: "The weighting is unique to each account and even to each conversion path. The split shown here is just one illustrative example, a different account's data would produce a different split for this same five-touch journey. This is GA4's actual default, more on that next.",
+  },
+  {
+    id: "paid-organic-last-click",
+    name: "Paid & Organic Last Click",
+    definition: "100% of the credit goes to the last non-direct click before conversion, regardless of whether that click was paid or organic.",
+    weights: [0, 0, 0, 0, 1],
+    note: "One of the two last-click options GA4 actually offers today. Functionally the same shape as classic last-touch, just explicitly scoped to cover both paid and organic channels.",
+  },
+  {
+    id: "google-paid-channels-last-click",
+    name: "Google Paid Channels Last Click",
+    definition: "100% of the credit goes to the last Google Ads paid click before conversion. If no touch in the path was a Google Ads paid click, the path gets no credit under this model at all.",
+    weights: [0, 0, 0, 0, 0],
+    note: "The other current GA4 last-click option, scoped only to Google's paid channels. In this journey, none of the five touches is a Google Ads paid click, so every touch shows 0%, a reminder that a channel-scoped model can make a real, converting journey look like it produced no attributable credit at all.",
   },
 ];
 
@@ -170,15 +189,23 @@ export function M7AttributionRoi() {
         <SectionHeading>Common Attribution Models</SectionHeading>
         <p className="mb-6 max-w-2xl text-sm leading-relaxed text-ink/70">
           Each diagram below shows the same five-touch journey. Circle size is the share of credit that touch
-          receives; the badge at the end is the conversion. The first five are conceptual models, fixed rules you
-          can compute by hand, worth knowing because they show how differently a journey gets credited depending on
-          the rule; the last, data-driven, is the algorithmic model most real GA4 accounts actually run on today.
-          More on which of these GA4 still lets you actually select below.
+          receives; the badge at the end is the conversion. All eight are worth knowing conceptually, fixed rules
+          you can compute by hand, since they show how differently a journey gets credited depending on the rule.
+          The four marked &ldquo;Deprecated in GA4&rdquo; are ones Google removed as selectable options in November
+          2023; what a GA4 property can actually be set to today is data-driven (the platform default), last-touch,
+          or one of the two current last-click variants shown last.
         </p>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {MODELS.map((model) => (
             <div key={model.id} className="rounded-card border border-line bg-white p-5">
-              <h3 className="mb-1.5 text-base font-medium text-ink">{model.name}</h3>
+              <div className="mb-1.5 flex flex-wrap items-center gap-2">
+                <h3 className="text-base font-medium text-ink">{model.name}</h3>
+                {model.deprecated && (
+                  <span className="inline-flex items-center rounded-full bg-paper-3 px-2.5 py-0.5 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
+                    Deprecated in GA4
+                  </span>
+                )}
+              </div>
               <p className="mb-3 text-sm leading-relaxed text-ink/70">{model.definition}</p>
               <ModelDiagram weights={model.weights} />
               <p className="mt-3 text-xs leading-relaxed text-ink/50 italic">{model.note}</p>
@@ -243,13 +270,14 @@ export function M7AttributionRoi() {
       <section id="ga-defaults">
         <SectionHeading>What Google Analytics Defaults To</SectionHeading>
         <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-          The six models above are worth knowing conceptually, since they show how differently the same journey can
-          get credited, but GA4&rsquo;s actual current options are narrower. <span className="font-medium text-ink">
+          The eight models above are worth knowing conceptually, since they show how differently the same journey
+          can get credited, but GA4&rsquo;s actual current options are narrower. <span className="font-medium text-ink">
           Data-driven</span> is the platform-wide default and the model most real GA4 accounts run on. First-click,
-          linear, time-decay, and position-based (U-shaped) were deprecated by Google and are no longer selectable
-          in GA4 as of November 2023, they&rsquo;re still useful mental models, just not switches you&rsquo;ll
-          actually find in a client&rsquo;s Attribution Settings anymore. What a property can currently choose
-          between is data-driven, Paid &amp; Organic Last Click, or Google Paid Channels Last Click.
+          linear, time-decay, and position-based (U-shaped), the four marked &ldquo;Deprecated in GA4&rdquo; above,
+          were removed by Google as selectable options in November 2023, they&rsquo;re still useful mental models,
+          just not switches you&rsquo;ll actually find in a client&rsquo;s Attribution Settings anymore. What a
+          property can currently choose between is data-driven, Paid &amp; Organic Last Click, or Google Paid
+          Channels Last Click.
         </p>
         <div className="rounded-card border border-line bg-white p-5">
           <span className="mb-2 inline-flex items-center rounded-full bg-paper-3 px-3 py-1 text-caption font-mono font-medium tracking-wide text-ink-muted uppercase">
