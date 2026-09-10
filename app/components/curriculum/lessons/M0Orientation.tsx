@@ -36,7 +36,7 @@ const TODAY_VS_HEADED: CompareRow[] = [
     dimension: "What we're paid for",
     today: "Access to the platform, regardless of what the customer does with it",
     headed:
-      "Citations, share of voice, and, over time, revenue attribution. Platform access is the delivery mechanism, not the product",
+      "Citations, mentions/share of voice, AI-referred traffic and conversions, and, over time, broader business impact/revenue influence. Platform access is the delivery mechanism, not the product",
   },
   {
     dimension: "Who owns the outcome",
@@ -58,7 +58,8 @@ const TODAY_VS_HEADED: CompareRow[] = [
   {
     dimension: "How we measure success",
     today: "Platform adoption, task/seat expansion, net revenue retention",
-    headed: "Mention rate, citation rate, share of voice, and eventually revenue lift, tracked monthly against a defined baseline",
+    headed:
+      "Mention rate, citation rate, share of voice, and eventually revenue lift, tracked monthly against a defined baseline. Success is highly dependent on each client's specific goals and objectives and the KPI mix they care about most",
   },
   {
     dimension: "Cost structure",
@@ -238,8 +239,8 @@ export function M0Orientation() {
               Headed
             </span>
             <p className="text-sm leading-relaxed text-ink/80">
-              We sell outcomes. We run the AEO/SEO engine <em>for</em> the customer, on our own platform, and get paid
-              for the result, not just the seat.
+              Customers pay us to own the outcome, not just provide the tooling. We run the AEO/SEO engine{" "}
+              <em>for</em> the customer, on our own platform.
             </p>
           </div>
         </div>

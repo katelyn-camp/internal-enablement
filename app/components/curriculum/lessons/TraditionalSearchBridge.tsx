@@ -2,9 +2,10 @@
  * Maps the traditional search metrics reps already know (Google Search Console + broader
  * SEO/marketing metrics) onto their AI Search equivalents, where a clean equivalent exists.
  * The point isn't a 1:1 rename job: some things carry over almost exactly, one (Impressions
- * vs. Mention Rate) is a cousin with a different mechanism, two (Backlinks/Domain Authority,
- * Clicks/CTR) genuinely don't translate, and one (Sentiment) is new to AI Search rather than
- * a renamed old metric.
+ * vs. Mention Rate) is a cousin with a different mechanism, one (Backlinks/Domain Authority)
+ * genuinely doesn't translate, one (Clicks/CTR) still happens but carries less weight as a
+ * measure of influence, and one (Sentiment) is new to AI Search rather than a renamed old
+ * metric.
  */
 
 interface MetricBridgeRow {
@@ -42,7 +43,7 @@ const METRIC_BRIDGE: MetricBridgeRow[] = [
     traditional: "Clicks / CTR",
     aiSearch: "No clean equivalent",
     difference:
-      "The one that doesn't translate. AI answers are built to resolve the question inside the answer itself, so the click-through-to-verify behavior traditional search depends on is exactly what's eroding.",
+      "Clicks haven't disappeared: they still happen, and where attribution/referrer data is available, they show up as AI-referred traffic. What's changed is how much weight they can carry, since AI answers are built to resolve the question on the spot, so a meaningful share of discovery and evaluation now happens before a click is ever generated. Less a clean equivalent than a metric that's lost some of its completeness.",
   },
   {
     traditional: "No traditional equivalent",
@@ -68,7 +69,7 @@ export function TraditionalSearchBridge() {
                 Traditional Metric
               </th>
               <th className="w-1/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
-                AI Search Equivalent
+                Closest Analogue or Metric
               </th>
               <th className="w-3/5 px-3 py-2.5 text-left text-caption font-medium tracking-wide text-ink/50 uppercase">
                 The Real Difference

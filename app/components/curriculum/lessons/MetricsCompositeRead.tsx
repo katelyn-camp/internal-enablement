@@ -20,7 +20,7 @@ const WHAT_EACH_ANSWERS = [
   {
     term: "Citation Rate",
     lead: "Is there something backing you up?",
-    body: "The credibility check. Are you a name-drop, or a substantiated pick the model trusts enough to point to as evidence?",
+    body: "The source-authority check. Are you being named, or is your content/domain also being surfaced as supporting evidence?",
   },
   {
     term: "Share of Voice",
@@ -37,7 +37,8 @@ const BLIND_SPOTS = [
   },
   {
     ifYouOnlyTrack: "Mention Rate",
-    youMightMiss: "you're being named without ever being trusted enough to cite. That's a credibility problem, not a visibility problem.",
+    youMightMiss:
+      "you're being named without your content or domain also being surfaced as supporting evidence. That's a citation/source-authority gap worth diagnosing, not automatically a credibility problem: it can reflect source selection, retrieval, content relevance, accessibility, query intent, or platform behavior.",
   },
   {
     ifYouOnlyTrack: "Citation Rate",

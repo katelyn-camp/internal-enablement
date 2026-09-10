@@ -166,7 +166,7 @@ const VOCABULARY_TABLE: VocabularyRow[] = [
     level: "Goal",
     search: "Rank on page one of Google, drive traffic to your site, and convert once they land.",
     aiSearch:
-      "Appear as the recommendation or citation, and influence conversion directly. Traffic is no longer a reliable signal of success, since evaluation increasingly happens inside the AI answer itself, not on your website, the way it always had to in traditional search.",
+      "Appear as the recommendation or citation, and influence conversion directly. Traffic is still a valuable downstream signal when it occurs; it's just no longer sufficient on its own to measure AI Search visibility/influence, since evaluation increasingly happens inside the AI answer itself, not on your website, the way it always had to in traditional search.",
   },
 ];
 

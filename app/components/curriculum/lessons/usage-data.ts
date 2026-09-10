@@ -42,9 +42,9 @@ export const USAGE_ENTRIES: UsageEntry[] = [
   },
   {
     name: "ChatGPT",
-    value: 900_000_000,
-    displayValue: "900M WAU",
-    dateLabel: "Feb 27, 2026",
+    value: 1_000_000_000,
+    displayValue: "1B+ WAU",
+    dateLabel: "Aug 2026",
     category: "active",
   },
   {

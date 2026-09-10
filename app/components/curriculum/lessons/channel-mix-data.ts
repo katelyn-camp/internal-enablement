@@ -63,6 +63,6 @@ export const CHANNEL_MIX_EXAMPLES: ChannelMixExample[] = [
     },
     auditFinding: "AI answers in this category cite Reddit threads, forums, and reviews far more than any brand-owned or press source.",
     rationale:
-      "Shift the largest share into Community, with Social & Influencer next, since that's where this category's AI answers actually pull from.",
+      "Shift the largest share into Community, with Social & Influencer next, since those are the sources this category's AI answers disproportionately cite/surface.",
   },
 ];
