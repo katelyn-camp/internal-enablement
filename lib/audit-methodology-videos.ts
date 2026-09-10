@@ -64,9 +64,9 @@ export const auditMethodologyVideos: AuditMethodologyVideo[] = [
   {
     slug: "step-2b",
     step: "Step 2b",
-    title: "AEO Gap Analysis & Outreach Targets",
+    title: "AEO Gap Analysis & Prioritized Source Opportunities",
     synopsis:
-      "Turn the citations/mentions export into a full AEO gap analysis (prompt gaps, citation gaps, and prioritized outreach targets), then edit out AI-sounding phrasing before it goes near a client deliverable.",
+      "Turn the citations/mentions export into a full AEO gap analysis (prompt gaps, citation gaps, and prioritized source opportunities to validate, not automatic outreach targets: a source appearing frequently in AI answers still needs a relevance, editorial-accessibility, brand-fit, and placement-feasibility check before it's worth pursuing), then edit out AI-sounding phrasing before it goes near a client deliverable.",
     loomId: "80f7abb7fd454dd8b3f09fad006ea669",
     durationSeconds: 234,
     accentColor: "#5b254f",
