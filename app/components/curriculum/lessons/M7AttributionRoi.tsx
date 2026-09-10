@@ -287,9 +287,12 @@ export function M7AttributionRoi() {
           </span>
           <p className="text-sm leading-relaxed text-ink/80">
             A GA4 "conversions" number is only meaningful once you know which model produced it. Data-driven
-            attribution can quietly give real credit to an upper-funnel AI-search touch that last-click would have
+            attribution can quietly give real credit to a measurable upper-funnel AI-search referral touch, one
+            where the user actually clicked through and left GA a session to log, that last-click would have
             zeroed out entirely, or it can give that same touch almost nothing, depending on what the account's own
-            data shows. There's no way to know which without checking the property's Attribution Settings.
+            data shows. That's still only ever the click-through portion: a mention or citation with no click leaves
+            GA nothing to attribute credit to at all, no matter the model. There's no way to know which without
+            checking the property's Attribution Settings.
           </p>
         </div>
       </section>
