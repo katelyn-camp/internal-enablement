@@ -75,9 +75,6 @@ export function QuestionButton() {
                     ✕
                   </button>
                 </div>
-                <p className="text-caption text-ink-muted">
-                  Submitted anonymously. We capture the page you were on for context, not who you are.
-                </p>
                 <textarea
                   autoFocus
                   required
