@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Audience } from "@/lib/curriculum";
 import { Sidebar } from "./Sidebar";
 import { AudienceSwitcher } from "./AudienceSwitcher";
+import { QuestionButton } from "./QuestionButton";
 
 /**
  * Routes rendered edge-to-edge with no sidebar, mobile header, or footer —
@@ -20,11 +21,17 @@ export function NavShell({ children }: { children: React.ReactNode }) {
   const audience: Audience = pathname.startsWith("/sales") ? "sales" : "em-sa";
 
   if (BARE_ROUTE_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
-    return <>{children}</>;
+    return (
+      <>
+        {children}
+        <QuestionButton />
+      </>
+    );
   }
 
   return (
     <>
+      <QuestionButton />
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-line bg-paper/95 px-5 py-3 backdrop-blur lg:hidden">
         <AudienceSwitcher audience={audience} />
         <button
