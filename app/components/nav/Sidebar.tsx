@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 import { getNavGroups, NavItemConfig } from "@/lib/nav-tree";
@@ -31,6 +32,7 @@ interface FlatEntry {
   href: string;
   groupLabel: string;
   parentLabel?: string;
+  locked?: boolean;
 }
 
 export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose: () => void }) {
@@ -52,9 +54,9 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
     const entries: FlatEntry[] = [];
     for (const group of resolvedGroups) {
       for (const item of group.items) {
-        entries.push({ id: item.id, label: item.label, href: item.href, groupLabel: group.label });
+        entries.push({ id: item.id, label: item.label, href: item.href, groupLabel: group.label, locked: group.locked });
         for (const child of item.children ?? []) {
-          entries.push({ id: child.id, label: child.label, href: child.href, groupLabel: group.label, parentLabel: item.label });
+          entries.push({ id: child.id, label: child.label, href: child.href, groupLabel: group.label, parentLabel: item.label, locked: group.locked });
         }
       }
     }
@@ -119,18 +121,33 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
               <p className="px-3 py-4 text-sm text-ink/45">No matching page.</p>
             ) : (
               <ul className="space-y-0.5">
-                {filteredEntries.map((entry) => (
-                  <li key={entry.id}>
-                    <span
-                      aria-disabled="true"
-                      title="Not yet open"
-                      className="flex cursor-not-allowed items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink/35"
-                    >
-                      {entry.parentLabel && <span className="text-ink/25">{entry.parentLabel} / </span>}
-                      {entry.label}
-                    </span>
-                  </li>
-                ))}
+                {filteredEntries.map((entry) =>
+                  entry.locked ? (
+                    <li key={entry.id}>
+                      <span
+                        aria-disabled="true"
+                        title="Not yet open"
+                        className="flex cursor-not-allowed items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink/35"
+                      >
+                        {entry.parentLabel && <span className="text-ink/25">{entry.parentLabel} / </span>}
+                        {entry.label}
+                      </span>
+                    </li>
+                  ) : (
+                    <li key={entry.id}>
+                      <Link
+                        href={entry.href}
+                        onClick={onClose}
+                        className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${
+                          pathname === entry.href ? "bg-ink text-paper" : "text-ink/75 hover:bg-paper-2"
+                        }`}
+                      >
+                        {entry.parentLabel && <span className="text-ink/40">{entry.parentLabel} / </span>}
+                        {entry.label}
+                      </Link>
+                    </li>
+                  ),
+                )}
               </ul>
             )
           ) : (
@@ -162,16 +179,29 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
                     <ul className="mt-1 space-y-0.5">
                       {group.items.map((item) => {
                         const hasChildren = !!item.children?.length;
+                        const active = pathname === item.href;
                         return (
                           <li key={item.id}>
-                            <div className="flex items-center rounded-lg">
-                              <span
-                                aria-disabled="true"
-                                title="Not yet open"
-                                className="flex flex-1 cursor-not-allowed items-center gap-2 px-3 py-2 text-sm text-ink/35"
-                              >
-                                {item.label}
-                              </span>
+                            <div className={`flex items-center rounded-lg ${!group.locked && active ? "bg-ink text-paper" : ""}`}>
+                              {group.locked ? (
+                                <span
+                                  aria-disabled="true"
+                                  title="Not yet open"
+                                  className="flex flex-1 cursor-not-allowed items-center gap-2 px-3 py-2 text-sm text-ink/35"
+                                >
+                                  {item.label}
+                                </span>
+                              ) : (
+                                <Link
+                                  href={item.href}
+                                  onClick={onClose}
+                                  className={`flex flex-1 items-center gap-2 px-3 py-2 text-sm ${
+                                    active ? "" : "text-ink/80 hover:bg-paper-2"
+                                  }`}
+                                >
+                                  {item.label}
+                                </Link>
+                              )}
                               {hasChildren && (
                                 <button
                                   type="button"
@@ -187,17 +217,32 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
                             </div>
                             {hasChildren && isExpanded(item.id) && (
                               <ul className="ml-4 mt-0.5 space-y-0.5 border-l border-line pl-3">
-                                {item.children!.map((child) => (
-                                  <li key={child.id}>
-                                    <span
-                                      aria-disabled="true"
-                                      title="Not yet open"
-                                      className="flex cursor-not-allowed items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-ink/35"
-                                    >
-                                      {child.label}
-                                    </span>
-                                  </li>
-                                ))}
+                                {item.children!.map((child) => {
+                                  const childActive = pathname === child.href;
+                                  return group.locked ? (
+                                    <li key={child.id}>
+                                      <span
+                                        aria-disabled="true"
+                                        title="Not yet open"
+                                        className="flex cursor-not-allowed items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-ink/35"
+                                      >
+                                        {child.label}
+                                      </span>
+                                    </li>
+                                  ) : (
+                                    <li key={child.id}>
+                                      <Link
+                                        href={child.href}
+                                        onClick={onClose}
+                                        className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm ${
+                                          childActive ? "bg-ink text-paper" : "text-ink/65 hover:bg-paper-2"
+                                        }`}
+                                      >
+                                        {child.label}
+                                      </Link>
+                                    </li>
+                                  );
+                                })}
                               </ul>
                             )}
                           </li>

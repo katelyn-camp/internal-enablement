@@ -391,3 +391,8 @@ export const PHASE_LABELS: Record<Phase, string> = {
   phase1: "Phase 2 · Core Shared Enablement",
   phase2: "Phase 3 · Role Specialization",
 };
+
+/** Phase 3 (em-sa and sales) is temporarily grayed out and unclickable while its content is still being written. */
+export function isPhaseLocked(phase: Phase): boolean {
+  return phase === "phase2";
+}

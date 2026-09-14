@@ -1,4 +1,4 @@
-import { Audience, Phase, getModulesForAudience, moduleTitleForAudience } from "./curriculum";
+import { Audience, Phase, getModulesForAudience, isPhaseLocked, moduleTitleForAudience } from "./curriculum";
 
 export interface NavItemConfig {
   id: string;
@@ -16,6 +16,8 @@ export interface NavGroupConfig {
   items: NavItemConfig[];
   /** Existing-library group starts collapsed; see useNavUiState's DEFAULT_STATE. */
   collapsedByDefault?: boolean;
+  /** Phase 3: items render grayed out and unclickable; see isPhaseLocked. */
+  locked?: boolean;
 }
 
 const PHASE_NAV_LABEL: Record<Phase, string> = {
@@ -76,6 +78,7 @@ export function getNavGroups(audience: Audience): NavGroupConfig[] {
       label: PHASE_NAV_LABEL[phase],
       subtitle: phaseSubtitle(phase),
       items: byPhase[phase],
+      locked: isPhaseLocked(phase),
     }));
 
   // EXISTING_LIBRARY_GROUP is temporarily pulled from the sidebar (content and
