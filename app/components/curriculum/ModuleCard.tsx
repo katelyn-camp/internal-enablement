@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Audience, ModuleEntry, moduleTitleForAudience } from "@/lib/curriculum";
 import { ContentPendingTag } from "@/app/components/ContentPendingTag";
 import { ModuleEyebrow } from "./ModuleEyebrow";
@@ -11,13 +10,16 @@ function depthBlurb(module: ModuleEntry, audience: Audience): string {
   return module.salesDepth ?? module.objective ?? "";
 }
 
+// Modules are temporarily locked (not yet open to click into); see the
+// `internal-enablement-locked-pages` note for the direct URLs while writing content.
 export function ModuleCard({ module, audience }: { module: ModuleEntry; audience: Audience }) {
   const hasWrittenLesson = !!lessonComponents[`${audience}:${module.slug}`];
 
   return (
-    <Link
-      href={`/${audience}/${module.slug}`}
-      className="flex flex-col gap-3 rounded-card border border-line bg-white p-5 transition-colors hover:border-ink/30"
+    <div
+      aria-disabled="true"
+      title="Not yet open"
+      className="flex cursor-not-allowed flex-col gap-3 rounded-card border border-line bg-white p-5 opacity-45"
     >
       <div className="flex items-start justify-between gap-2">
         <ModuleEyebrow code={module.code} />
@@ -25,7 +27,6 @@ export function ModuleCard({ module, audience }: { module: ModuleEntry; audience
       </div>
       <h3 className="font-display text-h3 text-ink">{moduleTitleForAudience(module, audience)}</h3>
       <p className="text-sm leading-relaxed text-ink/70">{depthBlurb(module, audience)}</p>
-      <span className="mt-auto text-caption font-medium text-forest">View module →</span>
-    </Link>
+    </div>
   );
 }

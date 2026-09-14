@@ -24,11 +24,11 @@ const PHASE_NAV_LABEL: Record<Phase, string> = {
   phase2: "Phase 3",
 };
 
-/** Descriptive name + gate date from the "Proposed timeline" table in the Notion doc, per audience. */
-function phaseSubtitle(phase: Phase, audience: Audience): string {
-  if (phase === "phase0") return "The New World · Sept 16";
-  if (phase === "phase1") return "The Shared Enablement · Sept 23";
-  return audience === "sales" ? "The Sales Team · Sept 30" : "The Engagement Managers and the Solution Architects · Sept 30";
+/** Gate date from the "Proposed timeline" table in the Notion doc. Descriptive bylines removed for now. */
+function phaseSubtitle(phase: Phase): string {
+  if (phase === "phase0") return "Overview · Due Sept 18";
+  if (phase === "phase1") return "Due Sept 24";
+  return "Due Sept 30";
 }
 
 /**
@@ -74,9 +74,11 @@ export function getNavGroups(audience: Audience): NavGroupConfig[] {
     .map((phase) => ({
       id: `${audience}-${phase}`,
       label: PHASE_NAV_LABEL[phase],
-      subtitle: phaseSubtitle(phase, audience),
+      subtitle: phaseSubtitle(phase),
       items: byPhase[phase],
     }));
 
-  return [...phaseGroups, EXISTING_LIBRARY_GROUP];
+  // EXISTING_LIBRARY_GROUP is temporarily pulled from the sidebar (content and
+  // routes are untouched) — re-add it here to restore it to navigation.
+  return phaseGroups;
 }

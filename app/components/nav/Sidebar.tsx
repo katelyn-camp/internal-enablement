@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 import { getNavGroups, NavItemConfig } from "@/lib/nav-tree";
@@ -8,8 +7,6 @@ import { Audience } from "@/lib/curriculum";
 import { workflows } from "@/lib/workflows";
 import { pageTypes } from "@/lib/page-anatomy";
 import { useNavUiState } from "@/lib/nav-ui/useNavUiState";
-import { useProgress } from "@/lib/progress/useProgress";
-import { ProgressPill } from "./ProgressPill";
 import { AudienceSwitcher } from "./AudienceSwitcher";
 
 interface ResolvedChild {
@@ -28,10 +25,6 @@ function resolveChildren(item: NavItemConfig): ResolvedChild[] | undefined {
   return undefined;
 }
 
-function VisitedDot({ visited }: { visited: boolean }) {
-  return <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${visited ? "bg-signal" : "bg-transparent"}`} aria-hidden />;
-}
-
 interface FlatEntry {
   id: string;
   label: string;
@@ -44,7 +37,6 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
   const pathname = usePathname();
   const audience: Audience = pathname.startsWith("/sales") ? "sales" : "em-sa";
   const { isExpanded, toggle } = useNavUiState();
-  const { state: progress, hydrated } = useProgress();
   const [filter, setFilter] = useState("");
 
   const resolvedGroups = useMemo(
@@ -71,8 +63,6 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
 
   const query = filter.trim().toLowerCase();
   const filteredEntries = query ? flatEntries.filter((e) => e.label.toLowerCase().includes(query)) : null;
-
-  const isVisited = (id: string) => hydrated && progress.pagesVisited.includes(id);
 
   return (
     <>
@@ -131,19 +121,14 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
               <ul className="space-y-0.5">
                 {filteredEntries.map((entry) => (
                   <li key={entry.id}>
-                    <Link
-                      href={entry.href}
-                      onClick={onClose}
-                      className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${
-                        pathname === entry.href ? "bg-ink text-paper" : "text-ink/75 hover:bg-paper-2"
-                      }`}
+                    <span
+                      aria-disabled="true"
+                      title="Not yet open"
+                      className="flex cursor-not-allowed items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink/35"
                     >
-                      <VisitedDot visited={isVisited(entry.id)} />
-                      <span>
-                        {entry.parentLabel && <span className="text-ink/40">{entry.parentLabel} / </span>}
-                        {entry.label}
-                      </span>
-                    </Link>
+                      {entry.parentLabel && <span className="text-ink/25">{entry.parentLabel} / </span>}
+                      {entry.label}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -176,15 +161,17 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
                   {isExpanded(group.id) && (
                     <ul className="mt-1 space-y-0.5">
                       {group.items.map((item) => {
-                        const active = pathname === item.href;
                         const hasChildren = !!item.children?.length;
                         return (
                           <li key={item.id}>
-                            <div className={`flex items-center rounded-lg ${active ? "bg-ink text-paper" : "text-ink/80 hover:bg-paper-2"}`}>
-                              <Link href={item.href} onClick={onClose} className="flex flex-1 items-center gap-2 px-3 py-2 text-sm">
-                                <VisitedDot visited={isVisited(item.id)} />
+                            <div className="flex items-center rounded-lg">
+                              <span
+                                aria-disabled="true"
+                                title="Not yet open"
+                                className="flex flex-1 cursor-not-allowed items-center gap-2 px-3 py-2 text-sm text-ink/35"
+                              >
                                 {item.label}
-                              </Link>
+                              </span>
                               {hasChildren && (
                                 <button
                                   type="button"
@@ -202,16 +189,13 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
                               <ul className="ml-4 mt-0.5 space-y-0.5 border-l border-line pl-3">
                                 {item.children!.map((child) => (
                                   <li key={child.id}>
-                                    <Link
-                                      href={child.href}
-                                      onClick={onClose}
-                                      className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm ${
-                                        pathname === child.href ? "bg-ink text-paper" : "text-ink/65 hover:bg-paper-2"
-                                      }`}
+                                    <span
+                                      aria-disabled="true"
+                                      title="Not yet open"
+                                      className="flex cursor-not-allowed items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-ink/35"
                                     >
-                                      <VisitedDot visited={isVisited(child.id)} />
                                       {child.label}
-                                    </Link>
+                                    </span>
                                   </li>
                                 ))}
                               </ul>
@@ -226,10 +210,6 @@ export function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose:
             </div>
           )}
         </nav>
-
-        <div className="border-t border-line p-3">
-          <ProgressPill />
-        </div>
       </aside>
     </>
   );
