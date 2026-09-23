@@ -53,6 +53,19 @@ export interface ModuleEntry {
 export const modules: ModuleEntry[] = [
   // Phase 1: The New World (shared, Sept 16 milestone)
   {
+    slug: "s5",
+    code: "S5",
+    title: "First Call",
+    phase: "phase0",
+    audience: "sales",
+    objective:
+      "Walk the AirOps First Call deck slide by slide: know what to say at each one, what to customize before a live call, and how the narrative arc, market urgency, the system, the channel-by-channel offer, customer proof, close, actually fits together.",
+    knowledgeCheck: "N/A",
+    groupSession: "N/A",
+    appliedProject: "Deliver the deck live, graded by a peer",
+    status: "content-pending",
+  },
+  {
     slug: "m0",
     code: "M0",
     title: "Orientation",
@@ -352,19 +365,6 @@ export const modules: ModuleEntry[] = [
     groupSession: "N/A",
     appliedProject: "N/A",
     appliedProjectOptions: ["Deliver the talk track for one path live, graded by a peer"],
-    status: "content-pending",
-  },
-  {
-    slug: "s5",
-    code: "S5",
-    title: "First Call",
-    phase: "phase2",
-    audience: "sales",
-    objective:
-      "Walk the AirOps First Call deck slide by slide: know what to say at each one, what to customize before a live call, and how the narrative arc, market urgency, the system, the channel-by-channel offer, customer proof, close, actually fits together.",
-    knowledgeCheck: "N/A",
-    groupSession: "N/A",
-    appliedProject: "Deliver the deck live, graded by a peer",
     status: "content-pending",
   },
 ];

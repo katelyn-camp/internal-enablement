@@ -15,10 +15,17 @@ import { QuestionButton } from "./QuestionButton";
  */
 const BARE_ROUTE_PREFIXES = ["/slides"];
 
+/** The password gate itself: no nav, no chrome, nothing that hints at what's behind it. */
+const NO_CHROME_ROUTE_PREFIXES = ["/login"];
+
 export function NavShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const audience: Audience = pathname.startsWith("/sales") ? "sales" : "em-sa";
+
+  if (NO_CHROME_ROUTE_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
+    return <>{children}</>;
+  }
 
   if (BARE_ROUTE_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
     return (
