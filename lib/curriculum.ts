@@ -48,6 +48,8 @@ export interface ModuleEntry {
   emSaContent?: ModuleAudienceContent;
   salesContent?: ModuleAudienceContent;
   status: "content-pending";
+  /** Hide this module from the sidebar nav and the audience's table-of-contents page. Content and its direct URL are untouched. */
+  hiddenFromNav?: boolean;
 }
 
 export const modules: ModuleEntry[] = [
@@ -64,6 +66,7 @@ export const modules: ModuleEntry[] = [
     groupSession: "N/A",
     appliedProject: "Deliver the deck live, graded by a peer",
     status: "content-pending",
+    hiddenFromNav: true,
   },
   {
     slug: "m0",
@@ -375,6 +378,11 @@ export function getModulesForAudience(audience: Audience): ModuleEntry[] {
   return modules
     .filter((m) => m.audience === "shared" || m.audience === audience)
     .sort((a, b) => PHASE_ORDER.indexOf(a.phase) - PHASE_ORDER.indexOf(b.phase) || a.code.localeCompare(b.code, undefined, { numeric: true }));
+}
+
+/** For the sidebar and table-of-contents listings: excludes modules flagged `hiddenFromNav`. Direct URLs to a hidden module still work. */
+export function getVisibleModulesForAudience(audience: Audience): ModuleEntry[] {
+  return getModulesForAudience(audience).filter((m) => !m.hiddenFromNav);
 }
 
 export function getModuleBySlug(slug: string): ModuleEntry | undefined {

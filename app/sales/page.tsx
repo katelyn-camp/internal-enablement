@@ -1,4 +1,4 @@
-import { getModulesForAudience } from "@/lib/curriculum";
+import { getVisibleModulesForAudience } from "@/lib/curriculum";
 import { ModulesIndexClient } from "@/app/components/curriculum/ModulesIndexClient";
 import { PageVisitTracker } from "@/app/components/shared/PageVisitTracker";
 
@@ -12,7 +12,7 @@ export default function SalesIndexPage() {
         opportunity-spotting depth, plus the Sales-specific talk track, objection handling, and platform credibility
         modules.
       </p>
-      <ModulesIndexClient modules={getModulesForAudience("sales")} audience="sales" />
+      <ModulesIndexClient modules={getVisibleModulesForAudience("sales")} audience="sales" />
     </div>
   );
 }

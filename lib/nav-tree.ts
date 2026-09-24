@@ -1,4 +1,4 @@
-import { Audience, Phase, getModulesForAudience, isPhaseLocked, moduleTitleForAudience } from "./curriculum";
+import { Audience, Phase, getVisibleModulesForAudience, isPhaseLocked, moduleTitleForAudience } from "./curriculum";
 
 export interface NavItemConfig {
   id: string;
@@ -66,7 +66,7 @@ const EXISTING_LIBRARY_GROUP: NavGroupConfig = {
  */
 export function getNavGroups(audience: Audience): NavGroupConfig[] {
   const base = audience === "em-sa" ? "/em-sa" : "/sales";
-  const byPhase = getModulesForAudience(audience).reduce<Record<string, NavItemConfig[]>>((acc, m) => {
+  const byPhase = getVisibleModulesForAudience(audience).reduce<Record<string, NavItemConfig[]>>((acc, m) => {
     (acc[m.phase] ??= []).push({ id: `${audience}:${m.slug}`, label: moduleTitleForAudience(m, audience), href: `${base}/${m.slug}` });
     return acc;
   }, {});
